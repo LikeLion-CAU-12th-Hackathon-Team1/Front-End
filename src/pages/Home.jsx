@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
+import { testGet, testKakaoLogin, testPost } from '../api/api';
 
 const Home = () => {
+
+  useEffect(() => {
+    const testFetchData = async () => {
+      const testGetData = await testGet();
+      console.log(testGetData);
+
+      const testGetKakaoLoginData = await testKakaoLogin();
+      console.log(testGetKakaoLoginData);
+
+      const testPostData = await testPost();
+      console.log(testPostData);
+    }
+    testFetchData();
+  }, []);
+
   return (
     <>
     <Wrapper>
