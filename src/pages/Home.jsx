@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
-import { testGet, testKakaoLogin, testPost } from '../api/api';
+import { testGet, testKakaoLogin, testPost } from '../api/api_login';
 
 const Home = () => {
   const REST_API_KEY = "872ea408194165abb49cfa9b9fe7516a";
