@@ -1,29 +1,25 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
-import { testGet, testKakaoLogin, testPost } from '../api/api_login';
+import { loginHandler } from '../api/api_login';
+// import { testGet, testKakaoLogin, testPost } from '../api/api_login';
 
 const Home = () => {
-  const REST_API_KEY = "872ea408194165abb49cfa9b9fe7516a";
-  const REDIRECT_URI1 = "https://saengchaein.r-e.kr/account/kakao/callback/";
-  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI1}&response_type=code`
 
-  const loginHandler = () => {
-    window.location.href = link;
-  };
+  /* 이하는 백 연결 테스트 코드 */
 
-  useEffect(() => {
-    const testFetchData = async () => {
-      const testGetData = await testGet();
-      console.log(testGetData);
+  // useEffect(() => {
+  //   const testFetchData = async () => {
+  //     const testGetData = await testGet();
+  //     console.log(testGetData);
 
-      // const testGetKakaoLoginData = await testKakaoLogin();
-      // console.log(testGetKakaoLoginData);
+  //     const testGetKakaoLoginData = await testKakaoLogin();
+  //     console.log(testGetKakaoLoginData);
 
-      const testPostData = await testPost();
-      console.log(testPostData);
-    }
-    testFetchData();
-  }, []);
+  //     const testPostData = await testPost();
+  //     console.log(testPostData);
+  //   }
+  //   testFetchData();
+  // }, []);
 
   return (
     <>
