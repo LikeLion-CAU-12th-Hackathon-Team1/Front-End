@@ -6,12 +6,11 @@ import { useDispatch } from 'react-redux';
 
 const Login = () => {
 
-    const dispatch = useDispatch
-    let code = new URL(window.location.href).searchParams.get("code");
-
-
   return (
+    <>
     <div>Login</div>
+    </>
+    
   )
 }
 
