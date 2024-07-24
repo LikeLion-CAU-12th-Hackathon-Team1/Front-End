@@ -1,27 +1,14 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
-import { testGet, testKakaoLogin, testPost } from '../api/api';
+import { loginHandler } from '../api/api_login';
 
 const Home = () => {
-
-  useEffect(() => {
-    const testFetchData = async () => {
-      const testGetData = await testGet();
-      console.log(testGetData);
-
-      const testGetKakaoLoginData = await testKakaoLogin();
-      console.log(testGetKakaoLoginData);
-
-      const testPostData = await testPost();
-      console.log(testPostData);
-    }
-    testFetchData();
-  }, []);
 
   return (
     <>
     <Wrapper>
         <Title>생활체육인 파이팅!!</Title>
+        <button onClick={loginHandler}>카카오 로그인 테스트</button>
     </Wrapper>
     </>
   )
