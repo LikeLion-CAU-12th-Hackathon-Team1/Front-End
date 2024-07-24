@@ -1,25 +1,8 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import { loginHandler } from '../api/api_login';
-// import { testGet, testKakaoLogin, testPost } from '../api/api_login';
 
 const Home = () => {
-
-  /* 이하는 백 연결 테스트 코드 */
-
-  // useEffect(() => {
-  //   const testFetchData = async () => {
-  //     const testGetData = await testGet();
-  //     console.log(testGetData);
-
-  //     const testGetKakaoLoginData = await testKakaoLogin();
-  //     console.log(testGetKakaoLoginData);
-
-  //     const testPostData = await testPost();
-  //     console.log(testPostData);
-  //   }
-  //   testFetchData();
-  // }, []);
 
   return (
     <>
