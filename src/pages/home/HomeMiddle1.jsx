@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import InsideHomeM1 from '../../component/InsideHomeM1'
 
 const HomeMiddle1 = () => {
   return (

@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components'
 import { isLoginAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
 import { useNavigate } from 'react-router-dom';
+import superLogo from '../img/super.png';
 
 const MyPageModal = () => {
 
@@ -22,8 +23,9 @@ const MyPageModal = () => {
 
   return (
     <Container>
-    <div>로그인된 상태</div>
-    <button onClick={toLogOut}>로그아웃하기</button>
+      <ProfileImg src={superLogo} alt='프로필사진'/>
+    <Name>닉네임 | </Name>
+    <Email>이메일 | </Email>
     </Container>
   )
 }
@@ -31,11 +33,32 @@ const MyPageModal = () => {
 export default MyPageModal
 
 const Container = styled.div`
-  background-color: skyblue;
-  width: 70%;
-  height: 70%;
+  background-color: #ffffff;
+  width: 240px;
+  height: 217px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* 위치 관련 코드*/
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  
+`
+const ProfileImg = styled.img`
+  border-radius: 50%;
+  width: 76px;
+  height: 76px;
+  border-color: black;
+  border: 1px solid #ccc;
+`
+
+const Name = styled.div`
+  font-size: 12px;
+  color:black;
+`
+const Email = styled.div`
+  font-size: 12px;
+  color:black;
 `
