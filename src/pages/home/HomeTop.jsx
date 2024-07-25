@@ -13,6 +13,8 @@ const HomeTop = () => {
 export default HomeTop
 
 const Wrapper = styled.div`
+    display: grid;
+    
     
     width : 1200px;
     //min-width: 1200px;
