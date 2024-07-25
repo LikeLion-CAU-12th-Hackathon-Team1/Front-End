@@ -20,19 +20,19 @@ export const Nav = () => {
     }
 
     // 로그인 여부 판단하는 함수 및 isLoginAtom 관리 및 어떤 모달창 열건지
-    const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom);
-    const [myPageModal, setMyPageModal] = useRecoilState(isMyPageModalAtom);
-    const [loginModal, setLoginModal] = useRecoilState(isLoginModalAtom);
+    const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
+    const [myPageModal, setMyPageModal] = useRecoilState(isMyPageModalAtom); // 마이페이지 모달 상태
+    const [loginModal, setLoginModal] = useRecoilState(isLoginModalAtom); // 로그인 모달 상태
 
 
+    // 로그인 상태 판단(액세스 토큰 존재여부)
     const isLogin = () => {
         if(localStorage.getItem("access")){
             setIsLogin(true);
-            console.log(isLoginValue)
             //myPageModal 열기
             setMyPageModal(true)
         } else{
-            console.log(isLoginValue)
+            setIsLogin(false);
             //loginModal 열기
             setLoginModal(true)
         }
@@ -44,12 +44,12 @@ export const Nav = () => {
         <BtnDom>
             <Button className="alarm_modal" onClick={handleLoginClick} >알림</Button>
             <Button type="button" onClick={gotoT}>시간표</Button>
-            <Button className="login" onClick={isLogin}>로그인여부</Button>
+            <Button className="login" onClick={isLogin}>로그인여부</Button> {/** 추후 텍스트 수정 필요 */}
             {myPageModal && (
-                <MyPageModal/>
+                <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부
             )}
             {loginModal && (
-                <LoginModal/>
+                <LoginModal/> // 로그인 리코일 상태에 따라 모달 오픈 여부
             )}
         </BtnDom>
     </NavDom>

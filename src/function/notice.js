@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 
 
-// 백에서 가장 가까운 일정 가져오기 - 지금은 상수값 내가 지정
+// @@ 백에서 가장 가까운 일정 가져오기 - 지금은 상수값 내가 지정
 const scheduleTime = 20240725171910
 
 /** 클라이언트 시간 가져오는 로직 */
@@ -51,7 +51,7 @@ const setNotice = (clientTime, scheduleTime) => {
 
         Toast.fire({
           icon: 'success',
-          title: 'Work까지 10분 남았습니다!!'
+          title: 'Work까지 10분 남았습니다!!' // @@ 추후 변수로 타이틀 변경 필요
         })
 
       }, timeInterval*1000)

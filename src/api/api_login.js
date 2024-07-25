@@ -58,7 +58,6 @@ const baseURL = `https://saengchaein.r-e.kr`;
 
 export const loginHandler = () => {
   window.location.href = kakao_login_uri;
-
 };
 
 // OAuth 처리를 위한 함수
