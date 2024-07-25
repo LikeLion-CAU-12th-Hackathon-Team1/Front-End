@@ -34,7 +34,8 @@ export const Nav = () => {
         } else{
             setIsLogin(false);
             //loginModal 열기
-            setLoginModal(true)
+            //setLoginModal(true)
+            loginHandler();
         }
     }
 
