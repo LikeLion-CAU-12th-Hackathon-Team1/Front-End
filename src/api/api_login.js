@@ -66,7 +66,7 @@ export const handleOAuth = async () => {
       const result = await axios.post(`${baseURL}/oauth/?code=${code}`); // 추후 post 메서드로 수정 필요
 
       localStorage.setItem("access", result.data.access_token); // 받아온 액세스 토큰을 로컬스토리지에 저장하여 관리
-
+      //console.log(result.data.access_token);
       history.push("/login"); // 로그인 페이지로 이동
       window.location.reload(); // 페이지 새로고침
     } catch (error) {
