@@ -36,7 +36,7 @@ const NavDom = styled.div`
     position: fixed; /*화면 상단 고정*/
     top: 0;
     left: 50%;
-    width: 80%;
+    width: 90vw;
     height: 48px;
 
     transform: translateX(-50%); /*중앙정렬*/
@@ -66,6 +66,5 @@ const Button= styled.div`
     border-radius: 4px;
     padding: 4px 10px 4px 10px;
     margin: 10px;
-    
 
 `
