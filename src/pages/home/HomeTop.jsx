@@ -4,7 +4,15 @@ import styled from 'styled-components'
 const HomeTop = () => {
   return (
     <Wrapper>
-      <div>HomeTop</div>
+      <TitleContainer>
+        <Title>늘어난 재택<br />But,무너진 일과 휴식의 구분</Title>
+        <SemiTitle>부가설명부가설명부가설명부가설명</SemiTitle>
+
+        <Button>자세히 보기</Button>
+      </TitleContainer>
+      <LogoContainer>
+        <Img />
+      </LogoContainer>
     </Wrapper>
     
   )
@@ -13,15 +21,54 @@ const HomeTop = () => {
 export default HomeTop
 
 const Wrapper = styled.div`
-    display: grid;
-    
-    
+    display: flex;
+    justify-content: center;
     width : 1200px;
-    //min-width: 1200px;
-    min-height: 720px; /*최소높이 설정으로 컨텐츠 보이도록*/
-    background-color: #c3c3c3;
-    
-    /* padding: 1rem;
-    margin: 10px 0; */
-    margin-bottom: 10px;
+    height: 568px;
+    background-color: #FFFAF0;
+`
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  white-space: pre-wrap;
+  width: 290px;
+  height: 350px;
+
+  margin-top: 118px;
+`
+const Title = styled.div`
+  font-size :22px;
+  font-weight: 700;
+  width: 290px;
+  height: 58px;
+`
+const LogoContainer = styled.div`
+  width: 262px;
+  height: 350px;
+
+  margin-top: 118px;
+
+  border: 1px solid;
+`
+const Img = styled.img`
+  
+`
+const SemiTitle = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 100px;
+`
+
+const Button = styled.button`
+  font-size: 16px;
+  font-weight: 700;
+  width: 156px;
+  height: 32px;
+  border: 0.5px solid #969696;
+  border-radius: 4px;
+  padding: 4px 35px 4px 35px;
+  gap: 10px
 `

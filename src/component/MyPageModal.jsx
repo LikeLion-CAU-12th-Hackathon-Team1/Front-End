@@ -42,7 +42,7 @@ const Container = styled.div`
   align-items: center;
   /* 위치 관련 코드*/
   position: fixed;
-  top: 10px;
+  top: 55px;
   right: 10px;
   
 `

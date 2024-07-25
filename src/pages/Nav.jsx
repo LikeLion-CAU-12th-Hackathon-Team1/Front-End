@@ -41,11 +41,11 @@ export const Nav = () => {
 
   return (
     <NavDom>
-        <Logo src={superLogo} onClick={gotoHome}/>
+        <Logo src="../public/workvalley.svg" alt="Workvalley Logo" onClick={gotoHome}/>
         <BtnDom>
-            <Button className="alarm_modal" onClick={handleLoginClick} >알림</Button>
+            <ButtonHis className="alarm_modal" onClick={handleLoginClick} >워케이션 등록</ButtonHis>
             <Button type="button" onClick={gotoT}>시간표</Button>
-            <Button className="login" onClick={isLogin}>로그인여부</Button> {/** 추후 텍스트 수정 필요 */}
+            <Button className="login" onClick={isLogin}>로그인</Button> {/** 추후 텍스트 수정 필요 */}
             {myPageModal && (
                 <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부
             )}
@@ -61,40 +61,54 @@ export const Nav = () => {
 const NavDom = styled.div`
     display: flex;
     justify-content:  space-between;
-    background-color: rgb(188, 252, 255);
+    /*background-color: rgb(255, 226, 196);*/
 
     position: fixed; /*화면 상단 고정*/
     top: 0;
-    left: 50%;
-    width: 1200px;
+    width: 552px;
     height: 48px;
-
     transform: translateX(-50%); /*중앙정렬*/
-
+    left: 50%;
     z-index: 10; /*항상최상단*/
+
+    border-bottom: 1px solid #E9E4DB ;
 
 `
 const Logo = styled.img`
-    height: 90%;
-    padding-left: 10px;
+    height: 32px;
+    width: 144px;
+    margin: 8px;
 `
 
 const BtnDom = styled.div`
     display : flex;
     justify-content: space-evenly;
+    margin-bottom: 11.5px;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 600;
     
 
 `
 const Button= styled.div`
-    background-color: none;
     text-align: center;
-    border: 1px solid black;
+    border: 0.5px solid #969696;
     width: 56px;
     height: 25px;
     top: 11px;
     left: 790px;
     border-radius: 4px;
     padding: 4px 10px 4px 10px;
-    margin: 10px;
-
+    margin-right: 12px;
+`
+const ButtonHis= styled.div`
+    text-align: center;
+    border: 0.5px solid #969696;
+    width: 95px;
+    height: 25px;
+    top: 11px;
+    left: 790px;
+    border-radius: 4px;
+    padding: 4px 10px 4px 10px;
+    margin-right: 12px;
 `
