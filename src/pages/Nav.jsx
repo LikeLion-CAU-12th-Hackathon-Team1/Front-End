@@ -65,7 +65,7 @@ const NavDom = styled.div`
     position: fixed; /*화면 상단 고정*/
     top: 0;
     left: 50%;
-    width: 90vw;
+    width: 1200px;
     height: 48px;
 
     transform: translateX(-50%); /*중앙정렬*/
