@@ -1,8 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import OAuth from './api/api_login';
 import TimeTable from './pages/TimeTable';
 import Today from './pages/Today';
 import MakeT from './pages/MakeT';

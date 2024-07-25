@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import superLogo from '../img/super.png';
 import { loginHandler } from '../api/api_login';
+import { handleLoginClick } from '../function/notice';
 
 export const Nav = () => {
     const navigate= useNavigate();
@@ -18,7 +19,7 @@ export const Nav = () => {
     <NavDom>
         <Logo src={superLogo} onClick={gotoHome}/>
         <BtnDom>
-            <Button className="alarm_modal" >알림</Button>
+            <Button className="alarm_modal" onClick={handleLoginClick} >알림</Button>
             <Button type="button" onClick={gotoT}>시간표</Button>
             <Button className="login" onClick={loginHandler}>로그인</Button>
         </BtnDom>
