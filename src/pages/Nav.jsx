@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import superLogo from '../img/super.png';
 import { loginHandler } from '../api/api_login';
 import { handleLoginClick } from '../function/notice';
+import { useRecoilState } from 'recoil';
+import { isLoginAtom, isLoginModalAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
+import MyPageModal from '../component/MyPageModal';
+import LoginModal from '../component/LoginModal';
 
 export const Nav = () => {
     const navigate= useNavigate();
@@ -15,13 +19,38 @@ export const Nav = () => {
         navigate('/');
     }
 
+    // 로그인 여부 판단하는 함수 및 isLoginAtom 관리 및 어떤 모달창 열건지
+    const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom);
+    const [myPageModal, setMyPageModal] = useRecoilState(isMyPageModalAtom);
+    const [loginModal, setLoginModal] = useRecoilState(isLoginModalAtom);
+
+
+    const isLogin = () => {
+        if(localStorage.getItem("access")){
+            setIsLogin(true);
+            console.log(isLoginValue)
+            //myPageModal 열기
+            setMyPageModal(true)
+        } else{
+            console.log(isLoginValue)
+            //loginModal 열기
+            setLoginModal(true)
+        }
+    }
+
   return (
     <NavDom>
         <Logo src={superLogo} onClick={gotoHome}/>
         <BtnDom>
             <Button className="alarm_modal" onClick={handleLoginClick} >알림</Button>
             <Button type="button" onClick={gotoT}>시간표</Button>
-            <Button className="login" onClick={loginHandler}>로그인</Button>
+            <Button className="login" onClick={isLogin}>로그인여부</Button>
+            {myPageModal && (
+                <MyPageModal/>
+            )}
+            {loginModal && (
+                <LoginModal/>
+            )}
         </BtnDom>
     </NavDom>
   )

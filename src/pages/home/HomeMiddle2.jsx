@@ -14,7 +14,7 @@ export default HomeMiddle2
 
 const Wrapper = styled.div`
     
-    /* width : 100%; */
+    width : 1200px;
     //min-width: 1200px;
     min-height: 720px; //최소높이 설정으로 컨텐츠 보이도록
     background-color: #c3c3c3;

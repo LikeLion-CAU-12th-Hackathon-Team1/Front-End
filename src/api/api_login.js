@@ -55,8 +55,10 @@ const baseURL = `https://saengchaein.r-e.kr`;
 
 // Home.jsx의 카카오 로그인 테스트 버튼에 연결
 // 인가 uri로 연결
+
 export const loginHandler = () => {
   window.location.href = kakao_login_uri;
+
 };
 
 // OAuth 처리를 위한 함수

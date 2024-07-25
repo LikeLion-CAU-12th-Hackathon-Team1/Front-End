@@ -26,6 +26,7 @@ const HomeDom = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 90vw; /* 전체 너비로 설정 */
+  align-items: center;
   
   /*box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
   
