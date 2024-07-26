@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import superLogo from '../../img/super.png';
+import superLogo from '../../assets/img/super.png';
+import workvalley from '../../assets/img/workvalley.svg';
 
 const HomeBottom = () => {
   return (
@@ -21,7 +22,7 @@ const Wrapper = styled.div`
     align-items: center; /*역방향(가로)의 중심 */
     width : 1200px;
     height: 516px; 
-    background-color: #c3c3c3;
+    background: linear-gradient(#FFFFFF, #FFFAF0);
 `
 
 const Title = styled.div`

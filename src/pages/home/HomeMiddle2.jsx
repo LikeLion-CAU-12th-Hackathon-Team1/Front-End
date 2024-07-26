@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import superLogo from '../../img/super.png';
+import superLogo from '../../assets/img/super.png';
+import workvalley from '../../assets/img/workvalley.svg';
+
 
 const HomeMiddle2 = () => {
   return (

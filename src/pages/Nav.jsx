@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import superLogo from '../img/super.png';
+import superLogo from '../assets/img/super.png';
+import workvalley from '../assets/img/workvalley.svg';
 import { loginHandler } from '../api/api_login';
 import { handleLoginClick } from '../function/notice';
 import { useRecoilState } from 'recoil';
@@ -17,6 +18,14 @@ export const Nav = () => {
     }
     const gotoHome = () => {
         navigate('/');
+    }
+    const maketoT = () => {
+        //로그인이 되어있다면 워케이션등록으로, 안되어있다면 로그인안내페이지로
+        if (setIsLogin(true)) {
+            navigate('/makeT');
+        } else {
+            navigate('/beforeMakeT');
+        };
     }
 
     // 로그인 여부 판단하는 함수 및 isLoginAtom 관리 및 어떤 모달창 열건지
@@ -41,9 +50,9 @@ export const Nav = () => {
 
   return (
     <NavDom>
-        <Logo src="../public/workvalley.svg" alt="Workvalley Logo" onClick={gotoHome}/>
+        <Logo src={workvalley} alt="Workvalley Logo" onClick={gotoHome}/>
         <BtnDom>
-            <ButtonHis className="alarm_modal" onClick={handleLoginClick} >워케이션 등록</ButtonHis>
+            <ButtonHis className="alarm_modal" onClick={maketoT} >워케이션 등록</ButtonHis>
             <Button type="button" onClick={gotoT}>시간표</Button>
             <Button className="login" onClick={isLogin}>로그인</Button> {/** 추후 텍스트 수정 필요 */}
             {myPageModal && (
@@ -72,11 +81,10 @@ const NavDom = styled.div`
     z-index: 10; /*항상최상단*/
 
     border-bottom: 1px solid #E9E4DB ;
-
 `
 const Logo = styled.img`
-    height: 32px;
-    width: 144px;
+    height: 28px;
+    width: 172px;
     margin: 8px;
 `
 
@@ -92,23 +100,21 @@ const BtnDom = styled.div`
 `
 const Button= styled.div`
     text-align: center;
-    border: 0.5px solid #969696;
+    border-bottom: 0.5px solid #969696;
     width: 56px;
-    height: 25px;
+    height: 35px;
     top: 11px;
     left: 790px;
-    border-radius: 4px;
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
 `
 const ButtonHis= styled.div`
     text-align: center;
-    border: 0.5px solid #969696;
+    border-bottom: 0.5px solid #969696;
     width: 95px;
-    height: 25px;
+    height: 35px;
     top: 11px;
     left: 790px;
-    border-radius: 4px;
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
 `

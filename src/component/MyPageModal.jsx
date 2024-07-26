@@ -3,7 +3,8 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components'
 import { isLoginAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
 import { useNavigate } from 'react-router-dom';
-import superLogo from '../img/super.png';
+import superLogo from '../assets/img/super.png';
+
 
 const MyPageModal = () => {
 

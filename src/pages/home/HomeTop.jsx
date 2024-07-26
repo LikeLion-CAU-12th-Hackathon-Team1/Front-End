@@ -63,12 +63,14 @@ const SemiTitle = styled.p`
 `
 
 const Button = styled.button`
+  background-color: #FF831C;
+  color: white;
   font-size: 16px;
   font-weight: 700;
   width: 156px;
   height: 32px;
-  border: 0.5px solid #969696;
+  border: 0px;
   border-radius: 4px;
   padding: 4px 35px 4px 35px;
-  gap: 10px
+  gap: 10px;
 `

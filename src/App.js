@@ -4,9 +4,10 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import TimeTable from './pages/TimeTable';
 import Today from './pages/Today';
-import MakeT from './pages/MakeT';
+import MakeT from './pages/MakeTimetable/MakeT';
 import History from './pages/History';
 import { Nav } from './pages/Nav';
+import BeforeMakeT from './pages/MakeTimetable/BeforeMakeT';
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Route path="/oauth" element={<div>Loading...</div>}/*{<OAuth />}*/ /> {/* 여기 경로 수정하면 백한테 주소 리다이랙트 주소 수정 요청필요 */}
           <Route path="/timetable" element={<TimeTable />} />
           <Route path=":num" element={<Today />} />
-          <Route path="make" element={<MakeT />} />
+          <Route path="/makeT" element={<MakeT />} />
+          <Route path="/beforeMakeT" element={< BeforeMakeT/>} />
           <Route path="/history" element={<History />} />
       </Routes>
     </>
