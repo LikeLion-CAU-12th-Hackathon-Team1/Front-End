@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  //<React.StrictMode> // useEffect 두번 실행되는 문제 해결하기 위해 주석처리
+  <RecoilRoot>
+  <BrowserRouter>
+  {/*//<React.StrictMode> // useEffect 두번 실행되는 문제 해결하기 위해 주석처리 */}
     <App />
-  //</React.StrictMode>
+  {/* </React.StrictMode> */}
+  </BrowserRouter>
+  </RecoilRoot>
 );
 
 // If you want to start measuring performance in your app, pass a function

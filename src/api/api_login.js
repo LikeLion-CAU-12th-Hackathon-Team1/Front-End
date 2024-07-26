@@ -41,17 +41,21 @@
 
 // export default OAuth;
 
+
+
 import axios from "axios";
 import { createBrowserHistory } from "history";
 
 const REST_API_KEY = "872ea408194165abb49cfa9b9fe7516a";
+const REST_API_KEY1 = "6eeb65005292f7f598e7c1e085a21e3a"; // 나중에 지울 api
 const REDIRECT_URI1 = "http://localhost:3000/oauth";
-const kakao_login_uri = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI1}&response_type=code`;
+const kakao_login_uri = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY1}&redirect_uri=${REDIRECT_URI1}&response_type=code`;
 
 const baseURL = `https://saengchaein.r-e.kr`;
 
 // Home.jsx의 카카오 로그인 테스트 버튼에 연결
 // 인가 uri로 연결
+
 export const loginHandler = () => {
   window.location.href = kakao_login_uri;
 };
@@ -63,10 +67,10 @@ export const handleOAuth = async () => {
 
   if (code) {
     try {
-      const result = await axios.post(`${baseURL}/oauth/?code=${code}`); // 추후 post 메서드로 수정 필요
+      const result = await axios.get(`${baseURL}/account/kakao/callback/?code=${code}`);
 
       localStorage.setItem("access", result.data.access_token); // 받아온 액세스 토큰을 로컬스토리지에 저장하여 관리
-
+      localStorage.setItem("refresh", result.data.refresh_token); // 받아온 리프레시 토큰을 로컬스토리지에 저장하여 관리
       history.push("/login"); // 로그인 페이지로 이동
       window.location.reload(); // 페이지 새로고침
     } catch (error) {

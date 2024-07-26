@@ -1,9 +1,14 @@
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'AppleSEGoathicNeoM', sans-serif;
+}
+
+@font-face {
+  font-family: 'AppleSDGothicNeoM';
+  src: url('./assets/fonts/AppleSDGothicNeoM.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
