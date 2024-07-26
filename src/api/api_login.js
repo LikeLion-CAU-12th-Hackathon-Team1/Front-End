@@ -67,7 +67,7 @@ export const handleOAuth = async () => {
 
   if (code) {
     try {
-      const result = await axios.post(`${baseURL}/account/kakao/callback/?code=${code}`);
+      const result = await axios.get(`${baseURL}/account/kakao/callback/?code=${code}`);
 
       localStorage.setItem("access", result.data.access_token); // 받아온 액세스 토큰을 로컬스토리지에 저장하여 관리
       localStorage.setItem("refresh", result.data.refresh_token); // 받아온 리프레시 토큰을 로컬스토리지에 저장하여 관리
