@@ -21,7 +21,7 @@ export const Nav = () => {
     }
     const maketoT = () => {
         //로그인이 되어있다면 워케이션등록으로, 안되어있다면 로그인안내페이지로
-        if (setIsLogin(true)) {
+        if (localStorage.getItem("access")) {
             navigate('/makeT');
         } else {
             navigate('/beforeMakeT');
