@@ -25,31 +25,30 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center; /*역방향(가로)의 중심 */
-    width : 1200px;
-    height: 438px; //최소높이 설정으로 컨텐츠 보이도록
-    /*background-color: #ffa3a3;*/
+    width : 1440px;
+    height: 800px;
 `
 
 const Title= styled.div`
-  width: 306px;
+  width: 170px;
   height: 70px;
-  font-size: 20px;
-  font-weight:700;
+  font-size: 24px;
+  font-weight:800;
   text-align: center;
   padding-top: 50px;
 `
 
 const SemiTitle = styled.div`
-  width: 306px;
-  height: 70px;
-  font-size: 12px;
+  width: 426px;
+  height: 90px;
+  font-size: 18px;
   font-weight: 600;
   text-align: center;
 `
 
 const StyledImg = styled.img`
-    width: 552px;
-    height: 135px;
+    width: 812px;
+    height: 221px;
     border-radius: 10px;
     opacity: 50%;
 `

@@ -96,12 +96,41 @@ export default MakeT
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
-  width: 552px;
+  width: 1440px;
   
 `;
 
+const TitleW = styled.div`
+    width : 377px;
+    font-size: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 146px; /*네브바와 겹치지않게 콘텐츠 구역 */
+`
+const Title = styled.div`
+  font-size: 32px;
+  font-weight: 700;
+  width: 500px; /* 폰트 변경 후 수정 필요*/
+  height: 58px;
+`
+
+const QuestionW = styled.div`
+  width: 1228px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid #E3E3E3;
+  border-radius: 5px;
+  width: 552px;
+  background-color: #F9F9F9;
+
+`
 const Question = styled.div`
   width: 100%;
 `;
@@ -141,30 +170,3 @@ const ContentBox = styled.div`
   width: 100%;
   margin-left: 14px;
 `;
-const Title = styled.div`
-  font-size: 22px;
-  font-weight: 700;
-  width: 350px; /* 폰트 변경 후 수정 필요*/
-  height: 58px;
-  margin: 3%;
-`
-const TitleW = styled.div`
-    width : 552px;
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 48px; /*네브바와 겹치지않게 콘텐츠 구역 */
-`
-const QuestionW = styled.div`
-  width: 552px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 20px;
-  border: 1px solid #E3E3E3;
-  border-radius: 5px;
-  width: 552px;
-  background-color: #F9F9F9;
-
-`
