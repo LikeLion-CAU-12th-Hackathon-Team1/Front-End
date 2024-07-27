@@ -20,18 +20,19 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center; /*역방향(가로)의 중심 */
-    width : 1200px;
-    height: 516px; 
+    width : 1440px;
+    height: 659px; 
     background: linear-gradient(#FFFFFF, #FFFAF0);
 `
 
 const Title = styled.div`
-  font-size: 16px;
+  font-size: 24px;
+  font-weight: 700;
   text-align: center;
 `
 
 const StyledImg = styled.img`
-    width: 552px;
-    height: 320px;
+    width: 760px;
+    height: 440px;
     border-radius: 10px;
 `

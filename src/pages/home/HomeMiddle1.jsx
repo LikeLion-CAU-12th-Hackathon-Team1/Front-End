@@ -33,24 +33,24 @@ export default HomeMiddle1
 const Wrapper = styled.div`
     background-color: #f2f2f2;
     text-align: center;
-    width : 1200px;
-    height: 370px; 
-    font-size: 20px;
+    width : 1440px;
+    height: 624px; 
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 `
 const Title = styled.div`
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 800;
   margin: 3%;
 `
 const InsideWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 552px;
-  height: 213px;
+  width: 916px;
+  height: 362px;
 `
 
 const Inside = styled.div`

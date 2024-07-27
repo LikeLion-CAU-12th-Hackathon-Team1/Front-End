@@ -49,12 +49,13 @@ export const Nav = () => {
     }
 
   return (
+    <Wrraper>
     <NavDom>
         <Logo src={workvalley} alt="Workvalley Logo" onClick={gotoHome}/>
         <BtnDom>
             <ButtonHis className="alarm_modal" onClick={maketoT} >워케이션 등록</ButtonHis>
             <Button type="button" onClick={gotoT}>시간표</Button>
-            <Button className="login" onClick={isLogin}>로그인</Button> {/** 추후 텍스트 수정 필요 */}
+            <ButtonLogin className="login" onClick={isLogin}>로그인</ButtonLogin> {/** 추후 텍스트 수정 필요 */}
             {myPageModal && (
                 <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부
             )}
@@ -63,19 +64,31 @@ export const Nav = () => {
             )}
         </BtnDom>
     </NavDom>
+    </Wrraper>
+  
   )
 }
 
+const Wrraper =styled.div`
+    width: 1440px;
+    height: 52px;
+    background-color: white;
+    z-index: 10; /*항상최상단*/
+    position: fixed; /*화면 상단 고정*/
+    top: 0;
+    transform: translateX(-50%); /*중앙정렬*/
+    left: 50%;
+`
 
 const NavDom = styled.div`
     display: flex;
     justify-content:  space-between;
-    /*background-color: rgb(255, 226, 196);*/
+    background-color: rgb(255, 255, 255);
 
     position: fixed; /*화면 상단 고정*/
     top: 0;
-    width: 552px;
-    height: 48px;
+    width: 1228px;
+    height: 52px;
     transform: translateX(-50%); /*중앙정렬*/
     left: 50%;
     z-index: 10; /*항상최상단*/
@@ -93,28 +106,47 @@ const BtnDom = styled.div`
     justify-content: space-evenly;
     margin-bottom: 11.5px;
     margin-top: 5px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
+    width: 500px;
+    height: 32px;
     
 
-`
-const Button= styled.div`
-    text-align: center;
-    border-bottom: 0.5px solid #969696;
-    width: 56px;
-    height: 35px;
-    top: 11px;
-    left: 790px;
-    padding: 4px 10px 4px 10px;
-    margin-right: 12px;
 `
 const ButtonHis= styled.div`
     text-align: center;
     border-bottom: 0.5px solid #969696;
-    width: 95px;
+    width: 140px;
     height: 35px;
     top: 11px;
     left: 790px;
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
+`
+
+const Button= styled.div`
+    text-align: center;
+    border-bottom: 0.5px solid #969696;
+    width: 90px;
+    height: 35px;
+    top: 11px;
+    left: 790px;
+    padding: 4px 10px 4px 10px;
+    margin-right: 12px;
+`
+
+const ButtonLogin = styled.button`
+    text-align: center;
+    background-color: #FF831C;
+    color : white;
+    border-radius: 4px;
+    width: 90px;
+    height: 35px;
+    top: 11px;
+    left: 790px;
+    padding: 4px 10px 4px 10px;
+    margin-right: 12px;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
 `

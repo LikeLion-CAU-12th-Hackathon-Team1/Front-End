@@ -22,9 +22,9 @@ export default HomeTop
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: center;
-    width : 1200px;
-    height: 568px;
+    justify-content: space-evenly;
+    width : 1440px;
+    height: 695px;
     background-color: #FFFAF0;
 `
 
@@ -34,19 +34,19 @@ const TitleContainer = styled.div`
   justify-content: center;
 
   white-space: pre-wrap;
-  width: 290px;
+  width: 424px;
   height: 350px;
 
   margin-top: 118px;
 `
 const Title = styled.div`
-  font-size :22px;
-  font-weight: 700;
-  width: 290px;
-  height: 58px;
+  font-size :34px;
+  font-weight: 800;
+  width: 460px;
+  height: 88px;
 `
 const LogoContainer = styled.div`
-  width: 262px;
+  width: 400px;
   height: 350px;
 
   margin-top: 118px;
@@ -65,12 +65,12 @@ const SemiTitle = styled.p`
 const Button = styled.button`
   background-color: #FF831C;
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
-  width: 156px;
-  height: 32px;
+  width: 212px;
+  height: 52px;
   border: 0px;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 4px 35px 4px 35px;
   gap: 10px;
 `
