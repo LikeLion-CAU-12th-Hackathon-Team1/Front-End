@@ -71,7 +71,10 @@ export const handleOAuth = async () => {
 
       localStorage.setItem("access", result.data.access_token); // 받아온 액세스 토큰을 로컬스토리지에 저장하여 관리
       localStorage.setItem("refresh", result.data.refresh_token); // 받아온 리프레시 토큰을 로컬스토리지에 저장하여 관리
-      history.push("/login"); // 로그인 페이지로 이동
+      localStorage.setItem("nickname", result.data.user.nickname); 
+      localStorage.setItem("email", result.data.user.email); 
+      localStorage.setItem("profile", result.data.user.profile);
+      history.push("/"); // 로그인 페이지로 이동
       window.location.reload(); // 페이지 새로고침
     } catch (error) {
       console.error("Error fetching OAuth data", error); // 에러 메세지 확인용

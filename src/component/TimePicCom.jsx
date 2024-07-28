@@ -11,20 +11,20 @@ const theme = createTheme({ // 테마설정
           root: {
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
-                borderColor: 'blue', // 기본 테두리 색상
+                borderColor: 'none', // 기본 테두리 색상
               },
               '&:hover fieldset': {
-                borderColor: 'green', // 마우스 호버 시 테두리 색상
+                borderColor: 'none', // 마우스 호버 시 테두리 색상
               },
               '&.Mui-focused fieldset': {
-                borderColor: 'purple', // 포커스 시 테두리 색상
+                borderColor: '#FFE39D', // 포커스 시 테두리 색상
               },
             },
             '& .MuiInputBase-input': {
-              color: 'red', // 입력 텍스트 색상
+              color: 'balck', // 입력 텍스트 색상
             },
             '& .MuiInputLabel-root': {
-              color: 'orange', // 라벨 텍스트 색상
+              color: 'none', // 라벨 텍스트 색상
             },
           },
         },
@@ -47,7 +47,7 @@ const TimePicCom = () => {
     <ThemeProvider theme={theme}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
     <TimePicker
-    label="내부텍스트"
+    //label="내부텍스트"
     value={TimeValue}
     onChange={handleTimeChange}
     />

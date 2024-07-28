@@ -6,8 +6,91 @@ import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import TimePicCom from '../../component/TimePicCom';
 import CalenderCom from '../../component/CalenderCom';
+import { useRecoilState } from 'recoil';
+import { answersAtom } from '../../recoil/makeTAtom';
+import AnswerButton from '../../component/AnswerButton';
+import CalenderResult from '../../component/CalenderResult';
+import dayjs from 'dayjs';
+
+//질문지 답변
+const Qlist=[
+  {
+    key: "workStyle",
+    question : "어떤 업무 방식을 선호하시나요?",
+    options: ["오전부터 하루 시작하고 싶어요", "여유롭게 점심부터 시작하고 싶어요", "느긋하게 오후부터 시작하고 싶어요"]
+  },
+  {
+    key: "workPurpose",
+    question: "이번 워케이션의 목적은 어떻게 되시나요?",
+    options: ["휴식보다 일을 집중적으로 하고 싶어요", "일과 휴식의 균형이 중요해요", "일보다 휴식을 주로 하고 싶어요"]
+  },
+  {
+    key: "workPlace",
+    question: "선호하는 업무 공간이 있나요?",
+    options: ["바다가 보이는 공간", "시야 탁 트인 개방적인 공간", "업무에 집중할 수 있는 나만의 독립적인 공간"]
+  },
+];
+
+const Qlist2=[
+  {
+    key: "restMethod",
+    question : "쉼을 찾는 나만의 방법이 있나요?",
+    options: ["공방", "게임", "독서", "라이딩", "명상", "미술", "산책", "서핑", "쇼핑", "스포츠 관람", "액티비티", "운동", "요가", "자연힐링"]
+  }
+];
 
 const MakeT = () => {
+  //recoil사용위해,,Atom 기본 설정값 가져옴
+  const [answers, setAnswers] = useRecoilState(answersAtom);
+
+  //3~6번 선택지 눌렀을때 값 저장 및 단축선택
+  const handleAnswerClick = (key, option) =>{
+    setAnswers(prev => {
+      if (key==='restMethod') {
+        const selectedOptions = new Set(prev[key]);
+        //ㄴ입력된 값들을 set형태로 저장함
+        if (selectedOptions.has(option)) {
+          selectedOptions.delete(option);
+        } else{
+          selectedOptions.add(option);
+        }
+        return {...prev, [key]: Array.from(selectedOptions)};
+      } else{
+        return {...prev, [key]:option};
+      }
+    })
+  }
+
+  //스케줄 관련(2번질문)
+  // const handleDateChange = (key, date) => {
+  //   setAnswers(prev => ({
+  //     ...prev,
+  //     workSchedule: {
+  //       ...prev.workSchedule,
+  //       [key]: date
+  //     }
+  //   }));
+  // };
+
+  // const calculateDaysAndNights = () => {
+  //   const { start, end } = answers.workSchedule;
+  //   if (start && end) {
+  //     const startDate = dayjs(start);
+  //     const endDate = dayjs(end);
+  //     const nights = endDate.diff(startDate, 'day');
+  //     const days = nights + 1;
+  //     return { days, nights };
+  //   }
+  //   return { days: null, nights: null };
+  // };
+
+  // const { days, nights } = calculateDaysAndNights();
+
+  const handleSubmit = ()=> {
+    console.log("All answers:", answers);
+    //제출 시 백으로 전송하는 코드 추가 필요
+  }
+
   return (
       <Wrapper>
       <TitleW>
@@ -24,56 +107,68 @@ const MakeT = () => {
     </ContentBox>
     </Question>
 
+
     <Question>
     <TitleBox>
         <Circle>2</Circle>
         <TextBox>일정이 어떻게 되나요?</TextBox>
     </TitleBox>
     <ContentBox>
-        <CalenderCom />
-    </ContentBox>
-    </Question>
+        <CalenderBox>
+            <CalenderCom 
+              id="start-work"/>
+            ~ 
+            <CalenderCom 
+              id="end-work"/>
+          </CalenderBox>
+        <CalenderBox>
+          <CalenderResult 
+          /></CalenderBox>
+        </ContentBox>
+        </Question>
 
-    <Question>
-    <TitleBox>
-        <Circle>3</Circle>
-        <TextBox>어떤 업무 방식을 선호하시나요?</TextBox>
-    </TitleBox>
-    <ContentBox>
+    
+    {Qlist.map((question, index)=> (
+      <Question key= {index}>
+        <TitleBox>
+          <Circle>{index +3}</Circle>
+          <TextBox>{question.question}</TextBox>
+        </TitleBox>
+        <ContentBox>
+          {question.options.map((option, idx)=>(
+            <div key={idx} style={{marginBottom: '20px', marginLeft : '20px'}}>
+            <AnswerButton 
+              key={idx}
+              text={option}
+              onClick={()=> handleAnswerClick(question.key, option)}
+              selected={answers[question.key] ===option}
+            />
+            </div>
+          ))}
+        </ContentBox>
+      </Question>
+    ))}
 
-    </ContentBox>
-    </Question>
-
-    <Question>
-    <TitleBox>
-        <Circle>4</Circle>
-        <TextBox>워라벨을 어떤비율로 설정할까요?</TextBox>
-    </TitleBox>
-    <ContentBox>
-
-    </ContentBox>
-    </Question>
-
-    <Question>
-    <TitleBox>
-        <Circle>5</Circle>
-        <TextBox>선호하는 업무 공간이 있나요?</TextBox>
-    </TitleBox>
-    <ContentBox>
-
-    </ContentBox>
-    </Question>
-
-    <Question>
-    <TitleBox>
+    {Qlist2.map((question, index) => (
+    <Question key={index}>
+      <TitleBox>
         <Circle>6</Circle>
-        <TextBox>쉼을 찾는 나만의 방법이 있나요?</TextBox>
-        <SubTextBox>(복수선택)</SubTextBox>
-    </TitleBox>
-    <ContentBox>
-
-    </ContentBox>
+        <TextBox>{question.question}</TextBox>
+      </TitleBox>
+      <ContentBox>
+        {question.options.map((option, idx)=>(
+          <AnswerButton
+            key={idx}
+            text={option}
+            onClick={()=> handleAnswerClick(question.key, option)}
+            selected={Array.isArray(answers[question.key])
+              ? answers[question.key].includes(option)
+              : answers[question.key] === option}
+            />
+        ))}
+      </ContentBox>
     </Question>
+     ))}
 
     <Question>
     <TitleBox>
@@ -86,6 +181,7 @@ const MakeT = () => {
     </ContentBox>
     </Question>
     </QuestionW>
+    <SubmitButton onClick={handleSubmit}>워케이션 등록하기</SubmitButton>
 
 </Wrapper>
   )
@@ -99,7 +195,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 20px;
-  width: 1440px;
+  width: 1228px;
   
 `;
 
@@ -119,7 +215,7 @@ const Title = styled.div`
 `
 
 const QuestionW = styled.div`
-  width: 1228px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -127,7 +223,6 @@ const QuestionW = styled.div`
   padding: 20px;
   border: 1px solid #E3E3E3;
   border-radius: 5px;
-  width: 552px;
   background-color: #F9F9F9;
 
 `
@@ -154,12 +249,12 @@ const Circle = styled.div`
 `;
 
 const TextBox = styled.div`
-  font-size: 16px;
+  font-size: 24px;
   font-weight: bold;
 `;
 
 const SubTextBox = styled.div`
-  font-size: 12px;
+  font-size: 18px;
   color: #777777;
   margin-left: 7px;
 `;
@@ -170,3 +265,27 @@ const ContentBox = styled.div`
   width: 100%;
   margin-left: 14px;
 `;
+
+const SubmitButton = styled.button`
+    text-align: center;
+    background-color: #FA710C;
+    color : white;
+    border-radius: 4px;
+    width: 253px;
+    height: 52px;
+    top: 11px;
+    left: 790px;
+    padding: 4px 10px 4px 10px;
+    margin-top: 60px;
+    border: none;
+    font-size: 24px;
+    font-weight: 700;
+`
+
+//2번 관련
+const CalenderBox = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px;
+  display: flex;
+`

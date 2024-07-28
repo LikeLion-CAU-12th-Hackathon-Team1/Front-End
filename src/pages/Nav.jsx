@@ -19,6 +19,7 @@ export const Nav = () => {
     const gotoHome = () => {
         navigate('/');
     }
+
     const maketoT = () => {
         //로그인이 되어있다면 워케이션등록으로, 안되어있다면 로그인안내페이지로
         if (localStorage.getItem("access")) {
@@ -44,9 +45,11 @@ export const Nav = () => {
             setIsLogin(false);
             //loginModal 열기
             //setLoginModal(true)
-            loginHandler();
+            loginHandler(); //카카오로그인창으로 이동
         }
     }
+
+
 
   return (
     <Wrraper>
@@ -55,7 +58,7 @@ export const Nav = () => {
         <BtnDom>
             <ButtonHis className="alarm_modal" onClick={maketoT} >워케이션 등록</ButtonHis>
             <Button type="button" onClick={gotoT}>시간표</Button>
-            <ButtonLogin className="login" onClick={isLogin}>로그인</ButtonLogin> {/** 추후 텍스트 수정 필요 */}
+            <ButtonLogin className="login" isLoginValue={isLoginValue} onClick={isLogin}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
             {myPageModal && (
                 <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부
             )}
@@ -137,16 +140,17 @@ const Button= styled.div`
 
 const ButtonLogin = styled.button`
     text-align: center;
-    background-color: #FF831C;
-    color : white;
+    background-color: ${props => props.isLoginValue? 'white':' #FF831C'};
+    color :${props => props.isLoginValue? 'black': 'white'};
     border-radius: 4px;
-    width: 90px;
-    height: 35px;
+    width: ${props => props.isLoginValue? '130px': '105px'};
+    height: 40px;
     top: 11px;
     left: 790px;
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
-    border: none;
+    border: ${props => props.isLoginValue?'none': '1px solid'};
     font-size: 20px;
     font-weight: 600;
+    border-bottom: 0.5px solid #969696; 
 `
