@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 
 // 텍스트필드 배열
 const textField = [
-    { label: 'Seoul' },
-    { label: 'Busan' },
-    { label: 'Incheon' }
+    { label: '강릉' },
+    { label: '속초' },
+    { label: '양양' },
+    { label: '춘천' }
   ];
 
 const AutoComplete = () => {
@@ -18,6 +19,7 @@ const handleAutoComplete = (event, newValue) => {
     setSelectedText(newValue);
     if (newValue) {
         console.log(newValue.label);
+        //값 저장해서 백에게 전송하는 코드 추가하기
     }
   };
 
@@ -32,18 +34,19 @@ const handleAutoComplete = (event, newValue) => {
         renderInput={(params) => (
             <TextField
             {...params}
-            label="hihi"
+            //label="강원특별자치도"
             sx={{
                 '& .MuiInputBase-root': {
-                    color: 'blue', // 텍스트 필드의 텍스트 색상
+                    color: 'black', // 텍스트 필드의 텍스트 색상
+                    backgroundColor: selectedText ? '#FFFAE9' : '#F2F2F2',
                     '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'green' // 아웃라인 색상
+                        borderColor: selectedText ? ' #FFE39D' : 'none' // 아웃라인 색상
                     },
                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'red' // 호버 시 아웃라인 색상
+                        borderColor: 'none' // 호버 시 아웃라인 색상
                     },
                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'purple' // 포커스 시 아웃라인 색상
+                        borderColor: 'none' // 포커스 시 아웃라인 색상
                     }
                 },
                 '& .MuiInputLabel-root': {

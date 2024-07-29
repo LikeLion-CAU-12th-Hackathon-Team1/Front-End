@@ -6,9 +6,8 @@ import workvalley from '../assets/img/workvalley.svg';
 import { loginHandler } from '../api/api_login';
 import { handleLoginClick } from '../function/notice';
 import { useRecoilState } from 'recoil';
-import { isLoginAtom, isLoginModalAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
+import { isLoginAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
 import MyPageModal from '../component/MyPageModal';
-import LoginModal from '../component/LoginModal';
 
 export const Nav = () => {
     const navigate= useNavigate();
@@ -19,6 +18,7 @@ export const Nav = () => {
     const gotoHome = () => {
         navigate('/');
     }
+
     const maketoT = () => {
         //로그인이 되어있다면 워케이션등록으로, 안되어있다면 로그인안내페이지로
         if (localStorage.getItem("access")) {
@@ -31,22 +31,23 @@ export const Nav = () => {
     // 로그인 여부 판단하는 함수 및 isLoginAtom 관리 및 어떤 모달창 열건지
     const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
     const [myPageModal, setMyPageModal] = useRecoilState(isMyPageModalAtom); // 마이페이지 모달 상태
-    const [loginModal, setLoginModal] = useRecoilState(isLoginModalAtom); // 로그인 모달 상태
-
+   
 
     // 로그인 상태 판단(액세스 토큰 존재여부)
     const isLogin = () => {
         if(localStorage.getItem("access")){
             setIsLogin(true);
             //myPageModal 열기
-            setMyPageModal(true)
+            setMyPageModal(!myPageModal);
         } else{
             setIsLogin(false);
             //loginModal 열기
             //setLoginModal(true)
-            loginHandler();
+            loginHandler(); //카카오로그인창으로 이동
         }
     }
+
+
 
   return (
     <Wrraper>
@@ -55,12 +56,9 @@ export const Nav = () => {
         <BtnDom>
             <ButtonHis className="alarm_modal" onClick={maketoT} >워케이션 등록</ButtonHis>
             <Button type="button" onClick={gotoT}>시간표</Button>
-            <ButtonLogin className="login" onClick={isLogin}>로그인</ButtonLogin> {/** 추후 텍스트 수정 필요 */}
+            <ButtonLogin isLoginValue={isLoginValue} onClick={isLogin}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
             {myPageModal && (
                 <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부
-            )}
-            {loginModal && (
-                <LoginModal/> // 로그인 리코일 상태에 따라 모달 오픈 여부
             )}
         </BtnDom>
     </NavDom>
@@ -137,16 +135,17 @@ const Button= styled.div`
 
 const ButtonLogin = styled.button`
     text-align: center;
-    background-color: #FF831C;
-    color : white;
+    background-color: ${props => props.isLoginValue? 'white':' #FF831C'};
+    color :${props => props.isLoginValue? 'black': 'white'};
     border-radius: 4px;
-    width: 90px;
-    height: 35px;
+    width: ${props => props.isLoginValue? '130px': '105px'};
+    height: 40px;
     top: 11px;
     left: 790px;
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
-    border: none;
+    border: ${props => props.isLoginValue?'none': '1px solid'};
     font-size: 20px;
     font-weight: 600;
+    border-bottom: 0.5px solid #969696; 
 `
