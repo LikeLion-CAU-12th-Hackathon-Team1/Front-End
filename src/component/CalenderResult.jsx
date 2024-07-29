@@ -38,9 +38,9 @@ const CalenderResult = ( ) => {
 export default CalenderResult
 
 const CalenderR = styled.div`
-  background-color: ${props => (props.selected ? '#FFFAE9' : '#F2F2F2')};
-  color: ${props => (props.selected ? '#222222' : '#7A7A7A')};
-  border :  ${props => (props.selected ?  '1px solid #FED29D': 'none' )};
+  background-color: ${props => (props.$selected ? '#FFFAE9' : '#F2F2F2')};
+  color: ${props => (props.$selected ? '#222222' : '#7A7A7A')};
+  border :  ${props => (props.$selected ?  '1px solid #FED29D': 'none' )};
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 4px;

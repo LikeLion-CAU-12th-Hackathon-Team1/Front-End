@@ -56,7 +56,7 @@ export const Nav = () => {
         <BtnDom>
             <ButtonHis className="alarm_modal" onClick={maketoT} >워케이션 등록</ButtonHis>
             <Button type="button" onClick={gotoT}>시간표</Button>
-            <ButtonLogin isLoginValue={isLoginValue} onClick={isLogin}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
+            <ButtonLogin $isLoginValue={isLoginValue} onClick={isLogin}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
             {myPageModal && (
                 <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부
             )}
@@ -135,16 +135,16 @@ const Button= styled.div`
 
 const ButtonLogin = styled.button`
     text-align: center;
-    background-color: ${props => props.isLoginValue? 'white':' #FF831C'};
-    color :${props => props.isLoginValue? 'black': 'white'};
+    background-color: ${props => props.$isLoginValue? 'white':' #FF831C'};
+    color :${props => props.$isLoginValue? 'black': 'white'};
     border-radius: 4px;
-    width: ${props => props.isLoginValue? '130px': '105px'};
+    width: ${props => props.$isLoginValue? '130px': '105px'};
     height: 40px;
     top: 11px;
     left: 790px;
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
-    border: ${props => props.isLoginValue?'none': '1px solid'};
+    border: ${props => props.$isLoginValue?'none': '1px solid'};
     font-size: 20px;
     font-weight: 600;
     border-bottom: 0.5px solid #969696; 
