@@ -46,10 +46,11 @@
 import axios from "axios";
 import { createBrowserHistory } from "history";
 
-const REST_API_KEY = "872ea408194165abb49cfa9b9fe7516a";
+//const REST_API_KEY = "872ea408194165abb49cfa9b9fe7516a";
 const REST_API_KEY1 = "6eeb65005292f7f598e7c1e085a21e3a"; // 나중에 지울 api
 const REDIRECT_URI1 = "http://localhost:3000/oauth";
-const kakao_login_uri = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY1}&redirect_uri=${REDIRECT_URI1}&response_type=code`;
+const REDIRECT_URI2 = "https://workvalley.netlify.app/oauth";
+const kakao_login_uri = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY1}&redirect_uri=${REDIRECT_URI2}&response_type=code`;
 
 const baseURL = `https://saengchaein.r-e.kr`;
 
