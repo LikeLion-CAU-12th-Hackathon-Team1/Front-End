@@ -3,24 +3,11 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 import { useRecoilValue } from 'recoil';
 import { endDateAtom, startDateAtom } from '../recoil/makeTAtom';
-// import days from '../component/CalenderCom';
-// import nights from '../component/CalenderCom';
+
 
 
 const CalenderResult = ( ) => {
-//     // console.log(days);
-//     // console.log(nights);
-//     // const totalNight = nights-days;
-//     // console.log(totalDay);
-//     // const totalDay = totalNight+1;
 
-//     const totalNights = nights - days;
-
-//     return (
-//       <CalenderR>
-//         {totalNights}박 {totalNights+1}일
-//       </CalenderR>
-//   )
     const startDate= useRecoilValue(startDateAtom);
     const endDate = useRecoilValue(endDateAtom);
 

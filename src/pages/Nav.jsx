@@ -6,9 +6,8 @@ import workvalley from '../assets/img/workvalley.svg';
 import { loginHandler } from '../api/api_login';
 import { handleLoginClick } from '../function/notice';
 import { useRecoilState } from 'recoil';
-import { isLoginAtom, isLoginModalAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
+import { isLoginAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
 import MyPageModal from '../component/MyPageModal';
-import LoginModal from '../component/LoginModal';
 
 export const Nav = () => {
     const navigate= useNavigate();
@@ -32,15 +31,14 @@ export const Nav = () => {
     // 로그인 여부 판단하는 함수 및 isLoginAtom 관리 및 어떤 모달창 열건지
     const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
     const [myPageModal, setMyPageModal] = useRecoilState(isMyPageModalAtom); // 마이페이지 모달 상태
-    const [loginModal, setLoginModal] = useRecoilState(isLoginModalAtom); // 로그인 모달 상태
-
+   
 
     // 로그인 상태 판단(액세스 토큰 존재여부)
     const isLogin = () => {
         if(localStorage.getItem("access")){
             setIsLogin(true);
             //myPageModal 열기
-            setMyPageModal(true)
+            setMyPageModal(!myPageModal);
         } else{
             setIsLogin(false);
             //loginModal 열기
@@ -58,12 +56,9 @@ export const Nav = () => {
         <BtnDom>
             <ButtonHis className="alarm_modal" onClick={maketoT} >워케이션 등록</ButtonHis>
             <Button type="button" onClick={gotoT}>시간표</Button>
-            <ButtonLogin className="login" isLoginValue={isLoginValue} onClick={isLogin}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
+            <ButtonLogin isLoginValue={isLoginValue} onClick={isLogin}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
             {myPageModal && (
                 <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부
-            )}
-            {loginModal && (
-                <LoginModal/> // 로그인 리코일 상태에 따라 모달 오픈 여부
             )}
         </BtnDom>
     </NavDom>

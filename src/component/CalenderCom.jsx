@@ -41,36 +41,7 @@ const CalenderCom = ({id}) => {
   const [startDate, setStartDate] = useRecoilState(startDateAtom);
   const [endDate, setEndDate] = useRecoilState(endDateAtom);
 
-  //const [dateValue, setDateValue] = useState(value); // useState 사용해서 사용자가 선택한 날짜 저장
 
-  // 사용자가 날짜 저장하면 체크해서 콘솔에 찍는 함수
-  // const handleDateChange = (newValue) => {
-  //   setDateValue(newValue);
-  //   let days = 0;
-  //   let nights = 0;
-  //   if (newValue) {
-  //     //console.log(dayjs(newValue).format('YYYYMMDD')); // dayjs 사용해서 내가 원하는 형식으로 날짜저장
-  //     if (id ==='start-work') {
-  //       days = dayjs(newValue).format('YYYYMMDD');
-  //       //console.log(days);
-  //     } else {
-  //       nights = dayjs(newValue).format('YYYYMMDD');
-  //       //console.log(nights);
-  //     };
-  //     let totalNight = nights-days;
-  //     console.log(totalNight);
-
-  //   };
-  // };
-  //두번째 방법
-  // const handleDateChange = (newValue)=>{
-  //   setDateValue(newValue);
-  //   onChange(id, newValue);
-  // };
-
-  // useEffect(()=>{
-  //   setDateValue(value);
-  // },[value]);
 
   //recoil로 관리
   const handleDateChange = (newValue)=> {

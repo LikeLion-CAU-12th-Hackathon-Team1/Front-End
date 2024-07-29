@@ -61,30 +61,6 @@ const MakeT = () => {
     })
   }
 
-  //스케줄 관련(2번질문)
-  // const handleDateChange = (key, date) => {
-  //   setAnswers(prev => ({
-  //     ...prev,
-  //     workSchedule: {
-  //       ...prev.workSchedule,
-  //       [key]: date
-  //     }
-  //   }));
-  // };
-
-  // const calculateDaysAndNights = () => {
-  //   const { start, end } = answers.workSchedule;
-  //   if (start && end) {
-  //     const startDate = dayjs(start);
-  //     const endDate = dayjs(end);
-  //     const nights = endDate.diff(startDate, 'day');
-  //     const days = nights + 1;
-  //     return { days, nights };
-  //   }
-  //   return { days: null, nights: null };
-  // };
-
-  // const { days, nights } = calculateDaysAndNights();
 
   const handleSubmit = ()=> {
     console.log("All answers:", answers);
@@ -173,11 +149,20 @@ const MakeT = () => {
     <Question>
     <TitleBox>
         <Circle>7</Circle>
-        <TextBox>고정된 일정이 있나요?</TextBox>
+        <TextBox>기상, 취침시간이 어떻게 되나요?</TextBox>
         <SubTextBox>(선택)</SubTextBox>
     </TitleBox>
     <ContentBox>
-      <TimePicCom />
+      <Sleep>
+      <SleepTime>
+        <div>기상</div>
+        <TimePicCom id="wake-time"/>
+      </SleepTime>
+      <SleepTime>
+        취침 <TimePicCom id="sleep-time"/>
+      </SleepTime>
+      </Sleep>
+
     </ContentBox>
     </Question>
     </QuestionW>
@@ -249,7 +234,7 @@ const Circle = styled.div`
 `;
 
 const TextBox = styled.div`
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
 `;
 
@@ -288,4 +273,21 @@ const CalenderBox = styled.div`
   font-weight: 600;
   margin: 10px;
   display: flex;
+`
+
+const Sleep = styled.div`
+  display: flex;
+  width: 600px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 50px;
+`
+
+const SleepTime= styled.div`
+  display: flex;
+  width: 250px;
+  height: 30px;
+  margin-right: 40px;
+  margin-left: 10px;
 `
