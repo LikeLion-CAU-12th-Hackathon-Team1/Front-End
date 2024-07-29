@@ -57,19 +57,24 @@ const CalenderCom = ({id}) => {
 
   return (
     <StyledEngineProvider injectFirst>
-    <ThemeProvider theme={theme}>
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <DatePicker
-    id={id}
-    label={id === 'start-work' ?'시작일' : '종료일'}
-    value={dateValue}
-    onChange={handleDateChange}
-    renderInput={(params) => <TextField {...params} sx={{ width: '300px', height: '50px' }} />} // 여기서 크기 지정가능
-    />
-    </LocalizationProvider>
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            id={id}
+            label={id === 'start-work' ? '시작일' : '종료일'}
+            value={dateValue}
+            onChange={handleDateChange}
+            slots={{ textField: (params) => ( // 수정수정: renderInput 대신 slots 사용
+              <TextField
+                {...params}
+                sx={{ width: '300px', height: '50px' }} // 여기서 크기 지정가능
+              />
+            ) }}
+          />
+        </LocalizationProvider>
+      </ThemeProvider>
     </StyledEngineProvider>
   )
 }
 
-export default CalenderCom
+export default CalenderCom;

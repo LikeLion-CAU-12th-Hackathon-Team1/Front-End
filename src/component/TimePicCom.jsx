@@ -45,8 +45,8 @@ const TimePicCom = ({id}) => {
   // };
 
   
-  const [wakeTime, setWakeTime] = useState();
-  const [sleepTime, setSleepTime] = useState();
+  const [wakeTime, setWakeTime] = useState(null);
+  const [sleepTime, setSleepTime] = useState(null);
   
     const handleTimeChange = (newValue)=> {
       if(id ==='wake-time'){
