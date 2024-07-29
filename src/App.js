@@ -33,7 +33,7 @@ useEffect(()=> {
   return (
     <>
       <Nav />
-      <Routes>
+      <Routes basename={process.env.PUBLIC_URL}>
         <Route path = "/" element={<Home />}/>
           <Route path = "/login" element={<Login />}></Route>
           <Route path="/oauth" element={<div>Loading...</div>}/*{<OAuth />}*/ /> {/* 여기 경로 수정하면 백한테 주소 리다이랙트 주소 수정 요청필요 */}
