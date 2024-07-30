@@ -30,18 +30,38 @@ const MyPageModal = () => {
     navigate("/");
   }
 
+   // 모달 외부 클릭 시 모달 닫기
+   const handleOutsideClick = (e) => {
+    if (e.target.id === 'modal-overlay') { 
+      setMyPageModal(false); 
+    } 
+  } 
+
 
   return (
+    <Overlay id="modal-overlay" onClick={handleOutsideClick}>
     <Container>
       <ProfileImg src={profile}/>
     <Name>닉네임  | {nickname}</Name>
     <Email>이메일  | {email}</Email>
     <LogOut onClick={toLogOut}>로그아웃</LogOut>
     </Container>
+    </Overlay>
   )
 }
 
 export default MyPageModal
+
+const Overlay = styled.div` 
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+`; 
 
 const Container = styled.div`
   background-color: #ffffff;
@@ -51,9 +71,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid #DCD3C8;
   /* 위치 관련 코드*/
   position: fixed;
-  top: 55px;
+  top: 80px;
   right: 40px;
   border-radius: 8px;
   

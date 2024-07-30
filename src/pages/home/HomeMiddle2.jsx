@@ -30,18 +30,18 @@ const Wrapper = styled.div`
 `
 
 const Title= styled.div`
-  width: 170px;
-  height: 70px;
-  font-size: 24px;
-  font-weight:800;
+  width: 426px;
+  height: 20px;
+  font-size: 30px;
+  font-weight:700;
   text-align: center;
   padding-top: 50px;
 `
 
 const SemiTitle = styled.div`
-  width: 426px;
-  height: 90px;
-  font-size: 18px;
+  width: 570px;
+  height: 48px;
+  font-size: 22px;
   font-weight: 600;
   text-align: center;
 `

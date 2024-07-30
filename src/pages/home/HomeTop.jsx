@@ -1,14 +1,27 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components';
+import Home_1 from "../../assets/img/Home_1.svg";
 
 const HomeTop = () => {
+
+  const smoothScrollTo = (y)=>{
+    window.scrollTo({
+      top:y,
+      left:0,
+      behavior:'smooth'
+    });
+  }
+
+  const BtnClick = () => {
+    smoothScrollTo(635); //2번째랜딩페이지로 위치이동
+  }
   return (
     <Wrapper>
       <TitleContainer>
-        <Title>늘어난 재택<br />But,무너진 일과 휴식의 구분</Title>
-        <SemiTitle>부가설명부가설명부가설명부가설명</SemiTitle>
+        <Title>어디서든 일하고,<br />어디서든 삶을 즐길 수 있도록</Title>
+        <SemiTitle>워케이션을 떠난 프리랜서 맞춤형 워라밸 파트너</SemiTitle>
 
-        <Button>자세히 보기</Button>
+        <Button onClick={BtnClick}>자세히 보기</Button>
       </TitleContainer>
       <LogoContainer>
         <Img />
@@ -25,7 +38,12 @@ const Wrapper = styled.div`
     justify-content: space-evenly;
     width : 1440px;
     height: 695px;
-    background-color: #FFFAF0;
+    //background-color: #FFFAF0;
+    background-image: url(${Home_1});
+    background-size: contain; /* 배경 이미지 크기 조정 */
+    background-position: center; /* 배경 이미지 위치 조정 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
+    
 `
 
 const TitleContainer = styled.div`
@@ -51,7 +69,7 @@ const LogoContainer = styled.div`
 
   margin-top: 118px;
 
-  border: 1px solid;
+  //border: 1px solid;
 `
 const Img = styled.img`
   

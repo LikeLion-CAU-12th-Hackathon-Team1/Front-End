@@ -45,14 +45,16 @@ const CalenderCom = ({id}) => {
 
   //recoil로 관리
   const handleDateChange = (newValue)=> {
+    const formattedData = dayjs(newValue).format('YYYYMMDD');
     if(id ==='start-work'){
-      setStartDate(newValue);
+      setStartDate(formattedData);
     } else if (id ==='end-work'){
-      setEndDate(newValue);
+      setEndDate(formattedData);
     }
+    //console.log(startDate); //확인용
   };
   
-  const dateValue = id === 'start-work'? startDate :endDate;
+  const dateValue = id === 'start-work' ? dayjs(startDate).format('YYYY-MM-DD') : dayjs(endDate).format('YYYY-MM-DD');
 
 
   return (
@@ -62,7 +64,7 @@ const CalenderCom = ({id}) => {
           <DatePicker
             id={id}
             label={id === 'start-work' ? '시작일' : '종료일'}
-            value={dateValue}
+            value={dateValue ? dayjs(dateValue) : null}
             onChange={handleDateChange}
             slots={{ textField: (params) => ( // 수정수정: renderInput 대신 slots 사용
               <TextField
