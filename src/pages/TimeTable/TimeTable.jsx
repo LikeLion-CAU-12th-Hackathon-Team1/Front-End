@@ -18,7 +18,7 @@ const TimeTable = () => {
   }
 
   const goLastTimeTable = () => {
-    navigate('timetable/history')
+    navigate('/timetable/historyAll')
   }
   return (
     <Container>

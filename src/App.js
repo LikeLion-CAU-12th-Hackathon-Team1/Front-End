@@ -5,15 +5,15 @@ import Login from './pages/Login';
 import TimeTable from './pages/TimeTable/TimeTable';
 import Today from './pages/TimeTable/Today';
 import MakeT from './pages/MakeTimetable/MakeT';
-import History from './pages/TimeTable/History';
 import { Nav } from './pages/Nav';
 import BeforeMakeT from './pages/MakeTimetable/BeforeMakeT';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { isLoginAtom, isMyPageModalAtom } from './recoil/isLoginAtom';
 import { loginHandler } from './api/api_login';
-import AllTask from './pages/TimeTable/AllTask';
+import AllTask from './pages/ThisAllWorkation/AllTask';
 import OneDayTimeTable from './component_TimeTable/ForTimeTable/OneDayTimeTable';
+import HistoryAll from './pages/PastWorkation/HistoryAll';
 
 function App() {
     const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
@@ -42,7 +42,8 @@ useEffect(()=> {
           {/* <Route path="/timetable" element={<TimeTable />} > */}
           <Route path="/timetable/alltask" element={<AllTask />} />
           <Route path="/timetable/today" element={<TimeTable />} />
-          <Route path="/timetable/history" element={<History />} />
+          <Route path="/timetable/historyAll" element={<HistoryAll />} />
+          {/* <Route path="/timetable/historyEach" element={<HistoryEach />} /> */}
           <Route path="/makeT" element={<MakeT />} />
           <Route path="/beforeMakeT" element={< BeforeMakeT/>} />
           
