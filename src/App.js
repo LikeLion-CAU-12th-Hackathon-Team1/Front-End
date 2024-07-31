@@ -13,6 +13,7 @@ import { useRecoilState } from 'recoil';
 import { isLoginAtom, isMyPageModalAtom } from './recoil/isLoginAtom';
 import { loginHandler } from './api/api_login';
 import AllTask from './pages/TimeTable/AllTask';
+import OneDayTimeTable from './component_TimeTable/ForTimeTable/OneDayTimeTable';
 
 function App() {
     const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
@@ -38,11 +39,10 @@ useEffect(()=> {
         <Route path = "/" element={<Home />}/>
           <Route path = "/login" element={<Login />}></Route>
           <Route path="/oauth" element={<div>Loading...</div>}/*{<OAuth />}*/ /> {/* 여기 경로 수정하면 백한테 주소 리다이랙트 주소 수정 요청필요 */}
-          <Route path="/timetable" element={<TimeTable />} >
-            <Route path="alltask" element={<AllTask />} />
-            <Route path=":num" element={<Today />} />
-            <Route path="history" element={<History />} />
-          </Route>
+          {/* <Route path="/timetable" element={<TimeTable />} > */}
+          <Route path="/timetable/alltask" element={<AllTask />} />
+          <Route path="/timetable/today" element={<TimeTable />} />
+          <Route path="/timetable/history" element={<History />} />
           <Route path="/makeT" element={<MakeT />} />
           <Route path="/beforeMakeT" element={< BeforeMakeT/>} />
           
