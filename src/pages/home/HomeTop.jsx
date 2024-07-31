@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import Home_1 from "../../assets/img/Home_1.svg";
+import NewHome from "../../assets/img/NewHome.svg"
 
 const HomeTop = () => {
 
@@ -37,9 +38,9 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-evenly;
     width : 1440px;
-    height: 695px;
+    height: 724px;
     //background-color: #FFFAF0;
-    background-image: url(${Home_1});
+    background-image: url(${NewHome});
     background-size: contain; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */

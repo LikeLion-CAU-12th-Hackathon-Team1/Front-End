@@ -15,7 +15,7 @@ export const Nav = () => {
 
     const gotoT = () => {
         setSelectedMenu('timetable'); // 선택된 메뉴 설정
-        navigate('/timetable');
+        navigate('/timetable/alltask');
     }
     const gotoHome = () => {
         setSelectedMenu('home'); // 선택된 메뉴 설정

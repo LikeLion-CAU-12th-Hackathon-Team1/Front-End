@@ -12,7 +12,9 @@ import AnswerButton from '../../component/AnswerButton';
 import CalenderResult from '../../component/CalenderResult';
 import dayjs from 'dayjs';
 import makeTheader from "../../assets/img/makeTheader.svg";
+import NewMakeTHeader from "../../assets/img/NewMakeTHeader.svg";
 import footer from "../../assets/img/footer.svg";
+import NewFooter from "../../assets/img/NewFooter.svg";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AutoComplete2 from '../../component/AutoComplete2';
@@ -294,7 +296,7 @@ const TitleW = styled.div`
     /* position: absolute; /* 추가 */
     /* top: 20px; /* 필요에 따라 조정 */
     /* left: 20px;  */ 
-    background-image: url(${makeTheader});
+    background-image: url(${NewMakeTHeader});
     background-size: contain; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
@@ -424,7 +426,7 @@ const SleepTime= styled.div`
 const Footer = styled.div`
     width : 1440px;
     height: 314px;
-    background-image: url(${footer});
+    background-image: url(${NewFooter});
     background-size: contain; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
