@@ -134,7 +134,7 @@ const MakeT = () => {
       end_sleep: Number(wakeTime) // 7번 기상 시간
     }
     try {
-      const response = await axios.post(`${baseURL}//workation/`, dataTosend,{
+      const response = await axios.post(`${baseURL}/workation/`, dataTosend,{
         headers: {
           Authorization: `Bearer ${token}`
         }
