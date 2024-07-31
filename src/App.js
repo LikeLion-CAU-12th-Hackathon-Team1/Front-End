@@ -37,7 +37,7 @@ useEffect(()=> {
       <Nav />
       <Routes>
         <Route path = "/" element={<Home />}/>
-          <Route path = "/login" element={<Login />}></Route>
+          {/* <Route path = "/login" element={<Login />}></Route> */}
           <Route path="/oauth" element={<div>Loading...</div>}/*{<OAuth />}*/ /> {/* 여기 경로 수정하면 백한테 주소 리다이랙트 주소 수정 요청필요 */}
           {/* <Route path="/timetable" element={<TimeTable />} > */}
           <Route path="/timetable/alltask" element={<AllTask />} />

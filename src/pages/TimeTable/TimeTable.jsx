@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import OneDayTimeTable from '../../component_TimeTable/ForTimeTable/OneDayTimeTable';
+import Location from '../../component_Location/Location';
 
 const TimeTable = () => {
 
@@ -19,7 +20,7 @@ const TimeTable = () => {
     navigate('timetable/history')
   }
   return (
-    <>
+    <Container>
     <TopContainer>
     <NavDom>
       <AllBtn onClick={goAllTimeTable}>전체일정</AllBtn>
@@ -29,15 +30,24 @@ const TimeTable = () => {
     <OneDayTimeTable/>
     </TopContainer>
     <BottomContainer>
-
+    <Location></Location>
     </BottomContainer>
-    </>
+    </Container>
     
    
   )
 }
 
 export default TimeTable;
+
+const Container = styled.div`
+  width:1228px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  margin-top: 20px;
+`
 
 const TopContainer = styled.div`
   width: 1228px;
@@ -63,18 +73,32 @@ flex-direction: column;
   height: 730px; //오늘일정일때 사진 보이게하기
   font-size: 20px;
   font-weight: 700;
-align-items:center;
-justify-content: center;
+align-items: center;
+border: 2px solid black;
+//justify-content:center;
 `
 const AllBtn = styled.div`
   width: 188px;
   height: 40px;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  border: 2px solid black;
+  color: #7A7A7A;
 `
 const TodayBtn = styled.div`
   width: 188px;
   height: 40px;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  color: #222222;
 `
 const HistoryBtn = styled.div`
   width: 188px;
   height: 40px;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  color: #7A7A7A;
 `
