@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import InnerOneTimeTable from './InnerOneTimeTable';
 
 const InnerOneTable = ({item}) => {
 
@@ -8,11 +9,14 @@ const InnerOneTable = ({item}) => {
     <Container>
     <DayCount>{item}</DayCount>
     <Table>
-        <OneTable>
-            <WorkTable></WorkTable>
-            <RestTable></RestTable>
-        </OneTable>
-        </Table>
+        {[0,1,2,3,4,5,6,7,8,9,10,
+        11,12,13,14,15,16,17,18,19,20,
+        21,22,23].map(()=>{
+        return(
+        <InnerOneTimeTable></InnerOneTimeTable>
+        )})}
+        
+    </Table>
     </Container>
     
   )
@@ -47,16 +51,4 @@ width: 306px;
 height: 416px;
 background-color: #FFF2D6;
 border: 0.5px solid black;
-`
-const OneTable = styled.div`
-width : 300px;
-height: 16px;
-border: 1px solid red;
-`
-const WorkTable = styled.div`
-
-    
-`
-const RestTable = styled.div`
-    
 `
