@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import { patchdailyRetro } from '../api/api_dailyTimeTable';
 
-const RetrospectCom = ({ memo, setMemo }) => {
+const RetrospectCom = ({ memo, setMemo, todayId}) => {
 
   const [isRetroEdit, setIsRetroEdit] = useState(false); // 회고 save edit 버튼 상태관리
 
@@ -18,7 +18,7 @@ const RetrospectCom = ({ memo, setMemo }) => {
   }
 
   const handleSaveBtn = () => {
-    const daily_workation_id = 9; // 몇일째인지 나중에 백 데이터 연결하기
+    const daily_workation_id = todayId; // 몇일째인지 나중에 백 데이터 연결하기
     const body = { memo };
     handleRetroEdit();
     patchdailyRetro(daily_workation_id, body);

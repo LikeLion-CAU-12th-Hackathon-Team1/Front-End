@@ -60,7 +60,7 @@ const TableBox = styled.div`
     //background-color: #FFF2D6; //잇을때 디자인 물어보기
     border-radius: 8px;
     //padding: 28px 14px 16px 14px;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     
 `

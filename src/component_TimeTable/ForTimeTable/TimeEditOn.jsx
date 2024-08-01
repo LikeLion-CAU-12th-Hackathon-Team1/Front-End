@@ -8,7 +8,7 @@ const TimeEditOn = ({startWorkTime, endWorkTime,
     startRestTime, endRestTime,
     isTimeEditOn, setIsTimeEditOn,
 setStartWorkTime, setStartRestTime,
-setEndWorkTime, setEndRestTime }) => {
+setEndWorkTime, setEndRestTime, todayId }) => {
 
   //시간변환 함수
       function getTime(time) {
@@ -23,7 +23,7 @@ setEndWorkTime, setEndRestTime }) => {
   // 시간 블록 선택되고 save 버튼 누르면 에디트 창 꺼지고 시간 리셋 + api
   // 아직 작성중....
     const handleSaveBtn = async ()=>{
-      const daily_workation_id = 9 // 추후 바꿔야 할 값 - 지금은 테스트용
+      const daily_workation_id = todayId // 추후 바꿔야 할 값 - 지금은 테스트용
       let body;
 
         if(startWorkTime){

@@ -38,7 +38,7 @@ export const getDailyAllTable = async(daily_workation_id)=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    console.log(response.data)
+    //console.log(response.data)
     return response.data;
 }
 
@@ -53,11 +53,37 @@ export const postOneTable = async(daily_workation_id, body)=>{
             headers: {Authorization: `Bearer ${token}`
         }
         });
-        console.log(response.data)
+        //console.log(response.data)
         return response.data;
     } catch (error) {
         console.error('에러발생', error)
         alert("중복시간 입력하실 수 없습니다")
     }
     
+}
+
+// 데일리 워케이션 아이디 받아와서 오늘일정 띄워주는 것 - TimeTable.jsx 랜더링시 실행
+export const getDailyTodayId = async()=>{
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.get(`${baseURL}/workation/today/`,{
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    //console.log(response.data)
+    return response.data;
+}
+
+// 그래프 받아오기
+export const getGraph = async(daily_workation_id)=>{
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.get(`${baseURL}/workation/daily/${daily_workation_id}/graph/`,{
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    console.log(response.data)
+    return response.data;
 }
