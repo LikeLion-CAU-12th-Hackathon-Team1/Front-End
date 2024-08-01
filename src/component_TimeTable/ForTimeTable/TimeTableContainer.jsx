@@ -8,7 +8,8 @@ import TimeEditOn from './TimeEditOn';
 const TimeTableContainer = ({isTimeEditOn, setIsTimeEditOn,
   startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
-  handleTimeUpdate
+  handleTimeUpdate,
+  dailyAllTable,
 }) => {
 
   const timeLabels = ["00:00", "06:00", "12:00", "18:00", "24:00"];
@@ -36,6 +37,7 @@ const TimeTableContainer = ({isTimeEditOn, setIsTimeEditOn,
               endRestTime={endRestTime} setEndRestTime={setEndRestTime}
               handleTimeUpdate={handleTimeUpdate}
               isTimeEditOn={isTimeEditOn}
+              dailyAllTable={dailyAllTable}
             />
           );
         })}

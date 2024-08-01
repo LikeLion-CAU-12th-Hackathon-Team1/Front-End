@@ -3,8 +3,10 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn, startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
-  startRestTime, setStartRestTime, endRestTime, setEndRestTime, handleTimeUpdate, isTimeEditOn}) => {
+const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
+  startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
+  startRestTime, setStartRestTime, endRestTime, setEndRestTime,
+  handleTimeUpdate, isTimeEditOn, dailyAllTable,}) => {
 
   // work rest 일정이 있는지 상태관리
   const [isWork, setIsWork] = useState(false);
@@ -85,6 +87,37 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn, startWorkTi
     }
   }
   };
+
+  // 불러온 데이터에 따라 상태 업데이트(work, rest 블록)
+  //work 블록
+  useEffect(() => {
+    dailyAllTable.forEach((item) => {
+      const start = parseInt(item.start_time.substring(0, 2));
+      const end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
+      if (item.sort === 1) { // work
+        if (workTime >= start && workTime < end) {
+          setIsWork(true);
+        }
+      // } else if (item.sort === 2) { // rest
+      //   if (restTime >= start && restTime < end) {
+      //     setIsRest(true);
+      //   }
+      }
+    });
+  }, [dailyAllTable, workTime, /*restTime*/]);
+
+//rest 블록
+  useEffect(() => {
+    dailyAllTable.forEach((item) => {
+      const start = parseInt(item.start_time.substring(0, 2));
+      const end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
+      if (item.sort === 2) { // rest
+        if (restTime >= start && restTime < end) {
+          setIsRest(true);
+        }
+      }
+    });
+  }, [dailyAllTable, /*workTime*/, restTime]);
 
 
   // workTime, restTime 각각 변화 추적하며 블록 생성

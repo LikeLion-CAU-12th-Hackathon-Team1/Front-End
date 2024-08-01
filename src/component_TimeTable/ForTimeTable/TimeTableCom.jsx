@@ -6,7 +6,8 @@ import TimeTableContainer from './TimeTableContainer';
 const TimeTableCom = ({isTimeEditOn,setIsTimeEditOn,
   startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
-  handleTimeUpdate
+  handleTimeUpdate,
+  dailyAllTable,
 }) => {
   return (
     <>
@@ -15,7 +16,8 @@ const TimeTableCom = ({isTimeEditOn,setIsTimeEditOn,
     endWorkTime={endWorkTime} setEndWorkTime={setEndWorkTime}
     startRestTime={startRestTime} setStartRestTime={setStartRestTime}
     endRestTime={endRestTime} setEndRestTime={setEndRestTime}
-    handleTimeUpdate={handleTimeUpdate}>
+    handleTimeUpdate={handleTimeUpdate}
+    dailyAllTable={dailyAllTable}>
     </TimeTableContainer>
     </>
   )

@@ -1,12 +1,13 @@
 // 시간표, 그래프, 투두, 회고 들어가는 박스
 // 여기서 백이랑 통신 - 아래로 내려가는 변수들 다 여기서 관리
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import TodoListCom from '../TodoListCom';
 import TimeTableCom from './TimeTableCom';
 import GraphCom from '../GraphCom';
 import RetrospectCom from '../RetrospectCom';
+import { getDailyAllTable, getdailyRetro } from '../../api/api_dailyTimeTable';
 
 const OneDayTimeTable = () => {
 
@@ -21,6 +22,39 @@ const OneDayTimeTable = () => {
   const [endWorkTime, setEndWorkTime] = useState("");
   const [startRestTime, setStartRestTime] = useState("");
   const [endRestTime, setEndRestTime] = useState("");
+
+  // api로 받거나 줄 데이터 관리 상태
+  const [memo, setMemo] = useState(""); // 회고 관리
+  const [dailyAllTable, setDailyAllTable] = useState([]); // 데일리 시간표 상태 관리 - 하루 시간표 불러올 때 사용
+
+
+  // 이 컴포넌트 마운트 될 때마다 실행할 함수들 (주로 api 관련)
+  useEffect(() => {
+    const fetchData = async () => {
+        // 회고 내용 불러오기
+        const daily_workation_id = 9; // 추후 백에서 받아올 데이터(몇일째인지)
+        const retroData = await getdailyRetro(daily_workation_id);
+        setMemo(retroData.memo); // 회고 내용을 상태에 저장
+
+        // 데일리 시간표 불러오기
+        const dailyTableData = await getDailyAllTable(daily_workation_id);
+        // for(let i = 0; i < dailyAllTable.length; i++){
+        //   const sort = dailyAllTable[i].sort
+        //   const blockStartTime = parseInt(dailyAllTable[i].start_time/10000)
+        //   const blockEndTime = Math.ceil((dailyAllTable[i].end_time/10000))
+        //   const timeWorkationId = dailyAllTable[i].time_workation_id
+
+        //   console.log(sort);
+        //   console.log(blockStartTime);
+        //   console.log(blockEndTime);
+        //   console.log(timeWorkationId);
+        // }
+        setDailyAllTable(dailyTableData);
+
+    };
+
+    fetchData();
+}, []);
 
   // 사용 안하는 중
   const handleTimeUpdate = (type, startTime, endTime) => {
@@ -62,11 +96,12 @@ const OneDayTimeTable = () => {
         startRestTime={startRestTime} setStartRestTime={setStartRestTime} 
         endRestTime={endRestTime} setEndRestTime={setEndRestTime}
         handleTimeUpdate={handleTimeUpdate}
+        dailyAllTable={dailyAllTable}
         ></TimeTableCom>
         <Sidebar>
             <GraphCom></GraphCom>
             {isTimeEditOn ? (<TodoListEditMode></TodoListEditMode>) : <TodoListCom/>}
-            <RetrospectCom></RetrospectCom> 
+            <RetrospectCom memo={memo} setMemo={setMemo}></RetrospectCom> 
         </Sidebar>
       </ContentContainer>
       
