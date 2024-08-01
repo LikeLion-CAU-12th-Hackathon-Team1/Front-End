@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import InnerOneTable from './InnerOneTable'
 
-const ThisAllMiddle = () => {
+const ThisAllMiddle = ({setbuttonClick, dayB}) => {
     //빈배열 안에 저기서 날자 - +1 ㅐ서 넣어
+
+    const [clickedItem, setClickedItem] = useState(null);
   return (
     <Container>
         <TextBox>모든일정</TextBox>
         <TableBox>
-        {[1,2,3,4,5,6].map((item)=>{
+        {Array.from({ length: dayB }, (_, index) => index + 1).map((item) => {
            const itemNum = item;
             return(
-            <InnerOneTable key = {itemNum} item={itemNum}>
+            <InnerOneTable key = {itemNum} item={itemNum}
+            setbuttonClick = {setbuttonClick}
+            clickedItem={clickedItem}
+            setClickedItem={setClickedItem}>
             </InnerOneTable>
             )
         })}
@@ -53,10 +58,10 @@ const TableBox = styled.div`
     overflow-x: auto;
     margin-top: 1%;
     //background-color: #FFF2D6; //잇을때 디자인 물어보기
-    border: none;
     border-radius: 8px;
-    padding: 28px 14px 16px 14px;
+    //padding: 28px 14px 16px 14px;
     justify-content: space-between;
+    align-items: center;
     
 `
 
