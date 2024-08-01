@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import InnerOneTable from './InnerOneTable'
 
 const ThisAllMiddle = () => {
   return (
@@ -7,11 +8,10 @@ const ThisAllMiddle = () => {
         <TextBox>모든일정</TextBox>
         <TableBox>
         {[1,2,3,4,5,6].map((item)=>{
+           const itemNum = item;
             return(
-            <InnerTable>
-                <DayCount>{item}</DayCount>
-                <Table></Table>
-            </InnerTable>
+            <InnerOneTable key = {itemNum} item={itemNum}>
+            </InnerOneTable>
             )
         })}
         </TableBox>
@@ -51,25 +51,5 @@ const InnerTable = styled.div`
 min-width: 306px;
 height: 458px;
 border: 2px solid black;
-    
-`
-const DayCount = styled.div`
-  display: inline-block;
-  width: 67px;
-  height: 32px;
-  background-color: #FED39D;
-  border-radius: 4px;
-  border: 0.5px solid #FF831C;
-  padding: 4px 10px 4px 10px;
-  box-sizing: border-box;
-  gap: 10px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: -0.02em;
-  color: #FF6B00;
-`;
-
-const Table = styled.div`
     
 `
