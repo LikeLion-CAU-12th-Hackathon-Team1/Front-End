@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import ThisAllTop from './ThisAllTop';
 import ThisAllMiddle from './ThisAllMiddle';
 import ThisAllBottom from './ThisAllBottom';
 
 const ThisAllCom = () => {
+
   return (
     <Container>
-      <ThisAllTop></ThisAllTop>
+      <ThisAllTop ></ThisAllTop>
       <ThisAllMiddle></ThisAllMiddle>
       <ThisAllBottom></ThisAllBottom>
     </Container>
@@ -22,7 +23,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 1020px;
-  height: 730px;
+  /* height: 730px; */
   background-color: #FFFAF0;
   box-sizing: border-box;
+  border-top: 66px;
+  border-radius: 6px;
+  padding: 18px 17px 18px 17px;
 `;

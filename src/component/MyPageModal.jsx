@@ -4,13 +4,13 @@ import styled from 'styled-components'
 import { isLoginAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
 import { useNavigate } from 'react-router-dom';
 import superLogo from '../assets/img/super.png';
+import axios from 'axios';
 
 
 const MyPageModal = () => {
 
   const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 로그인상태 추적 - 여기서는 로그아웃 버튼 누르면 false로 바꿔야해서 작성
   const [myPageModal, setMyPageModal] = useRecoilState(isMyPageModalAtom); // 전역 상태로 마이페이지 모달창이 열려있는지 닫혔는지를 판단
-
   const navigate= useNavigate();
 
     //사용자 닉네임, 이메일 가져오기
@@ -18,8 +18,34 @@ const MyPageModal = () => {
     const email = localStorage.getItem("email");
     const profile = localStorage.getItem("profile");
 
+    const baseURL = `https://saengchaein.r-e.kr`;
+    //백 버전으로 로그아웃
+    const logout = async()=> {
+      const token =localStorage.getItem('access');
+      if (!token) {
+        console.error('No access token found');
+        return;
+      }
+
+      try {
+        const response = await axios.post(`https://kapi.kakao.com/v1/user/logout`,null, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log('Logout Response:', response);
+        return response.data;
+        // 전송 성공 시 처리 로직 추가 (예: 페이지 이동 등) 
+      } catch (error) {
+        console.error('Error Logout:', error);
+        throw error;
+        // 에러 처리 로직 추가 (예: 사용자에게 알림)
+      }
+    }
+
   // 로그아웃 버튼 눌리면 실행될 함수 - 액세스, 리프레시 토큰 삭제 + 로그인 상태 리코일 false + 마이페이지 모달창 닫기 + 처음 홈 화면으로 이동
   const toLogOut = () => {
+    // logout(); //로그아웃 백에서 되면 ..~!
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("nickname");
@@ -28,6 +54,7 @@ const MyPageModal = () => {
     setIsLogin(false);
     setMyPageModal(false);
     navigate("/");
+
   }
 
    // 모달 외부 클릭 시 모달 닫기
