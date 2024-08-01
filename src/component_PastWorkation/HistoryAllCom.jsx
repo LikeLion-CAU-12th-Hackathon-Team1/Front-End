@@ -61,9 +61,9 @@ const handleOne = (workation_id)=> {
                 SiggText={SiggText}
                 formattedStartDate={formattedStartDate}
                 formattedEndDate={formattedEndDate}
-                onClick={()=> handleOne(workation_id)}
+                handleOne={() => handleOne(workation_id)} 
                 />
-                ) 
+                )
             })}
             
         </ContentBox>
