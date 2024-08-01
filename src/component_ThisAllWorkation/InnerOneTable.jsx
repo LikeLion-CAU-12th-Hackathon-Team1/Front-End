@@ -34,6 +34,7 @@ export default InnerOneTable
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    margin-right:0.5%;
 `
 
 const DayCount = styled.div`
