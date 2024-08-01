@@ -7,7 +7,7 @@ import axios from 'axios';
 import { DateMap1, formatDateWithDay, getSiggMap, getWorkPurposeMap, getWorkStyleMap } from '../api/mappingData';
 import { getThisAll } from '../api/api_ThisAllTimeTable';
 
-const ThisAllCom = () => {
+const ThisAllCom = ({workation_id}) => {
 
   const [click, setbuttonClick] = useState(false);
   const [data, setData] = useState({})
@@ -19,7 +19,7 @@ const ThisAllCom = () => {
       setData(result);
     };
     fetchData();
-  }, []);
+  }, [workation_id]);
 
   const { start_date, end_date, sigg, work_style, work_purpose } = data;
 
