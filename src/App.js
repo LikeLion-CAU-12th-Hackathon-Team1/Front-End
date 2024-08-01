@@ -14,6 +14,7 @@ import { loginHandler } from './api/api_login';
 import AllTask from './pages/ThisAllWorkation/AllTask';
 import OneDayTimeTable from './component_TimeTable/ForTimeTable/OneDayTimeTable';
 import HistoryAll from './pages/PastWorkation/HistoryAll';
+import OnePast from './pages/PastWorkation/OnePast';
 
 function App() {
     const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
@@ -42,7 +43,9 @@ useEffect(()=> {
           {/* <Route path="/timetable" element={<TimeTable />} > */}
           <Route path="/timetable/alltask" element={<AllTask />} />
           <Route path="/timetable/today" element={<TimeTable />} />
-          <Route path="/timetable/historyAll" element={<HistoryAll />} />
+          <Route path="/timetable/historyAll" element={<HistoryAll />}>
+            <Route path=":id" element={<OnePast />} />
+          </Route>
           {/* <Route path="/timetable/historyEach" element={<HistoryEach />} /> */}
           <Route path="/makeT" element={<MakeT />} />
           <Route path="/beforeMakeT" element={< BeforeMakeT/>} />
