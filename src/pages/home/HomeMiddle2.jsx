@@ -25,27 +25,33 @@ export default HomeMiddle2
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center; /*역방향(가로)의 중심 */
     width : 1440px;
     height: 800px;
 `
 
 const Title= styled.div`
-  width: 426px;
-  height: 20px;
+  font-family: 'AppleSDGothicNeoM', sans-serif;
   font-size: 30px;
-  font-weight:700;
+  font-weight:900;
   text-align: center;
-  padding-top: 50px;
+  /* padding-top: 0%; */
+  padding-bottom: 1%;
+  letter-spacing: -0.02em;
 `
 
 const SemiTitle = styled.div`
-  width: 570px;
+  font-family: 'AppleSDGothicNeoM', sans-serif;
+  width: 435px;
   height: 48px;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   text-align: center;
+  letter-spacing: -0.02em;
+  color: #646464;
+  line-height: 22px;
+  padding-bottom: 2%;
 `
 
 const StyledImg = styled.img`

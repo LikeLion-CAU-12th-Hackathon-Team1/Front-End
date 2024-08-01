@@ -42,7 +42,7 @@ const MyPageModal = () => {
     <Overlay id="modal-overlay" onClick={handleOutsideClick}>
     <Container>
       <ProfileImg src={profile}/>
-    <Name>닉네임  | {nickname}</Name>
+    <Name> 이름  | {nickname}</Name>
     <Email>이메일  | {email}</Email>
     <LogOut onClick={toLogOut}>로그아웃</LogOut>
     </Container>
@@ -77,7 +77,6 @@ const Container = styled.div`
   top: 80px;
   right: 40px;
   border-radius: 8px;
-  
 `
 const ProfileImg = styled.img`
   border-radius: 50%;
@@ -92,11 +91,14 @@ const Name = styled.div`
   font-size: 16px;
   color:black;
   cursor: pointer;
+  align-self: flex-start;
+  margin-left: 26%;
 `
 const Email = styled.div`
   font-size: 16px;
   color:black;
   cursor: pointer;
+  margin-left: 3%;
 `
 const LogOut = styled.button`
   color: #007AFF;

@@ -3,11 +3,13 @@ import styled from 'styled-components'
 import superLogo from '../../assets/img/super.png';
 import workvalley from '../../assets/img/workvalley.svg';
 import HomeBottomImg from "../../assets/img/HomeBottomImg.svg";
+import OrangeLogo from "../../assets/img/OrangeLogo.svg";
+import HomeBT2 from '../../assets/img/HomeBT2.svg';
 
 const HomeBottom = () => {
   return (
     <Wrapper>
-      <Title>~~~~를 통해<br/>무너진 일과 쉼의 균형을 잡아봐요!</Title>
+      <Title src={HomeBT2}/>
       <StyledImg src={HomeBottomImg} alt='강원도'/>
     </Wrapper>
     
@@ -26,12 +28,12 @@ const Wrapper = styled.div`
     background: linear-gradient(#FFFFFF, #FFFAF0);
 `
 
-const Title = styled.div`
-  font-size: 24px;
-  font-weight: 800;
-  text-align: center;
-  white-space: pre-wrap;
-  margin-bottom: 50px;
+
+const Title = styled.img`
+   width: 393px;
+   height: 82px;
+   z-index: 5;
+   margin-bottom: 30px;
 `
 
 const StyledImg = styled.img`
