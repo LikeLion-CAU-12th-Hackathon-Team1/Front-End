@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import { patchdailyRetro } from '../api/api_dailyTimeTable';
 
-const RetrospectCom = () => {
+const RetrospectCom = ({ memo, setMemo }) => {
 
   const [isRetroEdit, setIsRetroEdit] = useState(false); // 회고 save edit 버튼 상태관리
 
@@ -17,9 +18,15 @@ const RetrospectCom = () => {
   }
 
   const handleSaveBtn = () => {
-    handleRetroEdit()
-    console.log("백엔드 데이터 전송") // 추후 백 연동
-  }
+    const daily_workation_id = 9; // 몇일째인지 나중에 백 데이터 연결하기
+    const body = { memo };
+    handleRetroEdit();
+    patchdailyRetro(daily_workation_id, body);
+  };
+
+  const handleMemoChange = (event) => { //TextArea 내용 변경시 캐치
+    setMemo(event.target.value);
+  };
 
   return (
     <>
@@ -30,7 +37,10 @@ const RetrospectCom = () => {
             (<EditBtn onClick = {handleRetroEdit}><span>edit</span></EditBtn>)}
         </SectionTitleContainer>
           
-        <TextArea defaultValue="회고를 작성해주세요!!" readOnly={!isRetroEdit}>
+        <TextArea 
+        value = {memo} // TextArea안의 값을 memo로 지정
+        onChange={handleMemoChange}
+        readOnly={!isRetroEdit}>
         </TextArea>
     </SectionRetro>
     </>

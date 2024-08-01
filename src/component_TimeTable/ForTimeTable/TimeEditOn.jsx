@@ -2,6 +2,7 @@
 
 import React from 'react'
 import styled from 'styled-components'
+import { getDailyAllTable, postOneTable } from '../../api/api_dailyTimeTable'
 
 const TimeEditOn = ({startWorkTime, endWorkTime,
     startRestTime, endRestTime,
@@ -9,17 +10,48 @@ const TimeEditOn = ({startWorkTime, endWorkTime,
 setStartWorkTime, setStartRestTime,
 setEndWorkTime, setEndRestTime }) => {
 
-  // 시간 블록 선택되고 save 버튼 누르면 에디트 창 꺼지고 시간 리셋
-    const handleSaveBtn = ()=>{
+  //시간변환 함수
+      function getTime(time) {
+      const [hours, minutes] = time.split(":");
+      const paddedHours = hours.padStart(2, '0');
+      const paddedMinutes = minutes.padStart(2, '0');
+      const sixDigitTime = `${paddedHours}${paddedMinutes}00`;
+
+      return sixDigitTime;
+      }
+
+  // 시간 블록 선택되고 save 버튼 누르면 에디트 창 꺼지고 시간 리셋 + api
+  // 아직 작성중....
+    const handleSaveBtn = async ()=>{
+      const daily_workation_id = 9 // 추후 바꿔야 할 값 - 지금은 테스트용
+      let body;
+
         if(startWorkTime){
-            setIsTimeEditOn(false);
-            setStartWorkTime("");
-            setEndWorkTime("");
-        } else{
-            setIsTimeEditOn(false);
-            setStartRestTime("");
-            setEndRestTime("");
+          body = {
+            daily_workation : daily_workation_id,
+            sort : 1,
+            start_time : getTime(startWorkTime),
+            end_time : getTime(endWorkTime)
+          };
+          await postOneTable(daily_workation_id, body)
+          getDailyAllTable(daily_workation_id)
+          setStartWorkTime("");
+          setEndWorkTime("");
+          
+        } else {
+          body = {
+            daily_workation : daily_workation_id,
+            sort : 2,
+            start_time : getTime(startRestTime),
+            end_time : getTime(endRestTime)
+          }
+          await postOneTable(daily_workation_id, body);
+          setStartRestTime("");
+          setEndRestTime("");
         }
+        await getDailyAllTable(daily_workation_id)
+        setIsTimeEditOn(false);
+        console.log(body);
     }
 
   return (

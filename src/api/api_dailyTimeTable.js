@@ -1,0 +1,63 @@
+import axios from "axios";
+
+const baseURL = `https://saengchaein.r-e.kr`;
+
+
+// 데일리 워케이션에 회고 작성 - component_TimeTable/RetrospectCom.jsx - save 버튼에 연결
+export const patchdailyRetro = async(daily_workation_id, body)=>{
+
+    const token =localStorage.getItem('access'); // localStorage에서 사용자 ID를 숫자로 가져오기
+
+    const response= await axios.patch(`${baseURL}/workation/daily/${daily_workation_id}/memo/`,body,{
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    //console.log(response.data)
+    return response.data;
+}
+
+// 데일리 워케이션에 회고 불러오기 - OneDayTimeTable.jsx - useEffect에 연결
+export const getdailyRetro = async(daily_workation_id)=>{
+
+    const token =localStorage.getItem('access'); // localStorage에서 사용자 ID를 숫자로 가져오기
+
+    const response= await axios.get(`${baseURL}/workation/daily/${daily_workation_id}/`,{
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    //console.log(response.data)
+    return response.data;
+}
+
+// 데일리 워케이션 시간표 불러오기 - OneTimeTable.jsx - useEffect에 연결 / 추후 시간표 추가, 삭제 버튼에도 등록해야 하나...?
+export const getDailyAllTable = async(daily_workation_id)=>{
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.get(`${baseURL}/workation/daily/${daily_workation_id}/time/`,{
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    console.log(response.data)
+    return response.data;
+}
+
+
+// 시간표 한 블럭 추가 - TimeEditOn.jsx - savebtn에 연결
+export const postOneTable = async(daily_workation_id, body)=>{
+
+    const token =localStorage.getItem('access');
+
+    try{
+        const response= await axios.post(`${baseURL}/workation/daily/${daily_workation_id}/time/`, body,{
+            headers: {Authorization: `Bearer ${token}`
+        }
+        });
+        console.log(response.data)
+        return response.data;
+    } catch (error) {
+        console.error('에러발생', error)
+        alert("중복시간 입력하실 수 없습니다")
+    }
+    
+}
