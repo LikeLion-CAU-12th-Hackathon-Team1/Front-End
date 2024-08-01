@@ -28,7 +28,6 @@ setEndWorkTime, setEndRestTime }) => {
 
         if(startWorkTime){
           body = {
-            daily_workation : daily_workation_id,
             sort : 1,
             start_time : getTime(startWorkTime),
             end_time : getTime(endWorkTime)
@@ -40,7 +39,6 @@ setEndWorkTime, setEndRestTime }) => {
           
         } else {
           body = {
-            daily_workation : daily_workation_id,
             sort : 2,
             start_time : getTime(startRestTime),
             end_time : getTime(endRestTime)
