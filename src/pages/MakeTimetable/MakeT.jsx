@@ -140,13 +140,13 @@ const MakeT = () => {
         }
       }); //post요청으로 답변 보냄
       console.log('Response from server:', response.data);
-      // 전송 성공 시 처리 로직 추가 (예: 페이지 이동 등) 
+      // 전송 성공 시 처리 로직 추가 (예: 페이지 이동 등) '.
     } catch (error) {
       console.error('Error submitting answers:', error);
       // 에러 처리 로직 추가 (예: 사용자에게 알림)
     }
     console.log("All answers:", dataTosend);
-    navigate("/timetable");
+    navigate("/timetable/alltask");
   }
 
   return (
