@@ -1,9 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
+import ThisAllTop from './ThisAllTop';
+import ThisAllMiddle from './ThisAllMiddle';
 
 const ThisAllCom = () => {
   return (
-    <Container></Container>
+    <Container>
+      <ThisAllTop></ThisAllTop>
+      <ThisAllMiddle></ThisAllMiddle>
+    </Container>
   )
 }
 
