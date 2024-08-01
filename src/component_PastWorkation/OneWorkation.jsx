@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import Pin from "../assets/img/pin.svg"
 import day2 from "../assets/img/day2.svg"
 
-const OneWorkation = ({ workation_id, SiggText, formattedStartDate, formattedEndDate }) => {
+const OneWorkation = ({ workation_id, SiggText, formattedStartDate, formattedEndDate, handleOne }) => {
 
 
   return (
-    <One>
+    <One onClick={handleOne }>
         <ImgC src={day2}/>
         <TextBox>{formattedStartDate} ~ {formattedEndDate}</TextBox>
         <ImgL src={Pin}/>
@@ -32,6 +32,7 @@ const One = styled.div`
     display: flex;
     /* justify-content: center; */
     align-items: center;
+    cursor: pointer;
 `
 const ImgC = styled.img`
     width: 32px;

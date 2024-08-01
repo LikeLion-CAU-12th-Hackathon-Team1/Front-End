@@ -7,19 +7,19 @@ import axios from 'axios';
 import { DateMap1, formatDateWithDay, getSiggMap, getWorkPurposeMap, getWorkStyleMap } from '../api/mappingData';
 import { getThisAll } from '../api/api_ThisAllTimeTable';
 
-const ThisAllCom = () => {
+const ThisAllCom = ({workation_id}) => {
 
   const [click, setbuttonClick] = useState(false);
   const [data, setData] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
-      const workation_id = 10; // 추후 백에서 받아올 데이터
+      const workation_id = 1; // 추후 백에서 받아올 데이터
       const result = await getThisAll(workation_id);
       setData(result);
     };
     fetchData();
-  }, []);
+  }, [workation_id]);
 
   const { start_date, end_date, sigg, work_style, work_purpose } = data;
 
