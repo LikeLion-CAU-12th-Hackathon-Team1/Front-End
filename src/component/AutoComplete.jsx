@@ -1,25 +1,30 @@
 import { Autocomplete, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { siggAtom } from '../recoil/makeTAtom';
 
 // 텍스트필드 배열
 const textField = [
-    { label: '강릉' },
-    { label: '속초' },
-    { label: '양양' },
-    { label: '춘천' }
+    { label: '강릉', value:1 },
+    { label: '속초', value:2 },
+    { label: '양양', value:3 },
+    { label: '춘천', value:4 }
 ];
 
 const AutoComplete = () => {
 
     // useState로 관리
-    const [selectedText, setSelectedText] = useState(null);
+    const [selectedText, setSelectedText] = useState(textField[0]);
+    //시군구 선택받기
+    const [sigg, setSigg] = useRecoilState(siggAtom);
 
     // 값 변하면 추적해서 출력
     const handleAutoComplete = (event, newValue) => {
         setSelectedText(newValue);
         if (newValue) {
-            console.log(newValue.label);
-            // 값 저장해서 백에게 전송하는 코드 추가하기
+            setSigg(newValue.value);
+        } else {
+            setSigg(null);
         }
     };
 
@@ -28,6 +33,7 @@ const AutoComplete = () => {
             <Autocomplete
                 id="combo-box-demo"
                 options={textField}
+                defaultValue={textField[0]}
                 sx={{ width: 200 }}
                 onChange={handleAutoComplete}
                 renderInput={(params) => (
@@ -51,7 +57,7 @@ const AutoComplete = () => {
                                 color: 'orange' // 라벨의 색상
                             },
                             '& .MuiInputLabel-root.Mui-focused': {
-                                color: 'red' // 포커스 시 라벨의 색상
+                                color: '#F2F2F2' // 포커스 시 라벨의 색상
                             }
                         }}
                         InputProps={{

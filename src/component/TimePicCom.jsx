@@ -3,6 +3,8 @@ import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { createTheme, ThemeProvider } from '@mui/material';
 import dayjs from 'dayjs';
+import { useRecoilState } from 'recoil';
+import { sleepTimeAtom, wakeTimeAtom } from '../recoil/makeTAtom';
 
 const theme = createTheme({ // 테마설정
     components: {
@@ -45,27 +47,25 @@ const TimePicCom = ({id}) => {
   // };
 
   
-  const [wakeTime, setWakeTime] = useState(null);
-  const [sleepTime, setSleepTime] = useState(null);
+  const [wakeTime, setWakeTime] = useRecoilState(wakeTimeAtom);
+  const [sleepTime, setSleepTime] = useRecoilState(sleepTimeAtom);
   
     const handleTimeChange = (newValue)=> {
       if(id ==='wake-time'){
-        setWakeTime(newValue);
-        console.log(dayjs(newValue).format('HHmm'));
+        setWakeTime(dayjs(newValue).format('HHmm'));
       } else if (id ==='sleep-time'){
-        setSleepTime(newValue);
-        console.log(dayjs(newValue).format('HHmm'));
+        setSleepTime(dayjs(newValue).format('HHmm'));
       }
     };
     
-    const TimeValue = id === 'wake-time'? wakeTime :sleepTime;
+    const TimeValue = id === 'wake-time'? dayjs(wakeTime, 'HHmm') : dayjs(sleepTime, 'HHmm');
 
   return (
     <ThemeProvider theme={theme}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
     <TimePicker
     label={id === 'wake-time' ?'기상시간' : '취침시간'}
-    value={TimeValue}
+    value={TimeValue.isValid() ? TimeValue : null}
     onChange={handleTimeChange}
 
     />

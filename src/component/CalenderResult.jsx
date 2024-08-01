@@ -45,4 +45,5 @@ const CalenderR = styled.div`
   cursor: pointer;
   border-radius: 4px;
   font-size: 18px;
+  margin-top: 10px;
 `;

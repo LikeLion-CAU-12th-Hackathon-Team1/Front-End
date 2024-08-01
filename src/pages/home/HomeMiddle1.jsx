@@ -1,26 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
+import GImg from "../../assets/img/Group 94.svg"
 
 const HomeMiddle1 = () => {
   return (
     <Wrapper>
-      <Title>프리랜서의 증가 <br />But, 무너진 일과 휴식의 구분</Title>
+      <Title>일과 휴식을 동시에, <br />워크밸리에서 꿈꾸던 워라밸을 실현하세요!</Title>
       <InsideWrapper>
-        <Inside>
-          <StyledImg />
-          <InText>소제목1</InText>
-          <Content>본문1</Content>
-        </Inside>
-        <Inside>
-        <StyledImg />
-          <InText>소제목2</InText>
-          <Content>본문2</Content>
-        </Inside>
-        <Inside>
-        <StyledImg />
-          <InText>소제목3</InText>
-          <Content>본문3</Content>
-        </Inside>
+       <StyledImg src={GImg} />
+       <Inside>
+       <InText>균형잡힌 워라밸 관리</InText>
+       <InText>AI 추천 일정 관리</InText>
+       <InText>업무/휴식 공간 추천</InText>
+       </Inside>
+        
       </InsideWrapper>
 
     </Wrapper>
@@ -31,46 +24,65 @@ const HomeMiddle1 = () => {
 export default HomeMiddle1
 
 const Wrapper = styled.div`
-    background-color: #f2f2f2;
+    background-color: #FFF0CA;
     text-align: center;
     width : 1440px;
-    height: 624px; 
+    height: 724px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `
 const Title = styled.div`
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 800;
-  margin: 3%;
+  margin-top: 1%;
 `
 const InsideWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 916px;
-  height: 362px;
+  width: 900px;
+  height: 359px;
+  margin: 1%;
 `
 
 const Inside = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 168px;
-  height: 213px;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  width: 880px;
+  height: 279px;
 `
 
-const StyledImg = styled.img`
-  width: 168px;
-  height: 115px;
+const StyledImg = styled.div`
+  width: 230px;
+  height: 134px;
+  background-color: #FFF8E5;
+  border-color: #FFA837;
 `
 
 const InText = styled.p`
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
+  width: 230px;
+  height: 47px;
+  border-radius: 6px;
+  background-color: #FFA837;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 `
 
-const Content =styled.p`
-  font-size: 14px;
-  font-weight: 400;
-`
+// const Content =styled.p`
+//   font-size: 20px;
+//   font-weight: 600;
+//   white-space: pre-wrap;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `

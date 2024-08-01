@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import superLogo from '../../assets/img/super.png';
 import workvalley from '../../assets/img/workvalley.svg';
+import HP1 from '../../assets/img/HP1.jpg';
+import HP2 from '../../assets/img/HP2.jpg';
 
 
 const HomeMiddle2 = () => {
@@ -10,8 +12,8 @@ const HomeMiddle2 = () => {
       <Title>워케이션이란?</Title>
       <SemiTitle>일(Work)과 휴가(Vacation)의 합성어로, 원하는 곳에서 업무와
       휴가를 동시에 할 수 있는 새로운 근무제도</SemiTitle> 
-      <StyledImg src={superLogo} alt='예시사진' />
-      <StyledImg src={superLogo} alt='예시사진' />
+      <StyledImg src={HP1} alt='예시사진' />
+      <StyledImg src={HP2} alt='예시사진' />
       
     </Wrapper>
     
@@ -30,18 +32,18 @@ const Wrapper = styled.div`
 `
 
 const Title= styled.div`
-  width: 170px;
-  height: 70px;
-  font-size: 24px;
-  font-weight:800;
+  width: 426px;
+  height: 20px;
+  font-size: 30px;
+  font-weight:700;
   text-align: center;
   padding-top: 50px;
 `
 
 const SemiTitle = styled.div`
-  width: 426px;
-  height: 90px;
-  font-size: 18px;
+  width: 570px;
+  height: 48px;
+  font-size: 22px;
   font-weight: 600;
   text-align: center;
 `
@@ -50,5 +52,4 @@ const StyledImg = styled.img`
     width: 812px;
     height: 221px;
     border-radius: 10px;
-    opacity: 50%;
 `
