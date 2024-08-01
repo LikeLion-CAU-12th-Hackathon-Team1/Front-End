@@ -17,7 +17,8 @@ display:flex;
 flex-direction: row;
 width : 300px;
 height: 16px;
-border: 1px solid red;
+align-items:center;
+justify-content:center;
 `
 const WorkTable = styled.div`
   display: flex;
