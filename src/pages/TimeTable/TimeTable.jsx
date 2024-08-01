@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import OneDayTimeTable from '../../component_TimeTable/ForTimeTable/OneDayTimeTable';
 import Location from '../../component_Location/Location';
 import recoLoca from '../../assets/img/recommendLoca.svg';
+import { getDailyTodayId } from '../../api/api_dailyTimeTable';
 
 const TimeTable = () => {
 
@@ -20,6 +21,20 @@ const TimeTable = () => {
   const goLastTimeTable = () => {
     navigate('/timetable/historyAll')
   }
+
+
+  const [todayId, setTodayId] = useState();
+  // 이 컴포넌트 마운트 될 때마다 실행
+  useEffect(() => {
+    const fetchData = async () => {
+      const getTodayId = await getDailyTodayId();
+      //console.log(getTodayId);
+      setTodayId(getTodayId.daily_workation_id);
+      };
+      fetchData();
+  }, [todayId]);
+
+
   return (
     <Container>
     <TopContainer>
@@ -32,7 +47,7 @@ const TimeTable = () => {
       
       <RecoLoca src={recoLoca}/>
     </NavDom>
-    <OneDayTimeTable/>
+    {todayId && <OneDayTimeTable todayId={todayId} />}
     </TopContainer>
     <BottomContainer>
     <Location></Location>

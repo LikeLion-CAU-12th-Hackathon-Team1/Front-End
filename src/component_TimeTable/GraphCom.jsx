@@ -3,10 +3,10 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const GraphCom = () => {
+const GraphCom = ({graphRatio}) => {
 
  
-  const ratio = 10; // 추후 백에서 가공한 비율 데이터 받아와야 함
+  const ratio = graphRatio; // 추후 백에서 가공한 비율 데이터 받아와야 함
 
   return (
     <>

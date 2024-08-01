@@ -14,7 +14,7 @@ const ThisAllCom = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const workation_id = 10; // 추후 백에서 받아올 데이터
+      const workation_id = 35; // 추후 백에서 받아올 데이터
       const result = await getThisAll(workation_id);
       setData(result);
     };
