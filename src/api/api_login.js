@@ -62,6 +62,8 @@ export const loginHandler = () => {
   window.location.href = kakao_login_uri;
 };
 
+
+
 // OAuth 처리를 위한 함수
 export const handleOAuth = async () => {
   const history = createBrowserHistory();
@@ -77,6 +79,7 @@ export const handleOAuth = async () => {
       localStorage.setItem("nickname", result.data.user.nickname); 
       localStorage.setItem("email", result.data.user.email); 
       localStorage.setItem("profile", result.data.user.profile);
+      
       history.push("/"); // 로그인 페이지로 이동
       window.location.reload(); // 페이지 새로고침
 
@@ -90,4 +93,3 @@ export const handleOAuth = async () => {
 window.onload = () => {
   handleOAuth();
 };
-

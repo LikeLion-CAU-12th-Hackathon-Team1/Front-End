@@ -23,17 +23,20 @@ const ThisAllGraph = () => {
   
   const SectionGraph = styled.div`
     background-color: #FFF2D6;
-    width: 452px;
-    height: 113px;
+    width: 96%;
+    /* height: 113px; */
     border-radius: 4px;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     display: flex;
     flex-direction: column;
+    padding-left: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
   `;
   
   const SectionTitle = styled.div`
-    width: 454px;
+    width: 98%;
     height: 25px;
     font-weight: 700;
     font-size: 24px;

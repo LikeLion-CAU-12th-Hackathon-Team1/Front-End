@@ -37,5 +37,4 @@ const RestTable = styled.div`
   height: 16px;
   background-color: ${({ $isActive }) => ($isActive ? '#FFA837' : '#FFFFFF')};
   border-radius: 100px;
-    
-`
+  `

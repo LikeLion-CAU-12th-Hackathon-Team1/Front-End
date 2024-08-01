@@ -14,6 +14,22 @@ const ThisAllRetro = () => {
 
 export default ThisAllRetro
 
+const SectionRetro = styled.div`
+background-color: #FFF2D6;
+width: 482px;
+height: 205px;
+border-radius: 4px;
+align-items: center;
+justify-content: center;
+display: flex;
+flex-direction: column;
+`;
+
+const SectionTitleContainer = styled.div`
+display: flex;
+flex-direction: row;
+`
+
 const SectionTitleRto = styled.div`
 width: 396px;
 height: 25px;
@@ -24,21 +40,6 @@ letter-spacing: -0.02em;
 color: #222222;
 box-sizing: border-box;
 //margin-bottom: 4px;
-`;
-
-const SectionTitleContainer = styled.div`
-display: flex;
-flex-direction: row;
-`
-const SectionRetro = styled.div`
-background-color: #FFF2D6;
-width: 482px;
-height: 205px;
-border-radius: 4px;
-align-items: center;
-justify-content: center;
-display: flex;
-flex-direction: column;
 `;
 
 const TextArea = styled.textarea`

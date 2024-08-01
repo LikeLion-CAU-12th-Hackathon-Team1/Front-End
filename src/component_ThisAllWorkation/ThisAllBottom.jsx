@@ -9,7 +9,7 @@ const ThisAllBottom = () => {
     <Container>
         <InnerBox>
             <TextBox>
-                <Text>일정</Text>
+                <Text> </Text>
             </TextBox>
             <ContentBox>
                 <LeftBox>
@@ -26,15 +26,15 @@ const ThisAllBottom = () => {
 export default ThisAllBottom
 
 const Container = styled.div`
-width: 976px;
-height: 420px;
+width: 100%;
+/* height: 420px; */
 border-radius: 8px;
 border-color: #FEE0AA;
 `
 const InnerBox = styled.div`
 display:flex;
 flex-direction: column;
-    width: 916px;
+    width: 100%;
     height: 372px;
 `
 const TextBox = styled.div`
@@ -42,13 +42,20 @@ display:flex;
 flex-direction:row;
 `
 const Text = styled.div`
-    
+    height: 20px;
 `
 const ContentBox = styled.div`
-display:flex;
-flex-direction:row;
+    display:flex;
+    width: 100%;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
     
 `
 const LeftBox = styled.div`
-    
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
