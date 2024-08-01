@@ -15,21 +15,21 @@ const theme = createTheme({ // 달력테마 설정
         root: {
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: 'none', // 기본 테두리 색상
+              borderColor: 'gray', // 기본 테두리 색상
               //backgroundColor: '#F2F2F2',
             },
             '&:hover fieldset': {
-              borderColor: 'none', // 마우스 호버 시 테두리 색상
+              borderColor: 'gray', // 마우스 호버 시 테두리 색상
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'none', // 포커스 시 테두리 색상
+              borderColor: 'gray', // 포커스 시 테두리 색상
             },
           },
           '& .MuiInputBase-input': {
             color: 'black', // 입력 텍스트 색상
           },
           '& .MuiInputLabel-root': {
-            color: 'orange', // 라벨 텍스트 색상
+            color: 'gray', // 라벨 텍스트 색상
           },
         },
       },

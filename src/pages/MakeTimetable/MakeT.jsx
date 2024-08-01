@@ -161,7 +161,7 @@ const MakeT = () => {
         <TextBox>어느 지역으로 가시나요?</TextBox>
     </TitleBox>
     <ContentBox className='firstA'>
-        <AutoComplete2 /> <AutoComplete />
+        <AutoComplete2 /> <AutoComplete/>
     </ContentBox>
     </Question>
 
@@ -172,10 +172,10 @@ const MakeT = () => {
         <TextBox>일정이 어떻게 되나요?</TextBox>
     </TitleBox>
     <ContentBox>
-        <CalenderBox>
+        <CalenderBox className='A2'>
             <CalenderCom 
               id="start-work"/>
-            ~ 
+              ~ 
             <CalenderCom 
               id="end-work"/>
           </CalenderBox>
@@ -353,6 +353,14 @@ const ContentBox = styled.div`
 
   &.firstA{
     display: flex;
+    width: 35%;
+    justify-content: space-between;
+  }
+
+  &.A2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 

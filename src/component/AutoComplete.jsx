@@ -14,7 +14,7 @@ const textField = [
 const AutoComplete = () => {
 
     // useState로 관리
-    const [selectedText, setSelectedText] = useState(textField[0]);
+    const [selectedText, setSelectedText] = useState(textField[1]);
     //시군구 선택받기
     const [sigg, setSigg] = useRecoilState(siggAtom);
 
@@ -33,7 +33,7 @@ const AutoComplete = () => {
             <Autocomplete
                 id="combo-box-demo"
                 options={textField}
-                defaultValue={textField[0]}
+                defaultValue={textField[1]}
                 sx={{ width: 200 }}
                 onChange={handleAutoComplete}
                 renderInput={(params) => (
@@ -54,7 +54,7 @@ const AutoComplete = () => {
                                 }
                             },
                             '& .MuiInputLabel-root': {
-                                color: 'orange' // 라벨의 색상
+                                color: '' // 라벨의 색상
                             },
                             '& .MuiInputLabel-root.Mui-focused': {
                                 color: '#F2F2F2' // 포커스 시 라벨의 색상
