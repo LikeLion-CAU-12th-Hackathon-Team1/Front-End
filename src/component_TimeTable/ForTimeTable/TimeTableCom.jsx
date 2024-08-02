@@ -8,7 +8,11 @@ const TimeTableCom = ({isTimeEditOn,setIsTimeEditOn,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
   handleTimeUpdate,
   dailyAllTable,
-  todayId
+  todayId,
+  setToGetWorkId,
+  toGetWorkId,
+  toGetRestId,
+  setToGetRestId
 }) => {
   return (
     <>
@@ -19,7 +23,11 @@ const TimeTableCom = ({isTimeEditOn,setIsTimeEditOn,
     endRestTime={endRestTime} setEndRestTime={setEndRestTime}
     handleTimeUpdate={handleTimeUpdate}
     dailyAllTable={dailyAllTable}
-    todayId={todayId}>
+    todayId={todayId}
+    setToGetWorkId={setToGetWorkId}
+    toGetWorkId={toGetWorkId}
+    toGetRestId={toGetRestId}
+    setToGetRestId={setToGetRestId}>
       
     </TimeTableContainer>
     </>

@@ -10,7 +10,10 @@ const TimeTableContainer = ({isTimeEditOn, setIsTimeEditOn,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
   handleTimeUpdate,
   dailyAllTable,
-  todayId
+  todayId,
+  setToGetWorkId,
+  toGetWorkId,
+  toGetRestId, setToGetRestId
 }) => {
 
   const timeLabels = ["00:00", "06:00", "12:00", "18:00", "24:00"];
@@ -39,6 +42,9 @@ const TimeTableContainer = ({isTimeEditOn, setIsTimeEditOn,
               handleTimeUpdate={handleTimeUpdate}
               isTimeEditOn={isTimeEditOn}
               dailyAllTable={dailyAllTable}
+              setToGetWorkId={setToGetWorkId}
+              toGetWorkId={toGetWorkId}
+              toGetRestId={toGetRestId} setToGetRestId={setToGetRestId}
             />
           );
         })}

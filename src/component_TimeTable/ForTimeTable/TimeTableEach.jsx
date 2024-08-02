@@ -2,11 +2,13 @@
 
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { delDailyTimeBlock } from '../../api/api_dailyTimeTable';
 
 const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
-  handleTimeUpdate, isTimeEditOn, dailyAllTable,}) => {
+  handleTimeUpdate, isTimeEditOn, dailyAllTable,setToGetWorkId, toGetWorkId,
+  toGetRestId, setToGetRestId}) => {
 
   // work rest 일정이 있는지 상태관리
   const [isWork, setIsWork] = useState(false);
@@ -65,10 +67,28 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
     
   };
 
-  // 삭제 함수 - 하나씩만 삭제됨... 전체 블록 삭제 미구현
-  const handleDelWork = () => {
+  
+
+  // 삭제 함수
+  const handleDelWork = async () => {
       if (isWork) {
         if(window.confirm("정말 삭제하시겠습니까?")){
+          //console.log(workId);
+          // dailyAllTable의 sort가 1인 것 찾아야 함
+          for(let i = 0; i < dailyAllTable.length; i++){
+            const clickedWorkTime = (workId / 2);
+            const formatStartTime = parseInt(dailyAllTable[i].start_time)/10000
+            const formatEndtime = parseInt(dailyAllTable[i].end_time)/10000
+            if(dailyAllTable[i].sort === 1 && clickedWorkTime>=formatStartTime &&clickedWorkTime<=formatEndtime){
+              // 이제 타임워케이션 아이디 넣기
+            const workIdToDel = dailyAllTable[i].time_workation_id;
+            setToGetWorkId(workIdToDel)
+            console.log(workIdToDel)
+            await delDailyTimeBlock(workIdToDel);
+            window.location.reload();
+            break;
+          }
+        }
           setIsWork(false);
           //setIsTimeEditOn(false);
           setStartWorkTime("");
@@ -77,13 +97,28 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
       }
   };
 
-  const handleDelRest = () => {
+  const handleDelRest = async () => {
     if (isRest) {
       if(window.confirm("정말 삭제하시겠습니까?")){
-      setIsRest(false);
-      //setIsTimeEditOn(false);
-      setStartRestTime("");
-      setEndRestTime("");
+        //console.log(restId);
+        for(let i = 0; i < dailyAllTable.length; i++){
+          const clickedRestTime = parseInt(restId / 2);
+          const formatStartTime = parseInt(dailyAllTable[i].start_time)/10000
+          const formatEndtime = parseInt(dailyAllTable[i].end_time)/10000
+          if(dailyAllTable[i].sort === 2 && clickedRestTime>=formatStartTime &&clickedRestTime<=formatEndtime){
+            // 이제 타임워케이션 아이디 넣기
+            const restIdToDel = dailyAllTable[i].time_workation_id;
+            setToGetRestId(restIdToDel)
+            console.log(restIdToDel)
+            await delDailyTimeBlock(restIdToDel);
+            window.location.reload();
+            break;
+          }
+        }
+        setIsRest(false);
+        //setIsTimeEditOn(false);
+        setStartRestTime("");
+        setEndRestTime("");
     }
   }
   };
@@ -168,6 +203,11 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   //     }
   //   }
   // }, [setIsTimeEditOn]);
+
+  const handleOneTimeTable = ()=>{
+    // 여기에 데일리 올테이블 받아와서 그 크기만큼 for문 돌리며 엔드타임 시작타임찾아서 그 사이 값이면 그거에 해당하는 timetableid를 반환
+    // timetableid값을 최상단 useState에 저장
+  }
 
   return (
     <Container>

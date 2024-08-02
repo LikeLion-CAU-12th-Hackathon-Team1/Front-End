@@ -13,6 +13,10 @@ const OneDayTimeTable = ({ todayId }) => {
 
   const [isTimeEditOn, setIsTimeEditOn] = useState(false); // 시간표 추가시 생성될 좌측하단컴포넌트 상태관리
 
+  //time_worktation_id 얻기위한 상태관리
+  const [toGetWorkId, setToGetWorkId] = useState(null);
+  const [toGetRestId, setToGetRestId] = useState(null);
+
   // work, rest 각각에 대한 시작, 종료 상태관리
   const [startWorkTime, setStartWorkTime] = useState("");
   const [endWorkTime, setEndWorkTime] = useState("");
@@ -25,7 +29,7 @@ const OneDayTimeTable = ({ todayId }) => {
   const [graphRatio, setGraphRatio] = useState(0);
 
   useEffect(() => {
-    if (todayId) { // 수정수정
+    if (todayId) {
       const fetchData = async () => {
         // 회고 내용 불러오기
         const daily_workation_id = todayId;
@@ -38,7 +42,7 @@ const OneDayTimeTable = ({ todayId }) => {
 
         // 그래프 데이터 불러오기
         const getGraphData = await getGraph(daily_workation_id); // 수정수정
-        console.log(getGraphData.ratio);
+        //console.log(getGraphData.ratio);
         setGraphRatio(getGraphData.ratio);
       };
 
@@ -92,6 +96,8 @@ const OneDayTimeTable = ({ todayId }) => {
           handleTimeUpdate={handleTimeUpdate}
           dailyAllTable={dailyAllTable}
           todayId={todayId}
+          setToGetWorkId={setToGetWorkId} toGetWorkId={toGetWorkId}
+          toGetRestId={toGetRestId} setToGetRestId={setToGetRestId}
         ></TimeTableCom>
         <Sidebar>
           <GraphCom graphRatio={graphRatio}></GraphCom>
