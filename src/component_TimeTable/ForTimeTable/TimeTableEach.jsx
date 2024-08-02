@@ -186,8 +186,8 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
       if (item.sort === 2) { // rest
         if (restTime >= start && restTime < end) {
           setIsRest(true);
-        } else if(workTime >= start && workTime <= end && workTime == 23){
-          setIsWork(true);
+        } else if(restTime >= start && restTime <= end && restTime == 23){
+          setIsRest(true);
         }
       }
     });
