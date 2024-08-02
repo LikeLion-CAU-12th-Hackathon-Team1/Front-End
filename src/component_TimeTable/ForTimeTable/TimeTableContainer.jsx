@@ -13,7 +13,9 @@ const TimeTableContainer = ({isTimeEditOn, setIsTimeEditOn,
   todayId,
   setToGetWorkId,
   toGetWorkId,
-  toGetRestId, setToGetRestId
+  toGetRestId, setToGetRestId,
+  setTimeBlockId,
+  setTimeId
 }) => {
 
   const timeLabels = ["00:00", "06:00", "12:00", "18:00", "24:00"];
@@ -45,6 +47,8 @@ const TimeTableContainer = ({isTimeEditOn, setIsTimeEditOn,
               setToGetWorkId={setToGetWorkId}
               toGetWorkId={toGetWorkId}
               toGetRestId={toGetRestId} setToGetRestId={setToGetRestId}
+              setTimeBlockId={setTimeBlockId}
+              setTimeId={setTimeId}
             />
           );
         })}

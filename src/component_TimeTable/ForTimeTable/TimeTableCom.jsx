@@ -12,7 +12,9 @@ const TimeTableCom = ({isTimeEditOn,setIsTimeEditOn,
   setToGetWorkId,
   toGetWorkId,
   toGetRestId,
-  setToGetRestId
+  setToGetRestId,
+  setTimeBlockId,
+  setTimeId
 }) => {
   return (
     <>
@@ -27,7 +29,9 @@ const TimeTableCom = ({isTimeEditOn,setIsTimeEditOn,
     setToGetWorkId={setToGetWorkId}
     toGetWorkId={toGetWorkId}
     toGetRestId={toGetRestId}
-    setToGetRestId={setToGetRestId}>
+    setToGetRestId={setToGetRestId}
+    setTimeBlockId={setTimeBlockId}
+    setTimeId={setTimeId}>
       
     </TimeTableContainer>
     </>

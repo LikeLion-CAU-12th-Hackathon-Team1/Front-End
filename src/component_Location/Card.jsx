@@ -7,7 +7,7 @@ const Card = ({image, placename, report}) => {
 
   return (
     <CardLocation>
-        <Img src={image} alt={placename}>
+        <Img style={{ backgroundImage:`url(${image})`}} alt={placename}>
         <Overlay />
             <Report>{report}</Report>
             <Title> {placename} </Title>
