@@ -1,17 +1,25 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 
-const ThisAllTodo = () => {
+const ThisAllTodo = ({daily_workation_id}) => {
 
-    // const [isTodoEdit, setIsTodoEdit] = useState(false);
-    // const [todoList, setTodoList] = useState(initialTodoListArray);
-    // const [isChecked, setIsChecked] = useState(initialIsCheckedArray)
+  const [todoList, setTodoList] = useState([]);
 
-    // const handleCheckboxChange = (index) => {
-    //     const newCheckedItems = [...isChecked];
-    //     newCheckedItems[index] = !newCheckedItems[index];
-    //     setIsChecked(newCheckedItems);
-    //   }
+  useEffect(() => {
+    const fetchTodoData = async () => {
+      try {
+        const response = await axios.get(`https://saengchaein.r-e.kr/workation/daily/${daily_workation_id}/todolist/`);
+        setTodoList(response.data);
+      } catch (error) {
+        console.error('Error fetching Todo data:', error);
+      }
+    };
+
+    if (daily_workation_id) {
+      fetchTodoData();
+    }
+  }, [daily_workation_id]);
 
   return (
     <>
@@ -21,11 +29,12 @@ const ThisAllTodo = () => {
             </SectionTitleContainer>
           
           <TodoListContainer>
-          {[1,2,3,4].map((item) => (
-            <TodoItem key={item}>
+          {todoList.map((todo) => (
+            <TodoItem key={todo.task_id}>
             <CheckboxContainer>
-                <Checkbox type="checkbox"/>
+                <Checkbox type="checkbox" checked={todo.complete}/>
             </CheckboxContainer>
+              <TodoDes>{todo.description}</TodoDes>
             </TodoItem>
           ))}
           </TodoListContainer>
@@ -190,3 +199,8 @@ const SectionTitleContainer = styled.div`
     display: flex;
     flex-direction: row;
 `
+const TodoDes = styled.div`
+  margin-left: 10px;
+  font-size: 16px;
+  color: #333;
+`;

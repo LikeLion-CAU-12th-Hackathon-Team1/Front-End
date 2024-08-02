@@ -1,9 +1,26 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 
-const ThisAllGraph = () => {
+const ThisAllGraph = ({daily_workation_id}) => {
 
-    const ratio = 10; // 추후 백에서 가공한 비율 데이터 받아와야 함
+  const [ratio, setRatio] = useState(0);
+
+  useEffect(() => {
+    const fetchGraphData = async () => {
+      try {
+        const response = await axios.get(`https://saengchaein.r-e.kr/workation/daily/${daily_workation_id}/graph/`);
+        setRatio(response.data.ratio);
+      } catch (error) {
+        console.error('Error fetching graph data:', error);
+      }
+    };
+
+    if (daily_workation_id) {
+      fetchGraphData();
+    }
+  }, [daily_workation_id]); // daily_workation_id가 바뀔때마다 재렌더링
+
 
     return (
       <>

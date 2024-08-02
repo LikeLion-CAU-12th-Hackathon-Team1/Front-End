@@ -4,7 +4,10 @@ import ThisAllGraph from './ThisAllGraph'
 import ThisAllRetro from './ThisAllRetro'
 import ThisAllTodo from './ThisAllTodo'
 
-const ThisAllBottom = () => {
+const ThisAllBottom = ({workation_id, daily_workation_id}) => {
+    //어느 여행인지 워케이션아이디와 함께 버튼이 눌린 데일리워케이션아이디 하기
+
+
   return (
     <Container>
         <InnerBox>
@@ -13,10 +16,10 @@ const ThisAllBottom = () => {
             </TextBox>
             <ContentBox>
                 <LeftBox>
-                    <ThisAllGraph/>
-                    <ThisAllRetro/>
+                    <ThisAllGraph daily_workation_id={daily_workation_id}/>
+                    <ThisAllRetro daily_workation_id={daily_workation_id}/>
                 </LeftBox>
-                <ThisAllTodo/>
+                <ThisAllTodo daily_workation_id={daily_workation_id}/>
             </ContentBox>
         </InnerBox>
     </Container>
