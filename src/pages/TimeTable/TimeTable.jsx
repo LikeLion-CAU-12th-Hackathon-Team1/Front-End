@@ -24,12 +24,13 @@ const TimeTable = () => {
 
 
   const [todayId, setTodayId] = useState();
+  const [todayDate, setTodayDate] = useState();
   // 이 컴포넌트 마운트 될 때마다 실행
   useEffect(() => {
     const fetchData = async () => {
       const getTodayId = await getDailyTodayId();
-      //console.log(getTodayId);
       setTodayId(getTodayId.daily_workation_id);
+      setTodayDate(getTodayId.date);
       };
       fetchData();
   }, [todayId]);
@@ -47,7 +48,7 @@ const TimeTable = () => {
       
       <RecoLoca src={recoLoca}/>
     </NavDom>
-    {todayId && <OneDayTimeTable todayId={todayId} />}
+    {todayId && <OneDayTimeTable todayId={todayId} todayDate={todayDate} />}
     </TopContainer>
     <BottomContainer>
     <Location></Location>

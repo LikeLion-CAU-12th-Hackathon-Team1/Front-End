@@ -30,11 +30,13 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
           setIsWork(true);
           setIsTimeEditOn(true);
           setEndWorkTime(`${workTime+1}:00`)
-          if (!startWorkTime || parseInt(startWorkTime.split(":")[0]) > workTime) {
+          if (!startWorkTime) {
             setStartWorkTime(`${workTime}:00`);
+            setEndWorkTime(`${workTime+1}:00`)
             console.log(workTime)
-          } else {
-            setEndWorkTime(`${workTime+1}:00`);
+          } else if(startWorkTime && parseInt(startWorkTime.split(":")[0]) > workTime){
+            setStartWorkTime(`${workTime}:00`);
+            setEndWorkTime(`${parseInt(startWorkTime.split(":")[0])+1}:00`);
             console.log(workTime)
           }
         }
@@ -53,12 +55,12 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
           setIsRest(true);
           setIsTimeEditOn(true);
           setEndRestTime(`${restTime+1}:00`)
-          if (!startRestTime || parseInt(startRestTime.split(":")[0]) > restTime) {
+          if (!startRestTime) {
             setStartRestTime(`${restTime}:00`);
-            console.log(restTime)
-          } else {
-            setEndRestTime(`${restTime+1}:00`);
-            console.log(restTime)
+            setEndRestTime(`${restTime+1}:00`)
+          } else if(startRestTime && parseInt(startRestTime.split(":")[0]) > restTime){
+            setStartRestTime(`${restTime}:00`);
+            setEndRestTime(`${parseInt(startRestTime.split(":")[0])+1}:00`);
           }
         }
       }
@@ -133,13 +135,9 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
         if (workTime >= start && workTime < end) {
           setIsWork(true);
         }
-      // } else if (item.sort === 2) { // rest
-      //   if (restTime >= start && restTime < end) {
-      //     setIsRest(true);
-      //   }
       }
     });
-  }, [dailyAllTable, workTime, /*restTime*/]);
+  }, [dailyAllTable, workTime]);
 
 //rest 블록
   useEffect(() => {
@@ -152,7 +150,7 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
         }
       }
     });
-  }, [dailyAllTable, /*workTime*/, restTime]);
+  }, [dailyAllTable, restTime]);
 
 
   // workTime, restTime 각각 변화 추적하며 블록 생성
@@ -179,35 +177,6 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
       }
     }
   }, [startRestTime, endRestTime, restTime]);
-
-  // useEffect(() => {
-  //   if (startRestTime && endRestTime) {
-  //     const start = parseInt(startRestTime.split(":")[0]);
-  //     const end = parseInt(endRestTime.split(":")[0]);
-  //     if (restTime >= start && restTime < end) {
-  //       setIsRest(false);
-  //     } else {
-  //       setIsRest(true);
-  //     }
-  //   }
-  // }, [setIsTimeEditOn]);
-
-  // useEffect(() => {
-  //   if (startWorkTime && endWorkTime) {
-  //     const start = parseInt(startWorkTime.split(":")[0]);
-  //     const end = parseInt(endWorkTime.split(":")[0]);
-  //     if (workTime >= start && workTime < end) {
-  //       setIsWork(false);
-  //     } else {
-  //       setIsWork(true);
-  //     }
-  //   }
-  // }, [setIsTimeEditOn]);
-
-  const handleOneTimeTable = ()=>{
-    // 여기에 데일리 올테이블 받아와서 그 크기만큼 for문 돌리며 엔드타임 시작타임찾아서 그 사이 값이면 그거에 해당하는 timetableid를 반환
-    // timetableid값을 최상단 useState에 저장
-  }
 
   return (
     <Container>
