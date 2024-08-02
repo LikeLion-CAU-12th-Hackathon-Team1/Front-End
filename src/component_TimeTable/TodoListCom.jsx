@@ -3,10 +3,11 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { TodoListArray as initialTodoListArray, isCheckedArray as initialIsCheckedArray} from './ForTimeTable/Data';
+import { postTimeTodo } from '../api/api_dailyTimeTable';
 
-const TodoListCom = ({ dailyAllTodo }) => {
+const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
 
-    const [isTodoEdit, setIsTodoEdit] = useState(false);
+    const [isTodoEdit, setIsTodoEdit] = useState(false); // save edit 여부 버튼 관리
     const [todoList, setTodoList] = useState(dailyAllTodo.map(item => item.description));
     const [isChecked, setIsChecked] = useState(dailyAllTodo.map(item => item.complete));
 
@@ -23,12 +24,17 @@ const TodoListCom = ({ dailyAllTodo }) => {
         }
     }
 
-    const handleAddBtn = () => {
+    const handleAddBtn = async () => {
         if(todoList.length == 6){
             alert("더 이상 입력하실 수 없습니다!")
         } else {
-            setTodoList([...todoList, "새로운 Todo를 입력해주세요!!"]);
-            setIsChecked([...isChecked, false]);
+          let body;
+          body = {
+            description : "밤 새기"
+          }
+          await postTimeTodo(getTimeId, body)
+          setTodoList([...todoList, "새로운 Todo를 입력해주세요!!"]);
+          setIsChecked([...isChecked, false]);
         }
     }
 

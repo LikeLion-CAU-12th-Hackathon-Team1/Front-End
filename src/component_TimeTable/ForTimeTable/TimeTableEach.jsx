@@ -9,7 +9,8 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
   handleTimeUpdate, isTimeEditOn, dailyAllTable,setToGetWorkId, toGetWorkId,
   toGetRestId, setToGetRestId,
-  setTimeBlockId}) => {
+  setTimeBlockId,
+  setTimeId}) => {
 
   // work rest 일정이 있는지 상태관리
   const [isWork, setIsWork] = useState(false);
@@ -137,7 +138,7 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
         if(dailyAllTable[i].sort === 1 && clickedWorkTime>=formatStartTime &&clickedWorkTime<=formatEndtime){
           // 이제 타임워케이션 아이디 넣기
           const workId = dailyAllTable[i].time_workation_id;
-          setToGetWorkId(workId)
+          setTimeId(workId)
           console.log(workId)
           break;
         }
@@ -154,7 +155,7 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
           if(dailyAllTable[i].sort === 2 && clickedRestTime>=formatStartTime &&clickedRestTime<=formatEndtime){
             // 이제 타임워케이션 아이디 넣기
             const restId = dailyAllTable[i].time_workation_id;
-            setToGetRestId(restId)
+            setTimeId(restId)
             console.log(restId)
             break;
           }

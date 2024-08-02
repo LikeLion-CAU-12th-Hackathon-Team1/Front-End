@@ -30,6 +30,7 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
   const [dailyAllTable, setDailyAllTable] = useState([]); // 데일리 시간표 상태 관리 - 하루 시간표 불러올 때 사용
   const [graphRatio, setGraphRatio] = useState(0);
   const [dailyAllTodo, setDailyAllTodo] = useState([]); // 전체투두 또는 타임블록 투두 조회시 사용
+  const [getTimeId, setTimeId] = useState([]); // 클릭블록 time_worktation_id 따로 관리
 
   useEffect(() => {
     if (todayId) {
@@ -126,13 +127,14 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
           todayId={todayId}
           setToGetWorkId={setToGetWorkId} toGetWorkId={toGetWorkId}
           toGetRestId={toGetRestId} setToGetRestId={setToGetRestId}
+          setTimeId={setTimeId}
         ></TimeTableCom>
         <Sidebar>
           <GraphCom graphRatio={graphRatio}></GraphCom>
           {isTimeEditOn ? (
             <TodoListEditMode></TodoListEditMode>
           ) : (
-            <TodoListCom dailyAllTodo={dailyAllTodo} />
+            <TodoListCom dailyAllTodo={dailyAllTodo} toGetWorkId={toGetWorkId} toGetRestId={toGetRestId} getTimeId={getTimeId}/>
           )}
           <RetrospectCom memo={memo} setMemo={setMemo} todayId={todayId}></RetrospectCom>
         </Sidebar>
