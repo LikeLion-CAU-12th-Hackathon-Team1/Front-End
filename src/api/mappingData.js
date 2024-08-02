@@ -92,4 +92,18 @@ export const getRestTypeText = (typeNumber) => {
     return restTypeMap[typeNumber] || "알 수 없음";
   };
 
-//7. 기상시간 필요할때 사용
+  // 오늘 시간표 창에서 필요한 시간파싱데이터 - 백에서 주는 데이터 형식이 달라서 별도로 필요
+export const formatDate = (dateString) => {
+
+    const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+
+    const date = new Date(dateString);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    const dayOfWeek = daysOfWeek[date.getDay()];
+
+    return `${year}/${month}/${day} (${dayOfWeek})`;
+}

@@ -4,14 +4,20 @@ import TodoListCom from '../TodoListCom';
 import TimeTableCom from './TimeTableCom';
 import GraphCom from '../GraphCom';
 import RetrospectCom from '../RetrospectCom';
-import { getDailyAllTable, getdailyRetro, getDailyTodayId, getGraph } from '../../api/api_dailyTimeTable'; // 수정수정
+import { getDailyAllTable, getdailyRetro, getDailyTodayId, getDailyTodo, getGraph } from '../../api/api_dailyTimeTable'; // 수정수정
+import { formatDate} from '../../api/mappingData';
 
-const OneDayTimeTable = ({ todayId }) => {
+const OneDayTimeTable = ({ todayId, todayDate }) => {
 
-  const date = "2024/07/23 (화)"; // 추후 백 데이터
+  const formatedDate = formatDate(todayDate)
+  const date = formatedDate; // 추후 백 데이터
   const dayCount = "1일차"; // 추후 백 데이터
 
   const [isTimeEditOn, setIsTimeEditOn] = useState(false); // 시간표 추가시 생성될 좌측하단컴포넌트 상태관리
+
+  //time_worktation_id 얻기위한 상태관리
+  const [toGetWorkId, setToGetWorkId] = useState(null);
+  const [toGetRestId, setToGetRestId] = useState(null);
 
   // work, rest 각각에 대한 시작, 종료 상태관리
   const [startWorkTime, setStartWorkTime] = useState("");
@@ -23,9 +29,10 @@ const OneDayTimeTable = ({ todayId }) => {
   const [memo, setMemo] = useState(""); // 회고 관리
   const [dailyAllTable, setDailyAllTable] = useState([]); // 데일리 시간표 상태 관리 - 하루 시간표 불러올 때 사용
   const [graphRatio, setGraphRatio] = useState(0);
+  const [dailyAllTodo, setDailyAllTodo] = useState([]);
 
   useEffect(() => {
-    if (todayId) { // 수정수정
+    if (todayId) {
       const fetchData = async () => {
         // 회고 내용 불러오기
         const daily_workation_id = todayId;
@@ -37,9 +44,14 @@ const OneDayTimeTable = ({ todayId }) => {
         setDailyAllTable(dailyTableData);
 
         // 그래프 데이터 불러오기
-        const getGraphData = await getGraph(daily_workation_id); // 수정수정
-        console.log(getGraphData.ratio);
+        const getGraphData = await getGraph(daily_workation_id);
+        //console.log(getGraphData.ratio);
         setGraphRatio(getGraphData.ratio);
+
+        // 전체 하루 투두 불러오기
+        const dailyTodoData = await getDailyTodo(daily_workation_id);
+        setDailyAllTodo(dailyTodoData)
+
       };
 
       fetchData();
@@ -92,13 +104,15 @@ const OneDayTimeTable = ({ todayId }) => {
           handleTimeUpdate={handleTimeUpdate}
           dailyAllTable={dailyAllTable}
           todayId={todayId}
+          setToGetWorkId={setToGetWorkId} toGetWorkId={toGetWorkId}
+          toGetRestId={toGetRestId} setToGetRestId={setToGetRestId}
         ></TimeTableCom>
         <Sidebar>
           <GraphCom graphRatio={graphRatio}></GraphCom>
           {isTimeEditOn ? (
             <TodoListEditMode></TodoListEditMode>
           ) : (
-            <TodoListCom />
+            <TodoListCom todoList={dailyAllTodo} />
           )}
           <RetrospectCom memo={memo} setMemo={setMemo} todayId={todayId}></RetrospectCom>
         </Sidebar>

@@ -71,7 +71,7 @@ export const getDailyTodayId = async()=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    //console.log(response.data)
+    console.log(response.data)
     return response.data;
 }
 
@@ -81,6 +81,45 @@ export const getGraph = async(daily_workation_id)=>{
     const token =localStorage.getItem('access');
 
     const response= await axios.get(`${baseURL}/workation/daily/${daily_workation_id}/graph/`,{
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    //console.log(response.data)
+    return response.data;
+}
+
+// 데일리 타임 블록 삭제
+export const delDailyTimeBlock = async(time_workation_id)=>{
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.delete(`${baseURL}/workation/daily/time/${time_workation_id}/`,{
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    //console.log(response.data)
+    return response.data;
+}
+
+// 시간블록 todo조회
+export const getTimeTodo = async(time_workation_id)=>{
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.delete(`${baseURL}/workation/daily/time/${time_workation_id}/todolist/`,{
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    //console.log(response.data)
+    return response.data;
+}
+
+// 전체하루 todo조회
+export const getDailyTodo = async(daily_workation_id)=>{
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.get(`${baseURL}/workation/daily/${daily_workation_id}/todolist/`,{
         headers: {Authorization: `Bearer ${token}`
     }
     });
