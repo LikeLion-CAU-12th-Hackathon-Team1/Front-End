@@ -4,7 +4,7 @@ import TodoListCom from '../TodoListCom';
 import TimeTableCom from './TimeTableCom';
 import GraphCom from '../GraphCom';
 import RetrospectCom from '../RetrospectCom';
-import { getDailyAllTable, getdailyRetro, getDailyTodayId, getDailyTodo, getGraph } from '../../api/api_dailyTimeTable'; // 수정수정
+import { getDailyAllTable, getdailyRetro, getDailyTodayId, getDailyTodo, getGraph, getTimeTodo } from '../../api/api_dailyTimeTable'; // 수정수정
 import { formatDate} from '../../api/mappingData';
 
 const OneDayTimeTable = ({ todayId, todayDate }) => {
@@ -29,7 +29,7 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
   const [memo, setMemo] = useState(""); // 회고 관리
   const [dailyAllTable, setDailyAllTable] = useState([]); // 데일리 시간표 상태 관리 - 하루 시간표 불러올 때 사용
   const [graphRatio, setGraphRatio] = useState(0);
-  const [dailyAllTodo, setDailyAllTodo] = useState([]);
+  const [dailyAllTodo, setDailyAllTodo] = useState([]); // 전체투두 또는 타임블록 투두 조회시 사용
 
   useEffect(() => {
     if (todayId) {
@@ -52,11 +52,31 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
         const dailyTodoData = await getDailyTodo(daily_workation_id);
         setDailyAllTodo(dailyTodoData)
 
+        
       };
-
       fetchData();
     }
   }, [todayId]);
+
+  // 이하는 타임블록 투두 불러와서 출력하기 위한 것
+  useEffect(()=>{
+    if (toGetWorkId || toGetRestId) {
+      const fetchData = async () => {
+        // 타임블록 투두 불러오기
+        if(toGetWorkId){
+          const time_workation_id = toGetWorkId
+          const timeBlockTodoData = await getTimeTodo(time_workation_id);
+          setDailyAllTodo(timeBlockTodoData)
+        }else if(toGetRestId){
+          const time_workation_id = toGetRestId
+          const timeBlockTodoData = await getTimeTodo(time_workation_id);
+          setDailyAllTodo(timeBlockTodoData)
+        }
+        
+      };
+      fetchData();
+    }
+  }, [toGetWorkId, toGetRestId])
 
   // 사용 안하는 중
   const handleTimeUpdate = (type, startTime, endTime) => {
@@ -112,7 +132,7 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
           {isTimeEditOn ? (
             <TodoListEditMode></TodoListEditMode>
           ) : (
-            <TodoListCom todoList={dailyAllTodo} />
+            <TodoListCom dailyAllTodo={dailyAllTodo} />
           )}
           <RetrospectCom memo={memo} setMemo={setMemo} todayId={todayId}></RetrospectCom>
         </Sidebar>

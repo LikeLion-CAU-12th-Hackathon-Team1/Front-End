@@ -106,11 +106,11 @@ export const getTimeTodo = async(time_workation_id)=>{
 
     const token =localStorage.getItem('access');
 
-    const response= await axios.delete(`${baseURL}/workation/daily/time/${time_workation_id}/todolist/`,{
+    const response= await axios.get(`${baseURL}/workation/daily/time/${time_workation_id}/todolist/`,{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    //console.log(response.data)
+    console.log(response)
     return response.data;
 }
 
@@ -120,6 +120,19 @@ export const getDailyTodo = async(daily_workation_id)=>{
     const token =localStorage.getItem('access');
 
     const response= await axios.get(`${baseURL}/workation/daily/${daily_workation_id}/todolist/`,{
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    //console.log(response.data)
+    return response.data;
+}
+
+// 시간블록 todolist추가
+export const postTimeTodo = async(time_workation_id, body)=> {
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.post(`${baseURL}/workation/daily/time/${time_workation_id}/`,body, {
         headers: {Authorization: `Bearer ${token}`
     }
     });

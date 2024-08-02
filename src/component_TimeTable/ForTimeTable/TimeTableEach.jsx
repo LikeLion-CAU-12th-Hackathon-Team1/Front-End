@@ -8,7 +8,8 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
   handleTimeUpdate, isTimeEditOn, dailyAllTable,setToGetWorkId, toGetWorkId,
-  toGetRestId, setToGetRestId}) => {
+  toGetRestId, setToGetRestId,
+  setTimeBlockId}) => {
 
   // work rest 일정이 있는지 상태관리
   const [isWork, setIsWork] = useState(false);
@@ -125,6 +126,42 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   }
   };
 
+
+  // 블록 클릭시 실행되어 해당 타임 아이디 가져올 함수
+  const handleWorkBlock = async () => {
+    if (isWork) {
+      for(let i = 0; i < dailyAllTable.length; i++){
+        const clickedWorkTime = parseInt(workId / 2);
+        const formatStartTime = parseInt(dailyAllTable[i].start_time)/10000
+        const formatEndtime = parseInt(dailyAllTable[i].end_time)/10000
+        if(dailyAllTable[i].sort === 1 && clickedWorkTime>=formatStartTime &&clickedWorkTime<=formatEndtime){
+          // 이제 타임워케이션 아이디 넣기
+          const workId = dailyAllTable[i].time_workation_id;
+          setToGetWorkId(workId)
+          console.log(workId)
+          break;
+        }
+      }
+  }
+  }
+
+  const handleRestBlock = async () => {
+    if (isRest) {
+        for(let i = 0; i < dailyAllTable.length; i++){
+          const clickedRestTime = parseInt(restId / 2);
+          const formatStartTime = parseInt(dailyAllTable[i].start_time)/10000
+          const formatEndtime = parseInt(dailyAllTable[i].end_time)/10000
+          if(dailyAllTable[i].sort === 2 && clickedRestTime>=formatStartTime &&clickedRestTime<=formatEndtime){
+            // 이제 타임워케이션 아이디 넣기
+            const restId = dailyAllTable[i].time_workation_id;
+            setToGetRestId(restId)
+            console.log(restId)
+            break;
+          }
+        }
+    }
+  }
+
   // 불러온 데이터에 따라 상태 업데이트(work, rest 블록)
   //work 블록
   useEffect(() => {
@@ -133,6 +170,8 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
       const end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
       if (item.sort === 1) { // work
         if (workTime >= start && workTime < end) {
+          setIsWork(true);
+        } else if(workTime >= start && workTime <= end && workTime == 23){
           setIsWork(true);
         }
       }
@@ -147,6 +186,8 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
       if (item.sort === 2) { // rest
         if (restTime >= start && restTime < end) {
           setIsRest(true);
+        } else if(workTime >= start && workTime <= end && workTime == 23){
+          setIsWork(true);
         }
       }
     });
@@ -181,7 +222,7 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   return (
     <Container>
       <TextBox>{timeLabel}</TextBox>
-      <OneTimeTableWork $isActive={isWork} id={workId}>
+      <OneTimeTableWork $isActive={isWork} id={workId} onClick={handleWorkBlock}>
         {/* Work ID: {workId} */}
         <BtnContainer>
           {isTimeEditOn ? (<AddBtn onClick={handleAddWork}></AddBtn>):(<><AddBtn onClick={handleAddWork}></AddBtn>
@@ -189,7 +230,7 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
           
         </BtnContainer>
       </OneTimeTableWork>
-      <OneTimeTableRest $isActive={isRest} id={restId}>
+      <OneTimeTableRest $isActive={isRest} id={restId} onClick={handleRestBlock}>
         {/* Rest ID: {restId} */}
         <BtnContainer>
           {isTimeEditOn ? (<AddBtn onClick={handleAddRest}></AddBtn>):(<><AddBtn onClick={handleAddRest}></AddBtn>

@@ -4,16 +4,16 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { TodoListArray as initialTodoListArray, isCheckedArray as initialIsCheckedArray} from './ForTimeTable/Data';
 
-const TodoListCom = ({ todoList: initialTodoList }) => {
+const TodoListCom = ({ dailyAllTodo }) => {
 
     const [isTodoEdit, setIsTodoEdit] = useState(false);
-    const [todoList, setTodoList] = useState(initialTodoList.map(item => item.description));
-    const [isChecked, setIsChecked] = useState(initialTodoList.map(item => item.complete));
+    const [todoList, setTodoList] = useState(dailyAllTodo.map(item => item.description));
+    const [isChecked, setIsChecked] = useState(dailyAllTodo.map(item => item.complete));
 
     useEffect(() => {
-      setTodoList(initialTodoList.map(item => item.description));
-      setIsChecked(initialTodoList.map(item => item.complete));
-  }, [initialTodoList]);
+      setTodoList(dailyAllTodo.map(item => item.description));
+      setIsChecked(dailyAllTodo.map(item => item.complete));
+  }, [dailyAllTodo]);
 
     const handleTodoEdit = () => {
         if(isTodoEdit){
