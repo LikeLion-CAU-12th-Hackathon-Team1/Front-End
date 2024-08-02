@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import HistoryAllCom from '../../component_PastWorkation/HistoryAllCom';
 import ThisAllCom from '../../component_ThisAllWorkation/ThisAllCom';
@@ -9,6 +9,7 @@ import { formatDateWithDay, getSiggMap, getWorkPurposeMap, getWorkStyleMap } fro
 const OnePast = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const location= useLocation();
     //여기서 앞에서 받아온 workation_id로 햐서 ThisAllCom?에 넘기자..
     
 
@@ -22,7 +23,11 @@ const OnePast = () => {
     }
   
     const goLastTimeTable = () => {
-      navigate('timetable/historyAll')
+      if (location.pathname.includes('/timetable/historyAll')) {
+        navigate('/timetable/historyAll');
+      } else {
+        navigate('/timetable/historyAll');
+      }
     }
     return (
       <Container>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import HistoryAllCom from '../../component_PastWorkation/HistoryAllCom';
 
@@ -15,7 +15,7 @@ const HistoryAll = () => {
     }
   
     const goLastTimeTable = () => {
-      navigate('timetable/historyAll')
+        navigate('/timetable/historyAll');
     }
     return (
       <Container>

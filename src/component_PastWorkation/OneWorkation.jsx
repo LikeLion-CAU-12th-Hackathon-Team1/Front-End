@@ -12,9 +12,6 @@ const OneWorkation = ({ workation_id, SiggText, formattedStartDate, formattedEnd
         <TextBox>{formattedStartDate} ~ {formattedEndDate}</TextBox>
         <ImgL src={Pin}/>
         <TextBox >{SiggText} 워케이션</TextBox>
-
-
-
     </One>
   )
 }

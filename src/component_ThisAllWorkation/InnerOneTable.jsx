@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import InnerOneTimeTable from './InnerOneTimeTable';
 
-const InnerOneTable = ({item, setbuttonClick,clickedItem, setClickedItem}) => {
+const InnerOneTable = ({item, setbuttonClick,clickedItem, setClickedItem, dailyWorkationId, setSelectedDailyWorkationId}) => {
 
   const [clicked, setClicked] = useState(false);
 
@@ -10,6 +10,9 @@ const InnerOneTable = ({item, setbuttonClick,clickedItem, setClickedItem}) => {
     const newClicked = clickedItem === item ? null : item;
     setClickedItem(newClicked);
     setbuttonClick(newClicked !== null);
+    if (setSelectedDailyWorkationId) {
+      setSelectedDailyWorkationId(dailyWorkationId); // 선택된 daily_workation_id 설정
+    } //선택된 해당 날짜의 데일리아이디
   }
 
   return (

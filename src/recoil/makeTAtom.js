@@ -39,4 +39,11 @@ export const wakeTimeAtom = atom({ //기상시간 아톰
   export const siggAtom = atom({
     key: 'sigg',
     default: null,
-  })
+  });
+
+
+//MakeT에서 사용해서 전체일정까지 넘길
+  export const workationIdAtom = atom({
+    key: 'workationId',
+    default:null,
+  });

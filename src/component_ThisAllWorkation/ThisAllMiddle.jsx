@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import InnerOneTable from './InnerOneTable'
 
-const ThisAllMiddle = ({setbuttonClick, dayB}) => {
+const ThisAllMiddle = ({setbuttonClick, dayB, dailyWorkationList, setSelectedDailyWorkationId}) => {
     //빈배열 안에 저기서 날자 - +1 ㅐ서 넣어
 
     const [clickedItem, setClickedItem] = useState(null);
@@ -10,15 +10,19 @@ const ThisAllMiddle = ({setbuttonClick, dayB}) => {
     <Container>
         <TextBox>모든일정</TextBox>
         <TableBox>
-        {Array.from({ length: dayB }, (_, index) => index + 1).map((item) => {
-           const itemNum = item;
-            return(
-            <InnerOneTable key = {itemNum} item={itemNum}
-            setbuttonClick = {setbuttonClick}
-            clickedItem={clickedItem}
-            setClickedItem={setClickedItem}>
-            </InnerOneTable>
-            )
+        {Array.from({ length: dayB }, (_, index) => {
+          const dailyWorkation = dailyWorkationList[index];
+          return (
+            <InnerOneTable
+              key={index}
+              item={index + 1}
+              dailyWorkationId={dailyWorkation ? dailyWorkation.daily_workation_id : null}
+              setbuttonClick={setbuttonClick}
+              clickedItem={clickedItem}
+              setClickedItem={setClickedItem}
+              setSelectedDailyWorkationId={setSelectedDailyWorkationId}
+            />
+          );
         })}
         </TableBox>
     </Container>

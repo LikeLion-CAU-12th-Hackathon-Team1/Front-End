@@ -2,10 +2,14 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import ThisAllCom from '../../component_ThisAllWorkation/ThisAllCom';
+import { useRecoilValue } from 'recoil';
+import { workationIdAtom } from '../../recoil/makeTAtom';
 
 const AllTask = () => {
 
   const navigate = useNavigate();
+  //전체 기록 띄우기 위해 workationID makeT.jsx에서 저장값
+  const workationId = useRecoilValue(workationIdAtom);
 
     const goTodayTimeTable = () => {
       navigate('/timetable/today')
@@ -28,7 +32,7 @@ const AllTask = () => {
         <HistoryBtn onClick = {goLastTimeTable}>지난 워케이션</HistoryBtn>
         </BtnContainer>
       </NavDom>
-      <ThisAllCom></ThisAllCom>
+      <ThisAllCom workation_id={workationId} />
       </TopContainer>
       </Container>
       

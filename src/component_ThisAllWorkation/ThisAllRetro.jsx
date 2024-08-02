@@ -1,13 +1,32 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 
-const ThisAllRetro = () => {
+const ThisAllRetro = ({daily_workation_id}) => {
+
+  const [memo, setMemo] = useState('');
+
+  useEffect(() => {
+    const fetchMemoData = async () => {
+      try {
+        const response = await axios.get(`https://saengchaein.r-e.kr/workation/daily/${daily_workation_id}/memo/`);
+        setMemo(response.data.memo);
+      } catch (error) {
+        console.error('Error fetching momo data:', error);
+      }
+    };
+
+    if (daily_workation_id) {
+      fetchMemoData();
+    }
+  }, [daily_workation_id]);
+
   return (
     <SectionRetro>
     <SectionTitleContainer>
         <SectionTitleRto>Retrospect</SectionTitleRto>
     </SectionTitleContainer>
-    <TextArea readOnly/>
+    <TextArea readOnly value={memo}></TextArea>
     </SectionRetro>
     )
 }
