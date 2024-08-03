@@ -9,7 +9,12 @@ const ThisAllTodo = ({daily_workation_id}) => {
   useEffect(() => {
     const fetchTodoData = async () => {
       try {
-        const response = await axios.get(`https://saengchaein.r-e.kr/workation/daily/${daily_workation_id}/todolist/`);
+        const token = localStorage.getItem('access');
+        const response = await axios.get(`https://saengchaein.r-e.kr/workation/daily/${daily_workation_id}/todolist/`,{
+          headers: {
+            Authorization: `Bearer ${token}` // Authorization 헤더 설정
+          }
+        });
         setTodoList(response.data);
       } catch (error) {
         console.error('Error fetching Todo data:', error);

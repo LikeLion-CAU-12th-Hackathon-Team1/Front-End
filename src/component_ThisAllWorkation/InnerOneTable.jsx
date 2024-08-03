@@ -19,12 +19,15 @@ const InnerOneTable = ({item, setbuttonClick,clickedItem, setClickedItem, dailyW
     <Container>
     <DayCount onClick={handleOnclick} $clicked={clickedItem === item}>{item}일차</DayCount>
     <Table>
-        {[0,1,2,3,4,5,6,7,8,9,10,
+        {/* {[0,1,2,3,4,5,6,7,8,9,10,
         11,12,13,14,15,16,17,18,19,20,
         21,22,23].map((_, index)=>{
         return(
         <InnerOneTimeTable key={index}></InnerOneTimeTable>
-        )})}
+        )})} */}
+         {[...Array(24).keys()].map(hour => (
+                    <InnerOneTimeTable key={hour} hour={hour} dailyWorkationId={dailyWorkationId} />
+                ))}
         
     </Table>
     </Container>

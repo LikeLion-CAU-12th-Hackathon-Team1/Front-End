@@ -9,7 +9,12 @@ const ThisAllRetro = ({daily_workation_id}) => {
   useEffect(() => {
     const fetchMemoData = async () => {
       try {
-        const response = await axios.get(`https://saengchaein.r-e.kr/workation/daily/${daily_workation_id}/memo/`);
+        const token = localStorage.getItem('access');
+        const response = await axios.get(`https://saengchaein.r-e.kr/workation/daily/${daily_workation_id}/memo/`,{
+          headers: {
+            Authorization: `Bearer ${token}` // Authorization 헤더 설정
+          }
+        });
         setMemo(response.data.memo);
       } catch (error) {
         console.error('Error fetching momo data:', error);
