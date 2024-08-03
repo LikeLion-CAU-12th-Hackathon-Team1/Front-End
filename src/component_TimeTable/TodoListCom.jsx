@@ -25,17 +25,13 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
     }
 
     const handleAddBtn = async () => {
-        if(todoList.length == 6){
-            alert("더 이상 입력하실 수 없습니다!")
-        } else {
           let body;
           body = {
-            description : "밤 새기"
+            description : "새로운 Todo를 입력해주세요!!"
           }
           await postTimeTodo(getTimeId, body)
-          setTodoList([...todoList, "새로운 Todo를 입력해주세요!!"]);
-          setIsChecked([...isChecked, false]);
-        }
+          setTodoList(prevList => [...prevList, body.description]);
+          setIsChecked(prevChecked => [...prevChecked, false]);
     }
 
     const handleDelBtn = (index) => {
@@ -53,7 +49,7 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
 
     const handleSaveBtn = () => {
         handleTodoEdit()
-        console.log("백엔드 데이터 전송")
+        //console.log("백엔드 데이터 전송")
     }
 
     const handleCheckboxChange = (index) => {
@@ -186,6 +182,7 @@ const TodoListContainer = styled.div`
     height: 260px;
     width: 454px;
     margin-top: 13px;
+    overflow-y: auto;
 `
 
 const TodoItem = styled.div`

@@ -19,7 +19,7 @@ const RestLoca = ({RestCategory}) => {
   return (
     <ContentBox>
         {data.map((item) => (
-    <Card key={item.place_code} image={item.image} placename={item.placename} report={item.report} />
+    <Card key={item.place_code} mapKey={item.place_code} image={item.image} placename={item.placename} report={item.report} />
     ))};
 
 

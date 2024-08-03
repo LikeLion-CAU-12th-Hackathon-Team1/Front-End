@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { delDailyTimeBlock } from '../../api/api_dailyTimeTable';
+import { useNavigate } from 'react-router-dom';
 
 const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
@@ -11,6 +12,8 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   toGetRestId, setToGetRestId,
   setTimeBlockId,
   setTimeId}) => {
+
+  const navigate = useNavigate();
 
   // work rest 일정이 있는지 상태관리
   const [isWork, setIsWork] = useState(false);
@@ -25,7 +28,7 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
     if (startRestTime){
       alert("Rest Table에서 지정해주세요!!")
     } else{
-      if (isRest) {
+      if (isRest || isWork) {
         alert("중복시간 입력할 수 없습니다");
       } else {
         if (!isWork) {
@@ -50,7 +53,7 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
     if (startWorkTime){
       alert("Work Table에서 지정해주세요!!")
     } else {
-      if (isWork) {
+      if (isWork || isRest) {
         alert("중복시간 입력할 수 없습니다");
       } else {
         if (!isRest) {
