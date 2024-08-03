@@ -110,7 +110,7 @@ export const getTimeTodo = async(time_workation_id)=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    console.log(response)
+    console.log(response.data)
     return response.data;
 }
 
@@ -123,7 +123,7 @@ export const getDailyTodo = async(daily_workation_id)=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    //console.log(response.data)
+    console.log(response.data)
     return response.data;
 }
 
@@ -132,7 +132,7 @@ export const postTimeTodo = async(time_workation_id, body)=> {
 
     const token =localStorage.getItem('access');
 
-    const response= await axios.post(`${baseURL}/workation/daily/time/${time_workation_id}/`,body, {
+    const response= await axios.post(`${baseURL}/workation/daily/time/${time_workation_id}/task/`,body, {
         headers: {Authorization: `Bearer ${token}`
     }
     });

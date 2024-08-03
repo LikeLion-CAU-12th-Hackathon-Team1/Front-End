@@ -30,7 +30,7 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
   const [dailyAllTable, setDailyAllTable] = useState([]); // 데일리 시간표 상태 관리 - 하루 시간표 불러올 때 사용
   const [graphRatio, setGraphRatio] = useState(0);
   const [dailyAllTodo, setDailyAllTodo] = useState([]); // 전체투두 또는 타임블록 투두 조회시 사용
-  const [getTimeId, setTimeId] = useState([]); // 클릭블록 time_worktation_id 따로 관리
+  const [getTimeId, setTimeId] = useState(null); // 클릭블록 time_worktation_id 따로 관리
 
   useEffect(() => {
     if (todayId) {
@@ -61,23 +61,18 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
 
   // 이하는 타임블록 투두 불러와서 출력하기 위한 것
   useEffect(()=>{
-    if (toGetWorkId || toGetRestId) {
+    if(getTimeId){
       const fetchData = async () => {
         // 타임블록 투두 불러오기
-        if(toGetWorkId){
-          const time_workation_id = toGetWorkId
+          const time_workation_id = getTimeId
           const timeBlockTodoData = await getTimeTodo(time_workation_id);
           setDailyAllTodo(timeBlockTodoData)
-        }else if(toGetRestId){
-          const time_workation_id = toGetRestId
-          const timeBlockTodoData = await getTimeTodo(time_workation_id);
-          setDailyAllTodo(timeBlockTodoData)
+          console.log("콘솔확인콘솔확인")
         }
-        
-      };
       fetchData();
     }
-  }, [toGetWorkId, toGetRestId])
+      
+  }, [getTimeId])
 
   // 사용 안하는 중
   const handleTimeUpdate = (type, startTime, endTime) => {
