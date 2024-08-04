@@ -15,6 +15,7 @@ import AllTask from './pages/ThisAllWorkation/AllTask';
 import OneDayTimeTable from './component_TimeTable/ForTimeTable/OneDayTimeTable';
 import HistoryAll from './pages/PastWorkation/HistoryAll';
 import OnePast from './component_PastWorkation/OneCom/OnePast';
+import BeforeTimeTable from './pages/TimeTable/BeforeTimeTable';
 
 function App() {
     const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
@@ -41,6 +42,7 @@ useEffect(()=> {
           {/* <Route path = "/login" element={<Login />}></Route> */}
           <Route path="/oauth" element={<div>Loading...</div>}/*{<OAuth />}*/ /> {/* 여기 경로 수정하면 백한테 주소 리다이랙트 주소 수정 요청필요 */}
           {/* <Route path="/timetable" element={<TimeTable />} > */}
+          <Route path='/beforeTimeTable' element={<BeforeTimeTable />} />
           <Route path="/timetable/alltask" element={<AllTask />} />
           <Route path="/timetable/today" element={<TimeTable />} />
           <Route path="/timetable/historyAll" element={<HistoryAll />}/>

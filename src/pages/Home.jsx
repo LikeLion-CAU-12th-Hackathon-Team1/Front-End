@@ -31,5 +31,5 @@ const HomeDom = styled.div`
   /*box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
   
   //min-width: 1200px;
-  min-height: 720px;
+  /* min-height: 720px; */
   `

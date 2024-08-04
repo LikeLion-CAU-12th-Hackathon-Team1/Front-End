@@ -14,10 +14,11 @@ const Button = styled.button`
   color: ${props => (props.selected ? '#222222' : '#7A7A7A')};
   border :  ${props => (props.selected ?  '2px solid #FED29D': 'none' )};
   padding: 10px 20px;
-  margin: 7px;
+  margin: 3px;
   margin-right: 15px;
   cursor: pointer;
   border-radius: 4px;
   font-size: 18px;
+  font-weight: ${(props) => (props.selected ? 600 : 'normal')}; 
 
 `;

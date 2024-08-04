@@ -16,7 +16,6 @@ const ThisAllCom = ({workation_id}) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // const workation_id = 35; // 추후 백에서 받아올 데이터
       try {
         const result = await getThisAll(workation_id);
         console.log('Fetched data:', result); // 응답 데이터 디버깅

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import Home_1 from "../../assets/img/Home_1.svg";
-import NewHome from "../../assets/img/NewHome.svg"
+import NewHome from "../../assets/img/New2Home.svg"
 
 const HomeTop = () => {
 
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
     background-size: contain; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
-    
+    margin-top: 62px;
 `
 
 const TitleContainer = styled.div`
@@ -57,15 +57,15 @@ const TitleContainer = styled.div`
   width: 500x;
   height: 278px;
 
-  margin-top: 140px;
+  margin-top: 90px;
 `
 const Title = styled.div`
-  font-family: 'AppleSDGothicNeoM', sans-serif;
+  font-family: 'AppleSDGothicNeoEB', sans-serif;
   font-size :34px;
-  font-weight: 800;
+  /* font-weight: 00; */
   width: 460px;
   height: 88px;
-  line-height: 40.8px;
+  line-height: 43.8px;
   /* margin-bottom: 6px; */
 `
 const LogoContainer = styled.div`
@@ -84,8 +84,8 @@ const SemiTitle = styled.p`
   font-weight: 500;
   margin-bottom: 40px;
   color: #7a7874;
-  letter-spacing: -0.02em;
-  line-height: 26.4px;
+  letter-spacing: -0.08em;
+  line-height: 30.4px;
 `
 
 const Button = styled.button`
@@ -94,9 +94,10 @@ const Button = styled.button`
   font-size: 20px;
   font-weight: 700;
   width: 212px;
-  height: 60px;
+  height: 52px;
   border: none;
   border-radius: 6px;
   padding: 4px 42px 4px 42px;
   gap: 10px;
+  margin-top: 13px;
 `

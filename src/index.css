@@ -26,3 +26,15 @@ code {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'AppleSDGothicNeoB';
+  src: url('./assets/fonts/AppleSDGothicNeoB.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeoEB';
+  src: url('./assets/fonts/AppleSDGothicNeoEB.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
