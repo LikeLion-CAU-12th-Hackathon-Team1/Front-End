@@ -77,9 +77,11 @@ const MyPageModal = () => {
     <Overlay id="modal-overlay" onClick={handleOutsideClick}>
     <Container>
       <ProfileImg src={profile}/>
-    <Name> 이름  | {nickname}</Name>
-    <Email>이메일  | {email}</Email>
+      <Compo>
+    <NameCom> 이름  <Name>{nickname}</Name></NameCom>
+    <EmailCom>이메일  <Em>{email}</Em> </EmailCom>
     <LogOut onClick={toLogOut}>로그아웃</LogOut>
+    </Compo>
     </Container>
     </Overlay>
   )
@@ -121,28 +123,56 @@ const ProfileImg = styled.img`
   border: none;
   margin-bottom: 10px;
 `
+const Compo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`
 
-const Name = styled.div`
+
+const NameCom = styled.div`
   font-size: 16px;
   color:black;
   cursor: pointer;
   align-self: flex-start;
-  margin-left: 26%;
+  margin-left: 25%;
+  display: flex;
+  flex-direction: row;
 `
-const Email = styled.div`
+const EmailCom = styled.div`
   font-size: 16px;
   color:black;
   cursor: pointer;
-  margin-left: 3%;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  margin-left:23%;
+  margin-top: 5px;
 `
-const LogOut = styled.button`
-  color: #007AFF;
+const Name = styled.div`
+  text-align: center;
+  border-left: 1px solid #A7A7A7;
+  padding-left: 27px;
+  margin-left: 15px;
+  font-weight: 600;
+`
+const Em = styled.div`
+  color : #A7A7A7;
+  border-left: 1px solid #A7A7A7;
+  padding-left: 10px;
+  margin-left: 7px;
+  font-weight: 500;
+`
+const LogOut = styled.a`
+  color: #439cfc;
   font-size: 16px;
   font-weight: 600;
   margin-top: 10px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  border-bottom: 0.5px solid #007AFF;
+  border-bottom: 0.5px solid #439cfc;
 
 `

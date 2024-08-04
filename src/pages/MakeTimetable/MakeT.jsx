@@ -18,6 +18,8 @@ import NewFooter from "../../assets/img/NewFooter.svg";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AutoComplete2 from '../../component/AutoComplete2';
+import sun from "../../assets/img/sun.svg"
+import moon from "../../assets/img/moon.svg"
 
 //질문지 답변
 const Qlist=[
@@ -212,7 +214,7 @@ const MakeT = () => {
         <Circle>2</Circle>
         <TextBox>일정이 어떻게 되나요?</TextBox>
     </TitleBox>
-    <ContentBox>
+    <ContentBox className='A2'>
         <CalenderBox className='A2'>
             <CalenderCom 
               id="start-work"/>
@@ -233,7 +235,7 @@ const MakeT = () => {
           <Circle>{index +3}</Circle>
           <TextBox>{question.question}</TextBox>
         </TitleBox>
-        <ContentBox>
+        <ContentBox className='A3'>
           {question.options.map((option, idx)=>(
             <div key={idx} style={{marginBottom: '20px', marginLeft : '20px'}}>
             <AnswerButton 
@@ -298,11 +300,12 @@ const MakeT = () => {
     <ContentBox className='last'>
       <Sleep>
       <SleepTime>
-        <div>기상</div>
+        <SunImg src={sun} />
         <TimePicCom id="wake-time"/>
       </SleepTime>
       <SleepTime>
-        취침 <TimePicCom id="sleep-time"/>
+      <SunImg src={moon} />
+       <TimePicCom id="sleep-time"/>
       </SleepTime>
       </Sleep>
 
@@ -383,34 +386,41 @@ const TitleBox = styled.div`
 `;
 
 const ContentBox = styled.div`
-  border-left: 1px solid 
-  #F9C387;
-  padding: 40px 0;
+  /* border-left: 1px solid  #F9C387; */
+  padding: 40px 16px;
   width: 100%;
   height: 100%;
   margin-left: 14px;
 
   &.Multi {
-    width: 70%;
-    padding: 50px 20px;
+    width: 90%;
+    padding: 40px 40px;
+    border-left: 1px solid  #F9C387;
+    flex-wrap: wrap; /* 줄바꿈 추가 */
+    gap: 5px; /* 선택지들 사이의 간격 추가 */
+    row-gap: 16px;
+    display: flex;
   }
 
   &.firstA{
     display: flex;
-    width: 35%;
+    width: 40%;
     justify-content: space-between;
-    padding-left: 2px;
-  }
-
-  &.A2{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 22px;
+    padding-left: 40px;
+    border-left: 1px solid  #F9C387;
   }
 
   &.last{
-    padding-left: 20px;
+    padding-left: 40px;
+    justify-content: center;
+    align-items: center;
+    border-left : 'none';
+  }
+  &.A2{
+    border-left: 1px solid  #F9C387;
+  }
+  &.A3{
+    border-left: 1px solid  #F9C387;
   }
 `;
 
@@ -466,11 +476,14 @@ const CalenderBox = styled.div`
   font-weight: 600;
   margin: 10px;
   display: flex;
+  align-items: center;
+  /* padding-left: 17px; */
+  /* padding-top: 30px; */
 `
 
 const Sleep = styled.div`
   display: flex;
-  width: 600px;
+  width: 90%;
   height: 30px;
   font-size: 16px;
   font-weight: 600;
@@ -483,6 +496,8 @@ const SleepTime= styled.div`
   height: 30px;
   margin-right: 40px;
   margin-left: 10px;
+  /* justify-content: center; */
+  align-items: center;
 `
 
 const Footer = styled.div`
@@ -492,4 +507,9 @@ const Footer = styled.div`
     background-size: contain; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
+`
+
+const SunImg = styled.img`
+  width: 30px;
+  margin-right: 15px;
 `

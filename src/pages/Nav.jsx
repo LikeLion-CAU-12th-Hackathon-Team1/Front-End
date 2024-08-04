@@ -129,6 +129,7 @@ const ButtonHis= styled.div`
     left: 790px;
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
+    cursor: pointer;
 `
 
 const Button= styled.div`
@@ -140,6 +141,7 @@ const Button= styled.div`
     left: 790px;
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
+    cursor: pointer;
 `
 
 const ButtonLogin = styled.button`
@@ -157,5 +159,6 @@ const ButtonLogin = styled.button`
     font-size: 20px;
     font-weight: 600;
     //border-bottom: 0.5px solid #969696; 
-    margin-top: ${props => props.$isLoginValue? 'none':'-4px'};;
+    margin-top: ${props => props.$isLoginValue? 'none':'-4px'};
+    cursor: pointer;
 `

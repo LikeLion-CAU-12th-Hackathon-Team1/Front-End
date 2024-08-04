@@ -2,6 +2,7 @@ import { Autocomplete, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { siggAtom } from '../recoil/makeTAtom';
+import styled from 'styled-components';
 
 // 텍스트필드 배열
 const textField = [
@@ -30,7 +31,7 @@ const AutoComplete = () => {
     };
 
     return (
-        <>
+        <Con>
             <Autocomplete
                 id="combo-box-demo"
                 options={textField}
@@ -71,8 +72,13 @@ const AutoComplete = () => {
                     />
                 )}
             />
-        </>
+        </Con>
     );
 }
 
 export default AutoComplete;
+
+const Con = styled.div`
+    margin-left: 20px;
+    /* margin: 15px; */
+`
