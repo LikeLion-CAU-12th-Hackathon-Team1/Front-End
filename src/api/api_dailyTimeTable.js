@@ -30,7 +30,7 @@ export const getdailyRetro = async(daily_workation_id)=>{
     return response.data;
 }
 
-// 데일리 워케이션 시간표 불러오기 - OneTimeTable.jsx - useEffect에 연결 / 추후 시간표 추가, 삭제 버튼에도 등록해야 하나...?
+// 데일리 워케이션 시간표 불러오기 - OneTimeTable.jsx - useEffect에 연결
 export const getDailyAllTable = async(daily_workation_id)=>{
 
     const token =localStorage.getItem('access');
@@ -137,7 +137,7 @@ export const getDailyTodo = async(daily_workation_id)=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    console.log(response.data)
+    //console.log(response.data)
     return response.data;
 }
 
@@ -146,7 +146,51 @@ export const postTimeTodo = async(time_workation_id, body)=> {
 
     const token =localStorage.getItem('access');
 
-    const response= await axios.post(`${baseURL}/workation/daily/time/${time_workation_id}/task/`,body, {
+    try{
+        const response= await axios.post(`${baseURL}/workation/daily/time/${time_workation_id}/task/`,body, {
+            headers: {Authorization: `Bearer ${token}`
+        }
+        });
+        console.log(response.data)
+        return response.data;
+    }catch(error){
+        alert("시간블록을 선택한 후 일정 입력해주세요")
+    }
+    
+}
+
+// 시간블록 todolist 체크판단
+export const patchTodoCheck = async(task_id, body)=> {
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.patch(`${baseURL}/workation/daily/time/task/${task_id}/`,body, {
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    //console.log(response.data)
+    return response.data;
+}
+
+// 시간블록 todolist 텍스트판단
+export const patchTodoText = async(task_id, body)=> {
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.patch(`${baseURL}/workation/daily/time/task/${task_id}/`,body, {
+        headers: {Authorization: `Bearer ${token}`
+    }
+    });
+    //console.log(response.data)
+    return response.data;
+}
+
+// 시간블록 todolist 삭제
+export const delTodo = async(task_id)=> {
+
+    const token =localStorage.getItem('access');
+
+    const response= await axios.delete(`${baseURL}/workation/daily/time/task/${task_id}/`, {
         headers: {Authorization: `Bearer ${token}`
     }
     });
