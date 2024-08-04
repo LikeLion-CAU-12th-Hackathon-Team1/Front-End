@@ -52,6 +52,7 @@ const REDIRECT_URI1 = "http://localhost:3000/oauth";
 const REDIRECT_URI2 = "https://workvalley.netlify.app/oauth";
 const kakao_login_uri = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI1}&response_type=code`;
 
+
 const baseURL = `https://saengchaein.r-e.kr`;
 
 // Home.jsx의 카카오 로그인 테스트 버튼에 연결
@@ -72,7 +73,8 @@ export const handleOAuth = async () => {
 
   if (code) {
     try {
-      const result = await axios.get(`${baseURL}/account/kakao/callback/?code=${code}`);
+      //const result = await axios.get(`${baseURL}/account/kakao/callback/?code=${code}`);
+      const result = await axios.get(`https://saengchaein.r-e.kr/account/kakao/callback/?code=${code}`);
 
       localStorage.setItem("access", result.data.access_token); // 받아온 액세스 토큰을 로컬스토리지에 저장하여 관리
       localStorage.setItem("refresh", result.data.refresh_token); // 받아온 리프레시 토큰을 로컬스토리지에 저장하여 관리
