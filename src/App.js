@@ -8,7 +8,7 @@ import MakeT from './pages/MakeTimetable/MakeT';
 import { Nav } from './pages/Nav';
 import BeforeMakeT from './pages/MakeTimetable/BeforeMakeT';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { isLoginAtom, isMyPageModalAtom } from './recoil/isLoginAtom';
 import { loginHandler } from './api/api_login';
 import AllTask from './pages/ThisAllWorkation/AllTask';
@@ -38,8 +38,8 @@ function App() {
 
 useEffect(() => {
   isLogin();
-
-  const checkTimer = async () => {
+  if(isLoginValue){
+    const checkTimer = async () => {
       const response = await timer();
       if (response.exists) {
           setAlertModal(true);
@@ -50,6 +50,8 @@ useEffect(() => {
   const interval = setInterval(checkTimer, 600000);
 
   return () => clearInterval(interval);
+  }
+  
 }, []);
 
   return (
