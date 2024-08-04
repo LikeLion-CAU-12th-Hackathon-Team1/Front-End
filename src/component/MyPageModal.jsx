@@ -28,7 +28,7 @@ const MyPageModal = () => {
       }
 
       try {
-        // const response = await axios.post(`https://kapi.kakao.com/v1/user/logout`,null, {
+        // const response1 = await axios.post(`https://kapi.kakao.com/v1/user/logout`,null, {
         //   headers: {
         //     Authorization: `Bearer ${token}`
         //   }
@@ -53,7 +53,7 @@ const MyPageModal = () => {
 
   // 로그아웃 버튼 눌리면 실행될 함수 - 액세스, 리프레시 토큰 삭제 + 로그인 상태 리코일 false + 마이페이지 모달창 닫기 + 처음 홈 화면으로 이동
   const toLogOut = () => {
-    //logout(); //로그아웃 백에서 되면 ..~!
+    logout(); //로그아웃 백에서 되면 ..~!
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("nickname");

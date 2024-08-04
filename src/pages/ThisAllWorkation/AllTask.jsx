@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import ThisAllCom from '../../component_ThisAllWorkation/ThisAllCom';
 import { useRecoilValue } from 'recoil';
 import { workationIdAtom } from '../../recoil/makeTAtom';
+import ThisAllComReal from '../../component_ThisAllWorkation/ThisAllComReal';
 
 const AllTask = () => {
 
@@ -32,7 +33,7 @@ const AllTask = () => {
         <HistoryBtn onClick = {goLastTimeTable}>지난 워케이션</HistoryBtn>
         </BtnContainer>
       </NavDom>
-      <ThisAllCom workation_id={workationId} />
+      <ThisAllComReal workation_id={workationId} />
       </TopContainer>
       </Container>
       
