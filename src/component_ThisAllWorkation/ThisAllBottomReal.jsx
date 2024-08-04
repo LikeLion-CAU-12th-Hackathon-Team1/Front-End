@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ThisAllGraph from './ThisAllGraph'
 import ThisAllRetro from './ThisAllRetro'
 import ThisAllTodo from './ThisAllTodo'
 import Img12 from "../assets/img/12.svg"
+import { useNavigate } from 'react-router-dom'
 
 const ThisAllBottomReal = ({workation_id, daily_workation_id, selectedDailyWorkationId}) => {
     //어느 여행인지 워케이션아이디와 함께 버튼이 눌린 데일리워케이션아이디 하기
+    const navigate = useNavigate();
+
 
     const handleEdit = ()=>{
         console.log(daily_workation_id)
+        navigate(`/timetable/today/${daily_workation_id}`)
     }
 
   return (
