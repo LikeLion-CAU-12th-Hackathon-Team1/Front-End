@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import login2 from "../../assets/img/bfTime.png";
-import kakaoLoginBtn from "../../assets/img/kakaoLoginBtn.png"
+import kakaoLoginBtn from "../../assets/img/KakaoBtn.svg"
 import { Navigate } from 'react-router-dom';
 import { loginHandler } from '../../api/api_login';
 
@@ -26,14 +26,14 @@ export default BeforeTimeTable
 
 const Wrapper = styled.div`
     width : 1280px;
-    height: 40vh;
+    height: 750px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 70px; //네브바와 겹치지않게 콘텐츠 구역
+    margin-top: 56px; //네브바와 겹치지않게 콘텐츠 구역
 
     background-image: url(${login2});
-    background-size: cover; /* 배경 이미지 크기 조정 */
+    background-size: contain; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
 
