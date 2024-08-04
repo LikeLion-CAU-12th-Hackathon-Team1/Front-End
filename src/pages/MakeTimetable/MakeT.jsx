@@ -12,7 +12,7 @@ import AnswerButton from '../../component/AnswerButton';
 import CalenderResult from '../../component/CalenderResult';
 import dayjs from 'dayjs';
 import makeTheader from "../../assets/img/makeTheader.svg";
-import NewMakeTHeader from "../../assets/img/NewMakeTHeader.svg";
+import NewMakeTHeader from "../../assets/img/makehome.svg";
 import footer from "../../assets/img/footer.svg";
 import NewFooter from "../../assets/img/NewFooter.svg";
 import axios from 'axios';
@@ -176,7 +176,7 @@ const MakeT = () => {
   return (
       <Wrapper>
       <TitleW>
-      <Title>몇가지 질문으로 AI가 만든<br/>워라밸 시간표를 경험해 보세요!</Title>
+      <Title>몇가지 질문을 통해<br/>맞춤형 시간표를 경험해 보세요!</Title>
       </TitleW>
       <QuestionW>
     <Question>
@@ -278,7 +278,7 @@ const MakeT = () => {
         <TextBox>기상, 취침시간이 어떻게 되나요?</TextBox>
         <SubTextBox>(선택)</SubTextBox>
     </TitleBox>
-    <ContentBox>
+    <ContentBox className='last'>
       <Sleep>
       <SleepTime>
         <div>기상</div>
@@ -331,20 +331,20 @@ const TitleW = styled.div`
 
 const Title = styled.div`
   font-size: 32px;
-  font-weight: 700;
   width: 1228px; /* 폰트 변경 후 수정 필요*/
   height: 100%;
   margin-top: 60px;
   margin-left: 150px;
+  font-family: 'AppleSDGothicNeoB', sans-serif;
 `
 
 const QuestionW = styled.div`
-  width: 1190px;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 20px;
+  padding: 30px 123px;
   border: 1px solid #E3E3E3;
   border-radius: 5px;
   background-color: #F9F9F9;
@@ -366,27 +366,34 @@ const TitleBox = styled.div`
 `;
 
 const ContentBox = styled.div`
-  border-left: 1px solid #dbdada;
-  padding: 40px;
+  border-left: 1px solid 
+  #F9C387;
+  padding: 40px 0;
   width: 100%;
   height: 100%;
   margin-left: 14px;
 
   &.Multi {
     width: 70%;
-    padding: 50px;
+    padding: 50px 20px;
   }
 
   &.firstA{
     display: flex;
     width: 35%;
     justify-content: space-between;
+    padding-left: 2px;
   }
 
   &.A2{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 22px;
+  }
+
+  &.last{
+    padding-left: 20px;
   }
 `;
 
@@ -394,13 +401,17 @@ const Circle = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #F2F2F2;
-  color: #000000;
+  background-color: #F98C16;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
-  border: 1px #E3E3E3;
+  border: #F98C16;
+  font-size: 22px;
+  text-align: center;
+  line-height: 40px; // 요소의 높이와 동일하게 설정
+  box-sizing: border-box; // padding과 border를 포함하여 박스 크기를 계산
 `;
 
 const TextBox = styled.div`

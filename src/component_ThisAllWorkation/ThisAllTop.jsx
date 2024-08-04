@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import tagorange from "../../src/assets/img/tagorange.svg";
 import loca from "../../src/assets/img/loca.svg";
-import day from "../../src/assets/img/day.svg";
+import day from "../../src/assets/img/day2.svg";
 import axios from 'axios';
 import { getToken, token } from '../api/api_login';
 
@@ -16,16 +16,17 @@ const ThisAllTop = ( {workStyleText, workPurposeText,
   return (
     <Container>
       <TopBox>
-      <Img src={day} />
+      <Img src={day} className='day'/>
       <Text>{formattedStartDate } ~ {formattedEndDate} [{nightB}박 {dayB}일]</Text>
       </TopBox>
       <MiddleBox>
-      <Img src={loca} />
-      <Text>'{SiggText}'에서 만나요!</Text>
+      <Img src={loca} className='loca' />
+      <Text>'{SiggText}' 에서 만나요!</Text>
       </MiddleBox>
       <BottomBox>
-      <Img src={tagorange} />
-      <Text>{workPurposeText} {workStyleText} </Text>
+      <Img src={tagorange} className='tag'/>
+      <TextBox>{workPurposeText}</TextBox> 
+      <TextBox>{workStyleText} </TextBox>
       </BottomBox>
     </Container>
     
@@ -62,8 +63,18 @@ const BottomBox = styled.div`
   margin-left: 2%;
 `
 const Img = styled.img`
-  width: 32px;
+  width: 30px;
   margin: 4px 0;
+
+  &.day {
+    width: 42px;
+  }
+  &.loca {
+    margin-left: 6px;
+  }
+  &.tag {
+    margin-left: 6px;
+  }
 `
 const Text = styled.div`
   /* border: 1px solid black; */
@@ -72,4 +83,15 @@ const Text = styled.div`
   font-size: 24px;
   font-weight: 600;
 
+`
+const TextBox = styled.div`
+  border: 1px solid #FED39D;
+  background-color: #FFFAE9;
+  width: 33%;
+  margin: 7px 10px; //글자사이간격이걸로조절하기
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-align: center;
+  padding: 5px 7px;
 `

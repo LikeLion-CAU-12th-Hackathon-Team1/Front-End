@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import superLogo from '../../assets/img/super.png';
 import workvalley from '../../assets/img/workvalley.svg';
-import HomeBottomImg from "../../assets/img/HomeBottomImg.svg";
+import HomeBottomImg from "../../assets/img/NewG49.svg";
 import OrangeLogo from "../../assets/img/OrangeLogo.svg";
-import HomeBT2 from '../../assets/img/HomeBT2.svg';
+import HomeBT2 from '../../assets/img/Frame.svg';
 
 const HomeBottom = () => {
   return (
@@ -24,13 +24,13 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center; /*역방향(가로)의 중심 */
     width : 1440px;
-    height: 659px; 
+    height: 650px; 
     background: linear-gradient(#FFFFFF, #FFFAF0);
 `
 
 
 const Title = styled.img`
-   width: 393px;
+   width: 360px;
    height: 82px;
    z-index: 5;
    margin-bottom: 30px;
@@ -38,6 +38,6 @@ const Title = styled.img`
 
 const StyledImg = styled.img`
     width: 812px;
-    height: 304px;
+    height: 440px;
     border-radius: 10px;
 `

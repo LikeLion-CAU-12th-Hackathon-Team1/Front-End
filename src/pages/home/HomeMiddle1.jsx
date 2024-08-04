@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import G94 from "../../assets/img/Group 94.svg"
+import G94 from "../../assets/img/G94.svg"
 
 const HomeMiddle1 = () => {
   return (
@@ -44,10 +44,10 @@ const Wrapper2 = styled.div`
 `
 const Title = styled.div`
   font-size: 30px;
-  font-weight: 800;
-  margin-top: 2%;
+  /* font-weight: 800; */
+  margin-top: -15px;
   margin-bottom: 3%;
-  font-family: 'AppleSDGothicNeoM', sans-serif;
+  font-family: 'AppleSDGothicNeoEB', sans-serif;
 `
 const InsideWrapper = styled.div`
   display: flex;
@@ -66,6 +66,7 @@ const Inside = styled.div`
   align-items: center;
   width: 880px;
   height: 279px;
+  margin-top: 20px;
 `
 
 const StyledImg = styled.img`
@@ -77,9 +78,9 @@ const StyledImg = styled.img`
 `
 
 const InText = styled.p`
-  /* font-family: 'AppleSDGothicNeoM', sans-serif; */
+  font-family: 'AppleSDGothicNeoB', sans-serif;
   font-size: 22px;
-  font-weight: 700;
+  /* font-weight: 600; */
   /* width: 230px; */
   /* height: 47px; */
   border-radius: 6px;
@@ -88,7 +89,7 @@ const InText = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 14px 12px 14px;
+  padding: 12px 35px;
   margin :0 3%;
   
 `
