@@ -78,7 +78,7 @@ const ThisAllComReal = ({workation_id}) => {
           SiggText={SiggText} formattedStartDate={formattedStartDate}
           formattedEndDate={formattedEndDate} nightB={nightB} dayB={dayB} /> {/* 수정수정 */}
         <ThisAllMiddle setbuttonClick={setbuttonClick} nightB={nightB} dayB={dayB} dailyWorkationList={dailyWorkationList} setSelectedDailyWorkationId={setSelectedDailyWorkationId}/>
-        {click ? (<ThisAllBottomReal workation_id={workation_id} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
+        {click ? (<ThisAllBottomReal selectedDailyWorkationId={selectedDailyWorkationId} workation_id={workation_id} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
         </>) : (
           <NoWorkation>
             워케이션을 등록해 주세요.
@@ -117,6 +117,7 @@ text-align: center;
 background-color: #FFFAF0;
 flex-direction: column;
 `;
+
 const NoImg = styled.img`
   width: 7%;
   margin-top: 20px;

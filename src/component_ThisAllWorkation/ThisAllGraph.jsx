@@ -62,6 +62,7 @@ const ThisAllGraph = ({daily_workation_id}) => {
     color: #222222;
     box-sizing: border-box;
     //margin-bottom: 4px;
+    margin-left: 1%;
   `;
   
   const SectionTitleContainer = styled.div`

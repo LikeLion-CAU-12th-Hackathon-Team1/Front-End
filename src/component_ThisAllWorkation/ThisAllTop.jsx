@@ -81,17 +81,18 @@ const Text = styled.div`
   width: 100%;
   margin: 7px 10px; //글자사이간격이걸로조절하기
   font-size: 24px;
-  font-weight: 600;
+  /* font-weight: 600; */
+  font-family: 'AppleSDGothicNeoSB', sans-serif;
 
 `
 const TextBox = styled.div`
   border: 1px solid #FED39D;
   background-color: #FFFAE9;
-  width: 33%;
+  /* width: 45%; */
   margin: 7px 10px; //글자사이간격이걸로조절하기
   font-size: 20px;
   font-weight: 600;
   border-radius: 4px;
   text-align: center;
-  padding: 5px 7px;
+  padding: 5px 15px;
 `

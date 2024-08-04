@@ -31,9 +31,9 @@ const AllTask = () => {
       <TopContainer>
       <NavDom>
         <BtnContainer>
-        <AllBtn onClick={goAllTimeTable}>전체일정</AllBtn>
-        <TodayBtn onClick={goTodayTimeTable}>오늘일정</TodayBtn>
-        <HistoryBtn onClick = {goLastTimeTable}>지난 워케이션</HistoryBtn>
+        <AllBtn onClick={goAllTimeTable}>전체 일정</AllBtn>
+        <TodayBtn onClick={goTodayTimeTable}>일일 일정</TodayBtn>
+        <HistoryBtn onClick = {goLastTimeTable}>모든 워케이션</HistoryBtn>
         </BtnContainer>
       </NavDom>
           <ThisAllComReal workation_id={workationId} />

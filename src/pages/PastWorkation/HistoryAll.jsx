@@ -22,9 +22,9 @@ const HistoryAll = () => {
       <TopContainer>
       <NavDom>
         <BtnContainer>
-        <AllBtn onClick={goAllTimeTable}>전체일정</AllBtn>
-        <TodayBtn onClick={goTodayTimeTable}>오늘일정</TodayBtn>
-        <HistoryBtn onClick = {goLastTimeTable}>지난 워케이션</HistoryBtn>
+        <AllBtn onClick={goAllTimeTable}>전체 일정</AllBtn>
+        <TodayBtn onClick={goTodayTimeTable}>일일 일정</TodayBtn>
+        <HistoryBtn onClick = {goLastTimeTable}>모든 워케이션</HistoryBtn>
         </BtnContainer>
       </NavDom>
       <HistoryAllCom/>
@@ -75,7 +75,7 @@ const HistoryAll = () => {
   const BtnContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
   `
 
   const AllBtn = styled.div`
@@ -86,6 +86,7 @@ const HistoryAll = () => {
     justify-content:center;
     color: #7A7A7A;
   `
+
   const TodayBtn = styled.div`
     width: 188px;
     height: 40px;
@@ -93,6 +94,7 @@ const HistoryAll = () => {
     align-items:center;
     justify-content:center;
     color: #7A7A7A;
+  
   `
   const HistoryBtn = styled.div`
     width: 188px;

@@ -62,13 +62,18 @@ const ImgC = styled.img`
 const ImgL = styled.img`
     width: 32px;
     height: 32px;
+    margin-left: -6%;
 `
 const TextBox = styled.div`
     font-size: 20px;
-    font-weight: 600;
+    /* font-weight: 600; */
     width: 41%;
     letter-spacing: -0.02em; 
     margin-left: 1%;
+    font-family: 'AppleSDGothicNeoSB', sans-serif;
+    display: flex;
+    align-items: center;
+
 `
 const DeleteBtn = styled.div`
     width: 21px;

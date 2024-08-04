@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import day from"../../assets/img/day2.svg";
+import day from"../../assets/img/This.gif";
 import NewFooter from "../../assets/img/NewFooter.svg";
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -73,7 +73,7 @@ const Loading = () => {
     <Text>
         
         맞춤형 시간표 제작하는 중
-        <img src = {day} />
+        <GImg src = {day} />
     </Text>
     <Footer />
     </LoadingBox>
@@ -88,7 +88,7 @@ const LoadingBox = styled.div`
   top: 45px;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,6 +106,10 @@ const Text = styled.div`
   text-align: center;
   font-size: 24px;
   font-weight: 700;
+`
+const GImg = styled.img`
+    width: 40%;
+    margin-top: 30px;
 `
 const Footer = styled.div`
     width : 1440px;

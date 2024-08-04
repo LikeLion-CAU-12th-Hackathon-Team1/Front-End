@@ -41,7 +41,7 @@ export default ThisAllRetro
 const SectionRetro = styled.div`
 background-color: #FFF2D6;
 width: 482px;
-height: 205px;
+height: 200px;
 border-radius: 4px;
 align-items: center;
 justify-content: center;
@@ -57,13 +57,15 @@ flex-direction: row;
 const SectionTitleRto = styled.div`
 width: 396px;
 height: 25px;
-font-weight: 700;
+font-weight: 600;
 font-size: 24px;
 line-height: 28.8px;
 letter-spacing: -0.02em;
 color: #222222;
 box-sizing: border-box;
 //margin-bottom: 4px;
+/* font-family: 'AppleSDGothicNeoB', sans-serif; */
+margin-left: -7%;
 `;
 
 const TextArea = styled.textarea`
@@ -79,4 +81,5 @@ font-size: 20px;
 line-height: 28.8px;
 letter-spacing: -0.02em;
 background-color: #FFFAF0;
+font-family: 'AppleSDGothicNeoB', sans-serif;
 `;

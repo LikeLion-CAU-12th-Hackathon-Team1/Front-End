@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-const InnerOneTimeTable = ({hour, dailyWorkationId}) => {
+const InnerOneTimeTable = ({hour, dailyWorkationId }) => {
   const [isWork, setIsWork] = useState(false);
   const [isRest, setIsRest] = useState(false);
 
