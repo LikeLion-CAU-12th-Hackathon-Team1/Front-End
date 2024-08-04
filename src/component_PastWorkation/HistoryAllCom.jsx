@@ -17,22 +17,41 @@ const HistoryAllCom = () => {
 
 
 
-useEffect(() => {
-  const handleThisAll = async () => {
-    try {
-      const response = await axios.get(`${baseURL}/workation/`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      setData(response.data); // 데이터를 설정
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+// useEffect(() => {
+//   const handleThisAll = async () => {
+//     try {
+//       const response = await axios.get(`${baseURL}/workation/`, {
+//         headers: {
+//           'Authorization': `Bearer ${token}`
+//         }
+//       });
+//       setData(response.data); // 데이터를 설정
+//     } catch (error) {
+//       console.error("Error fetching data:", error);
+//     }
+//   };
 
+//   handleThisAll();
+// }, []); 
+
+const handleThisAll = async () => {
+  try {
+      const response = await axios.get(`${baseURL}/workation/`, {
+          headers: {
+              'Authorization': `Bearer ${token}`
+          }
+      });
+      setData(response.data);
+  } catch (error) {
+      console.error("Error fetching data:", error);
+  }
+};
+
+useEffect(() => {
   handleThisAll();
-}, []); 
+}, []);
+
+
 
 if (data === null) {
   return <div>Loading...</div>;
@@ -61,7 +80,8 @@ const handleOne = (workation_id)=> {
                 SiggText={SiggText}
                 formattedStartDate={formattedStartDate}
                 formattedEndDate={formattedEndDate}
-                handleOne={() => handleOne(workation_id)} 
+                handleOne={() => handleOne(workation_id)}
+                handleThisAll={handleThisAll}
                 />
                 )
             })}
