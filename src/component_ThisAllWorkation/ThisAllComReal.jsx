@@ -7,6 +7,7 @@ import axios from 'axios';
 import { DateMap1, formatDateWithDay, getSiggMap, getWorkPurposeMap, getWorkStyleMap } from '../api/mappingData';
 import { getThisAll, getThisAllReal } from '../api/api_ThisAllTimeTable';
 import ThisAllBottomReal from './ThisAllBottomReal';
+import No from "../assets/img/No.svg"
 
 const ThisAllComReal = ({workation_id}) => {
 
@@ -14,6 +15,26 @@ const ThisAllComReal = ({workation_id}) => {
   const [data, setData] = useState({})
   const [dailyWorkationList, setDailyWorkationList] = useState([]); //하나의 데일리조회를 위한 리스트
   const [selectedDailyWorkationId, setSelectedDailyWorkationId] = useState(null); //일정한 데일리 id를 위한 상태관리
+  const [recentWorkation, setRecentWorkation] = useState(null); // 최근 워케이션 상태
+
+  useEffect(() => {
+    const fetchClosestWorkation = async () => {
+      try {
+        const token = localStorage.getItem('access');
+        const response = await axios.get('https://saengchaein.r-e.kr/workation/closest/', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        if (response.data) {
+          setRecentWorkation(response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching closest workation:', error);
+      }
+    };
+    fetchClosestWorkation();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,12 +69,22 @@ const ThisAllComReal = ({workation_id}) => {
   const dayB = nightB+1;
 
   return (
+    
     <Container>
-      <ThisAllTop workStyleText={workStyleText} workPurposeText={workPurposeText}
-        SiggText={SiggText} formattedStartDate={formattedStartDate}
-        formattedEndDate={formattedEndDate} nightB={nightB} dayB={dayB} /> {/* 수정수정 */}
-      <ThisAllMiddle setbuttonClick={setbuttonClick} nightB={nightB} dayB={dayB} dailyWorkationList={dailyWorkationList} setSelectedDailyWorkationId={setSelectedDailyWorkationId}/>
-      {click ? (<ThisAllBottomReal workation_id={workation_id} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
+      {recentWorkation ? (
+        <>
+          <ThisAllTop workStyleText={workStyleText} workPurposeText={workPurposeText}
+          SiggText={SiggText} formattedStartDate={formattedStartDate}
+          formattedEndDate={formattedEndDate} nightB={nightB} dayB={dayB} /> {/* 수정수정 */}
+        <ThisAllMiddle setbuttonClick={setbuttonClick} nightB={nightB} dayB={dayB} dailyWorkationList={dailyWorkationList} setSelectedDailyWorkationId={setSelectedDailyWorkationId}/>
+        {click ? (<ThisAllBottomReal selectedDailyWorkationId={selectedDailyWorkationId} workation_id={workation_id} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
+        </>) : (
+          <NoWorkation>
+            워케이션을 등록해 주세요.
+            <NoImg src = {No} />
+          </NoWorkation>
+        )}
+    
     </Container>
   )
 }
@@ -72,3 +103,21 @@ const Container = styled.div`
   border-radius: 6px;
   padding: 18px 17px 18px 17px;
 `;
+
+const NoWorkation = styled.div`
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 24px;
+font-weight: 700;
+color: #000000;
+text-align: center;
+background-color: #FFFAF0;
+flex-direction: column;
+`;
+
+const NoImg = styled.img`
+  width: 7%;
+  margin-top: 20px;
+`

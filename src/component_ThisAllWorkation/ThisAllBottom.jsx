@@ -12,7 +12,7 @@ const ThisAllBottom = ({workation_id, daily_workation_id}) => {
     <Container>
         <InnerBox>
             <TextBox>
-                <Text>일정</Text>
+                <Text>세부 일정</Text>
             </TextBox>
             <ContentBox>
                 <LeftBox>
@@ -33,12 +33,14 @@ width: 100%;
 /* height: 420px; */
 border-radius: 8px;
 border-color: #FEE0AA;
+margin-top: 2%;
 `
 const InnerBox = styled.div`
 display:flex;
 flex-direction: column;
     width: 100%;
     height: 372px;
+    background-color: #FFFDF9;
 `
 const TextBox = styled.div`
 display:flex;

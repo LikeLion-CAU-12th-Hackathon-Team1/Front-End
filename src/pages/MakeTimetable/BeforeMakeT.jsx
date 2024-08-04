@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BeforeMakeTimg from "../../assets/img/BeforeMakeT.png";
-import kakaoLoginBtn from "../../assets/img/kakaoLoginBtn.png"
+import kakaoLoginBtn from "../../assets/img/KakaoBtn.svg"
 import { Navigate } from 'react-router-dom';
 import { loginHandler } from '../../api/api_login';
 import Side1 from "../../assets/img/Side1.svg";
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 48px; /*네브바와 겹치지않게 콘텐츠 구역 */
+    margin-top: 40px; /*네브바와 겹치지않게 콘텐츠 구역 */
 
     background-image: url(${Side1});
     background-size: contain; /* 배경 이미지 크기 조정 */

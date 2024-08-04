@@ -18,7 +18,7 @@ const InnerOneTable = ({item, setbuttonClick,clickedItem, setClickedItem, dailyW
   return (
     <Container>
     <DayCount onClick={handleOnclick} $clicked={clickedItem === item}>{item}일차</DayCount>
-    <Table>
+    <Table $clicked={clickedItem===item}>
         {/* {[0,1,2,3,4,5,6,7,8,9,10,
         11,12,13,14,15,16,17,18,19,20,
         21,22,23].map((_, index)=>{
@@ -26,7 +26,7 @@ const InnerOneTable = ({item, setbuttonClick,clickedItem, setClickedItem, dailyW
         <InnerOneTimeTable key={index}></InnerOneTimeTable>
         )})} */}
          {[...Array(24).keys()].map(hour => (
-                    <InnerOneTimeTable key={hour} hour={hour} dailyWorkationId={dailyWorkationId} />
+                    <InnerOneTimeTable key={hour} hour={hour} clickedItem={clickedItem} dailyWorkationId={dailyWorkationId} />
                 ))}
         
     </Table>
@@ -40,7 +40,7 @@ export default InnerOneTable
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    margin-right:0.5%;
+    margin-right:1.3%;
 `
 
 const DayCount = styled.div`
@@ -51,15 +51,19 @@ const DayCount = styled.div`
   background-color: ${({ $clicked }) => ($clicked ? '#FF6B00' : '#FED39D')};;
   border-radius: 4px;
   border: 0.5px solid #FF831C;
-  padding: 4px 10px 4px 10px;
+  padding: 5px 10px 4px 10px;
   box-sizing: border-box;
   gap: 10px;
-  font-weight: 600;
+  /* font-weight: 550; */
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.02em;
   color: ${({ $clicked }) => ($clicked ? '#FFFFFF' : '#FF6B00')};
   margin-bottom: 3%;
+  font-family: 'AppleSDGothicNeoSB', sans-serif;
+  justify-content: center;
+  align-items: center;
+
 `;
 
 const Table = styled.div`
@@ -71,4 +75,6 @@ display: flex;
 flex-direction: column;
 align-items:center;
 justify-content: center;
+border: ${({ $clicked }) => ($clicked ? '1px solid #FF831C' : 'none')};
+border-radius: 4px;
 `

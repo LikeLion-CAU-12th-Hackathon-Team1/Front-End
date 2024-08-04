@@ -14,7 +14,7 @@ const HomeTop = () => {
   }
 
   const BtnClick = () => {
-    smoothScrollTo(635); //2번째랜딩페이지로 위치이동
+    smoothScrollTo(680); //2번째랜딩페이지로 위치이동
   }
   return (
     <Wrapper>
@@ -100,4 +100,5 @@ const Button = styled.button`
   padding: 4px 42px 4px 42px;
   gap: 10px;
   margin-top: 13px;
+  cursor: pointer;
 `

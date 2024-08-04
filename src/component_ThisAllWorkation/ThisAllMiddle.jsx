@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import InnerOneTable from './InnerOneTable'
+import img23 from "../assets/img/23.svg"
 
 const ThisAllMiddle = ({setbuttonClick, dayB, dailyWorkationList, setSelectedDailyWorkationId}) => {
     //빈배열 안에 저기서 날자 - +1 ㅐ서 넣어
@@ -8,7 +9,7 @@ const ThisAllMiddle = ({setbuttonClick, dayB, dailyWorkationList, setSelectedDai
     const [clickedItem, setClickedItem] = useState(null);
   return (
     <Container>
-        <TextBox>모든일정</TextBox>
+        <TextBox>모든일정 <Img src={img23} /></TextBox>
         <TableBox>
         {Array.from({ length: dayB }, (_, index) => {
           const dailyWorkation = dailyWorkationList[index];
@@ -40,6 +41,8 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 2%;
+    border-bottom: 1px solid #E9E4DB;
+    padding-bottom: 2.5%;
 `
 
 const TextBox = styled.div`
@@ -51,6 +54,7 @@ const TextBox = styled.div`
     line-height: 24px;
     letter-spacing: -2%;
     color: #222222;
+    margin: 1.3% 2%;
 `
 
 const TableBox = styled.div`
@@ -74,4 +78,8 @@ const InnerTable = styled.div`
     height: 458px;
 /* border: 2px solid black; */
     /* margin: 10px ; */
+`
+
+const Img = styled.img`
+  width: 1%;
 `

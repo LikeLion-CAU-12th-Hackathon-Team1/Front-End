@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import AutoComplete from '../../component/AutoComplete';
 import { Button } from '@mui/material';
@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import AutoComplete2 from '../../component/AutoComplete2';
 import sun from "../../assets/img/sun.svg"
 import moon from "../../assets/img/moon.svg"
+import Loading from './Loading';
 
 //질문지 답변
 const Qlist=[
@@ -81,6 +82,8 @@ const QlistRest=[
 
 const MakeT = () => {
   const navigate = useNavigate();
+  //로딩중
+  const [loading, setLoading] = useState(false);
   //recoil사용위해,,Atom 기본 설정값 가져옴
   const [answers, setAnswers] = useRecoilState(answersAtom);
   const [startDate] = useRecoilState(startDateAtom); // 2번 질문
@@ -122,6 +125,7 @@ const MakeT = () => {
   const baseURL = "https://saengchaein.r-e.kr";
 
   const handleSubmit = async()=> {
+    setLoading(true);
     
     //제출 시 백으로 전송하는 코드 추가 필요
     //1~7번의 답들을 모두 한곳에 합치게..
@@ -138,8 +142,8 @@ const MakeT = () => {
       end_date: endDate, //2번질문 답2
       work_style : answers.work_style, //3번질문
       work_purpose :  answers.work_purpose, //4번 질문
-      workation2space: answers.workation2space.map(space => ({space})), //5번 질문
-      workation2rest: answers.workation2rest.map(rest => ({ rest })), //6번 질문
+      workation2space: answers.workation2space.map(space => ({ space })),
+      workation2rest: answers.workation2rest.map(rest => ({ rest })),  
       start_sleep: Number(sleepTime), // 7번 취침시간
       end_sleep: Number(wakeTime) // 7번 기상 시간
     }
@@ -151,6 +155,8 @@ const MakeT = () => {
       }); //post요청으로 답변 보냄
       console.log('Response from server:', response.data);
       console.log("All answers:", dataTosend);
+      
+      setLoading(false);
       // 리코일 초기화
       resetAnswers(); // 수정수정: 상태 초기화 호출
       resetStartDate();
@@ -164,31 +170,29 @@ const MakeT = () => {
       navigate("/timetable/alltask");
     } catch (error) {
       console.log(error.response)
-      if(error.response.data.start_date){
-        alert("시작 종료 날짜를 다시 입력해주세요 - 과거 날짜는 입력 불가합니다.")
-      }else if(error.response.data.non_field_errors){
-        alert("이미 등록된 일정이 있습니다")
-      }else if(error.response.data.sigg){
-        alert("지역 선택 해주세요")
-      }else if(error.response.data.start_date[0] === 'This field may not be null.'){
-        alert("시작 날짜 입력해주세요")
-      }else if(error.response.data.end_date[0] === 'This field may not be null.'){
-        alert("시작 날짜 입력해주세요")
-      }else if(error.response.data.work_purpose){
-        alert("워케이션 목적 입력해주세요")
-      }else if(error.response.data.work_style){
-        alert("업무 방식 입력해주세요")
+      if (error.response && error.response.data) { // 여기!
+        if (error.response.data.start_date) {
+          alert("시작 종료 날짜를 다시 입력해주세요 - 과거 날짜는 입력 불가합니다.")
+        } else if (error.response.data.non_field_errors) {
+          alert("이미 등록된 일정이 있습니다")
+        } else if (error.response.data.sigg) {
+          alert("지역 선택 해주세요")
+        } else if (error.response.data.start_date && error.response.data.start_date[0] === 'This field may not be null.') {
+          alert("시작 날짜 입력해주세요")
+        } else if (error.response.data.end_date && error.response.data.end_date[0] === 'This field may not be null.') {
+          alert("시작 날짜 입력해주세요")
+        } else if (error.response.data.work_purpose) {
+          alert("워케이션 목적 입력해주세요")
+        } else if (error.response.data.work_style) {
+          alert("업무 방식 입력해주세요")
+        }
+      } else {
+        alert("다시 입력해주세요")
       }
-
-      // alert("다시 입력해주세요")
-      // if (error.response) {
-      //   console.error('에러 상태 코드:', error.response.status);
-      //   console.error('에러 응답 데이터:', error.response.data);
-      //   console.error('에러 응답 헤더:', error.response.headers);
-      // } else {
-      //   console.error('에러 메시지:', error.message);
-      // }
+      setLoading(false); // 여기!
     }
+
+  
     
   }
 
@@ -313,6 +317,7 @@ const MakeT = () => {
     </Question>
     </QuestionW>
     <SubmitButton onClick={handleSubmit}>워케이션 등록하기</SubmitButton>
+    {loading && <Loading />}
      <Footer/>
 </Wrapper>
   )
@@ -400,6 +405,7 @@ const ContentBox = styled.div`
     gap: 5px; /* 선택지들 사이의 간격 추가 */
     row-gap: 16px;
     display: flex;
+    padding-bottom: 65px;
   }
 
   &.firstA{

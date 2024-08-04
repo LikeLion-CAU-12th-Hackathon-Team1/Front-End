@@ -1,0 +1,16 @@
+<svg width="86" height="83" viewBox="0 0 86 83" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M49.5723 62.75H66.0723L49.5723 80.25V62.75Z" fill="white"/>
+<path d="M3.07227 24.75H65.0723L66.0723 63.75H50.0723V78.75H3.07227V24.75Z" fill="#FED39D"/>
+<path d="M2.07227 15.75C2.07227 12.4363 4.75856 9.75 8.07227 9.75H60.0723C63.386 9.75 66.0723 12.4363 66.0723 15.75V24.75H2.07227V15.75Z" fill="#FF831C"/>
+<path d="M66.0723 24.75V15.75C66.0723 12.4363 63.386 9.75 60.0723 9.75H8.07227C4.75856 9.75 2.07227 12.4363 2.07227 15.75V24.75M66.0723 24.75H2.07227M66.0723 24.75V63.25M2.07227 24.75V74.25C2.07227 77.5637 4.75856 80.25 8.07226 80.25H49.0723M66.0723 63.25H49.0723V80.25M66.0723 63.25L49.0723 80.25" stroke="#FF831C" stroke-width="4" stroke-linejoin="round"/>
+<rect x="11.0723" y="0.75" width="6" height="17" rx="3" fill="#FF831C"/>
+<rect x="31.0723" y="0.75" width="6" height="17" rx="3" fill="#FF831C"/>
+<rect x="51.0723" y="0.75" width="6" height="17" rx="3" fill="#FF831C"/>
+<rect x="13.0723" y="31.75" width="8" height="8" fill="white" stroke="#FF831C" stroke-width="4" stroke-linejoin="round"/>
+<rect x="13.0723" y="46.75" width="8" height="8" fill="white" stroke="#FF831C" stroke-width="4" stroke-linejoin="round"/>
+<rect x="13.0723" y="61.75" width="8" height="8" fill="white" stroke="#FF831C" stroke-width="4" stroke-linejoin="round"/>
+<path d="M27.0723 39.75H55.0723" stroke="#FF831C" stroke-width="4"/>
+<path d="M27.0723 54.75H55.0723" stroke="#FF831C" stroke-width="4"/>
+<path d="M27.0723 69.75H49.0723" stroke="#FF831C" stroke-width="4"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M81.0156 66C80.5602 66 80.1307 65.788 79.8538 65.4264L76.3739 60.8834C76.1782 60.628 76.0722 60.3152 76.0722 59.9935L76.0722 35.0082L85.959 35.0082L85.959 59.9935C85.959 60.3152 85.853 60.628 85.6573 60.8834L82.1774 65.4264C81.9005 65.788 81.471 66 81.0156 66ZM85.959 31.0082L85.959 26.9635C85.959 26.1552 85.3037 25.5 84.4955 25.5L77.5357 25.5C76.7274 25.5 76.0722 26.1552 76.0722 26.9635L76.0722 31.0082L85.959 31.0082Z" fill="#FF831C"/>
+</svg>

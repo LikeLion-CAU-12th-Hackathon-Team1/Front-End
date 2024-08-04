@@ -5,8 +5,11 @@ import ThisAllCom from '../../component_ThisAllWorkation/ThisAllCom';
 import { useRecoilValue } from 'recoil';
 import { workationIdAtom } from '../../recoil/makeTAtom';
 import ThisAllComReal from '../../component_ThisAllWorkation/ThisAllComReal';
+// import No from "../../assets/img/No.svg"
 
 const AllTask = () => {
+  //사용자가 아무런 workation_id가 없을때 ,,,
+
 
   const navigate = useNavigate();
   //전체 기록 띄우기 위해 workationID makeT.jsx에서 저장값
@@ -28,12 +31,12 @@ const AllTask = () => {
       <TopContainer>
       <NavDom>
         <BtnContainer>
-        <AllBtn onClick={goAllTimeTable}>전체일정</AllBtn>
-        <TodayBtn onClick={goTodayTimeTable}>오늘일정</TodayBtn>
-        <HistoryBtn onClick = {goLastTimeTable}>지난 워케이션</HistoryBtn>
+        <AllBtn onClick={goAllTimeTable}>전체 일정</AllBtn>
+        <TodayBtn onClick={goTodayTimeTable}>일일 일정</TodayBtn>
+        <HistoryBtn onClick = {goLastTimeTable}>모든 워케이션</HistoryBtn>
         </BtnContainer>
       </NavDom>
-      <ThisAllComReal workation_id={workationId} />
+          <ThisAllComReal workation_id={workationId} />
       </TopContainer>
       </Container>
       

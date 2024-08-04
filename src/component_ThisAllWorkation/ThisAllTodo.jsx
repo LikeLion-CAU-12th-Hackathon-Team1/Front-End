@@ -60,6 +60,7 @@ const SectionTitleTodo = styled.div`
   color: #222222;
   box-sizing: border-box;
   //margin-bottom: 4px;
+  margin-left: -12%;
 `;
 
 const AddBtn = styled.div`
