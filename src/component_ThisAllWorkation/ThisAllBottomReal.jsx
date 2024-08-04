@@ -41,6 +41,7 @@ width: 100%;
 /* height: 420px; */
 border-radius: 8px;
 border-color: #FEE0AA;
+margin-top: 2%;
 `
 const InnerBox = styled.div`
 display:flex;
