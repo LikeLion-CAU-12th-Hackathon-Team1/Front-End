@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import OneDayTimeTable from '../../component_TimeTable/ForTimeTable/OneDayTimeTable';
 import Location from '../../component_Location/Location';
 import recoLoca from '../../assets/img/recommendLoca.svg';
+import { getDailyTodayId } from '../../api/api_dailyTimeTable';
+import NewFooter from "../../assets/img/NewFooter.svg";
 
 const TimeTable = () => {
 
@@ -20,6 +22,21 @@ const TimeTable = () => {
   const goLastTimeTable = () => {
     navigate('/timetable/historyAll')
   }
+
+
+  const [todayId, setTodayId] = useState();
+  const [todayDate, setTodayDate] = useState();
+  // 이 컴포넌트 마운트 될 때마다 실행
+  useEffect(() => {
+    const fetchData = async () => {
+      const getTodayId = await getDailyTodayId();
+      setTodayId(getTodayId.daily_workation_id);
+      setTodayDate(getTodayId.date);
+      };
+      fetchData();
+  }, [todayId]);
+
+
   return (
     <Container>
     <TopContainer>
@@ -32,11 +49,12 @@ const TimeTable = () => {
       
       <RecoLoca src={recoLoca}/>
     </NavDom>
-    <OneDayTimeTable/>
+    {todayId && <OneDayTimeTable todayId={todayId} todayDate={todayDate} />}
     </TopContainer>
     <BottomContainer>
     <Location></Location>
     </BottomContainer>
+    <Footer/>
     </Container>
     
    
@@ -67,6 +85,7 @@ const BottomContainer = styled.div`
   flex-direction: row;
   margin-top: 66px;
   height: 820px;
+  margin-bottom: 10%;
 `
 
 const NavDom = styled.div`
@@ -112,4 +131,13 @@ const HistoryBtn = styled.div`
   align-items:center;
   justify-content:center;
   color: #7A7A7A;
+`
+
+const Footer = styled.div`
+    width : 1440px;
+    height: 314px;
+    background-image: url(${NewFooter});
+    background-size: contain; /* 배경 이미지 크기 조정 */
+    background-position: center; /* 배경 이미지 위치 조정 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
 `

@@ -3,12 +3,22 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { TodoListArray as initialTodoListArray, isCheckedArray as initialIsCheckedArray} from './ForTimeTable/Data';
+import { delTodo, getTimeTodo, patchTodoCheck, patchTodoText, postTimeTodo } from '../api/api_dailyTimeTable';
 
-const TodoListCom = () => {
+const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
 
-    const [isTodoEdit, setIsTodoEdit] = useState(false);
-    const [todoList, setTodoList] = useState(initialTodoListArray);
-    const [isChecked, setIsChecked] = useState(initialIsCheckedArray)
+    const [isTodoEdit, setIsTodoEdit] = useState(false); // save edit 여부 버튼 관리
+    const [todoList, setTodoList] = useState(dailyAllTodo.map(item => item.description));
+    const [isChecked, setIsChecked] = useState(dailyAllTodo.map(item => item.complete));
+    const [todoId, setTodoId] = useState(dailyAllTodo.map(item => item.task_id)); // todoId 저장용
+
+
+    useEffect(() => {
+      setTodoList(dailyAllTodo.map(item => item.description));
+      setIsChecked(dailyAllTodo.map(item => item.complete));
+      setTodoId(dailyAllTodo.map(item => item.task_id))
+      console.log(todoId)
+  }, [dailyAllTodo]);
 
     const handleTodoEdit = () => {
         if(isTodoEdit){
@@ -18,21 +28,20 @@ const TodoListCom = () => {
         }
     }
 
-    const handleAddBtn = () => {
-        if(todoList.length == 6){
-            alert("더 이상 입력하실 수 없습니다!")
-        } else {
-            setTodoList([...todoList, "새로운 Todo를 입력해주세요!!"]);
-            setIsChecked([...isChecked, false]);
-        }
+    const handleAddBtn = async () => {
+          let body;
+          body = {
+            description : "새로운 Todo를 입력해주세요!!"
+          }
+          await postTimeTodo(getTimeId, body)
+          setTodoList(prevList => [...prevList, body.description]);
+          setIsChecked(prevChecked => [...prevChecked, false]);
+
+          const response = await getTimeTodo(getTimeId);
+          //setTaskIds(response.map(item => item.id));
     }
 
-    const handleDelBtn = (index) => {
-        const newList = todoList.filter((_, i) => i !== index);
-        setTodoList(newList);
-        const delCheckedArray = isChecked.filter((_, i) => i !== index); 
-        setIsChecked(delCheckedArray);
-    }
+   
 
     const handleTodoChange = (index, value) => {
         const newList = [...todoList];
@@ -40,15 +49,36 @@ const TodoListCom = () => {
         setTodoList(newList);
       }
 
-    const handleSaveBtn = () => {
-        handleTodoEdit()
-        console.log("백엔드 데이터 전송")
+    const handleSaveBtn = async (index) => {
+        // const body = { description : todoList[index]};
+        // await patchTodoText(todoId[index], body);
+        // handleTodoEdit()
     }
 
-    const handleCheckboxChange = (index) => {
+    const handleEnter = async (e, index) => {
+      if (e.key === 'Enter') {
+          const body = { description: todoList[index] };
+          await patchTodoText(todoId[index], body);
+          handleTodoEdit();
+      }
+  }
+
+
+    const handleCheckboxChange = async (index) => {
         const newCheckedItems = [...isChecked];
         newCheckedItems[index] = !newCheckedItems[index];
         setIsChecked(newCheckedItems);
+
+        const body = { complete : newCheckedItems[index]};
+        await patchTodoCheck(todoId[index], body);
+      }
+
+    const handleDelBtn = async (index) => {
+        const newList = todoList.filter((_, i) => i !== index);
+        setTodoList(newList);
+        const delCheckedArray = isChecked.filter((_, i) => i !== index); 
+        setIsChecked(delCheckedArray);
+        await delTodo(todoId[index]);
       }
 
   return (
@@ -67,8 +97,9 @@ const TodoListCom = () => {
             <CheckboxContainer>
                 <Checkbox type="checkbox" checked={isChecked[index]} onChange={() => handleCheckboxChange(index)}/>
             </CheckboxContainer>
-            {isTodoEdit ? (<TodoInput maxLength="28" value = {text} onChange = {(e) => handleTodoChange(index, e.target.value)}
-                checked={isChecked[index]}/>)
+            {isTodoEdit ? (<TodoInput maxLength="28" value = {text}
+            onChange={(e) => handleTodoChange(index, e.target.value)}
+                onKeyDown={(e) => handleEnter(e, index)}/>)
             : (<TodoText checked={isChecked[index]} >{text}</TodoText>)}
               <DeleteBtn onClick={()=>handleDelBtn(index)}></DeleteBtn>
             </TodoItem>
@@ -175,6 +206,7 @@ const TodoListContainer = styled.div`
     height: 260px;
     width: 454px;
     margin-top: 13px;
+    overflow-y: auto;
 `
 
 const TodoItem = styled.div`

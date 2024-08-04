@@ -8,7 +8,14 @@ import TimeEditOn from './TimeEditOn';
 const TimeTableContainer = ({isTimeEditOn, setIsTimeEditOn,
   startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
-  handleTimeUpdate
+  handleTimeUpdate,
+  dailyAllTable,
+  todayId,
+  setToGetWorkId,
+  toGetWorkId,
+  toGetRestId, setToGetRestId,
+  setTimeBlockId,
+  setTimeId
 }) => {
 
   const timeLabels = ["00:00", "06:00", "12:00", "18:00", "24:00"];
@@ -36,6 +43,12 @@ const TimeTableContainer = ({isTimeEditOn, setIsTimeEditOn,
               endRestTime={endRestTime} setEndRestTime={setEndRestTime}
               handleTimeUpdate={handleTimeUpdate}
               isTimeEditOn={isTimeEditOn}
+              dailyAllTable={dailyAllTable}
+              setToGetWorkId={setToGetWorkId}
+              toGetWorkId={toGetWorkId}
+              toGetRestId={toGetRestId} setToGetRestId={setToGetRestId}
+              setTimeBlockId={setTimeBlockId}
+              setTimeId={setTimeId}
             />
           );
         })}
@@ -44,7 +57,7 @@ const TimeTableContainer = ({isTimeEditOn, setIsTimeEditOn,
        startRestTime={startRestTime} endRestTime={endRestTime}
        isTimeEditOn={isTimeEditOn} setIsTimeEditOn={setIsTimeEditOn}
        setStartWorkTime={setStartWorkTime} setStartRestTime={setStartRestTime}
-       setEndWorkTime={setEndWorkTime} setEndRestTime={setEndRestTime} />) : (<TimeEditOff />)
+       setEndWorkTime={setEndWorkTime} setEndRestTime={setEndRestTime} todayId={todayId} />) : (<TimeEditOff />)
       }
     </Container>
   )

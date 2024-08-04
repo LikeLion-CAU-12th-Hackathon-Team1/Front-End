@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import AutoComplete from '../../component/AutoComplete';
 import { Button } from '@mui/material';
@@ -6,18 +6,21 @@ import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import TimePicCom from '../../component/TimePicCom';
 import CalenderCom from '../../component/CalenderCom';
-import { useRecoilState } from 'recoil';
-import { answersAtom, endDateAtom, siggAtom, sleepTimeAtom, startDateAtom, wakeTimeAtom } from '../../recoil/makeTAtom';
+import { useRecoilState, useResetRecoilState } from 'recoil';
+import { answersAtom, endDateAtom, siggAtom, sleepTimeAtom, startDateAtom, wakeTimeAtom, workationIdAtom } from '../../recoil/makeTAtom';
 import AnswerButton from '../../component/AnswerButton';
 import CalenderResult from '../../component/CalenderResult';
 import dayjs from 'dayjs';
 import makeTheader from "../../assets/img/makeTheader.svg";
-import NewMakeTHeader from "../../assets/img/NewMakeTHeader.svg";
+import NewMakeTHeader from "../../assets/img/makehome.svg";
 import footer from "../../assets/img/footer.svg";
 import NewFooter from "../../assets/img/NewFooter.svg";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AutoComplete2 from '../../component/AutoComplete2';
+import sun from "../../assets/img/sun.svg"
+import moon from "../../assets/img/moon.svg"
+import Loading from './Loading';
 
 //질문지 답변
 const Qlist=[
@@ -79,6 +82,8 @@ const QlistRest=[
 
 const MakeT = () => {
   const navigate = useNavigate();
+  //로딩중
+  const [loading, setLoading] = useState(false);
   //recoil사용위해,,Atom 기본 설정값 가져옴
   const [answers, setAnswers] = useRecoilState(answersAtom);
   const [startDate] = useRecoilState(startDateAtom); // 2번 질문
@@ -86,6 +91,14 @@ const MakeT = () => {
   const [wakeTime] = useRecoilState(wakeTimeAtom);//7번 질문
   const [sleepTime] = useRecoilState(sleepTimeAtom);//7번 질문ㅇ톰
   const [sigg, setSigg] =useRecoilState(siggAtom);
+
+  const resetAnswers = useResetRecoilState(answersAtom);
+  const resetStartDate = useResetRecoilState(startDateAtom);
+  const resetEndDate = useResetRecoilState(endDateAtom);
+  const resetWakeTime = useResetRecoilState(wakeTimeAtom);
+  const resetSleepTime = useResetRecoilState(sleepTimeAtom);
+  const resetSigg = useResetRecoilState(siggAtom);
+  const resetWorkationId = useResetRecoilState(workationIdAtom);
 
   //3~4번 단일선택지 눌렀을때 값 저장 및 단축선택
   const handleAnswerClick = (key, option) =>{
@@ -112,6 +125,7 @@ const MakeT = () => {
   const baseURL = "https://saengchaein.r-e.kr";
 
   const handleSubmit = async()=> {
+    setLoading(true);
     
     //제출 시 백으로 전송하는 코드 추가 필요
     //1~7번의 답들을 모두 한곳에 합치게..
@@ -128,31 +142,64 @@ const MakeT = () => {
       end_date: endDate, //2번질문 답2
       work_style : answers.work_style, //3번질문
       work_purpose :  answers.work_purpose, //4번 질문
-      workation2space: answers.workation2space.map(space => ({space})), //5번 질문
-      workation2rest: answers.workation2rest.map(rest => ({ rest })), //6번 질문
+      workation2space: answers.workation2space.map(space => ({ space })),
+      workation2rest: answers.workation2rest.map(rest => ({ rest })),  
       start_sleep: Number(sleepTime), // 7번 취침시간
       end_sleep: Number(wakeTime) // 7번 기상 시간
     }
     try {
-      const response = await axios.post(`${baseURL}//workation/`, dataTosend,{
+      const response = await axios.post(`${baseURL}/workation/`, dataTosend,{
         headers: {
           Authorization: `Bearer ${token}`
         }
       }); //post요청으로 답변 보냄
       console.log('Response from server:', response.data);
-      // 전송 성공 시 처리 로직 추가 (예: 페이지 이동 등) 
+      console.log("All answers:", dataTosend);
+      
+      setLoading(false);
+      // 리코일 초기화
+      resetAnswers(); // 수정수정: 상태 초기화 호출
+      resetStartDate();
+      resetEndDate();
+      resetWakeTime();
+      resetSleepTime();
+      resetSigg();
+      resetWorkationId();
+
+
+      navigate("/timetable/alltask");
     } catch (error) {
-      console.error('Error submitting answers:', error);
-      // 에러 처리 로직 추가 (예: 사용자에게 알림)
+      console.log(error.response)
+      if (error.response && error.response.data) { // 여기!
+        if (error.response.data.start_date) {
+          alert("시작 종료 날짜를 다시 입력해주세요 - 과거 날짜는 입력 불가합니다.")
+        } else if (error.response.data.non_field_errors) {
+          alert("이미 등록된 일정이 있습니다")
+        } else if (error.response.data.sigg) {
+          alert("지역 선택 해주세요")
+        } else if (error.response.data.start_date && error.response.data.start_date[0] === 'This field may not be null.') {
+          alert("시작 날짜 입력해주세요")
+        } else if (error.response.data.end_date && error.response.data.end_date[0] === 'This field may not be null.') {
+          alert("시작 날짜 입력해주세요")
+        } else if (error.response.data.work_purpose) {
+          alert("워케이션 목적 입력해주세요")
+        } else if (error.response.data.work_style) {
+          alert("업무 방식 입력해주세요")
+        }
+      } else {
+        alert("다시 입력해주세요")
+      }
+      setLoading(false); // 여기!
     }
-    console.log("All answers:", dataTosend);
-    navigate("/timetable");
+
+  
+    
   }
 
   return (
       <Wrapper>
       <TitleW>
-      <Title>몇가지 질문으로 AI가 만든<br/>워라밸 시간표를 경험해 보세요!</Title>
+      <Title>몇가지 질문을 통해<br/>맞춤형 시간표를 경험해 보세요!</Title>
       </TitleW>
       <QuestionW>
     <Question>
@@ -161,7 +208,7 @@ const MakeT = () => {
         <TextBox>어느 지역으로 가시나요?</TextBox>
     </TitleBox>
     <ContentBox className='firstA'>
-        <AutoComplete2 /> <AutoComplete />
+        <AutoComplete2 /> <AutoComplete/>
     </ContentBox>
     </Question>
 
@@ -171,11 +218,11 @@ const MakeT = () => {
         <Circle>2</Circle>
         <TextBox>일정이 어떻게 되나요?</TextBox>
     </TitleBox>
-    <ContentBox>
-        <CalenderBox>
+    <ContentBox className='A2'>
+        <CalenderBox className='A2'>
             <CalenderCom 
               id="start-work"/>
-            ~ 
+              ~ 
             <CalenderCom 
               id="end-work"/>
           </CalenderBox>
@@ -192,7 +239,7 @@ const MakeT = () => {
           <Circle>{index +3}</Circle>
           <TextBox>{question.question}</TextBox>
         </TitleBox>
-        <ContentBox>
+        <ContentBox className='A3'>
           {question.options.map((option, idx)=>(
             <div key={idx} style={{marginBottom: '20px', marginLeft : '20px'}}>
             <AnswerButton 
@@ -212,7 +259,8 @@ const MakeT = () => {
       <Question key={index}>
         <TitleBox>
           <Circle>5</Circle>
-          <TextBox> 선호하는 업무 공간이 있나요? (복수선택) </TextBox>
+          <TextBox> 선호하는 업무 공간이 있나요?</TextBox>
+          <SubTextBox>(복수선택)</SubTextBox>
         </TitleBox>
         <ContentBox className='Multi'>
           {question.options.map((option, idx)=>(
@@ -231,7 +279,8 @@ const MakeT = () => {
           <Question key={index}>
             <TitleBox>
               <Circle>6</Circle>
-              <TextBox>쉼을 찾는 나만의 방법이 있나요? (복수선택)</TextBox>
+              <TextBox>쉼을 찾는 나만의 방법이 있나요?</TextBox>
+              <SubTextBox>(복수선택)</SubTextBox>
             </TitleBox>
             <ContentBox className='Multi'>
               {question.options.map((option, idx) => (
@@ -252,14 +301,15 @@ const MakeT = () => {
         <TextBox>기상, 취침시간이 어떻게 되나요?</TextBox>
         <SubTextBox>(선택)</SubTextBox>
     </TitleBox>
-    <ContentBox>
+    <ContentBox className='last'>
       <Sleep>
       <SleepTime>
-        <div>기상</div>
+        <SunImg src={sun} />
         <TimePicCom id="wake-time"/>
       </SleepTime>
       <SleepTime>
-        취침 <TimePicCom id="sleep-time"/>
+      <SunImg src={moon} />
+       <TimePicCom id="sleep-time"/>
       </SleepTime>
       </Sleep>
 
@@ -267,6 +317,7 @@ const MakeT = () => {
     </Question>
     </QuestionW>
     <SubmitButton onClick={handleSubmit}>워케이션 등록하기</SubmitButton>
+    {loading && <Loading />}
      <Footer/>
 </Wrapper>
   )
@@ -305,20 +356,20 @@ const TitleW = styled.div`
 
 const Title = styled.div`
   font-size: 32px;
-  font-weight: 700;
   width: 1228px; /* 폰트 변경 후 수정 필요*/
   height: 100%;
   margin-top: 60px;
   margin-left: 150px;
+  font-family: 'AppleSDGothicNeoB', sans-serif;
 `
 
 const QuestionW = styled.div`
-  width: 1190px;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 20px;
+  padding: 30px 123px;
   border: 1px solid #E3E3E3;
   border-radius: 5px;
   background-color: #F9F9F9;
@@ -340,19 +391,42 @@ const TitleBox = styled.div`
 `;
 
 const ContentBox = styled.div`
-  border-left: 1px solid #dbdada;
-  padding: 40px;
+  /* border-left: 1px solid  #F9C387; */
+  padding: 40px 16px;
   width: 100%;
   height: 100%;
   margin-left: 14px;
 
   &.Multi {
-    width: 70%;
-    padding: 50px;
+    width: 90%;
+    padding: 40px 40px;
+    border-left: 1px solid  #F9C387;
+    flex-wrap: wrap; /* 줄바꿈 추가 */
+    gap: 5px; /* 선택지들 사이의 간격 추가 */
+    row-gap: 16px;
+    display: flex;
+    padding-bottom: 65px;
   }
 
   &.firstA{
     display: flex;
+    width: 40%;
+    justify-content: space-between;
+    padding-left: 40px;
+    border-left: 1px solid  #F9C387;
+  }
+
+  &.last{
+    padding-left: 40px;
+    justify-content: center;
+    align-items: center;
+    border-left : 'none';
+  }
+  &.A2{
+    border-left: 1px solid  #F9C387;
+  }
+  &.A3{
+    border-left: 1px solid  #F9C387;
   }
 `;
 
@@ -360,13 +434,17 @@ const Circle = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #F2F2F2;
-  color: #000000;
+  background-color: #F98C16;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
-  border: 1px #E3E3E3;
+  border: #F98C16;
+  font-size: 22px;
+  text-align: center;
+  line-height: 40px; // 요소의 높이와 동일하게 설정
+  box-sizing: border-box; // padding과 border를 포함하여 박스 크기를 계산
 `;
 
 const TextBox = styled.div`
@@ -404,11 +482,14 @@ const CalenderBox = styled.div`
   font-weight: 600;
   margin: 10px;
   display: flex;
+  align-items: center;
+  /* padding-left: 17px; */
+  /* padding-top: 30px; */
 `
 
 const Sleep = styled.div`
   display: flex;
-  width: 600px;
+  width: 90%;
   height: 30px;
   font-size: 16px;
   font-weight: 600;
@@ -421,6 +502,8 @@ const SleepTime= styled.div`
   height: 30px;
   margin-right: 40px;
   margin-left: 10px;
+  /* justify-content: center; */
+  align-items: center;
 `
 
 const Footer = styled.div`
@@ -430,4 +513,9 @@ const Footer = styled.div`
     background-size: contain; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
+`
+
+const SunImg = styled.img`
+  width: 30px;
+  margin-right: 15px;
 `

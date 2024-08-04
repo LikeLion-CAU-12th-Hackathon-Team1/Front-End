@@ -2,12 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import superLogo from '../../assets/img/super.png';
 import workvalley from '../../assets/img/workvalley.svg';
-import HomeBottomImg from "../../assets/img/HomeBottomImg.svg";
+import HomeBottomImg from "../../assets/img/NewG49.svg";
+import OrangeLogo from "../../assets/img/OrangeLogo.svg";
+import HomeBT2 from '../../assets/img/Frame.svg';
 
 const HomeBottom = () => {
   return (
     <Wrapper>
-      <Title>~~~~를 통해<br/>무너진 일과 쉼의 균형을 잡아봐요!</Title>
+      <Title src={HomeBT2}/>
       <StyledImg src={HomeBottomImg} alt='강원도'/>
     </Wrapper>
     
@@ -22,20 +24,20 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center; /*역방향(가로)의 중심 */
     width : 1440px;
-    height: 659px; 
+    height: 650px; 
     background: linear-gradient(#FFFFFF, #FFFAF0);
 `
 
-const Title = styled.div`
-  font-size: 24px;
-  font-weight: 800;
-  text-align: center;
-  white-space: pre-wrap;
-  margin-bottom: 50px;
+
+const Title = styled.img`
+   width: 360px;
+   height: 82px;
+   z-index: 5;
+   margin-bottom: 30px;
 `
 
 const StyledImg = styled.img`
     width: 812px;
-    height: 304px;
+    height: 440px;
     border-radius: 10px;
 `
