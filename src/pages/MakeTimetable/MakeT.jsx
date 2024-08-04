@@ -6,8 +6,8 @@ import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import TimePicCom from '../../component/TimePicCom';
 import CalenderCom from '../../component/CalenderCom';
-import { useRecoilState } from 'recoil';
-import { answersAtom, endDateAtom, siggAtom, sleepTimeAtom, startDateAtom, wakeTimeAtom } from '../../recoil/makeTAtom';
+import { useRecoilState, useResetRecoilState } from 'recoil';
+import { answersAtom, endDateAtom, siggAtom, sleepTimeAtom, startDateAtom, wakeTimeAtom, workationIdAtom } from '../../recoil/makeTAtom';
 import AnswerButton from '../../component/AnswerButton';
 import CalenderResult from '../../component/CalenderResult';
 import dayjs from 'dayjs';
@@ -87,6 +87,14 @@ const MakeT = () => {
   const [sleepTime] = useRecoilState(sleepTimeAtom);//7번 질문ㅇ톰
   const [sigg, setSigg] =useRecoilState(siggAtom);
 
+  const resetAnswers = useResetRecoilState(answersAtom);
+  const resetStartDate = useResetRecoilState(startDateAtom);
+  const resetEndDate = useResetRecoilState(endDateAtom);
+  const resetWakeTime = useResetRecoilState(wakeTimeAtom);
+  const resetSleepTime = useResetRecoilState(sleepTimeAtom);
+  const resetSigg = useResetRecoilState(siggAtom);
+  const resetWorkationId = useResetRecoilState(workationIdAtom);
+
   //3~4번 단일선택지 눌렀을때 값 저장 및 단축선택
   const handleAnswerClick = (key, option) =>{
     setAnswers(prev => {
@@ -141,10 +149,19 @@ const MakeT = () => {
       }); //post요청으로 답변 보냄
       console.log('Response from server:', response.data);
       console.log("All answers:", dataTosend);
-    navigate("/timetable/alltask");
-      // 전송 성공 시 처리 로직 추가 (예: 페이지 이동 등) '.
+      // 리코일 초기화
+      resetAnswers(); // 수정수정: 상태 초기화 호출
+      resetStartDate();
+      resetEndDate();
+      resetWakeTime();
+      resetSleepTime();
+      resetSigg();
+      resetWorkationId();
+
+
+      navigate("/timetable/alltask");
     } catch (error) {
-      console.log(error.response.data.start_date)
+      console.log(error.response)
       if(error.response.data.start_date){
         alert("시작 종료 날짜를 다시 입력해주세요 - 과거 날짜는 입력 불가합니다.")
       }else if(error.response.data.non_field_errors){

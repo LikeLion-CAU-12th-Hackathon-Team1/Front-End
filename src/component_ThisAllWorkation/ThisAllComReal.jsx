@@ -6,6 +6,7 @@ import ThisAllBottom from './ThisAllBottom';
 import axios from 'axios';
 import { DateMap1, formatDateWithDay, getSiggMap, getWorkPurposeMap, getWorkStyleMap } from '../api/mappingData';
 import { getThisAll, getThisAllReal } from '../api/api_ThisAllTimeTable';
+import ThisAllBottomReal from './ThisAllBottomReal';
 
 const ThisAllComReal = ({workation_id}) => {
 
@@ -53,7 +54,7 @@ const ThisAllComReal = ({workation_id}) => {
         SiggText={SiggText} formattedStartDate={formattedStartDate}
         formattedEndDate={formattedEndDate} nightB={nightB} dayB={dayB} /> {/* 수정수정 */}
       <ThisAllMiddle setbuttonClick={setbuttonClick} nightB={nightB} dayB={dayB} dailyWorkationList={dailyWorkationList} setSelectedDailyWorkationId={setSelectedDailyWorkationId}/>
-      {click ? (<ThisAllBottom workation_id={workation_id} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
+      {click ? (<ThisAllBottomReal workation_id={workation_id} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
     </Container>
   )
 }

@@ -4,15 +4,19 @@ import ThisAllGraph from './ThisAllGraph'
 import ThisAllRetro from './ThisAllRetro'
 import ThisAllTodo from './ThisAllTodo'
 
-const ThisAllBottom = ({workation_id, daily_workation_id}) => {
+const ThisAllBottomReal = ({workation_id, daily_workation_id}) => {
     //어느 여행인지 워케이션아이디와 함께 버튼이 눌린 데일리워케이션아이디 하기
 
+    const handleEdit = ()=>{
+        console.log(daily_workation_id)
+    }
 
   return (
     <Container>
         <InnerBox>
             <TextBox>
                 <Text>일정</Text>
+                <EditBtn onClick = {handleEdit}><span>edit</span></EditBtn>
             </TextBox>
             <ContentBox>
                 <LeftBox>
@@ -26,7 +30,7 @@ const ThisAllBottom = ({workation_id, daily_workation_id}) => {
   )
 }
 
-export default ThisAllBottom
+export default ThisAllBottomReal
 
 const Container = styled.div`
 width: 100%;
@@ -70,3 +74,24 @@ const LeftBox = styled.div`
     flex-direction: column;
     justify-content: space-between;
 `
+
+const EditBtn = styled.div`
+  background-color: #FFE0AA;
+  border-radius: 5px;
+  width: 55px;
+  height: 32px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  span {
+    color: #FF831C;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    //padding-bottom: 6px;
+  }
+`;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { createBrowserHistory } from "history";
 
 const baseURL = `https://saengchaein.r-e.kr`;
 
@@ -66,13 +67,26 @@ export const postOneTable = async(daily_workation_id, body)=>{
 export const getDailyTodayId = async()=>{
 
     const token =localStorage.getItem('access');
+    const history = createBrowserHistory();
+    try{
+        const response= await axios.get(`${baseURL}/workation/today/`,{
+            headers: {Authorization: `Bearer ${token}`
+        }
+        });
+        console.log(response.data)
+        return response.data;
+    } catch(error){
+        alert("다시 로그인 해주세요")
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+        localStorage.removeItem("nickname");
+        localStorage.removeItem("email");
+        localStorage.removeItem("profile");
+        history.push("/"); // 로그인 페이지로 이동
+        window.location.reload(); // 페이지 새로고침
 
-    const response= await axios.get(`${baseURL}/workation/today/`,{
-        headers: {Authorization: `Bearer ${token}`
     }
-    });
-    console.log(response.data)
-    return response.data;
+    
 }
 
 // 그래프 받아오기
