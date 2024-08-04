@@ -46,11 +46,12 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
 
         // 그래프 데이터 불러오기
         const getGraphData = await getGraph(daily_workation_id);
-        //console.log(getGraphData.ratio);
+        //console.log(getGraphData.data);
         setGraphRatio(getGraphData.ratio);
 
         // 전체 하루 투두 불러오기
         const dailyTodoData = await getDailyTodo(daily_workation_id);
+        //console.log(dailyTodoData.data)
         setDailyAllTodo(dailyTodoData)
 
         

@@ -3,17 +3,21 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { TodoListArray as initialTodoListArray, isCheckedArray as initialIsCheckedArray} from './ForTimeTable/Data';
-import { postTimeTodo } from '../api/api_dailyTimeTable';
+import { delTodo, getTimeTodo, patchTodoCheck, patchTodoText, postTimeTodo } from '../api/api_dailyTimeTable';
 
 const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
 
     const [isTodoEdit, setIsTodoEdit] = useState(false); // save edit 여부 버튼 관리
     const [todoList, setTodoList] = useState(dailyAllTodo.map(item => item.description));
     const [isChecked, setIsChecked] = useState(dailyAllTodo.map(item => item.complete));
+    const [todoId, setTodoId] = useState(dailyAllTodo.map(item => item.task_id)); // todoId 저장용
+
 
     useEffect(() => {
       setTodoList(dailyAllTodo.map(item => item.description));
       setIsChecked(dailyAllTodo.map(item => item.complete));
+      setTodoId(dailyAllTodo.map(item => item.task_id))
+      console.log(todoId)
   }, [dailyAllTodo]);
 
     const handleTodoEdit = () => {
@@ -32,14 +36,12 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
           await postTimeTodo(getTimeId, body)
           setTodoList(prevList => [...prevList, body.description]);
           setIsChecked(prevChecked => [...prevChecked, false]);
+
+          const response = await getTimeTodo(getTimeId);
+          //setTaskIds(response.map(item => item.id));
     }
 
-    const handleDelBtn = (index) => {
-        const newList = todoList.filter((_, i) => i !== index);
-        setTodoList(newList);
-        const delCheckedArray = isChecked.filter((_, i) => i !== index); 
-        setIsChecked(delCheckedArray);
-    }
+   
 
     const handleTodoChange = (index, value) => {
         const newList = [...todoList];
@@ -47,15 +49,36 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
         setTodoList(newList);
       }
 
-    const handleSaveBtn = () => {
-        handleTodoEdit()
-        //console.log("백엔드 데이터 전송")
+    const handleSaveBtn = async (index) => {
+        // const body = { description : todoList[index]};
+        // await patchTodoText(todoId[index], body);
+        // handleTodoEdit()
     }
 
-    const handleCheckboxChange = (index) => {
+    const handleEnter = async (e, index) => {
+      if (e.key === 'Enter') {
+          const body = { description: todoList[index] };
+          await patchTodoText(todoId[index], body);
+          handleTodoEdit();
+      }
+  }
+
+
+    const handleCheckboxChange = async (index) => {
         const newCheckedItems = [...isChecked];
         newCheckedItems[index] = !newCheckedItems[index];
         setIsChecked(newCheckedItems);
+
+        const body = { complete : newCheckedItems[index]};
+        await patchTodoCheck(todoId[index], body);
+      }
+
+    const handleDelBtn = async (index) => {
+        const newList = todoList.filter((_, i) => i !== index);
+        setTodoList(newList);
+        const delCheckedArray = isChecked.filter((_, i) => i !== index); 
+        setIsChecked(delCheckedArray);
+        await delTodo(todoId[index]);
       }
 
   return (
@@ -74,8 +97,9 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
             <CheckboxContainer>
                 <Checkbox type="checkbox" checked={isChecked[index]} onChange={() => handleCheckboxChange(index)}/>
             </CheckboxContainer>
-            {isTodoEdit ? (<TodoInput maxLength="28" value = {text} onChange = {(e) => handleTodoChange(index, e.target.value)}
-                checked={isChecked[index]}/>)
+            {isTodoEdit ? (<TodoInput maxLength="28" value = {text}
+            onChange={(e) => handleTodoChange(index, e.target.value)}
+                onKeyDown={(e) => handleEnter(e, index)}/>)
             : (<TodoText checked={isChecked[index]} >{text}</TodoText>)}
               <DeleteBtn onClick={()=>handleDelBtn(index)}></DeleteBtn>
             </TodoItem>
