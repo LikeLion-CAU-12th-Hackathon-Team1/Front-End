@@ -140,13 +140,37 @@ const MakeT = () => {
         }
       }); //post요청으로 답변 보냄
       console.log('Response from server:', response.data);
+      console.log("All answers:", dataTosend);
+    navigate("/timetable/alltask");
       // 전송 성공 시 처리 로직 추가 (예: 페이지 이동 등) '.
     } catch (error) {
-      console.error('Error submitting answers:', error);
-      // 에러 처리 로직 추가 (예: 사용자에게 알림)
+      console.log(error.response.data.start_date)
+      if(error.response.data.start_date){
+        alert("시작 종료 날짜를 다시 입력해주세요 - 과거 날짜는 입력 불가합니다.")
+      }else if(error.response.data.non_field_errors){
+        alert("이미 등록된 일정이 있습니다")
+      }else if(error.response.data.sigg){
+        alert("지역 선택 해주세요")
+      }else if(error.response.data.start_date[0] === 'This field may not be null.'){
+        alert("시작 날짜 입력해주세요")
+      }else if(error.response.data.end_date[0] === 'This field may not be null.'){
+        alert("시작 날짜 입력해주세요")
+      }else if(error.response.data.work_purpose){
+        alert("워케이션 목적 입력해주세요")
+      }else if(error.response.data.work_style){
+        alert("업무 방식 입력해주세요")
+      }
+
+      // alert("다시 입력해주세요")
+      // if (error.response) {
+      //   console.error('에러 상태 코드:', error.response.status);
+      //   console.error('에러 응답 데이터:', error.response.data);
+      //   console.error('에러 응답 헤더:', error.response.headers);
+      // } else {
+      //   console.error('에러 메시지:', error.message);
+      // }
     }
-    console.log("All answers:", dataTosend);
-    navigate("/timetable/alltask");
+    
   }
 
   return (
@@ -212,7 +236,8 @@ const MakeT = () => {
       <Question key={index}>
         <TitleBox>
           <Circle>5</Circle>
-          <TextBox> 선호하는 업무 공간이 있나요? (복수선택) </TextBox>
+          <TextBox> 선호하는 업무 공간이 있나요?</TextBox>
+          <SubTextBox>(복수선택)</SubTextBox>
         </TitleBox>
         <ContentBox className='Multi'>
           {question.options.map((option, idx)=>(
@@ -231,7 +256,8 @@ const MakeT = () => {
           <Question key={index}>
             <TitleBox>
               <Circle>6</Circle>
-              <TextBox>쉼을 찾는 나만의 방법이 있나요? (복수선택)</TextBox>
+              <TextBox>쉼을 찾는 나만의 방법이 있나요?</TextBox>
+              <SubTextBox>(복수선택)</SubTextBox>
             </TitleBox>
             <ContentBox className='Multi'>
               {question.options.map((option, idx) => (

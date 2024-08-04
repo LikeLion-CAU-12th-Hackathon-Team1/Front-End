@@ -8,13 +8,14 @@ const textField = [
     { label: '강릉', value:1 },
     { label: '속초', value:2 },
     { label: '양양', value:3 },
-    { label: '춘천', value:4 }
+    { label: '춘천', value:4 },
+    { label: '선택해주세요', value: 5}
 ];
 
 const AutoComplete = () => {
 
     // useState로 관리
-    const [selectedText, setSelectedText] = useState(textField[1]);
+    const [selectedText, setSelectedText] = useState(textField[4]);
     //시군구 선택받기
     const [sigg, setSigg] = useRecoilState(siggAtom);
 
@@ -33,7 +34,7 @@ const AutoComplete = () => {
             <Autocomplete
                 id="combo-box-demo"
                 options={textField}
-                defaultValue={textField[1]}
+                defaultValue={textField[4]}
                 sx={{ width: 200 }}
                 onChange={handleAutoComplete}
                 renderInput={(params) => (
