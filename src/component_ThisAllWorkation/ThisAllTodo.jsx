@@ -145,6 +145,7 @@ const TodoListContainer = styled.div`
     height: 260px;
     width: 454px;
     margin-top: 13px;
+    overflow-y: auto;
 `
 
 const TodoItem = styled.div`

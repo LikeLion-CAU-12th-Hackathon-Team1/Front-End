@@ -7,11 +7,11 @@ import RetrospectCom from '../RetrospectCom';
 import { getDailyAllTable, getdailyRetro, getDailyTodayId, getDailyTodo, getGraph, getTimeTodo } from '../../api/api_dailyTimeTable'; // 수정수정
 import { formatDate} from '../../api/mappingData';
 
-const OneDayTimeTable = ({ todayId, todayDate }) => {
+const OneDayTimeTable = ({ todayId, todayDate, todayIndex }) => {
 
   const formatedDate = formatDate(todayDate)
   const date = formatedDate; // 추후 백 데이터
-  const dayCount = "1일차"; // 추후 백 데이터
+  const dayCount = `${todayIndex}일차`; // 추후 백 데이터
 
   const [isTimeEditOn, setIsTimeEditOn] = useState(false); // 시간표 추가시 생성될 좌측하단컴포넌트 상태관리
 

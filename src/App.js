@@ -38,6 +38,9 @@ function App() {
 
 useEffect(() => {
   isLogin();
+}, []); //수정수정
+
+useEffect(() => {
   if(isLoginValue){
     const checkTimer = async () => {
       const response = await timer();
@@ -52,7 +55,7 @@ useEffect(() => {
   return () => clearInterval(interval);
   }
   
-}, []);
+}, [isLoginValue, setAlertModal]);
 
   return (
     <>

@@ -26,12 +26,18 @@ const TimeTable = () => {
 
   const [todayId, setTodayId] = useState();
   const [todayDate, setTodayDate] = useState();
+  const [todayIndex, setTodayIndex] = useState();
+  const [sigg, setSigg] = useState();
+
   // 이 컴포넌트 마운트 될 때마다 실행
   useEffect(() => {
     const fetchData = async () => {
       const getTodayId = await getDailyTodayId();
       setTodayId(getTodayId.daily_workation_id);
       setTodayDate(getTodayId.date);
+      setTodayIndex(getTodayId.day);
+      setSigg(getTodayId.sigg);
+      console.log(getTodayId.day);
       };
       fetchData();
   }, [todayId]);
@@ -49,10 +55,10 @@ const TimeTable = () => {
       
       <RecoLoca src={recoLoca}/>
     </NavDom>
-    {todayId && <OneDayTimeTable todayId={todayId} todayDate={todayDate} />}
+    {todayId && <OneDayTimeTable todayId={todayId} todayDate={todayDate} todayIndex={todayIndex} />}
     </TopContainer>
     <BottomContainer>
-    <Location></Location>
+    <Location sigg={sigg}></Location>
     </BottomContainer>
     <Footer/>
     </Container>

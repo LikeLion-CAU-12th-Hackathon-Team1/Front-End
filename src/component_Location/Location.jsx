@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import WorkLoca from './WorkLoca';
 import RestLoca from './RestLoca';
+import { getSiggMap } from '../api/mappingData';
 
 
-const Location = () => {
+const Location = ({sigg}) => {
     //관리가 편하기 위해 Work,Rest 나눠서 상태관리
     const [WorkCategory, setWorkcategory] = useState(1);
     const [RestCategory, setRestcategory] = useState(5);
+    const [siggMapping, setSiggMapping] = useState('');
+    const [sigg_id, setSigg_id] = useState(sigg);
 
     const setButtonStyle = (isButtonOn) => ({
         backgroundColor: isButtonOn ? "#FF831C" : "#FED39D",
@@ -15,10 +18,17 @@ const Location = () => {
         color: isButtonOn ? "#FFFFFF" : "#FF6B00"
     });
 
+    useEffect(() => {
+        const mapping = getSiggMap(sigg);
+        setSiggMapping(mapping);
+        setSigg_id(sigg);
+    }, [sigg]);
+    
+
 
   return (
     <Wrapper>
-        <WrapperText>'지역명'의 이런 장소를 추천해요!</WrapperText>
+        <WrapperText>{`${siggMapping}의 이런 장소를 추천해요!`}</WrapperText>
         <WrapperIn className='work'>
             <Title>
                 Work 장소 추천
@@ -32,7 +42,7 @@ const Location = () => {
                 </TitleSelectBtn>
             </Title>
             <Content>
-                <WorkLoca WorkCategory={WorkCategory}/>
+                <WorkLoca WorkCategory={WorkCategory} sigg={sigg_id}/>
             </Content>
         </WrapperIn>
         <WrapperIn className='rest'>
@@ -52,7 +62,7 @@ const Location = () => {
                 </TitleSelectBtn>
             </Title>
             <Content>
-                <RestLoca RestCategory={RestCategory}/>
+                <RestLoca RestCategory={RestCategory} sigg={sigg_id}/>
             </Content>
             
         </WrapperIn>

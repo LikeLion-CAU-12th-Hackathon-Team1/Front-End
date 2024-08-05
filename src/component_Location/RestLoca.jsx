@@ -4,17 +4,19 @@ import Card from './Card';
 //import { locationArray } from '../test/dummydata';
 import { handleRest } from '../api/api_location';
 
-const RestLoca = ({RestCategory}) => {
+const RestLoca = ({RestCategory, sigg}) => {
     const [data, setData] = useState([]);
 
     useEffect(()=> {
-        const getData= async()=> {
-            const locations = await handleRest(RestCategory);
-            setData(locations);
-        };
-        getData();
-    }, [RestCategory]);
-
+        if(sigg){
+            const getData= async()=> {
+                const locations = await handleRest(RestCategory, sigg);
+                setData(locations);
+            };
+            getData();
+        }
+        
+    }, [RestCategory, sigg]);
 
   return (
     <ContentBox>
