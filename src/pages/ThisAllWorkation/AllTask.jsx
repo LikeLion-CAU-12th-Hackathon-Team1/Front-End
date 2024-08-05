@@ -85,6 +85,9 @@ const AllTask = () => {
     display: flex;
     flex-direction: column;
     align-items:center;
+    height: 19%;
+    justify-content: space-between;
+    cursor: pointer;
   `
 
   const AllBtn = styled.div`
@@ -94,6 +97,7 @@ const AllTask = () => {
     align-items:center;
     justify-content:center;
     color: #222222;
+    cursor: pointer;
   `
   const TodayBtn = styled.div`
     width: 188px;
@@ -102,6 +106,7 @@ const AllTask = () => {
     align-items:center;
     justify-content:center;
     color: #7A7A7A;
+    cursor: pointer;
   `
   const HistoryBtn = styled.div`
     width: 188px;

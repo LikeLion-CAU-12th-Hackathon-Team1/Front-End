@@ -41,6 +41,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     margin-right:1.3%;
+    cursor: default;
 `
 
 const DayCount = styled.div`
@@ -63,6 +64,7 @@ const DayCount = styled.div`
   font-family: 'AppleSDGothicNeoSB', sans-serif;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
 `;
 
@@ -77,4 +79,5 @@ align-items:center;
 justify-content: center;
 border: ${({ $clicked }) => ($clicked ? '1px solid #FF831C' : 'none')};
 border-radius: 4px;
+cursor: default;
 `

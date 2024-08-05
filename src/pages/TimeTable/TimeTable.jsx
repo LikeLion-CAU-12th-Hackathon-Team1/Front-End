@@ -42,9 +42,9 @@ const TimeTable = () => {
     <TopContainer>
     <NavDom>
       <BtnContainer>
-      <AllBtn onClick={goAllTimeTable}>전체일정</AllBtn>
-      <TodayBtn onClick={goTodayTimeTable}>오늘일정</TodayBtn>
-      <HistoryBtn onClick = {goLastTimeTable}>지난 워케이션</HistoryBtn>
+      <AllBtn onClick={goAllTimeTable}>전체 일정</AllBtn>
+      <TodayBtn onClick={goTodayTimeTable}>일일 일정</TodayBtn>
+      <HistoryBtn onClick = {goLastTimeTable}>모든 워케이션</HistoryBtn>
       </BtnContainer>
       
       <RecoLoca src={recoLoca}/>
@@ -103,6 +103,9 @@ const BtnContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
+  height: 19%;
+  justify-content: space-between;
+  cursor: default;
 `
 
 const RecoLoca = styled.img`
@@ -115,6 +118,7 @@ const AllBtn = styled.div`
   align-items:center;
   justify-content:center;
   color: #7A7A7A;
+  cursor: pointer;
 `
 const TodayBtn = styled.div`
   width: 188px;
@@ -123,6 +127,7 @@ const TodayBtn = styled.div`
   align-items:center;
   justify-content:center;
   color: #222222;
+  cursor: pointer;
 `
 const HistoryBtn = styled.div`
   width: 188px;
@@ -131,6 +136,7 @@ const HistoryBtn = styled.div`
   align-items:center;
   justify-content:center;
   color: #7A7A7A;
+  cursor: pointer;
 `
 
 const Footer = styled.div`

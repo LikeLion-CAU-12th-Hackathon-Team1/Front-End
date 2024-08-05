@@ -51,6 +51,7 @@ const TopBox = styled.div`
   display: flex;
   flex-direction: row;
   margin-left: 2%;
+  cursor: default;
 `
 const MiddleBox = styled.div`
   display: flex;
@@ -83,6 +84,7 @@ const Text = styled.div`
   font-size: 24px;
   /* font-weight: 600; */
   font-family: 'AppleSDGothicNeoSB', sans-serif;
+  cursor: default;
 
 `
 const TextBox = styled.div`
@@ -95,4 +97,5 @@ const TextBox = styled.div`
   border-radius: 4px;
   text-align: center;
   padding: 5px 15px;
+  cursor: default;
 `

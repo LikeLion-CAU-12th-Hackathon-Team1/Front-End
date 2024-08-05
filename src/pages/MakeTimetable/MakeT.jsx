@@ -199,7 +199,7 @@ const MakeT = () => {
   return (
       <Wrapper>
       <TitleW>
-      <Title>몇가지 질문을 통해<br/>맞춤형 시간표를 경험해 보세요!</Title>
+      <Title>몇 가지 질문으로 <br/>AI가 맞춤형 시간표를 제작해 드려요 !</Title>
       </TitleW>
       <QuestionW>
     <Question>
@@ -299,7 +299,6 @@ const MakeT = () => {
     <TitleBox>
         <Circle>7</Circle>
         <TextBox>기상, 취침시간이 어떻게 되나요?</TextBox>
-        <SubTextBox>(선택)</SubTextBox>
     </TitleBox>
     <ContentBox className='last'>
       <Sleep>
@@ -361,6 +360,7 @@ const Title = styled.div`
   margin-top: 60px;
   margin-left: 150px;
   font-family: 'AppleSDGothicNeoB', sans-serif;
+  cursor: default;
 `
 
 const QuestionW = styled.div`
@@ -445,17 +445,20 @@ const Circle = styled.div`
   text-align: center;
   line-height: 40px; // 요소의 높이와 동일하게 설정
   box-sizing: border-box; // padding과 border를 포함하여 박스 크기를 계산
+  cursor: default;
 `;
 
 const TextBox = styled.div`
   font-size: 22px;
   font-weight: bold;
+  cursor: default;
 `;
 
 const SubTextBox = styled.div`
   font-size: 18px;
   color: #777777;
   margin-left: 7px;
+  cursor: default;
 `;
 
 
@@ -474,6 +477,7 @@ const SubmitButton = styled.button`
     border: none;
     font-size: 24px;
     font-weight: 700;
+    cursor: pointer;
 `
 
 //2번 관련
@@ -485,6 +489,7 @@ const CalenderBox = styled.div`
   align-items: center;
   /* padding-left: 17px; */
   /* padding-top: 30px; */
+  cursor: pointer;
 `
 
 const Sleep = styled.div`

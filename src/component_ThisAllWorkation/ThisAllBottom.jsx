@@ -56,6 +56,7 @@ align-items:center;
     font-weight: 600;
     line-height: 28.8px;
     letter-spacing: -0.02em;
+    cursor: default;
 `
 const ContentBox = styled.div`
     display:flex;
