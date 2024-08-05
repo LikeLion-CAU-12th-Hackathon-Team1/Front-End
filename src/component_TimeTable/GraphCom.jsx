@@ -45,6 +45,7 @@ const SectionTitle = styled.div`
   color: #222222;
   box-sizing: border-box;
   //margin-bottom: 4px;
+  cursor: default;
 `;
 
 const SectionTitleContainer = styled.div`

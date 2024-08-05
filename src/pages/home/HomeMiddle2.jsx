@@ -40,6 +40,7 @@ const Title= styled.div`
   padding-bottom: 1%;
   letter-spacing: -0.02em;
   margin-top: 30px;
+  cursor: default;
 `
 
 const SemiTitle = styled.div`
@@ -53,6 +54,7 @@ const SemiTitle = styled.div`
   line-height: 22px;
   padding-bottom: 2%;
   margin-bottom: 20px;
+  cursor: default;
 `
 
 const StyledImg = styled.img`

@@ -67,6 +67,7 @@ const Title = styled.div`
   height: 88px;
   line-height: 43.8px;
   /* margin-bottom: 6px; */
+  cursor: default;
 `
 const LogoContainer = styled.div`
   width: 400px;
@@ -86,6 +87,7 @@ const SemiTitle = styled.p`
   color: #7a7874;
   letter-spacing: -0.08em;
   line-height: 30.4px;
+  cursor: default;
 `
 
 const Button = styled.button`

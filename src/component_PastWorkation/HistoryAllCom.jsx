@@ -118,6 +118,7 @@ const Time = styled.div`
     line-height: 21.6px;
     letter-spacing: -0.02em;
     color: #7A7A7A;
+    cursor: default;
     
 `
 const ContentBox = styled.div`

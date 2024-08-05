@@ -55,6 +55,7 @@ const TextBox = styled.div`
     letter-spacing: -2%;
     color: #222222;
     margin: 1.3% 2%;
+    cursor: default;
 `
 
 const TableBox = styled.div`
@@ -70,6 +71,7 @@ const TableBox = styled.div`
     //padding: 28px 14px 16px 14px;
     justify-content: flex-start;
     align-items: center;
+    cursor: pointer;
     
 `
 
@@ -78,6 +80,7 @@ const InnerTable = styled.div`
     height: 458px;
 /* border: 2px solid black; */
     /* margin: 10px ; */
+    cursor: default;
 `
 
 const Img = styled.img`

@@ -6,6 +6,7 @@ import GraphCom from '../GraphCom';
 import RetrospectCom from '../RetrospectCom';
 import { getDailyAllTable, getdailyRetro, getDailyTodayId, getDailyTodo, getGraph, getTimeTodo } from '../../api/api_dailyTimeTable'; // 수정수정
 import { formatDate} from '../../api/mappingData';
+import day from "../../assets/img/day2.svg";
 
 const OneDayTimeTable = ({ todayId, todayDate }) => {
 
@@ -90,6 +91,7 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
     <Container>
       <Header>
         <DateContainer>
+          <DImg src={day} />
           <Date>{date}</Date>
           <DayCount>{dayCount}</DayCount>
         </DateContainer>
@@ -165,26 +167,32 @@ const Header = styled.div`
 const DateContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 256px;
+  width: 45%;
   height: 32px;
   gap: 20px;
   box-sizing: border-box;
+  align-items: center;
 `;
 
+const DImg = styled.img`
+  width: 40px;
+`
 const Date = styled.div`
-  font-weight: 700;
-  font-size: 26px;
+  font-family: 'AppleSDGothicNeoB', sans-serif; //오늘일정 글씨체
+  /* font-weight: 700; */
+  font-size: 28px;
   line-height: 26px;
   letter-spacing: -0.07em;
   color: #222222;
-  width: 174px;
-  height: 19px;
+  /* width: 90%; */
+  /* height: 19px; */
   box-sizing: border-box;
+  cursor: default;
 `;
 
 const DayCount = styled.div`
   display: inline-block;
-  width: 67px;
+  /* width: 20%; */
   height: 32px;
   background-color: #fed39d;
   border-radius: 4px;
@@ -197,6 +205,7 @@ const DayCount = styled.div`
   line-height: 24px;
   letter-spacing: -0.02em;
   color: #ff6b00;
+  cursor: default;
 `;
 
 const IndexContainer = styled.div`
@@ -206,6 +215,7 @@ const IndexContainer = styled.div`
   height: 30px;
   box-sizing: border-box;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const InnerIndexContainer = styled.div`
@@ -236,14 +246,17 @@ const IndexBox2 = styled.div`
 `;
 
 const IndexText = styled.div`
-  font-weight: 500;
+  /* font-weight: 500; */
   font-size: 20px;
   line-height: 26.4px;
   color: #000000;
   box-sizing: border-box;
   letter-spacing: -0.02em;
-  width: 46px;
+  /* width: 46px; */
   height: 15px;
+  font-family: 'AppleSDGothicNeoB', sans-serif;
+  margin-top: 3px;
+  cursor: default;
 `;
 
 const ContentContainer = styled.div`

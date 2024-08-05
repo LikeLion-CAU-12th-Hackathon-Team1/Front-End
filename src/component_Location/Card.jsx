@@ -72,17 +72,21 @@ const Overlay = styled.div`
 `
 const Title = styled.div`
   z-index: 2;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 25px;
+  /* font-weight: 700; */
   color: white;
   max-width:90%;
+  font-family: 'AppleSDGothicNeoSB', sans-serif;
+  cursor: default;
 `
 const Report = styled.div`
   z-index: 2;
   font-size: 20px;
-  font-weight: 600;
+  /* font-weight: 600; */
   color: white;
   margin: 5%;
+  font-family: 'AppleSDGothicNeoL', sans-serif;
+  cursor: default;
 `
 const TitleBox = styled.div`
 display: flex;
@@ -95,4 +99,5 @@ const Pin = styled.div`
   width: 24px;
   height: 24px;
   background-size: cover;
+  cursor: pointer;
 `

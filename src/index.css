@@ -40,7 +40,19 @@ code {
 }
 @font-face {
   font-family: 'AppleSDGothicNeoSB';
-  src: url('./assets/fonts/AppleSDGothicNeoEB.ttf') format('truetype');
+  src: url('./assets/fonts/AppleSDGothicNeoSB.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeoL';
+  src: url('./assets/fonts/AppleSDGothicNeoL.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeoT';
+  src: url('./assets/fonts/AppleSDGothicNeoT.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

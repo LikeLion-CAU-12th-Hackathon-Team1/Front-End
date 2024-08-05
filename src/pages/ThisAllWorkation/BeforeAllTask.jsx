@@ -8,9 +8,9 @@ const BeforeAllTask = () => {
       <TopContainer>
       <NavDom>
         <BtnContainer>
-        <AllBtn onClick={goAllTimeTable}>전체일정</AllBtn>
-        <TodayBtn onClick={goTodayTimeTable}>오늘일정</TodayBtn>
-        <HistoryBtn onClick = {goLastTimeTable}>지난 워케이션</HistoryBtn>
+        <AllBtn onClick={goAllTimeTable}>전체 일정</AllBtn>
+        <TodayBtn onClick={goTodayTimeTable}>일일 일정</TodayBtn>
+        <HistoryBtn onClick = {goLastTimeTable}>모든 워케이션</HistoryBtn>
         </BtnContainer>
       </NavDom>
       {/* 해당 부분에 에러메세지 캐치해서 띄우기 .. */}

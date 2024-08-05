@@ -61,6 +61,7 @@ const SectionTitleTodo = styled.div`
   box-sizing: border-box;
   //margin-bottom: 4px;
   margin-left: -12%;
+  cursor: default;
 `;
 
 const AddBtn = styled.div`
@@ -152,6 +153,8 @@ const TodoItem = styled.div`
   align-items: center;
   height: 32px;
   margin-bottom: 10px;
+  font-family: 'AppleSDGothicNeoB', sans-serif;
+  /* font-size: 20px; */
 `;
 
 const Checkbox = 
@@ -207,6 +210,7 @@ const SectionTitleContainer = styled.div`
 `
 const TodoDes = styled.div`
   margin-left: 10px;
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
+  cursor: default;
 `;
