@@ -26,7 +26,7 @@ const ThisAllGraph = ({daily_workation_id}) => {
       <>
       <SectionGraph>
           <SectionTitleContainer>
-              <SectionTitle>Work-life Balance</SectionTitle>
+              <SectionTitle>Work-Rest Balance</SectionTitle>
           </SectionTitleContainer>
           <BalanceGraphWork>
               <BalanceGraphRest width={`${ratio}%`} />

@@ -33,11 +33,14 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
           body = {
             description : "새로운 Todo를 입력해주세요!!"
           }
-          await postTimeTodo(getTimeId, body)
-          setTodoList(prevList => [...prevList, body.description]);
-          setIsChecked(prevChecked => [...prevChecked, false]);
-
-          const response = await getTimeTodo(getTimeId);
+          const isError = await postTimeTodo(getTimeId, body)
+          if(isError === 'Not Found'){
+            alert("시간블록 선택 후 일정 입력해주세요")
+          } else{
+            setTodoList(prevList => [...prevList, body.description]);
+            setIsChecked(prevChecked => [...prevChecked, false]);
+            const response = await getTimeTodo(getTimeId);
+          }
           //setTaskIds(response.map(item => item.id));
     }
 

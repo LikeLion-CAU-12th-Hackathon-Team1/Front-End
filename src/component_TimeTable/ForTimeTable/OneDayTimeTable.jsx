@@ -8,11 +8,11 @@ import { getDailyAllTable, getdailyRetro, getDailyTodayId, getDailyTodo, getGrap
 import { formatDate} from '../../api/mappingData';
 import day from "../../assets/img/day2.svg";
 
-const OneDayTimeTable = ({ todayId, todayDate }) => {
+const OneDayTimeTable = ({ todayId, todayDate, todayIndex }) => {
 
   const formatedDate = formatDate(todayDate)
   const date = formatedDate; // 추후 백 데이터
-  const dayCount = "1일차"; // 추후 백 데이터
+  const dayCount = `${todayIndex}일차`; // 추후 백 데이터
 
   const [isTimeEditOn, setIsTimeEditOn] = useState(false); // 시간표 추가시 생성될 좌측하단컴포넌트 상태관리
 

@@ -57,7 +57,7 @@ export const postOneTable = async(daily_workation_id, body)=>{
         //console.log(response.data)
         return response.data;
     } catch (error) {
-        console.error('에러발생', error)
+        //console.error('에러발생', error)
         alert("중복시간 입력하실 수 없습니다")
     }
     
@@ -124,7 +124,7 @@ export const getTimeTodo = async(time_workation_id)=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    console.log(response.data)
+    //console.log(response.data)
     return response.data;
 }
 
@@ -151,10 +151,10 @@ export const postTimeTodo = async(time_workation_id, body)=> {
             headers: {Authorization: `Bearer ${token}`
         }
         });
-        console.log(response.data)
+        //console.log(response.data)
         return response.data;
     }catch(error){
-        alert("시간블록을 선택한 후 일정 입력해주세요")
+        return error.response.statusText
     }
     
 }
@@ -194,6 +194,6 @@ export const delTodo = async(task_id)=> {
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    console.log(response.data)
+    //console.log(response.data)
     return response.data;
 }
