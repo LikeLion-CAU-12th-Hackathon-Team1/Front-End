@@ -48,7 +48,6 @@ const Title = styled.div`
   margin-top: -15px;
   margin-bottom: 3%;
   font-family: 'AppleSDGothicNeoEB', sans-serif;
-  cursor: default;
 `
 const InsideWrapper = styled.div`
   display: flex;
@@ -92,7 +91,7 @@ const InText = styled.p`
   justify-content: center;
   padding: 12px 35px;
   margin :0 3%;
-  cursor: default;
+  
 `
 
 // const Content =styled.p`

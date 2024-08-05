@@ -71,6 +71,17 @@ const TimeTable = () => {
     );
   }
 
+  const smoothScrollTo = (y)=>{
+    window.scrollTo({
+      top:y,
+      left:0,
+      behavior:'smooth'
+    });
+  }
+
+  const goto = () => {
+    smoothScrollTo(790); //2번째랜딩페이지로 위치이동
+  }
   return (
     <Container>
     <TopContainer>
@@ -81,7 +92,7 @@ const TimeTable = () => {
       <HistoryBtn onClick = {goLastTimeTable}>모든 워케이션</HistoryBtn>
       </BtnContainer>
       
-      <RecoLoca src={recoLoca}/>
+      <RecoLoca src={recoLoca} onClick={goto}/>
     </NavDom>
     {todayId && <OneDayTimeTable todayId={todayId} todayDate={todayDate} todayIndex={todayIndex} />}
     </TopContainer>
@@ -144,6 +155,7 @@ const BtnContainer = styled.div`
 
 const RecoLoca = styled.img`
 width: 188px;
+cursor: pointer;
 `
 const AllBtn = styled.div`
   width: 188px;
