@@ -60,12 +60,18 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
 
     const handleEnter = async (e, index) => {
       if (e.key === 'Enter') {
+        const newTodoList = [...todoList];
+        newTodoList[index] = e.target.value;
+        setTodoList(newTodoList);
+
           const body = { description: todoList[index] };
-          await patchTodoText(todoId[index], body);
           handleTodoEdit();
+          if(todoId[index]){
+            await patchTodoText(todoId[index], body);
+          }
+          
       }
   }
-
 
     const handleCheckboxChange = async (index) => {
         const newCheckedItems = [...isChecked];
@@ -73,7 +79,10 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
         setIsChecked(newCheckedItems);
 
         const body = { complete : newCheckedItems[index]};
-        await patchTodoCheck(todoId[index], body);
+        if(todoId[index]){
+          await patchTodoCheck(todoId[index], body);
+        }
+        
       }
 
     const handleDelBtn = async (index) => {
@@ -81,7 +90,11 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
         setTodoList(newList);
         const delCheckedArray = isChecked.filter((_, i) => i !== index); 
         setIsChecked(delCheckedArray);
-        await delTodo(todoId[index]);
+        const newTodoId = todoId.filter((_, i) => i !== index);
+        setTodoId(newTodoId)
+        if(todoId[index]){
+          await delTodo(todoId[index]);
+        }
       }
 
   return (
