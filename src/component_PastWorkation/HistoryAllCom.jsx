@@ -149,6 +149,7 @@ const ContentBox = styled.div`
     max-height: 720px;
     overflow-y: auto;
     margin-bottom: 4%;
+    margin-top: -2%;
 `
 
 const NoWorkation = styled.div`

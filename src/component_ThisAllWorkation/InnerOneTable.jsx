@@ -41,7 +41,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     margin-right:1.3%;
-    margin-left: 0.2%;
+    margin-left: 0.3%;
     cursor: default;
 `
 
