@@ -41,23 +41,24 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     margin-right:1.3%;
+    margin-left: 0.2%;
     cursor: default;
 `
 
 const DayCount = styled.div`
   display: inline-block;
   width: 24%;
-  height: 32px;
+  /* height: 32px; */
   text-align: center;
   background-color: ${({ $clicked }) => ($clicked ? '#FF6B00' : '#FED39D')};;
   border-radius: 4px;
   border: 0.5px solid #FF831C;
-  padding: 5px 10px 4px 10px;
+  /* padding: 4px 10px ; */
   box-sizing: border-box;
   gap: 10px;
   /* font-weight: 550; */
   font-size: 20px;
-  line-height: 24px;
+  /* line-height: 24px; */
   letter-spacing: -0.02em;
   color: ${({ $clicked }) => ($clicked ? '#FFFFFF' : '#FF6B00')};
   margin-bottom: 3%;
