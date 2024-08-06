@@ -171,11 +171,16 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   useEffect(() => {
     dailyAllTable.forEach((item) => {
       const start = parseInt(item.start_time.substring(0, 2));
-      const end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
+      let end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
+    
+      if(item.end_time === '235959'){
+        end = Math.ceil(parseInt(item.end_time.substring(0, 2)))+1;
+      }
+      
       if (item.sort === 1) { // work
         if (workTime >= start && workTime < end) {
           setIsWork(true);
-        } else if(workTime >= start && workTime <= end && workTime == 23){
+        } else if(workTime >= start && workTime <= end && workTime == 24){
           setIsWork(true);
         }
       }
@@ -186,11 +191,16 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   useEffect(() => {
     dailyAllTable.forEach((item) => {
       const start = parseInt(item.start_time.substring(0, 2));
-      const end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
+      let end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
+      
+      if(item.end_time === '235959'){
+        end = Math.ceil(parseInt(item.end_time.substring(0, 2)))+1;
+      }
+
       if (item.sort === 2) { // rest
         if (restTime >= start && restTime < end) {
           setIsRest(true);
-        } else if(restTime >= start && restTime <= end && restTime == 23){
+        } else if(restTime >= start && restTime <= end && restTime == 24){
           setIsRest(true);
         }
       }
@@ -205,7 +215,8 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
       const end = parseInt(endWorkTime.split(":")[0]);
       if (workTime >= start && workTime < end) {
         setIsWork(true);
-      } else {
+      } else if(workTime >= start && workTime <= end && workTime == 24){
+        setIsWork(true);
         //setIsWork(false);
       }
     }
@@ -217,8 +228,9 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
       const end = parseInt(endRestTime.split(":")[0]);
       if (restTime >= start && restTime < end) {
         setIsRest(true);
-      } else {
+      } else if(restTime >= start && restTime <= end && restTime == 24){
         //setIsRest(false);
+        setIsRest(true);
       }
     }
   }, [startRestTime, endRestTime, restTime]);
