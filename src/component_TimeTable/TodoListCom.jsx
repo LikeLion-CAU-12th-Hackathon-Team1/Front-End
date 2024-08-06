@@ -44,8 +44,7 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
           //setTaskIds(response.map(item => item.id));
     }
 
-   
-
+  
     const handleTodoChange = (index, value) => {
         const newList = [...todoList];
         newList[index] = value;
@@ -72,6 +71,10 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
           
       }
   }
+
+  // useEffect(()=>{
+  //   handleEnter();
+  // },[todoList])
 
     const handleCheckboxChange = async (index) => {
         const newCheckedItems = [...isChecked];
