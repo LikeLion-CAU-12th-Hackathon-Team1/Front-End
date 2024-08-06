@@ -56,3 +56,9 @@ code {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'AppleSDGothicNeoH';
+  src: url('./assets/fonts/AppleSDGothicNeoH.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
