@@ -27,13 +27,17 @@ const TimeTable = () => {
 
   const [todayId, setTodayId] = useState(id);
   const [todayDate, setTodayDate] = useState();
+  const [todayIndex, setTodayIndex] = useState();
+  const [sigg, setSigg] = useState();
   // 이 컴포넌트 마운트 될 때마다 실행
   useEffect(() => {
     const fetchData = async () => {
       const getTodayId = await getdailyRetro(id);
       setTodayId(getTodayId.daily_workation_id);
       setTodayDate(getTodayId.date);
-      console.log(getTodayId.date)
+      setTodayIndex(getTodayId.day);
+      setSigg(getTodayId.sigg);
+      console.log(getTodayId);
       };
       fetchData();
   }, [todayId]);
@@ -44,17 +48,17 @@ const TimeTable = () => {
     <TopContainer>
     <NavDom>
       <BtnContainer>
-      <AllBtn onClick={goAllTimeTable}>전체일정</AllBtn>
-      <TodayBtn onClick={goTodayTimeTable}>오늘일정</TodayBtn>
-      <HistoryBtn onClick = {goLastTimeTable}>지난 워케이션</HistoryBtn>
+      <AllBtn onClick={goAllTimeTable}>전체 일정</AllBtn>
+      <TodayBtn onClick={goTodayTimeTable}>일일 일정</TodayBtn>
+      <HistoryBtn onClick = {goLastTimeTable}>모든 워케이션</HistoryBtn>
       </BtnContainer>
       
       <RecoLoca src={recoLoca}/>
     </NavDom>
-    {todayId && <OneDayTimeTable todayId={todayId} todayDate={todayDate} />}
+    {todayId && <OneDayTimeTable todayId={todayId} todayDate={todayDate} todayIndex={todayIndex} />}
     </TopContainer>
     <BottomContainer>
-    <Location></Location>
+    <Location sigg={sigg}></Location>
     </BottomContainer>
     <Footer/>
     </Container>
@@ -105,10 +109,14 @@ const BtnContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
+  height: 19%;
+  justify-content: space-between;
+
 `
 
 const RecoLoca = styled.img`
 width: 188px;
+cursor: pointer;
 `
 const AllBtn = styled.div`
   width: 188px;
@@ -117,6 +125,7 @@ const AllBtn = styled.div`
   align-items:center;
   justify-content:center;
   color: #7A7A7A;
+  cursor: pointer;
 `
 const TodayBtn = styled.div`
   width: 188px;
@@ -125,6 +134,7 @@ const TodayBtn = styled.div`
   align-items:center;
   justify-content:center;
   color: #222222;
+  cursor: pointer;
 `
 const HistoryBtn = styled.div`
   width: 188px;
@@ -133,6 +143,7 @@ const HistoryBtn = styled.div`
   align-items:center;
   justify-content:center;
   color: #7A7A7A;
+  cursor: pointer;
 `
 
 const Footer = styled.div`

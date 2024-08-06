@@ -33,11 +33,14 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
           body = {
             description : "새로운 Todo를 입력해주세요!!"
           }
-          await postTimeTodo(getTimeId, body)
-          setTodoList(prevList => [...prevList, body.description]);
-          setIsChecked(prevChecked => [...prevChecked, false]);
-
-          const response = await getTimeTodo(getTimeId);
+          const isError = await postTimeTodo(getTimeId, body)
+          if(isError === 'Not Found'){
+            alert("시간블록 선택 후 일정 입력해주세요")
+          } else{
+            setTodoList(prevList => [...prevList, body.description]);
+            setIsChecked(prevChecked => [...prevChecked, false]);
+            const response = await getTimeTodo(getTimeId);
+          }
           //setTaskIds(response.map(item => item.id));
     }
 
@@ -57,12 +60,18 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
 
     const handleEnter = async (e, index) => {
       if (e.key === 'Enter') {
+        const newTodoList = [...todoList];
+        newTodoList[index] = e.target.value;
+        setTodoList(newTodoList);
+
           const body = { description: todoList[index] };
-          await patchTodoText(todoId[index], body);
           handleTodoEdit();
+          if(todoId[index]){
+            await patchTodoText(todoId[index], body);
+          }
+          
       }
   }
-
 
     const handleCheckboxChange = async (index) => {
         const newCheckedItems = [...isChecked];
@@ -70,7 +79,10 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
         setIsChecked(newCheckedItems);
 
         const body = { complete : newCheckedItems[index]};
-        await patchTodoCheck(todoId[index], body);
+        if(todoId[index]){
+          await patchTodoCheck(todoId[index], body);
+        }
+        
       }
 
     const handleDelBtn = async (index) => {
@@ -78,7 +90,11 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
         setTodoList(newList);
         const delCheckedArray = isChecked.filter((_, i) => i !== index); 
         setIsChecked(delCheckedArray);
-        await delTodo(todoId[index]);
+        const newTodoId = todoId.filter((_, i) => i !== index);
+        setTodoId(newTodoId)
+        if(todoId[index]){
+          await delTodo(todoId[index]);
+        }
       }
 
   return (
@@ -122,6 +138,7 @@ const SectionTitleTodo = styled.div`
   color: #222222;
   box-sizing: border-box;
   //margin-bottom: 4px;
+  cursor: default;
 `;
 
 const AddBtn = styled.div`
@@ -214,6 +231,7 @@ const TodoItem = styled.div`
   align-items: center;
   height: 32px;
   margin-bottom: 10px;
+  font-family: 'AppleSDGothicNeoM', sans-serif;
 `;
 
 const Checkbox = 

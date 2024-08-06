@@ -4,6 +4,7 @@ import OneWorkation from './OneWorkation'
 import axios from 'axios';
 import { formatDateWithDay, getSiggMap } from '../api/mappingData';
 import { useNavigate } from 'react-router-dom';
+import No from "../assets/img/No.svg"
 
 const HistoryAllCom = () => {
     //백에서 갯수 받아온 만큼 배열 돌리기
@@ -49,6 +50,7 @@ const handleThisAll = async () => {
 
 useEffect(() => {
   handleThisAll();
+  console.log(data);
 }, []);
 
 
@@ -63,8 +65,10 @@ const handleOne = (workation_id)=> {
 
   return (
     <Container>
+        {data===null ? (
+        <>
         <TitleBox>
-            <Time>시간순</Time>
+        <Time>시간순</Time>
         </TitleBox>
         <ContentBox>
             {data.map((workation, index)=>{
@@ -85,8 +89,15 @@ const handleOne = (workation_id)=> {
                 />
                 )
             })}
-            
         </ContentBox>
+        </>) : 
+        (
+        <NoWorkation>
+            워케이션을 등록해 주세요.
+            <NoImg src = {No} />
+        </NoWorkation>
+        )}
+        
     </Container>
   )
 }
@@ -118,6 +129,7 @@ const Time = styled.div`
     line-height: 21.6px;
     letter-spacing: -0.02em;
     color: #7A7A7A;
+    cursor: default;
     
 `
 const ContentBox = styled.div`
@@ -126,4 +138,26 @@ const ContentBox = styled.div`
     max-height: 720px;
     overflow-y: auto;
     margin-bottom: 4%;
+`
+
+const NoWorkation = styled.div`
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 24px;
+font-weight: 700;
+color: #000000;
+text-align: center;
+background-color: #FFFAF0;
+flex-direction: column;
+cursor: default;
+margin-top: 29.5%;
+`;
+
+const NoImg = styled.img`
+  width: 7%;
+  margin-top: 20px;
+  cursor: pointer;
+  
 `

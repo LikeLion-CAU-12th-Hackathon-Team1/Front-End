@@ -66,6 +66,7 @@ box-sizing: border-box;
 //margin-bottom: 4px;
 /* font-family: 'AppleSDGothicNeoB', sans-serif; */
 margin-left: -7%;
+cursor: default;
 `;
 
 const TextArea = styled.textarea`
@@ -81,5 +82,6 @@ font-size: 20px;
 line-height: 28.8px;
 letter-spacing: -0.02em;
 background-color: #FFFAF0;
-font-family: 'AppleSDGothicNeoB', sans-serif;
+font-family: 'AppleSDGothicNeoM', sans-serif;
+cursor: default;
 `;

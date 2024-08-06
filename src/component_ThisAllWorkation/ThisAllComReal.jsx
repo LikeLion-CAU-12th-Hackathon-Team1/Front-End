@@ -115,9 +115,12 @@ color: #000000;
 text-align: center;
 background-color: #FFFAF0;
 flex-direction: column;
+cursor: default;
 `;
 
 const NoImg = styled.img`
   width: 7%;
   margin-top: 20px;
+  cursor: pointer;
+  
 `

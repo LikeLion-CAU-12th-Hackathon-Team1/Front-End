@@ -21,7 +21,7 @@ const ThisAllBottomReal = ({workation_id, daily_workation_id, selectedDailyWorka
         <InnerBox>
             <TextBox>
                 <Text> 세부 일정</Text>
-                <EditBtn src={Img12} onClick = {handleEdit} />
+                <EditBtn  onClick = {handleEdit}>edit</EditBtn>
             </TextBox>
             <ContentBox>
                 <LeftBox>
@@ -59,13 +59,14 @@ justify-content:space-between;
 margin: 1%;
 `
 const Text = styled.div`
-display:flex;
-flex-direction:row;
-align-items:center;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
     font-size: 24px;
     font-weight: 600;
     line-height: 28.8px;
     letter-spacing: -0.02em;
+    cursor: default;
 `
 const ContentBox = styled.div`
     display:flex;
@@ -83,10 +84,10 @@ const LeftBox = styled.div`
     justify-content: space-between;
 `
 
-const EditBtn = styled.img`
+const EditBtn = styled.button`
     width: 4%;
-    /* z-index: 10; */
-  /* background-color: #FFE0AA;
+    z-index: 10; 
+   background-color: #FFE0AA;
   border-radius: 5px;
   width: 55px;
   height: 32px;
@@ -97,13 +98,16 @@ const EditBtn = styled.img`
   cursor: pointer;
   padding: 0;
   margin: 0;
+  font-size: 20px;
+  border: none;
+  color : #FF831C;
   span {
     color: #FF831C;
     font-size: 20px;
     font-weight: 500;
     line-height: 1;
-    //padding-bottom: 6px; */
-
+    padding-bottom: 6px;}
+    cursor: pointer;
 `
 
 const DayCount = styled.div`

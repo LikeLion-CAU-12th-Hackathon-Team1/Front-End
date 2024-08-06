@@ -81,6 +81,7 @@ const TimeTable = styled.div`
   flex-direction: column;
   width: 480px;
   height: 576px;
+  cursor: default;
 `
 const TimeEditOff = styled.div`
   display: flex;

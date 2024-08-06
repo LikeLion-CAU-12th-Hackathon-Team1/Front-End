@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import WorkLoca from './WorkLoca';
 import RestLoca from './RestLoca';
+import { getSiggMap } from '../api/mappingData';
 
 
-const Location = () => {
+const Location = ({sigg}) => {
     //관리가 편하기 위해 Work,Rest 나눠서 상태관리
     const [WorkCategory, setWorkcategory] = useState(1);
     const [RestCategory, setRestcategory] = useState(5);
+    const [siggMapping, setSiggMapping] = useState('');
+    const [sigg_id, setSigg_id] = useState(sigg);
 
     const setButtonStyle = (isButtonOn) => ({
         backgroundColor: isButtonOn ? "#FF831C" : "#FED39D",
@@ -15,10 +18,17 @@ const Location = () => {
         color: isButtonOn ? "#FFFFFF" : "#FF6B00"
     });
 
+    useEffect(() => {
+        const mapping = getSiggMap(sigg);
+        setSiggMapping(mapping);
+        setSigg_id(sigg);
+    }, [sigg]);
+    
+
 
   return (
     <Wrapper>
-        <WrapperText>'지역명'의 이런 장소를 추천해요!</WrapperText>
+        <WrapperText>{`${siggMapping}의 이런 장소를 추천해요!`}</WrapperText>
         <WrapperIn className='work'>
             <Title>
                 Work 장소 추천
@@ -32,7 +42,7 @@ const Location = () => {
                 </TitleSelectBtn>
             </Title>
             <Content>
-                <WorkLoca WorkCategory={WorkCategory}/>
+                <WorkLoca WorkCategory={WorkCategory} sigg={sigg_id}/>
             </Content>
         </WrapperIn>
         <WrapperIn className='rest'>
@@ -52,7 +62,7 @@ const Location = () => {
                 </TitleSelectBtn>
             </Title>
             <Content>
-                <RestLoca RestCategory={RestCategory}/>
+                <RestLoca RestCategory={RestCategory} sigg={sigg_id}/>
             </Content>
             
         </WrapperIn>
@@ -66,25 +76,29 @@ export default Location
 
 const Wrapper = styled.div`
     width: 1228px;
-    height: 726px;
+    height: 700px;
     display: flex;
     flex-direction: column;
 `
 const WrapperText = styled.div`
     font-size: 30px;
     font-weight: 700;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
+    cursor: default;
 `
 const WrapperIn = styled.div`
     width:1228px;
     height: 270px;
     border: 10px solid 'black';
-    /* display: flex;
-    flex-direction: column; */
+
+    display: flex; 
+    /* align-items: center; */
+    flex-direction: column; 
+    justify-content: center;
 
     &.work {
         //background-color:  lightblue;
-        margin-bottom: 160px;
+        margin-bottom: 120px;
     }
 
     &.rest {
@@ -93,20 +107,23 @@ const WrapperIn = styled.div`
 `
 const Title = styled.div`
     width: 60%;
-    height: 32px;
+    height: 1%;
     display: flex;
-    font-size: 26px;
-    font-weight: 700;
+    font-size: 29px;
+    /* font-weight: 800; */
     margin-left: 10px;
+    align-items: center;
+    font-family: 'AppleSDGothicNeoEB', sans-serif;
+    cursor: default;
 `
 const Content = styled.div`
     width: 1258px;
-    height: 260px;
+    height: 200px;
     margin-top: 50px;
 `
 const TitleSelectBtn = styled.div`
-    width: 105px;
-    height: 32px;
+    /* width: 10%; */
+    /* height: 32px; */
     display: flex;
     border: 0.5px solid #FF6B00;
     border-radius: 4px;
@@ -115,6 +132,9 @@ const TitleSelectBtn = styled.div`
     align-items: center;
     justify-content: center;
     margin-left: 15px;
+    font-family: 'AppleSDGothicNeoM', sans-serif;
+    padding: 5px 12px 3px;
+    cursor: pointer;
 
     &.first {
         margin-left: 30px;

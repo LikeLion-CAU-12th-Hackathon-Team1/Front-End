@@ -26,7 +26,7 @@ const ThisAllGraph = ({daily_workation_id}) => {
       <>
       <SectionGraph>
           <SectionTitleContainer>
-              <SectionTitle>Work-life Balance</SectionTitle>
+              <SectionTitle>Work-Rest Balance</SectionTitle>
           </SectionTitleContainer>
           <BalanceGraphWork>
               <BalanceGraphRest width={`${ratio}%`} />
@@ -63,6 +63,7 @@ const ThisAllGraph = ({daily_workation_id}) => {
     box-sizing: border-box;
     //margin-bottom: 4px;
     margin-left: 1%;
+    cursor: default;
   `;
   
   const SectionTitleContainer = styled.div`

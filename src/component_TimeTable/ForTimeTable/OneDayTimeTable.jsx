@@ -6,12 +6,15 @@ import GraphCom from '../GraphCom';
 import RetrospectCom from '../RetrospectCom';
 import { getDailyAllTable, getdailyRetro, getDailyTodayId, getDailyTodo, getGraph, getTimeTodo } from '../../api/api_dailyTimeTable'; // 수정수정
 import { formatDate} from '../../api/mappingData';
+import day from "../../assets/img/day2.svg";
+import ii from "../../assets/img/iI.svg";
+import GOne from "../../assets/img/GOne.svg"
 
-const OneDayTimeTable = ({ todayId, todayDate }) => {
+const OneDayTimeTable = ({ todayId, todayDate, todayIndex }) => {
 
   const formatedDate = formatDate(todayDate)
   const date = formatedDate; // 추후 백 데이터
-  const dayCount = "1일차"; // 추후 백 데이터
+  const dayCount = `${todayIndex}일차`; // 추후 백 데이터
 
   const [isTimeEditOn, setIsTimeEditOn] = useState(false); // 시간표 추가시 생성될 좌측하단컴포넌트 상태관리
 
@@ -86,10 +89,19 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
     }
   };
 
+
+  //가이드창 띄우기
+  const [isOpen, setIsOpen] = useState(false);
+  const GuideModal1 = ()=> {
+    setIsOpen(!isOpen);
+  }
+
+
   return (
     <Container>
       <Header>
         <DateContainer>
+          <DImg src={day} />
           <Date>{date}</Date>
           <DayCount>{dayCount}</DayCount>
         </DateContainer>
@@ -103,6 +115,7 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
             <IndexBox2 />
             <IndexText>Rest</IndexText>
           </InnerIndexContainer>
+          <Icon src={ii} onClick={GuideModal1}/>
         </IndexContainer>
       </Header>
 
@@ -135,6 +148,13 @@ const OneDayTimeTable = ({ todayId, todayDate }) => {
           <RetrospectCom memo={memo} setMemo={setMemo} todayId={todayId}></RetrospectCom>
         </Sidebar>
       </ContentContainer>
+
+
+      {isOpen && (
+        <ModalOverlay onClick={GuideModal1}>
+          <GuideImg src={GOne} />
+        </ModalOverlay>
+      )}
     </Container>
   );
 };
@@ -165,26 +185,35 @@ const Header = styled.div`
 const DateContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 256px;
+  width: 45%;
   height: 32px;
   gap: 20px;
   box-sizing: border-box;
+  align-items: center;
 `;
 
+const DImg = styled.img`
+  width: 40px;
+`
 const Date = styled.div`
-  font-weight: 700;
-  font-size: 26px;
+  font-family: 'AppleSDGothicNeoB', sans-serif; //오늘일정 글씨체
+  /* font-weight: 700; */
+  font-size: 28px;
   line-height: 26px;
   letter-spacing: -0.07em;
   color: #222222;
-  width: 174px;
-  height: 19px;
+  /* width: 90%; */
+  /* height: 19px; */
   box-sizing: border-box;
+  cursor: default;
 `;
+const Icon = styled.img`
+  width: 25px;
+`
 
 const DayCount = styled.div`
   display: inline-block;
-  width: 67px;
+  /* width: 20%; */
   height: 32px;
   background-color: #fed39d;
   border-radius: 4px;
@@ -197,15 +226,17 @@ const DayCount = styled.div`
   line-height: 24px;
   letter-spacing: -0.02em;
   color: #ff6b00;
+  cursor: default;
 `;
 
 const IndexContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 180px;
+  width: 22%;
   height: 30px;
   box-sizing: border-box;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const InnerIndexContainer = styled.div`
@@ -236,14 +267,17 @@ const IndexBox2 = styled.div`
 `;
 
 const IndexText = styled.div`
-  font-weight: 500;
+  /* font-weight: 500; */
   font-size: 20px;
   line-height: 26.4px;
   color: #000000;
   box-sizing: border-box;
   letter-spacing: -0.02em;
-  width: 46px;
+  /* width: 46px; */
   height: 15px;
+  font-family: 'AppleSDGothicNeoB', sans-serif;
+  margin-top: 3px;
+  cursor: default;
 `;
 
 const ContentContainer = styled.div`
@@ -274,4 +308,35 @@ const TodoListEditMode = styled.div`
   justify-content: center;
   display: flex;
   flex-direction: column;
+`;
+// const ModalOverlay = styled.div`
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   background: rgba(105, 105, 105, 0.5);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 10;
+// `;
+const ModalOverlay = styled.div`
+  position: absolute; // fixed에서 absolute로 변경
+  top: 20%; // 상단에서의 위치를 적절히 조정
+  left: 50%;
+  transform: translate(-45%, -21%); // 위치를 조정하여 시간표 위로 이동
+  width: 100%; // 크기를 적절히 조정
+  height: 100%; // 크기를 적절히 조정
+  /* background: rgba(0, 0, 0, 0.5); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
+
+
+const GuideImg = styled.img`
+  max-width: 100%;
+  max-height: 100%;
 `;

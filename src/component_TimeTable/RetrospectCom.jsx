@@ -59,6 +59,7 @@ const SectionTitleRto = styled.div`
   color: #222222;
   box-sizing: border-box;
   //margin-bottom: 4px;
+  cursor: default;
 `;
 
 const SectionTitleContainer = styled.div`
@@ -132,4 +133,7 @@ const TextArea = styled.textarea`
   line-height: 28.8px;
   letter-spacing: -0.02em;
   background-color: #FFFAF0;
+  font-family: 'AppleSDGothicNeoM', sans-serif;
+  padding-top: 10px;
+  padding-left: 10px;
 `;

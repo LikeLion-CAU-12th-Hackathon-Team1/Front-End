@@ -12,7 +12,7 @@ const GraphCom = ({graphRatio}) => {
     <>
     <SectionGraph>
         <SectionTitleContainer>
-            <SectionTitle>Work-life Balance</SectionTitle>
+            <SectionTitle>Work-Rest Balance</SectionTitle>
         </SectionTitleContainer>
         <BalanceGraphWork>
             <BalanceGraphRest width={`${ratio}%`} />
@@ -45,6 +45,7 @@ const SectionTitle = styled.div`
   color: #222222;
   box-sizing: border-box;
   //margin-bottom: 4px;
+  cursor: default;
 `;
 
 const SectionTitleContainer = styled.div`

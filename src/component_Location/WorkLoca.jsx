@@ -4,18 +4,21 @@ import Card from './Card';
 //import { locationArray } from '../test/dummydata';
 import { handleWork } from '../api/api_location';
 
-const WorkLoca = ({WorkCategory}) => {
+const WorkLoca = ({WorkCategory, sigg}) => {
     const [data, setData] = useState([]);
 
     //카테고리상태가 변경될 때 마다 겟요청(useEffect)
 
     useEffect(()=> {
-        const getData= async()=> {
-            const locations = await handleWork(WorkCategory);
-            setData(locations);
-        };
-        getData();
-    }, [WorkCategory]);
+        if(sigg){
+            const getData= async()=> {
+                const locations = await handleWork(WorkCategory, sigg);
+                setData(locations);
+            };
+            getData();
+        }
+        
+    }, [WorkCategory, sigg]);
 
 
   return (

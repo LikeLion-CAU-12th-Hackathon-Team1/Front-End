@@ -57,7 +57,7 @@ export const postOneTable = async(daily_workation_id, body)=>{
         //console.log(response.data)
         return response.data;
     } catch (error) {
-        console.error('에러발생', error)
+        //console.error('에러발생', error)
         alert("중복시간 입력하실 수 없습니다")
     }
     
@@ -70,22 +70,30 @@ export const getDailyTodayId = async()=>{
     const history = createBrowserHistory();
     try{
         const response= await axios.get(`${baseURL}/workation/today/`,{
-            headers: {Authorization: `Bearer ${token}`
-        }
+            headers: {Authorization: `Bearer ${token}`}
         });
         console.log(response.data)
         return response.data;
-    } catch(error){
-        alert("다시 로그인 해주세요")
-        localStorage.removeItem("access");
-        localStorage.removeItem("refresh");
-        localStorage.removeItem("nickname");
-        localStorage.removeItem("email");
-        localStorage.removeItem("profile");
-        history.push("/"); // 로그인 페이지로 이동
-        window.location.reload(); // 페이지 새로고침
-
+    }  catch (error) {
+        if (!token) {
+            return { errorMessage: "다시 로그인 해주세요" };
+        } else if (error.response && error.response.status === 404 && error.response.data && error.response.data.error === "there is no schedule today") { // 오류
+            return { errorMessage: "오늘 일정이 없습니다" };
+        } else {
+            return { errorMessage: "예기치 않은 오류가 발생했습니다" };
+        }
     }
+        // alert("다시 로그인 해주세요")
+        // localStorage.removeItem("access");
+        // localStorage.removeItem("refresh");
+        // localStorage.removeItem("nickname");
+        // localStorage.removeItem("email");
+        // localStorage.removeItem("profile");
+        // history.push("/"); // 로그인 페이지로 이동
+        // window.location.reload(); // 페이지 새로고침
+
+
+    
     
 }
 
@@ -124,7 +132,7 @@ export const getTimeTodo = async(time_workation_id)=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    console.log(response.data)
+    //console.log(response.data)
     return response.data;
 }
 
@@ -151,10 +159,10 @@ export const postTimeTodo = async(time_workation_id, body)=> {
             headers: {Authorization: `Bearer ${token}`
         }
         });
-        console.log(response.data)
+        //console.log(response.data)
         return response.data;
     }catch(error){
-        alert("시간블록을 선택한 후 일정 입력해주세요")
+        return error.response.statusText
     }
     
 }
@@ -194,6 +202,6 @@ export const delTodo = async(task_id)=> {
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    console.log(response.data)
+    //console.log(response.data)
     return response.data;
 }

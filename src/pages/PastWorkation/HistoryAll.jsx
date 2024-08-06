@@ -76,6 +76,8 @@ const HistoryAll = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 19%;
+    justify-content: space-between;
   `
 
   const AllBtn = styled.div`
@@ -85,6 +87,7 @@ const HistoryAll = () => {
     align-items:center;
     justify-content:center;
     color: #7A7A7A;
+    cursor: pointer;
   `
 
   const TodayBtn = styled.div`
@@ -94,6 +97,7 @@ const HistoryAll = () => {
     align-items:center;
     justify-content:center;
     color: #7A7A7A;
+    cursor: pointer;
   
   `
   const HistoryBtn = styled.div`
@@ -103,4 +107,5 @@ const HistoryAll = () => {
     align-items:center;
     justify-content:center;
     color: #222222;
+    cursor: pointer;
   `
