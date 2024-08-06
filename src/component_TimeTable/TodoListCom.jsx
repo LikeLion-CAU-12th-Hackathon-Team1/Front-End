@@ -102,7 +102,7 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
     <SectionTodo>
             <SectionTitleContainer>
             <SectionTitleTodo>To-do list</SectionTitleTodo>
-            <AddBtn onClick={handleAddBtn}><span>+</span></AddBtn>
+            <AddBtn onClick={handleAddBtn}>+</AddBtn>
             {isTodoEdit ? (<SaveBtn onClick = {handleSaveBtn}><span>save</span></SaveBtn>):
             (<EditBtn onClick = {handleTodoEdit}><span>edit</span></EditBtn>)}
             </SectionTitleContainer>
@@ -148,21 +148,17 @@ const AddBtn = styled.div`
   height: 32px;
   box-sizing: border-box;
   display: flex;
+  flex-direction:column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 0;
   margin: 0;
   margin-right: 15px;
-  
-
-  span {
     color: #FF831C;
     font-size: 38px;
-    font-weight: 300;
-    line-height: 1;
-    padding-bottom: 6px;
-  }
+    font-weight: 400;
+    padding-top: 1%;
 `;
 
 const EditBtn = styled.div`
@@ -175,6 +171,7 @@ const EditBtn = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-weight: 400s;
   padding: 0;
   margin: 0;
   span {

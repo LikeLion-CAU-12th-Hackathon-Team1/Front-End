@@ -121,7 +121,7 @@ const SectionRetro = styled.div`
 `;
 
 const TextArea = styled.textarea`
-  width: 454px;
+  width: 440px;
   height: 125px;
   border-radius: 4px;
   border-color: #FFFAF0;

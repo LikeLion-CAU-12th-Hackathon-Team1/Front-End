@@ -56,8 +56,8 @@ flex-direction: row;
 
 const SectionTitleRto = styled.div`
 width: 396px;
-height: 25px;
-font-weight: 600;
+/* height: 25px; */
+font-weight: 700;
 font-size: 24px;
 line-height: 28.8px;
 letter-spacing: -0.02em;
@@ -71,11 +71,11 @@ cursor: default;
 
 const TextArea = styled.textarea`
 width: 454px;
-height: 125px;
+height: 145px;
 border-radius: 4px;
 border-color: #FFFAF0;
 resize: none;
-margin-top:10px;
+margin-top:5px;
 margin-left: 1px;
 font-weight: 400;
 font-size: 20px;

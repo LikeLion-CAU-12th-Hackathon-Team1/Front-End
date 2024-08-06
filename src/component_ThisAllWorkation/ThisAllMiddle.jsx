@@ -18,7 +18,7 @@ const ThisAllMiddle = ({setbuttonClick, dayB, dailyWorkationList, setSelectedDai
     }
   return (
     <Container>
-        <TextBox>모든일정<IImg src={ii} onClick={GuideModal2}/></TextBox>
+        <TextBox>모든 일정<IImg src={ii} onClick={GuideModal2}/></TextBox>
         <TableBox>
         {Array.from({ length: dayB }, (_, index) => {
           const dailyWorkation = dailyWorkationList[index];
