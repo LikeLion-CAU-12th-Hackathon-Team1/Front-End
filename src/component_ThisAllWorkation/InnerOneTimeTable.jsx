@@ -19,17 +19,23 @@ const InnerOneTimeTable = ({hour, dailyWorkationId }) => {
             const dailyAllTable = response.data;
             dailyAllTable.forEach((item) => {
                 const start = parseInt(item.start_time.substring(0, 2));
-                const end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
+                let end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
+
+                if(item.end_time === '235959'){
+                  end = Math.ceil(parseInt(item.end_time.substring(0, 2)))+1;
+                }
+
+
                 if (item.sort === 1) { // work
                     if (hour >= start && hour < end) {
                         setIsWork(true);
-                    } else if (hour >= start && hour <= end && hour === 23) {
+                    } else if (hour >= start && hour <= end && hour === 24) {
                         setIsWork(true);
                     }
                 } else if (item.sort === 2) { // rest
                     if (hour >= start && hour < end) {
                         setIsRest(true);
-                    } else if (hour >= start && hour <= end && hour === 23) {
+                    } else if (hour >= start && hour <= end && hour === 24) {
                         setIsRest(true);
                     }
                 }
