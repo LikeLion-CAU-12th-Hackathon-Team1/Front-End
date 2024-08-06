@@ -133,7 +133,7 @@ const TitleSelectBtn = styled.div`
     justify-content: center;
     margin-left: 15px;
     font-family: 'AppleSDGothicNeoM', sans-serif;
-    padding: 5px 12px 3px;
+    padding: 0.5% 12px 0;
     cursor: pointer;
 
     &.first {
