@@ -11,6 +11,7 @@ const HistoryAllCom = () => {
     const baseURL = `https://saengchaein.r-e.kr`;
     const [data, setData] = useState(null);
     const token = localStorage.getItem('access');
+    const [isNoting, setIsNoting] = useState(false);
 
     const navigate = useNavigate();
 
@@ -43,6 +44,15 @@ const handleThisAll = async () => {
           }
       });
       setData(response.data);
+      if(response.data.length === 0){
+        setIsNoting(true);
+        //console.log(isNoting);
+        //console.log(response.data)
+      }else{
+        //console.log(isNoting);
+        //console.log(response.data)
+      }
+      
   } catch (error) {
       console.error("Error fetching data:", error);
   }
@@ -50,7 +60,6 @@ const handleThisAll = async () => {
 
 useEffect(() => {
   handleThisAll();
-  console.log(data);
 }, []);
 
 
@@ -65,37 +74,38 @@ const handleOne = (workation_id)=> {
 
   return (
     <Container>
-        {data===null ? (
-        <>
-        <TitleBox>
-        <Time>시간순</Time>
-        </TitleBox>
-        <ContentBox>
-            {data.map((workation, index)=>{
-                 const { start_date, end_date, sigg, workation_id } = workation;
-                 const SiggText = getSiggMap(sigg);
-                 const formattedStartDate = formatDateWithDay(start_date);
-                 const formattedEndDate = formatDateWithDay(end_date);
-
-                return(
-                < OneWorkation
-                key={workation_id}
-                workation_id={workation_id} 
-                SiggText={SiggText}
-                formattedStartDate={formattedStartDate}
-                formattedEndDate={formattedEndDate}
-                handleOne={() => handleOne(workation_id)}
-                handleThisAll={handleThisAll}
-                />
-                )
-            })}
-        </ContentBox>
-        </>) : 
-        (
+        {isNoting ? (
         <NoWorkation>
             워케이션을 등록해 주세요.
             <NoImg src = {No} />
         </NoWorkation>
+        ) : 
+        (
+            <>
+            <TitleBox>
+            <Time>시간순</Time>
+            </TitleBox>
+            <ContentBox>
+                {data.map((workation, index)=>{
+                     const { start_date, end_date, sigg, workation_id } = workation;
+                     const SiggText = getSiggMap(sigg);
+                     const formattedStartDate = formatDateWithDay(start_date);
+                     const formattedEndDate = formatDateWithDay(end_date);
+    
+                    return(
+                    < OneWorkation
+                    key={workation_id}
+                    workation_id={workation_id} 
+                    SiggText={SiggText}
+                    formattedStartDate={formattedStartDate}
+                    formattedEndDate={formattedEndDate}
+                    handleOne={() => handleOne(workation_id)}
+                    handleThisAll={handleThisAll}
+                    />
+                    )
+                })}
+            </ContentBox>
+            </>
         )}
         
     </Container>
@@ -112,6 +122,7 @@ const Container = styled.div`
   width: 98%;
   background-color: #FFFAF0;
   box-sizing: border-box;
+  border-radius: 6px;
 `;
 
 const TitleBox = styled.div`
