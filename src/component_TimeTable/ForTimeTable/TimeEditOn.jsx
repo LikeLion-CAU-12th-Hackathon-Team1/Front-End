@@ -60,17 +60,17 @@ setEndWorkTime, setEndRestTime, todayId }) => {
         {startWorkTime ? (
           <>
             <IndexBox1></IndexBox1>
-            <TextBox><span>{startWorkTime}</span></TextBox>
+            <TextBox>{startWorkTime}</TextBox>
             <div>~</div>
-            <TextBox><span>{endWorkTime}</span></TextBox>
+            <TextBox>{endWorkTime}</TextBox>
           </>
         ) : (
           startRestTime && (
             <>
               <IndexBox2></IndexBox2>
-              <TextBox><span>{startRestTime}</span></TextBox>
+              <TextBox>{startRestTime}</TextBox>
               <div>~</div>
-              <TextBox><span>{endRestTime}</span></TextBox>
+              <TextBox>{endRestTime}</TextBox>
             </>
           )
         )}
@@ -110,16 +110,10 @@ const TextBox = styled.div`
   background-color: #FFFFFF;
   align-items: center;
   justify-content: center;
-  span {
-    display:flex;
-    color: #FF831C;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 1;
-    align-items:center;
-    justify-content:center;
-    //padding-bottom: 6px;
-  }
+  color: #FF831C;
+  font-size: 22px;
+  font-weight: 500;
+  //padding-bottom: 6px;
 `
 
 const SaveBtn = styled.div`
@@ -145,16 +139,18 @@ const SaveBtn = styled.div`
 
 const IndexBox1 = styled.div`
   background-color: #FFB336;
-  border-radius: 5px;
+  border-radius: 4px;
   width: 20px;
   height: 20px;
   box-sizing: border-box;
+  margin-right: 10px;
 `;
 
 const IndexBox2 = styled.div`
   background-color: #E3DCD0;
-  border-radius: 5px;
+  border-radius: 4px;
   width: 20px;
   height: 20px;
   box-sizing: border-box;
+  margin-right: 10px;
 `;

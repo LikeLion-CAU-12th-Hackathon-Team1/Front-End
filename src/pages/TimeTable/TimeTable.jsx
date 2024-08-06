@@ -190,7 +190,7 @@ const Footer = styled.div`
     height: 314px;
     background-image: url(${NewFooter});
     background-size: contain; /* 배경 이미지 크기 조정 */
-    background-position: center; /* 배경 이미지 위치 조정 */
+    background-position: bottom; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
 `
 const NoWorkation = styled.div`

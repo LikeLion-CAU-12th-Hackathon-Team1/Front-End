@@ -106,6 +106,8 @@ const Logo = styled.img`
     height: 48px;
     width: 197px;
     margin: 8px;
+    cursor: pointer;
+
 `
 
 const BtnDom = styled.div`
