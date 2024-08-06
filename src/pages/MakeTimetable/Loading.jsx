@@ -85,15 +85,15 @@ export default Loading
 
 const LoadingBox = styled.div`
   position: fixed;
-  top: 45px;
+  top: 20px;
   left: 0;
   width: 100vw;
-  height: 85vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: white; /* 배경 어둡게 처리 */
-  z-index: 9999;
+  z-index: 10;
   flex-direction: column;
 `
 const Text = styled.div`

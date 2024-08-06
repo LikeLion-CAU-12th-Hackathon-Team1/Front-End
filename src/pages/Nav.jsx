@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import superLogo from '../assets/img/super.png';
 import workvalley from '../assets/img/workvalleylogo.svg';
@@ -12,6 +12,21 @@ import MyPageModal from '../component/MyPageModal';
 export const Nav = () => {
     const navigate= useNavigate();
     const [selectedMenu, setSelectedMenu] = useState(null); // 선택된 메뉴 상태 추가
+
+    //언더바 추가(url에 기반해서)
+    const locations = useLocation();
+
+    useEffect(()=> {
+        if (locations.pathname.includes('/timetable')) {
+            setSelectedMenu('timetable');
+        } else if (locations.pathname === '/') {
+            setSelectedMenu('home');
+        } else if (locations.pathname.includes('/makeT')) {
+            setSelectedMenu('makeT');
+        } else {
+            setSelectedMenu(null);
+        }
+    }, [locations]);
 
     const gotoT = () => {
         setSelectedMenu('timetable'); // 선택된 메뉴 설정
@@ -39,11 +54,11 @@ export const Nav = () => {
     // 로그인 여부 판단하는 함수 및 isLoginAtom 관리 및 어떤 모달창 열건지
     const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
     const [myPageModal, setMyPageModal] = useRecoilState(isMyPageModalAtom); // 마이페이지 모달 상태
-   
+    
 
     // 로그인 상태 판단(액세스 토큰 존재여부)
     const isLogin = () => {
-        setSelectedMenu('login'); // 선택된 메뉴 설정
+        // setSelectedMenu('login'); // 선택된 메뉴 설정
         if(localStorage.getItem("access")){
             setIsLogin(true);
             //myPageModal 열기
@@ -65,7 +80,7 @@ export const Nav = () => {
         <BtnDom>
             <ButtonHis className="alarm_modal" onClick={maketoT} selected={selectedMenu === 'makeT'}>워케이션 등록</ButtonHis>
             <Button type="button" onClick={gotoT} selected={selectedMenu === 'timetable'}>시간표</Button>
-            <ButtonLogin $isLoginValue={isLoginValue} onClick={isLogin} selected={selectedMenu === 'login'}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
+            <ButtonLogin $isLoginValue={isLoginValue} onClick={isLogin} $myPageModal={myPageModal} selected={selectedMenu === 'login'}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
             {myPageModal && (
                 <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부
             )}
@@ -106,6 +121,7 @@ const Logo = styled.img`
     height: 48px;
     width: 197px;
     margin: 8px;
+    cursor: pointer;
 `
 
 const BtnDom = styled.div`
@@ -122,7 +138,7 @@ const BtnDom = styled.div`
 `
 const ButtonHis= styled.div`
     text-align: center;
-    border-bottom: ${props => props.selected ? '3px solid #969696' : 'none'};
+    border-bottom: ${props => props.selected ? '3px solid #222222' : 'none'};
     width: 140px;
     height: 43px;
     top: 11px;
@@ -134,7 +150,7 @@ const ButtonHis= styled.div`
 
 const Button= styled.div`
     text-align: center;
-    border-bottom: ${props => props.selected ? '3px solid #969696' : 'none'};
+    border-bottom: ${props => props.selected ? '3px solid #222222' : 'none'};
     width: 90px;
     height: 43px;
     top: 11px;
@@ -147,7 +163,8 @@ const Button= styled.div`
 const ButtonLogin = styled.button`
     text-align: center;
     background-color: ${props => props.$isLoginValue? 'white':' #FF831C'};
-    color :${props => props.$isLoginValue? 'black': 'white'};
+    /* color :${props => props.$isLoginValue? 'black': 'white'}; */
+    color: ${props => props.$isLoginValue ? (props.$myPageModal ? '#FF831C' : 'black') : 'white'};
     border-radius: 4px;
     width: ${props => props.$isLoginValue? '130px': '105px'};
     height: ${props => props.$isLoginValue? '37px': '42px'};
