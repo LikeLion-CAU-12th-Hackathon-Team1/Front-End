@@ -49,6 +49,14 @@ const Title = styled.div`
   margin-bottom: 3%;
   font-family: 'AppleSDGothicNeoEB', sans-serif;
   cursor: default;
+
+  @media (max-width: 360px) {
+    font-size: 25px;
+    margin-left: 10%;
+    margin-bottom: -35px;
+    margin-top: 20px;
+   
+  }
 `
 const InsideWrapper = styled.div`
   display: flex;
@@ -68,6 +76,15 @@ const Inside = styled.div`
   width: 880px;
   height: 279px;
   margin-top: 20px;
+  @media (max-width: 360px) {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 65%;
+    margin-left: 15%;
+    margin-top: 3%;
+   
+  }
+ 
 `
 
 const StyledImg = styled.img`
@@ -76,6 +93,10 @@ const StyledImg = styled.img`
   /* background-color: #FFF8E5; */
   border-color: #FFA837;
   margin-bottom: 2%;
+  @media (max-width: 360px) {
+   display: none;
+   
+  }
 `
 
 const InText = styled.p`
@@ -93,6 +114,7 @@ const InText = styled.p`
   padding: 12px 35px;
   margin :0 3%;
   cursor: default;
+  z-index: 10;
   
 `
 
@@ -104,3 +126,4 @@ const InText = styled.p`
 //   align-items: center;
 //   justify-content: center;
 // `
+

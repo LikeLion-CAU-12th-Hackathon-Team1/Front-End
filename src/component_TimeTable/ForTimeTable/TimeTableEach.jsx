@@ -326,8 +326,8 @@ const DeleteBtn = styled.div`
     font-weight: 800;
     line-height: 1;
     position: absolute;
-    padding-left: 2px;
-    padding-top: 1px;
+    /* padding-left: 2px;
+    padding-top: 1px; */
   }
 `
 const AddBtn = styled.div`
@@ -355,7 +355,7 @@ const AddBtn = styled.div`
     font-weight: 500;
     line-height: 1;
     position: absolute;
-    padding-top: 4px;
-    padding-left: 1px;
+    /* padding-top: 4px; */
+    /* padding-left: 1px; */
   }
 `

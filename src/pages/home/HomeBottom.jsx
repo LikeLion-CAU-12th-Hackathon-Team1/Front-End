@@ -34,6 +34,11 @@ const Title = styled.img`
    height: 82px;
    z-index: 5;
    margin-bottom: 30px;
+
+   @media (max-width: 360px) {
+    margin-left: 12%;
+    margin-top: 5%;
+  }
 `
 
 const StyledImg = styled.img`

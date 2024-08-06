@@ -41,6 +41,14 @@ const Title= styled.div`
   letter-spacing: -0.02em;
   margin-top: 30px;
   cursor: default;
+
+  @media (max-width: 360px) {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 65%;
+    margin-left: 10%;
+    margin-top: 8%
+  }
 `
 
 const SemiTitle = styled.div`
@@ -55,6 +63,15 @@ const SemiTitle = styled.div`
   padding-bottom: 2%;
   margin-bottom: 10px;
   cursor: default;
+
+  @media (max-width: 360px) {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 65%;
+    margin-left: 10%;
+    margin-top: -5%;
+    margin-bottom: -2%;
+  }
 `
 
 const StyledImg = styled.img`
@@ -66,4 +83,11 @@ const StyledImg = styled.img`
     &.two {
       margin-top: 20px;
     }
+
+    @media (max-width: 360px) {
+    margin-bottom: 20px;
+    height: 65%;
+    margin-left: 10%;
+    /* margin-top: -10%; */
+  }
 `

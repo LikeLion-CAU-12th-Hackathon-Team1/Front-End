@@ -46,6 +46,11 @@ const Wrapper = styled.div`
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
     margin-top: 62px;
+    @media (max-width: 360px) {
+    /* background-image: none; */
+    background-position: right center;
+    background-repeat: no-repeat;
+  }
 `
 
 const TitleContainer = styled.div`
@@ -58,6 +63,8 @@ const TitleContainer = styled.div`
   height: 278px;
 
   margin-top: 90px;
+
+
 `
 const Title = styled.div`
   font-family: 'AppleSDGothicNeoEB', sans-serif;
@@ -68,6 +75,15 @@ const Title = styled.div`
   line-height: 43.8px;
   /* margin-bottom: 6px; */
   cursor: default;
+
+  @media (max-width: 360px) {
+    font-size: 32px;
+    margin-left: 17%;
+    margin-bottom: -10px;
+    /* position: fixed;
+    left: -10%;
+    top:15% */
+  }
 `
 const LogoContainer = styled.div`
   width: 400px;
@@ -76,6 +92,9 @@ const LogoContainer = styled.div`
   margin-top: 118px;
 
   //border: 1px solid;
+  @media (max-width: 360px) {
+    display: none;
+  }
 `
 const Img = styled.img`
   
@@ -88,6 +107,13 @@ const SemiTitle = styled.p`
   letter-spacing: -0.08em;
   line-height: 30.4px;
   cursor: default;
+  @media (max-width: 360px) {
+    font-size: 15px;
+    margin-left: 17%;
+    /* position: fixed;
+    left: -10%;
+    top:22% */
+  }
 `
 
 const Button = styled.button`
@@ -103,4 +129,11 @@ const Button = styled.button`
   gap: 10px;
   margin-top: 13px;
   cursor: pointer;
+  @media (max-width: 360px) {
+    font-size: 18px;
+    margin-left: 17%;
+    /* position: fixed;
+    left: 0%;
+    top:37% */
+  }
 `

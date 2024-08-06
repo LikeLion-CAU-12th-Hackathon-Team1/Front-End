@@ -151,14 +151,16 @@ const AddBtn = styled.div`
   flex-direction:column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   cursor: pointer;
-  padding: 0;
+  /* padding: 0; */
   margin: 0;
   margin-right: 15px;
     color: #FF831C;
     font-size: 38px;
     font-weight: 400;
-    padding-top: 1%;
+    /* padding-top: -3%; */
+    padding-bottom: 2%;
 `;
 
 const EditBtn = styled.div`

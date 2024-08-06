@@ -116,12 +116,23 @@ const NavDom = styled.div`
     z-index: 10; /*항상최상단*/
 
     border-bottom: 1px solid #E9E4DB ;
+
+    @media (max-width: 360px) {
+        width: 360px;
+        justify-content: center;
+        left: 30%;
+  }
 `
 const Logo = styled.img`
     height: 48px;
     width: 197px;
     margin: 8px;
     cursor: pointer;
+    @media (max-width: 360px) {
+        width: 150px;
+        margin-right: -10px;
+        margin-left: 30px;
+  }
 
 `
 
@@ -134,6 +145,9 @@ const BtnDom = styled.div`
     font-weight: 600;
     width: 500px;
     height: 32px;
+
+    @media (max-width: 360px) {
+  }
     
 
 `
@@ -147,6 +161,11 @@ const ButtonHis= styled.div`
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
     cursor: pointer;
+
+    @media (max-width: 360px) {
+        font-size: 17px;
+        margin-right: -30px;
+  }
 `
 
 const Button= styled.div`
@@ -159,6 +178,10 @@ const Button= styled.div`
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
     cursor: pointer;
+    @media (max-width: 360px) {
+        font-size: 17px;
+        margin-right: -30px;
+  }
 `
 
 const ButtonLogin = styled.button`
@@ -180,4 +203,9 @@ const ButtonLogin = styled.button`
     margin-top: ${props => props.$isLoginValue? 'none':'-4px'};
     cursor: pointer;
     padding-bottom:${props => props.$isLoginValue? '6%': 'none'};
+
+    @media (max-width: 360px) {
+        font-size: 17px;
+        margin-right: -180px;
+  }
 `
