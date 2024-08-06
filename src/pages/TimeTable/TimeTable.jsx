@@ -118,14 +118,14 @@ const Container = styled.div`
 `
 
 const TopContainer = styled.div`
-  width: 1228px;
+  /* width: 1228px; */
   display: flex;
   flex-direction: row;
   margin-top: 66px;
 `
 
 const BottomContainer = styled.div`
-  width: 1228px;
+  /* width: 1228px; */
   display: flex;
   flex-direction: row;
   margin-top: 66px;
@@ -134,14 +134,14 @@ const BottomContainer = styled.div`
 `
 
 const NavDom = styled.div`
-display: flex;
-flex-direction: column;
-  width: 188px;
+  display: flex;
+  flex-direction: column;
+  /* width: 188px; */
   height: 730px; //오늘일정일때 사진 보이게하기
   font-size: 20px;
   font-weight: 700;
-align-items: center;
-justify-content:space-between;
+  align-items: center;
+  justify-content:space-between;
 `
 
 const BtnContainer = styled.div`
@@ -158,7 +158,7 @@ width: 188px;
 cursor: pointer;
 `
 const AllBtn = styled.div`
-  width: 188px;
+  /* width: 188px; */
   height: 40px;
   display: flex;
   align-items:center;
@@ -167,7 +167,7 @@ const AllBtn = styled.div`
   cursor: pointer;
 `
 const TodayBtn = styled.div`
-  width: 188px;
+  /* width: 188px; */
   height: 40px;
   display: flex;
   align-items:center;
@@ -176,7 +176,7 @@ const TodayBtn = styled.div`
   cursor: pointer;
 `
 const HistoryBtn = styled.div`
-  width: 188px;
+  /* width: 188px; */
   height: 40px;
   display: flex;
   align-items:center;
@@ -194,19 +194,19 @@ const Footer = styled.div`
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
 `
 const NoWorkation = styled.div`
-width:1228px;
-height: 900px;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 24px;
-font-weight: 700;
-color: #000000;
-text-align: center;
-background-color: #FFFAF0;
-flex-direction: column;
-cursor: default;
-/* margin-top: 5%; */
+  width:1228px;
+  height: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+  background-color: #FFFAF0;
+  flex-direction: column;
+  cursor: default;
+  /* margin-top: 5%; */
 `;
 
 const NoImg = styled.img`

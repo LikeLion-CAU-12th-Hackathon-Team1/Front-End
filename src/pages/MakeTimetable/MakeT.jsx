@@ -170,7 +170,8 @@ const MakeT = () => {
       navigate("/timetable/alltask");
     } catch (error) {
       console.log(error.response)
-      if (error.response && error.response.data) { // 여기!
+      if (error.response && error.response.data) { 
+        // const data = error.response.data;
         if (error.response.data.start_date[0] === "Start date must be later than today.") {
           alert("시작 종료 날짜를 다시 입력해주세요 - 과거 날짜는 입력 불가합니다.")
         }else if (error.response.data.end_date[0] === "Start date must be later than today.") {
