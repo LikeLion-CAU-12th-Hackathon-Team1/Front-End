@@ -277,9 +277,11 @@ const OneTimeTableRest = styled.div`
 `
 const TextBox = styled.div`
   width: 55px;
+  font-family: 'AppleSDGothicNeoSB', sans-serif;
+  //font-weight: 600;
   font-size: 20px;
   margin-right: 10px;
-  color: #FF6B00;
+  color: #FFAE6B;
 `
 
 const BtnContainer = styled.div`
@@ -308,10 +310,12 @@ const DeleteBtn = styled.div`
   &::before {
     content: '✕';
     color: #FFFFFF;
-    font-size: 18px;
+    font-size: 10px;
     font-weight: 800;
     line-height: 1;
     position: absolute;
+    padding-left: 2px;
+    padding-top: 1px;
   }
 `
 const AddBtn = styled.div`
@@ -326,6 +330,7 @@ const AddBtn = styled.div`
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s ease;
+  /* padding-top: 6%; */
 
   &:hover {
     opacity: 1;
@@ -338,5 +343,7 @@ const AddBtn = styled.div`
     font-weight: 500;
     line-height: 1;
     position: absolute;
+    padding-top: 4px;
+    padding-left: 1px;
   }
 `

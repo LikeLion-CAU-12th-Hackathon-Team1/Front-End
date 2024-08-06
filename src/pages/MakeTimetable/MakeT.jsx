@@ -169,17 +169,17 @@ const MakeT = () => {
 
       navigate("/timetable/alltask");
     } catch (error) {
-        if (error.response.data.start_date[0] === "Start date must be later than today.") {
+        if (error.response.data.start_date && error.response.data.start_date[0] === "Start date must be later than today.") {
           alert("시작 종료 날짜를 다시 입력해주세요 - 과거 날짜는 입력 불가합니다.")
-        }else if (error.response.data.end_date[0] === "Start date must be later than today.") {
+        }else if (error.response.data.end_date && error.response.data.end_date[0] === "Start date must be later than today.") {
           alert("시작 종료 날짜를 다시 입력해주세요 - 과거 날짜는 입력 불가합니다.")
-        }else if(error.response.data.start_date[0] === 'Start date overlaps with existing workation.'){
+        }else if(error.response.data.start_date && error.response.data.start_date[0] === 'Start date overlaps with existing workation.'){
           alert("이미 등록된 일정이 있습니다")
-        }else if(error.response.data.end_date[0] === 'Start date overlaps with existing workation.'){
+        }else if(error.response.data.end_date && error.response.data.end_date[0] === 'Start date overlaps with existing workation.'){
           alert("이미 등록된 일정이 있습니다")
         }else if (error.response.data.non_field_errors) {
           alert("이미 등록된 일정이 있습니다")
-        } else if (error.response.data.sigg[0] === 'This field may not be null.') {
+        } else if (error.response.data.sigg) {
           alert("지역 선택 해주세요")
         } else if (error.response.data.start_date && error.response.data.start_date[0] === 'This field may not be null.') {
           alert("시작 날짜 입력해주세요")

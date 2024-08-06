@@ -115,6 +115,7 @@ const Title = styled.div`
     align-items: center;
     font-family: 'AppleSDGothicNeoEB', sans-serif;
     cursor: default;
+    font-size: 30px;
 `
 const Content = styled.div`
     width: 1258px;
@@ -133,8 +134,9 @@ const TitleSelectBtn = styled.div`
     justify-content: center;
     margin-left: 15px;
     font-family: 'AppleSDGothicNeoM', sans-serif;
-    padding: 0.5% 12px 0;
+    padding: 0 12px 0.5%;
     cursor: pointer;
+    font-size: 25px;
 
     &.first {
         margin-left: 30px;
