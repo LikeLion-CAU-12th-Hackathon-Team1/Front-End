@@ -51,9 +51,9 @@ const SemiTitle = styled.div`
   text-align: center;
   letter-spacing: -0.02em;
   color: #646464;
-  line-height: 22px;
+  line-height: 25px;
   padding-bottom: 2%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   cursor: default;
 `
 
@@ -61,7 +61,7 @@ const StyledImg = styled.img`
     width: 812px;
     height: 221px;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
 
     &.two {
       margin-top: 20px;

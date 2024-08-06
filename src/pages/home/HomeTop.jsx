@@ -14,7 +14,7 @@ const HomeTop = () => {
   }
 
   const BtnClick = () => {
-    smoothScrollTo(680); //2번째랜딩페이지로 위치이동
+    smoothScrollTo(730); //2번째랜딩페이지로 위치이동
   }
   return (
     <Wrapper>

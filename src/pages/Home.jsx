@@ -4,7 +4,7 @@ import HomeTop from './home/HomeTop';
 import HomeMiddle1 from './home/HomeMiddle1';
 import HomeMiddle2 from './home/HomeMiddle2';
 import HomeBottom from './home/HomeBottom';
-import NewFooter from "../assets/img/NewFooter.svg";
+import NewFooter from "../assets/img/newnewFooter.svg";
 
 const Home = () => {
 
@@ -37,7 +37,7 @@ const HomeDom = styled.div`
   `
 const Footer = styled.div`
 width : 1440px;
-height: 314px;
+height: 300px;
 background-image: url(${NewFooter});
 background-size: contain; /* 배경 이미지 크기 조정 */
 background-position: bottom; /* 배경 이미지 위치 조정 */
