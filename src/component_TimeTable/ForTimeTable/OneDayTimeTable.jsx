@@ -170,6 +170,7 @@ const Container = styled.div`
   height: 730px;
   background-color: #fffaF0;
   box-sizing: border-box;
+  border-radius: 6px;
 `;
 
 const Header = styled.div`
