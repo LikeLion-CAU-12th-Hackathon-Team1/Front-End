@@ -62,7 +62,7 @@ const ImgC = styled.img`
 const ImgL = styled.img`
     width: 32px;
     height: 32px;
-    margin-left: -6%;
+    margin-left: -7.5%;
 `
 const TextBox = styled.div`
     font-size: 20px;

@@ -179,4 +179,5 @@ const ButtonLogin = styled.button`
     //border-bottom: 0.5px solid #969696; 
     margin-top: ${props => props.$isLoginValue? 'none':'-4px'};
     cursor: pointer;
+    padding-bottom:${props => props.$isLoginValue? '6%': 'none'};
 `

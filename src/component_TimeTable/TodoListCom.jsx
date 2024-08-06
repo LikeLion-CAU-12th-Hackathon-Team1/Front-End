@@ -171,7 +171,7 @@ const EditBtn = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-weight: 400s;
+  font-weight: 400;
   padding: 0;
   margin: 0;
   span {
