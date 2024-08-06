@@ -31,7 +31,7 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
     const handleAddBtn = async () => {
           let body;
           body = {
-            description : "새로운 Todo를 입력해주세요!!"
+            description : "Todo 작성 후 엔터를 눌러주세요!!"
           }
           const isError = await postTimeTodo(getTimeId, body)
           if(isError === 'Not Found'){

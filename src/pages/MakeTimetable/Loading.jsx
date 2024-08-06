@@ -85,15 +85,15 @@ export default Loading
 
 const LoadingBox = styled.div`
   position: fixed;
-  top: 45px;
+  top: 20px;
   left: 0;
   width: 100vw;
-  height: 85vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: white; /* 배경 어둡게 처리 */
-  z-index: 9999;
+  z-index: 10;
   flex-direction: column;
 `
 const Text = styled.div`
@@ -117,7 +117,7 @@ const Footer = styled.div`
     bottom: 30px;
     background-image: url(${NewFooter});
     background-size: contain; /* 배경 이미지 크기 조정 */
-    background-position: center; /* 배경 이미지 위치 조정 */
+    background-position: bottom; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
 `
 const NavDom = styled.div`

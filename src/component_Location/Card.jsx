@@ -96,8 +96,8 @@ margin: 5%;
 `
 
 const Pin = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   background-size: cover;
   cursor: pointer;
 `

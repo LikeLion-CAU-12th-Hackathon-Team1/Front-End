@@ -179,7 +179,7 @@ const MakeT = () => {
           alert("이미 등록된 일정이 있습니다")
         }else if(error.response.data.end_date[0] === 'Start date overlaps with existing workation.'){
           alert("이미 등록된 일정이 있습니다")
-        }else if (error.response.data.non_field_errors) {
+        }else if (error.response.data.non_field_errors[0] === 'There is workation uncompleted.') {
           alert("이미 등록된 일정이 있습니다")
         } else if (error.response.data.sigg) {
           alert("지역 선택 해주세요")
@@ -205,7 +205,7 @@ const MakeT = () => {
   return (
       <Wrapper>
       <TitleW>
-      <Title>몇 가지 질문으로 <br/>AI가 맞춤형 시간표를 제작해 드려요 !</Title>
+      <Title>몇 가지 질문으로 <br/>AI가 맞춤형 시간표를 제작해 드려요!</Title>
       </TitleW>
       <QuestionW>
     <Question>
@@ -522,7 +522,7 @@ const Footer = styled.div`
     height: 314px;
     background-image: url(${NewFooter});
     background-size: contain; /* 배경 이미지 크기 조정 */
-    background-position: center; /* 배경 이미지 위치 조정 */
+    background-position: bottom; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
 `
 
