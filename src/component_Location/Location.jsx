@@ -83,8 +83,9 @@ const Wrapper = styled.div`
 const WrapperText = styled.div`
     font-size: 30px;
     font-weight: 700;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     cursor: default;
+    letter-spacing: -2px;
 `
 const WrapperIn = styled.div`
     width:1228px;
@@ -98,7 +99,7 @@ const WrapperIn = styled.div`
 
     &.work {
         //background-color:  lightblue;
-        margin-bottom: 120px;
+        margin-bottom: 100px;
     }
 
     &.rest {
@@ -134,7 +135,7 @@ const TitleSelectBtn = styled.div`
     justify-content: center;
     margin-left: 15px;
     font-family: 'AppleSDGothicNeoM', sans-serif;
-    padding: 0 12px 0.5%;
+    padding: 0.2% 12px;
     cursor: pointer;
     font-size: 25px;
 
