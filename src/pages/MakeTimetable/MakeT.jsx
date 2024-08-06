@@ -169,8 +169,7 @@ const MakeT = () => {
 
       navigate("/timetable/alltask");
     } catch (error) {
-      console.log(error.response)
-      if (error.response && error.response.data) { // 여기!
+      console.log(error.response) // 여기!
         if (error.response.data.start_date[0] === "Start date must be later than today.") {
           alert("시작 종료 날짜를 다시 입력해주세요 - 과거 날짜는 입력 불가합니다.")
         }else if (error.response.data.end_date[0] === "Start date must be later than today.") {
@@ -179,21 +178,21 @@ const MakeT = () => {
           alert("이미 등록된 일정이 있습니다")
         }else if(error.response.data.end_date[0] === 'Start date overlaps with existing workation.'){
           alert("이미 등록된 일정이 있습니다")
-        }else if (error.response.data.non_field_errors[0] === 'There is workation uncompleted.') {
+        }else if (error.response.data.non_field_errors) {
           alert("이미 등록된 일정이 있습니다")
-        } else if (error.response.data.sigg) {
+        } else if (error.response.data.sigg[0] === 'This field may not be null.') {
           alert("지역 선택 해주세요")
         } else if (error.response.data.start_date && error.response.data.start_date[0] === 'This field may not be null.') {
           alert("시작 날짜 입력해주세요")
         } else if (error.response.data.end_date && error.response.data.end_date[0] === 'This field may not be null.') {
           alert("끝나는 날짜 입력해주세요")
-        } else if (error.response.data.work_purpose) {
+        } else if (error.response.data.work_purpose[0]) {
           alert("워케이션 목적 입력해주세요")
-        } else if (error.response.data.work_style) {
+        } else if (error.response.data.work_style[0]) {
           alert("업무 방식 입력해주세요")
-        } else {
+        } else if(error.response) {
           alert("다시 입력해주세요")
-        } 
+        
       }
       setLoading(false); // 여기!
     }
@@ -370,14 +369,15 @@ const Title = styled.div`
 `
 
 const QuestionW = styled.div`
-  width: 80%;
+  width: 79.65%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   padding: 30px 123px;
   border: 1px solid #E3E3E3;
-  border-radius: 5px;
+  border-top: none;
+  //border-radius: 5px;
   background-color: #F9F9F9;
 
 `
