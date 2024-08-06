@@ -30,6 +30,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin-top: 40px; /*네브바와 겹치지않게 콘텐츠 구역 */
 
     background-image: url(${Side1});

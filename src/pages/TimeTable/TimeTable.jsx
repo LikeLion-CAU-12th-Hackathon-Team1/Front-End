@@ -194,7 +194,8 @@ const Footer = styled.div`
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
 `
 const NoWorkation = styled.div`
-  width:1228px;
+  width:1000px;
+  margin-left: 20px;
   height: 900px;
   display: flex;
   align-items: center;

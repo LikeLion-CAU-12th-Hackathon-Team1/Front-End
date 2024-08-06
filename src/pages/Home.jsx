@@ -29,6 +29,10 @@ const HomeDom = styled.div`
   justify-content: center;
   width: 90vw; /* 전체 너비로 설정 */
   align-items: center;
+
+  @media (max-width: 360px) {
+        width: 360px;
+  }
   
   /*box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
   
@@ -42,4 +46,10 @@ background-image: url(${NewFooter});
 background-size: contain; /* 배경 이미지 크기 조정 */
 background-position: bottom; /* 배경 이미지 위치 조정 */
 background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
+
+@media (max-width: 360px) {
+        /* width: 150px; */
+        /* margin-right: -10px; */
+        margin-left: 230px;
+  }
 `
