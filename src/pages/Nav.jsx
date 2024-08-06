@@ -122,6 +122,7 @@ const Logo = styled.img`
     width: 197px;
     margin: 8px;
     cursor: pointer;
+
 `
 
 const BtnDom = styled.div`
