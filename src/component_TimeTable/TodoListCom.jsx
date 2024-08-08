@@ -40,8 +40,9 @@ const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
             setTodoList(prevList => [...prevList, body.description]);
             setIsChecked(prevChecked => [...prevChecked, false]);
             const response = await getTimeTodo(getTimeId);
+            console.log(response[response.length - 1]);
+            setTodoId(prevTodoId => [...prevTodoId, response[response.length - 1].task_id])
           }
-          //setTaskIds(response.map(item => item.id));
     }
 
   

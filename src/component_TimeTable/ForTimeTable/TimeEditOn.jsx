@@ -27,11 +27,19 @@ setEndWorkTime, setEndRestTime, todayId }) => {
       let body;
 
         if(startWorkTime){
-          body = {
-            sort : 1,
-            start_time : getTime(startWorkTime),
-            end_time : getTime(endWorkTime)
-          };
+          if(getTime(endWorkTime) === '240000'){
+            body = {
+              sort : 1,
+              start_time : getTime(startWorkTime),
+              end_time : '235959'
+            };
+          }else{
+            body = {
+              sort : 1,
+              start_time : getTime(startWorkTime),
+              end_time : getTime(endWorkTime)
+            };
+          }
           await postOneTable(daily_workation_id, body)
           getDailyAllTable(daily_workation_id)
           setStartWorkTime("");

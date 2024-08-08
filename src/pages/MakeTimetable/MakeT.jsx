@@ -179,6 +179,8 @@ const MakeT = () => {
           alert("이미 등록된 일정이 있습니다")
         }else if (error.response.data.non_field_errors[0] === 'Max period of workation is a week') {
           alert("일주일 이내의 일정을 입력해주세요!")
+        } else if (error.response.data.non_field_errors[0] === 'There is workation uncompleted.') {
+          alert("이미 등록된 일정이 있습니다")
         } else if (error.response.data.sigg) {
           alert("지역 선택 해주세요")
         } else if (error.response.data.start_date && error.response.data.start_date[0] === 'This field may not be null.') {
