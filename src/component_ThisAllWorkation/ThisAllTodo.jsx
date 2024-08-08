@@ -39,7 +39,7 @@ const ThisAllTodo = ({daily_workation_id}) => {
             <CheckboxContainer>
                 <Checkbox type="checkbox" checked={todo.complete}/>
             </CheckboxContainer>
-              <TodoDes>{todo.description}</TodoDes>
+              <TodoDes checked={todo.complete}>{todo.description}</TodoDes>
             </TodoItem>
           ))}
           </TodoListContainer>
@@ -214,4 +214,5 @@ const TodoDes = styled.div`
   font-size: 20px;
   color: #333;
   cursor: default;
+  text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')};
 `;
