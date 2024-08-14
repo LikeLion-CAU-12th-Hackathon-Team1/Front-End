@@ -7,7 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import TimePicCom from '../../component/TimePicCom';
 import CalenderCom from '../../component/CalenderCom';
 import { useRecoilState, useResetRecoilState } from 'recoil';
-import { answersAtom, endDateAtom, siggAtom, sleepTimeAtom, startDateAtom, wakeTimeAtom, workationIdAtom } from '../../recoil/makeTAtom';
+import { answersAtom, endDateAtom, siggAtom, sleepTimeAtom, startDateAtom, wakeTimeAtom } from '../../recoil/makeTAtom';
 import AnswerButton from '../../component/AnswerButton';
 import CalenderResult from '../../component/CalenderResult';
 import dayjs from 'dayjs';
@@ -98,7 +98,6 @@ const MakeT = () => {
   const resetWakeTime = useResetRecoilState(wakeTimeAtom);
   const resetSleepTime = useResetRecoilState(sleepTimeAtom);
   const resetSigg = useResetRecoilState(siggAtom);
-  const resetWorkationId = useResetRecoilState(workationIdAtom);
 
   //3~4번 단일선택지 눌렀을때 값 저장 및 단축선택
   const handleAnswerClick = (key, option) =>{
@@ -164,7 +163,6 @@ const MakeT = () => {
       resetWakeTime();
       resetSleepTime();
       resetSigg();
-      resetWorkationId();
 
 
       navigate("/timetable/alltask");

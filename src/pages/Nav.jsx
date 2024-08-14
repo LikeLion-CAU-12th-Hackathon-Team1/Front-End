@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import superLogo from '../assets/img/super.png';
 import workvalley from '../assets/img/workvalleylogo.svg';
 import { loginHandler } from '../api/api_login';
-import { handleLoginClick } from '../function/notice';
 import { useRecoilState } from 'recoil';
 import { isLoginAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
 import MyPageModal from '../component/MyPageModal';
@@ -28,7 +26,7 @@ export const Nav = () => {
         }
     }, [locations]);
 
-    const gotoT = () => {
+    const goTimeTable = () => {
         setSelectedMenu('timetable'); // 선택된 메뉴 설정
         if(localStorage.getItem("access")) {
             navigate('/timetable/alltask');
@@ -79,7 +77,7 @@ export const Nav = () => {
         <Logo src={workvalley} alt="Workvalley Logo" onClick={gotoHome}/>
         <BtnDom>
             <ButtonHis className="alarm_modal" onClick={maketoT} selected={selectedMenu === 'makeT'}>워케이션 등록</ButtonHis>
-            <Button type="button" onClick={gotoT} selected={selectedMenu === 'timetable'}>시간표</Button>
+            <Button type="button" onClick={goTimeTable} selected={selectedMenu === 'timetable'}>시간표</Button>
             <ButtonLogin $isLoginValue={isLoginValue} onClick={isLogin} $myPageModal={myPageModal} selected={selectedMenu === 'login'}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
             {myPageModal && (
                 <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부

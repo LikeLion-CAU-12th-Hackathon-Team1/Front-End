@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import { TodoListArray as initialTodoListArray, isCheckedArray as initialIsCheckedArray} from './ForTimeTable/Data';
 import { delTodo, getTimeTodo, patchTodoCheck, patchTodoText, postTimeTodo } from '../api/api_dailyTimeTable';
 
 const TodoListCom = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {

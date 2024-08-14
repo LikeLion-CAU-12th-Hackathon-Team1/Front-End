@@ -9,7 +9,7 @@ import { getThisAll, getThisAllReal } from '../api/api_ThisAllTimeTable';
 import ThisAllBottomReal from './ThisAllBottomReal';
 import No from "../assets/img/No.svg"
 
-const ThisAllComReal = ({workation_id}) => {
+const ThisAllComReal = () => {
 
   const [click, setbuttonClick] = useState(false);
   const [data, setData] = useState({})
@@ -53,7 +53,7 @@ const ThisAllComReal = ({workation_id}) => {
       }
     };
     fetchData();
-  }, [workation_id]);
+  }, []);
 
   const { start_date, end_date, sigg, work_style, work_purpose } = data ||{};
 
@@ -77,7 +77,7 @@ const ThisAllComReal = ({workation_id}) => {
           SiggText={SiggText} formattedStartDate={formattedStartDate}
           formattedEndDate={formattedEndDate} nightB={nightB} dayB={dayB} /> {/* 수정수정 */}
         <ThisAllMiddle setbuttonClick={setbuttonClick} nightB={nightB} dayB={dayB} dailyWorkationList={dailyWorkationList} setSelectedDailyWorkationId={setSelectedDailyWorkationId}/>
-        {click ? (<ThisAllBottomReal selectedDailyWorkationId={selectedDailyWorkationId} workation_id={workation_id} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
+        {click ? (<ThisAllBottomReal selectedDailyWorkationId={selectedDailyWorkationId} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
         </>) : (
           <NoWorkation>
             워케이션을 등록해 주세요.

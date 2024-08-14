@@ -7,7 +7,7 @@ import recoLoca from '../../assets/img/recommendLoca.svg';
 import { getdailyRetro, getDailyTodayId } from '../../api/api_dailyTimeTable';
 import NewFooter from "../../assets/img/NewFooter.svg";
 
-const TimeTable = () => {
+const ThisAllWorkationToTimeTable = () => {
 
   const navigate = useNavigate();
   const {id} = useParams();
@@ -67,7 +67,7 @@ const TimeTable = () => {
   )
 }
 
-export default TimeTable;
+export default ThisAllWorkationToTimeTable;
 
 const Container = styled.div`
   width:1228px;
