@@ -72,6 +72,7 @@ export const Nav = () => {
 
 
   return (
+    <Wrraper>
     <NavDom>
         <Logo src={workvalley} alt="Workvalley Logo" onClick={goHome}/>
         <BtnDom>
@@ -83,9 +84,20 @@ export const Nav = () => {
             )}
         </BtnDom>
     </NavDom>
+    </Wrraper>
   
   )
 }
+
+const Wrraper =styled.div`
+    width: 100vw;
+    height: 66px;
+    background-color: white;
+    z-index: 10; /*항상최상단*/
+    position: fixed; /*화면 상단 고정*/
+    transform: translateX(-50%); /*중앙정렬*/
+    left: 50%;
+`
 
 const NavDom = styled.div`
     display: flex;
@@ -94,7 +106,7 @@ const NavDom = styled.div`
     align-items: center;
 
     position: fixed; /*화면 상단 고정*/
-    width: 85vw;
+    width: 100vw;
     max-width: 1228px;
     min-width: 460px;
     height: 66px;
