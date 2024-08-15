@@ -1,18 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Home from './pages/Home';
-import TimeTable from './pages/TimeTable/TimeTable';
-import MakeT from './pages/MakeTimetable/MakeT';
-import { Nav } from './pages/Nav';
-import BeforeMakeT from './pages/MakeTimetable/BeforeMakeT';
+import Home from './Home/Home';
+import TimeTable from './Workation/DailyWorkation/DailyWorkation';
+import MakeWorkation from './MakeWorkation/MakeWorkation';
+import { Nav } from './Nav/Nav';
+import BeforeLoginMakeWorkation from './MakeWorkation/BeforeLoginMakeWorkation';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { isLoginAtom} from './recoil/isLoginAtom';
-import AllTask from './pages/ThisAllWorkation/AllTask';
-import HistoryAll from './pages/PastWorkation/HistoryAll';
-import OnePast from './component_PastWorkation/OneCom/OnePast';
-import BeforeTimeTable from './pages/TimeTable/BeforeTimeTable';
-import ThisAllWorkationToTimeTable from './pages/ThisAllWorkation/ThisAllWorkationToTimeTable';
+import AllWorkation from './Workation/AllWorkation/AllWorkation';
+import PastWorkation from './Workation/PastWorkation/PastWorkation';
+import OnePastWorkation from './Workation/PastWorkation/OnePastWorkation';
+import BeforeLoginWorkation from './Workation/BeforeLogin/BeforeLoginWorkation';
+import AllWorkationToDaily from './Workation/AllWorkation/AllWorkationToDaily';
 import { alertModalAtom } from './recoil/alertAtom';
 import AlertModal from './component/AlertModal';
 import { timer } from './api/api_alert';
@@ -59,15 +59,15 @@ useEffect(() => {
       <Routes>
         <Route path = "/" element={<Home />}/>
           <Route path="/oauth" element={<div>Loading...</div>}/>
-          <Route path='/beforeTimeTable' element={<BeforeTimeTable />} />
-          <Route path="/timetable/alltask" element={<AllTask />} />
+          <Route path='/beforeTimeTable' element={<BeforeLoginWorkation />} />
+          <Route path="/timetable/allWorkation" element={<AllWorkation />} />
           <Route path="/timetable/today" element={<TimeTable />} />
-          <Route path="/timetable/today/:id" element={<ThisAllWorkationToTimeTable />} />
+          <Route path="/timetable/today/:id" element={<AllWorkationToDaily />} />
 
-          <Route path="/timetable/historyAll" element={<HistoryAll />}/>
-          <Route path="/timetable/historyAll/:id" element={<OnePast />} />
-          <Route path="/makeT" element={<MakeT />} />
-          <Route path="/beforeMakeT" element={< BeforeMakeT/>} />
+          <Route path="/timetable/historyAll" element={<PastWorkation />}/>
+          <Route path="/timetable/historyAll/:id" element={<OnePastWorkation />} />
+          <Route path="/makeWorkation" element={<MakeWorkation />} />
+          <Route path="/beforeLoginMakeWorkation" element={< BeforeLoginMakeWorkation/>} />
           
       </Routes>
       {isAlertModal && <AlertModal/>}
