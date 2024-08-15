@@ -21,7 +21,7 @@ const AllWorkationToDaily = () => {
   }
 
   const goLastTimeTable = () => {
-    navigate('/timetable/historyAll')
+    navigate('/timetable/pastWorkation')
   }
 
 

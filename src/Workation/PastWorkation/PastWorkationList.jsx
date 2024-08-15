@@ -69,7 +69,7 @@ if (data === null) {
 }
 
 const handleOne = (workation_id)=> {
-    navigate(`/timetable/historyAll/${workation_id}`);
+    navigate(`/timetable/pastWorkation/${workation_id}`);
 }
 
   return (

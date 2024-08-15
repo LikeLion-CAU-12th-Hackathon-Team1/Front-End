@@ -20,7 +20,7 @@ const AllWorkation = () => {
     }
   
     const goLastTimeTable = () => {
-      navigate('/timetable/historyAll')
+      navigate('/timetable/pastWorkation')
     }
     return (
       <Container>

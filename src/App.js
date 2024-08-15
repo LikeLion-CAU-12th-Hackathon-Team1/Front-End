@@ -64,8 +64,8 @@ useEffect(() => {
           <Route path="/timetable/today" element={<TimeTable />} />
           <Route path="/timetable/today/:id" element={<AllWorkationToDaily />} />
 
-          <Route path="/timetable/historyAll" element={<PastWorkation />}/>
-          <Route path="/timetable/historyAll/:id" element={<OnePastWorkation />} />
+          <Route path="/timetable/pastWorkation" element={<PastWorkation />}/>
+          <Route path="/timetable/pastWorkation/:id" element={<OnePastWorkation />} />
           <Route path="/makeWorkation" element={<MakeWorkation />} />
           <Route path="/beforeLoginMakeWorkation" element={< BeforeLoginMakeWorkation/>} />
           

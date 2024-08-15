@@ -20,10 +20,10 @@ const OnePastWorkation = () => {
     }
   
     const goLastTimeTable = () => {
-      if (location.pathname.includes('/timetable/historyAll')) {
-        navigate('/timetable/historyAll');
+      if (location.pathname.includes('/timetable/pastWorkation')) {
+        navigate('/timetable/pastWorkation');
       } else {
-        navigate('/timetable/historyAll');
+        navigate('/timetable/pastWorkation');
       }
     }
     return (
