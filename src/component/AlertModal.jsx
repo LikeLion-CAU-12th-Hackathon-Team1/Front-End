@@ -27,7 +27,7 @@ const AlertModal = () => {
         };
 
         checkTimer(); // 초기 실행
-        const interval = setInterval(checkTimer, 30000); // 10분마다 실행
+        const interval = setInterval(checkTimer, 30000); // 30초 동안 지속
 
         return () => clearInterval(interval); // 컴포넌트 언마운트 시 타이머 클리어
     }, [setAlertModal]);

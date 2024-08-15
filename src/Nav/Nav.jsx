@@ -34,12 +34,12 @@ export const Nav = () => {
             navigate('/beforeTimeTable');
         };
     }
-    const gotoHome = () => {
+    const goHome = () => {
         setSelectedMenu('home'); // 선택된 메뉴 설정
         navigate('/');
     }
 
-    const maketoT = () => {
+    const goMakeWorkation = () => {
         setSelectedMenu('makeWorkation'); // 선택된 메뉴 설정
         //로그인이 되어있다면 워케이션등록으로, 안되어있다면 로그인안내페이지로
         if (localStorage.getItem("access")) {
@@ -72,138 +72,76 @@ export const Nav = () => {
 
 
   return (
-    <Wrraper>
     <NavDom>
-        <Logo src={workvalley} alt="Workvalley Logo" onClick={gotoHome}/>
+        <Logo src={workvalley} alt="Workvalley Logo" onClick={goHome}/>
         <BtnDom>
-            <ButtonHis className="alarm_modal" onClick={maketoT} selected={selectedMenu === 'makeWorkation'}>워케이션 등록</ButtonHis>
+            <Button onClick={goMakeWorkation} selected={selectedMenu === 'makeWorkation'}>워케이션 등록</Button>
             <Button type="button" onClick={goTimeTable} selected={selectedMenu === 'timetable'}>시간표</Button>
-            <ButtonLogin $isLoginValue={isLoginValue} onClick={isLogin} $myPageModal={myPageModal} selected={selectedMenu === 'login'}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
+            <ButtonLogin $isLoginValue={isLoginValue} onClick={isLogin} $myPageModal={myPageModal}>{isLoginValue ? '마이페이지' : '로그인'} </ButtonLogin>
             {myPageModal && (
                 <MyPageModal/> // 마이페이지 리코일 상태에 따라 모달 오픈 여부
             )}
         </BtnDom>
     </NavDom>
-    </Wrraper>
   
   )
 }
-
-const Wrraper =styled.div`
-    width: 1440px;
-    height: 66px;
-    background-color: white;
-    z-index: 10; /*항상최상단*/
-    position: fixed; /*화면 상단 고정*/
-    top: 0;
-    transform: translateX(-50%); /*중앙정렬*/
-    left: 50%;
-`
 
 const NavDom = styled.div`
     display: flex;
     justify-content:  space-between;
     background-color: rgb(255, 255, 255);
+    align-items: center;
 
     position: fixed; /*화면 상단 고정*/
-    top: 0;
-    width: 1228px;
+    width: 85vw;
+    max-width: 1228px;
+    min-width: 460px;
     height: 66px;
     transform: translateX(-50%); /*중앙정렬*/
     left: 50%;
     z-index: 10; /*항상최상단*/
-
     border-bottom: 1px solid #E9E4DB ;
-
-    @media (max-width: 360px) {
-        width: 360px;
-        justify-content: center;
-        left: 30%;
-  }
+    
 `
 const Logo = styled.img`
     height: 48px;
     width: 197px;
     margin: 8px;
     cursor: pointer;
-    @media (max-width: 360px) {
+    @media (max-width: 700px) {
         width: 150px;
-        margin-right: -10px;
-        margin-left: 30px;
   }
-
 `
 
 const BtnDom = styled.div`
     display : flex;
     justify-content: space-evenly;
-    margin-bottom: 11.5px;
-    margin-top: 12px;
+    align-items: center;
     font-size: 20px;
     font-weight: 600;
     width: 500px;
     height: 32px;
 
-    @media (max-width: 360px) {
+    @media (max-width: 700px) {
+        font-size: 16px;
   }
     
 
 `
-const ButtonHis= styled.div`
-    text-align: center;
-    border-bottom: ${props => props.selected ? '3px solid #222222' : 'none'};
-    width: 140px;
-    height: 43px;
-    top: 11px;
-    left: 790px;
-    padding: 4px 10px 4px 10px;
-    margin-right: 12px;
-    cursor: pointer;
-
-    @media (max-width: 360px) {
-        font-size: 17px;
-        margin-right: -30px;
-  }
-`
-
 const Button= styled.div`
-    text-align: center;
     border-bottom: ${props => props.selected ? '3px solid #222222' : 'none'};
-    width: 90px;
-    height: 43px;
-    top: 11px;
-    left: 790px;
     padding: 4px 10px 4px 10px;
     margin-right: 12px;
     cursor: pointer;
-    @media (max-width: 360px) {
-        font-size: 17px;
-        margin-right: -30px;
-  }
 `
 
-const ButtonLogin = styled.button`
-    text-align: center;
+const ButtonLogin = styled.div`
     background-color: ${props => props.$isLoginValue? 'white':' #FF831C'};
-    /* color :${props => props.$isLoginValue? 'black': 'white'}; */
     color: ${props => props.$isLoginValue ? (props.$myPageModal ? '#FF831C' : 'black') : 'white'};
     border-radius: 4px;
-    width: ${props => props.$isLoginValue? '130px': '105px'};
-    height: ${props => props.$isLoginValue? '37px': '42px'};
-    top: 11px;
-    left: 790px;
     padding: 4px 10px;
-    margin-right: 1px;
-    border: ${props => props.$isLoginValue?'none': '1px solid'};
-    font-size: 20px;
-    font-weight: 600;
-    //border-bottom: 0.5px solid #969696; 
-    margin-top: ${props => props.$isLoginValue? 'none':'-4px'};
+    margin-left: ${props => props.$isLoginValue? 'none': '16.5px'};
+    margin-right: ${props => props.$isLoginValue? 'none': '16.5px'};
     cursor: pointer;
-    padding-bottom:${props => props.$isLoginValue? '6%': 'none'};
-
-    @media (max-width: 360px) {
-        font-size: 17px;
-        margin-right: -180px;
-  }
 `

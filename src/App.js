@@ -19,8 +19,6 @@ import { timer } from './api/api_alert';
 
 function App() {
     const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
-    //const [myPageModal, setMyPageModal] = useRecoilState(isMyPageModalAtom); // 마이페이지 모달 상태
-
     const [isAlertModal, setAlertModal] = useRecoilState(alertModalAtom); // 알림 모달 상태
 
   // 로그인 상태 판단(액세스 토큰 존재여부)
@@ -36,6 +34,8 @@ useEffect(() => {
   isLogin();
 }, []);
 
+// 백에 api 요청보내서 알림보낼 것 있으면 알림모달 true
+// 10분 간격으로 요청보냄
 useEffect(() => {
   if(isLoginValue){
     const checkTimer = async () => {
