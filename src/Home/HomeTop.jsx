@@ -19,14 +19,10 @@ const HomeTop = () => {
     <Wrapper>
       <TitleContainer>
         <Title>어디서든 일하고,<br />어디서든 삶을 즐길 수 있도록</Title>
-        <SemiTitle>워케이션을 떠난 프리랜서 맞춤형 워라밸 파트너 <br />출근 전 해변가 러닝, 퇴근 후 서핑하는 삶이 가능해집니다
-        </SemiTitle>
-
+        <SemiTitle>워케이션을 떠난 프리랜서 맞춤형 워라밸 파트너 <br />출근 전 해변가 러닝, 퇴근 후 서핑하는 삶이 가능해집니다</SemiTitle>
         <Button onClick={BtnClick}>자세히 보기</Button>
       </TitleContainer>
-      <LogoContainer>
-        <Img />
-      </LogoContainer>
+      <EmptyContainer/>
     </Wrapper>
     
   )
@@ -45,11 +41,6 @@ const Wrapper = styled.div`
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
     margin-top: 62px;
-    @media (max-width: 360px) {
-    /* background-image: none; */
-    background-position: right center;
-    background-repeat: no-repeat;
-  }
 `
 
 const TitleContainer = styled.div`
@@ -84,7 +75,7 @@ const Title = styled.div`
     top:15% */
   }
 `
-const LogoContainer = styled.div`
+const EmptyContainer = styled.div`
   width: 400px;
   height: 350px;
 
@@ -94,9 +85,6 @@ const LogoContainer = styled.div`
   @media (max-width: 360px) {
     display: none;
   }
-`
-const Img = styled.img`
-  
 `
 const SemiTitle = styled.p`
   font-size: 22px;

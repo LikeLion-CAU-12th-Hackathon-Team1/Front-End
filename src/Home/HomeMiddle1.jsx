@@ -34,7 +34,7 @@ const Wrapper = styled.div`
     position: relative;
 `
 const Wrapper2 = styled.div`
-  width: 1440px;
+  width: 100%;
   height: 30px;
   background-color: #FFE4B0;
   opacity: 50%;
@@ -50,13 +50,6 @@ const Title = styled.div`
   font-family: 'AppleSDGothicNeoEB', sans-serif;
   cursor: default;
 
-  @media (max-width: 360px) {
-    font-size: 25px;
-    margin-left: 10%;
-    margin-bottom: -35px;
-    margin-top: 20px;
-   
-  }
 `
 const InsideWrapper = styled.div`
   display: flex;
@@ -76,14 +69,6 @@ const Inside = styled.div`
   width: 880px;
   height: 279px;
   margin-top: 20px;
-  @media (max-width: 360px) {
-    flex-direction: column;
-    justify-content: space-between;
-    height: 65%;
-    margin-left: 15%;
-    margin-top: 3%;
-   
-  }
  
 `
 
@@ -93,18 +78,11 @@ const StyledImg = styled.img`
   /* background-color: #FFF8E5; */
   border-color: #FFA837;
   margin-bottom: 2%;
-  @media (max-width: 360px) {
-   display: none;
-   
-  }
 `
 
 const InText = styled.p`
   font-family: 'AppleSDGothicNeoB', sans-serif;
   font-size: 22px;
-  /* font-weight: 600; */
-  /* width: 230px; */
-  /* height: 47px; */
   border-radius: 6px;
   background-color: #FFA837;
   color: #FFFFFF;
@@ -114,16 +92,6 @@ const InText = styled.p`
   padding: 12px 35px;
   margin :0 3%;
   cursor: default;
-  z-index: 10;
   
 `
-
-// const Content =styled.p`
-//   font-size: 20px;
-//   font-weight: 600;
-//   white-space: pre-wrap;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `
 
