@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import InnerOneTimeTable from './OneWorkationTimeTable';
+import { getDailyAllTable } from '../../api/api_dailyTimeTable';
 
 const OneWorkationTimeTableEach = ({item, setbuttonClick,clickedItem, setClickedItem, dailyWorkationId, setSelectedDailyWorkationId}) => {
 
   const [clicked, setClicked] = useState(false);
+  const [dailyAllTable, setDailyAllTable] = useState([])// 데일리 시간표 상태 관리 - 하루 시간표 불러올 때 사용
 
   const handleOnclick = () => {
     const newClicked = clickedItem === item ? null : item;
@@ -14,6 +16,16 @@ const OneWorkationTimeTableEach = ({item, setbuttonClick,clickedItem, setClicked
       setSelectedDailyWorkationId(dailyWorkationId); // 선택된 daily_workation_id 설정
     } //선택된 해당 날짜의 데일리아이디
   }
+
+  useEffect(() => {
+    if (dailyWorkationId){
+      const fetchData = async() =>{
+        const dailyTableData = await getDailyAllTable(dailyWorkationId);
+        setDailyAllTable(dailyTableData);
+      };
+      fetchData();
+    }
+  }, [dailyWorkationId])
 
   return (
     <Container>
@@ -26,7 +38,7 @@ const OneWorkationTimeTableEach = ({item, setbuttonClick,clickedItem, setClicked
         <InnerOneTimeTable key={index}></InnerOneTimeTable>
         )})} */}
          {[...Array(24).keys()].map(hour => (
-                    <InnerOneTimeTable key={hour} hour={hour} clickedItem={clickedItem} dailyWorkationId={dailyWorkationId} />
+                    <InnerOneTimeTable key={hour} hour={hour} clickedItem={clickedItem} dailyWorkationId={dailyWorkationId} dailyAllTable={dailyAllTable} />
                 ))}
         
     </Table>
