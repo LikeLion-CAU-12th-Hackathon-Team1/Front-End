@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import AutoComplete2 from '../component/AutoComplete2';
 import sun from "../assets/img/sun.svg"
 import moon from "../assets/img/moon.svg"
-import Loading from './MakeWorkationLoading';
+import MakeWorkationLoading from './MakeWorkationLoading';
 
 //질문지 답변
 const Qlist=[
@@ -195,7 +195,9 @@ const MakeWorkation = () => {
   }
 
   return (
-      <Wrapper>
+  <Wrapper>
+    {loading ? <MakeWorkationLoading /> : (
+      <>
       <TitleW>
       <Title>몇 가지 질문으로 <br/>AI가 맞춤형 시간표를 제작해 드려요!</Title>
       </TitleW>
@@ -314,8 +316,10 @@ const MakeWorkation = () => {
     </Question>
     </QuestionW>
     <SubmitButton onClick={handleSubmit}>워케이션 등록하기</SubmitButton>
-    {loading && <Loading />}
+    
      <Footer/>
+     </>)
+      }
 </Wrapper>
   )
 }
