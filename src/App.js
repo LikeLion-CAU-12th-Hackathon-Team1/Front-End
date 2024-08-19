@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Home/Home';
 import TimeTable from './Workation/DailyWorkation/DailyWorkation';
-import MakeWorkation from './MakeWorkation/MakeWorkation';
 import { Nav } from './Nav/Nav';
 import BeforeLoginMakeWorkation from './MakeWorkation/BeforeLoginMakeWorkation';
 import { useEffect } from 'react';
@@ -16,6 +15,7 @@ import AllWorkationToDaily from './Workation/AllWorkation/AllWorkationToDaily';
 import { alertModalAtom } from './recoil/alertAtom';
 import AlertModal from './component/AlertModal';
 import { timer } from './api/api_alert';
+import NewMakeWorkation from './MakeWorkation/NewMakeWorkation';
 
 function App() {
     const [isLoginValue, setIsLogin] = useRecoilState(isLoginAtom); // 전역상태 로그인 여부
@@ -66,7 +66,7 @@ useEffect(() => {
 
           <Route path="/timetable/pastWorkation" element={<PastWorkation />}/>
           <Route path="/timetable/pastWorkation/:id" element={<OnePastWorkation />} />
-          <Route path="/makeWorkation" element={<MakeWorkation />} />
+          <Route path="/makeWorkation" element={<NewMakeWorkation />} />
           <Route path="/beforeLoginMakeWorkation" element={< BeforeLoginMakeWorkation/>} />
           
       </Routes>

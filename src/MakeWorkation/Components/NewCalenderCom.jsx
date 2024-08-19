@@ -3,9 +3,8 @@ import { createTheme, StyledEngineProvider, TextField, ThemeProvider } from '@mu
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-import React, { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil';
-import { endDateAtom, startDateAtom } from '../recoil/makeTAtom';
+import React from 'react'
+
 
 
 const theme = createTheme({ // 달력테마 설정
@@ -46,22 +45,20 @@ const theme = createTheme({ // 달력테마 설정
   },
 });
 
-const CalenderCom = ({id}) => {
-  const [startDate, setStartDate] = useRecoilState(startDateAtom);
-  const [endDate, setEndDate] = useRecoilState(endDateAtom);
-
-  //recoil로 관리
+const NewCalenderCom = ({id, setAnswers, answers}) => {
   const handleDateChange = (newValue)=> {
-    const formattedData = dayjs(newValue).format('YYYYMMDD');
-    if(id ==='start-work'){
-      setStartDate(formattedData);
-    } else if (id ==='end-work'){
-      setEndDate(formattedData);
+    if(id ==='start_date'){
+      setAnswers(prev => {
+        return {...prev, ["start_date"]:dayjs(newValue).format('YYYYMMDD')};
+      })
+    } else if (id ==='end_date'){
+      setAnswers(prev => {
+        return {...prev, ["end_date"]:dayjs(newValue).format('YYYYMMDD')};
+      })
     }
-    //console.log(startDate); //확인용
   };
   
-  const dateValue = id === 'start-work' ? dayjs(startDate).format('YYYY-MM-DD') : dayjs(endDate).format('YYYY-MM-DD');
+  const dateValue = id === 'start_date' ? dayjs(answers["start_date"]).format('YYYY-MM-DD') : dayjs(answers["end_date"]).format('YYYY-MM-DD');
 
 
   return (
@@ -73,7 +70,7 @@ const CalenderCom = ({id}) => {
             label={id === 'start-work' ? '시작일' : '종료일'}
             value={dateValue ? dayjs(dateValue) : null}
             onChange={handleDateChange}
-            slots={{ textField: (params) => ( // 수정수정: renderInput 대신 slots 사용
+            slots={{ textField: (params) => (
               <TextField
                 {...params}
                 sx={{ width: '300px', height: '50px', margin: '0 16px' }} // 여기서 크기 지정가능
@@ -86,4 +83,4 @@ const CalenderCom = ({id}) => {
   )
 }
 
-export default CalenderCom;
+export default NewCalenderCom;

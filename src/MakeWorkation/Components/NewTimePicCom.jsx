@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { createTheme, ThemeProvider } from '@mui/material';
 import dayjs from 'dayjs';
-import { useRecoilState } from 'recoil';
-import { sleepTimeAtom, wakeTimeAtom } from '../recoil/makeTAtom';
 
 const theme = createTheme({ // 테마설정
     components: {
@@ -34,31 +32,21 @@ const theme = createTheme({ // 테마설정
     },
   });
 
-const TimePicCom = ({id}) => {
-
-  //const [TimeValue, setTimeValue] = useState(null); // useState 사용해서 사용자가 선택한 날짜 저장
-
-  // 사용자가 날짜 저장하면 체크해서 콘솔에 찍는 함수
-  // const handleTimeChange = (newValue) => {
-  //   setTimeValue(newValue);
-  //   if (newValue) {
-  //     console.log(dayjs(newValue).format('HHmm')); // dayjs 사용해서 내가 원하는 형식으로 날짜저장 (24시간)
-  //   }
-  // };
-
-  
-  const [wakeTime, setWakeTime] = useRecoilState(wakeTimeAtom);
-  const [sleepTime, setSleepTime] = useRecoilState(sleepTimeAtom);
+const NewTimePicCom = ({id, setAnswers, answers}) => {
   
     const handleTimeChange = (newValue)=> {
-      if(id ==='wake-time'){
-        setWakeTime(dayjs(newValue).format('HHmm'));
-      } else if (id ==='sleep-time'){
-        setSleepTime(dayjs(newValue).format('HHmm'));
+      if(id ==='end_sleep'){
+        setAnswers(prev => {
+          return {...prev, ["end_sleep"]:dayjs(newValue).format('HHmm')};
+        })
+      } else if (id ==='start_sleep'){
+        setAnswers(prev => {
+          return {...prev, ["start_sleep"]:dayjs(newValue).format('HHmm')};
+        })
       }
     };
     
-    const TimeValue = id === 'wake-time'? dayjs(wakeTime, 'HHmm') : dayjs(sleepTime, 'HHmm');
+    const TimeValue = id === 'end_sleep'? dayjs(answers["end_sleep"], 'HHmm') : dayjs(answers["start_sleep"], 'HHmm');
 
   return (
     <ThemeProvider theme={theme}>
@@ -75,4 +63,4 @@ const TimePicCom = ({id}) => {
   )
 }
 
-export default TimePicCom
+export default NewTimePicCom
