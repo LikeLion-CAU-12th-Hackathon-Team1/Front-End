@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { isLoginAtom, isMyPageModalAtom} from '../recoil/isLoginAtom';
-import superLogo from '../assets/img/super.png';
-import axios from 'axios';
 import { alertModalAtom } from '../recoil/alertAtom';
 import { timer } from '../api/api_alert';
 
@@ -63,8 +60,8 @@ const Compo = styled.div`
   align-items: center;
   width: 100%;
   font-weight: 700;
-    font-size: 18px;
-    line-height: 21.6px;
-    letter-spacing: -0.02em;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: -0.02em;
 
 `

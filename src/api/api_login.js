@@ -11,14 +11,11 @@ export const loginHandler = () => {
   window.location.href = kakao_login_uri;
 };
 
-
-
 // OAuth 처리를 위한 함수
 export const handleOAuth = async () => {
   const history = createBrowserHistory();
   const code = new URL(window.location.href).searchParams.get("code");
   
-
   if (code) {
     try {
       const result = await axios.get(`https://saengchaein.r-e.kr/account/kakao/callback/?code=${code}`);
