@@ -83,18 +83,6 @@ export const getDailyTodayId = async()=>{
             return { errorMessage: "예기치 않은 오류가 발생했습니다" };
         }
     }
-        // alert("다시 로그인 해주세요")
-        // localStorage.removeItem("access");
-        // localStorage.removeItem("refresh");
-        // localStorage.removeItem("nickname");
-        // localStorage.removeItem("email");
-        // localStorage.removeItem("profile");
-        // history.push("/"); // 로그인 페이지로 이동
-        // window.location.reload(); // 페이지 새로고침
-
-
-    
-    
 }
 
 // 그래프 받아오기

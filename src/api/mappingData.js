@@ -9,17 +9,6 @@ export const getSiggMap = (typeNumber) => {
     return siggMap[typeNumber] || "알 수 없음";
 }
 
-//2.여행 일정 ( YYYY/MM/DD 이렇게 파싱)
-// export const DateMap1 = (dateString) => {
-//     if (!dateString || dateString.length !==8) {
-//         return "알 수 없음";
-//     }
-//     const year = dateString.substring(0,4);
-//     const month = dateString.substring(4,4);
-//     const day = dateString.substring(6,8);
-//     return `${year}/${month}/${day}`;
-// } 뭔가이상함 우선 Top에서는 다르게 끊어서 할거임 ~~
-//...요일나타내기가 필요햇음
 export const formatDateWithDay = (dateString) => {
     if (!dateString || dateString.length !== 8) {
       return "Invalid date";
