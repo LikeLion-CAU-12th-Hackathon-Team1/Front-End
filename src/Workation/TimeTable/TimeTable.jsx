@@ -41,7 +41,6 @@ const TimeTable = ({isTimeEditOn, setIsTimeEditOn,
               endWorkTime={endWorkTime} setEndWorkTime={setEndWorkTime}
               startRestTime={startRestTime} setStartRestTime={setStartRestTime}
               endRestTime={endRestTime} setEndRestTime={setEndRestTime}
-              handleTimeUpdate={handleTimeUpdate}
               isTimeEditOn={isTimeEditOn}
               dailyAllTable={dailyAllTable}
               setToGetWorkId={setToGetWorkId}

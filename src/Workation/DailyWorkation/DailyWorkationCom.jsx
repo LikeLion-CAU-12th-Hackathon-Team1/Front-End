@@ -13,8 +13,8 @@ import GOne from "../../assets/img/GOne.svg"
 const DailyWorkationCom = ({ todayId, todayDate, todayIndex }) => {
 
   const formatedDate = formatDate(todayDate)
-  const date = formatedDate; // 추후 백 데이터
-  const dayCount = `${todayIndex}일차`; // 추후 백 데이터
+  const date = formatedDate;
+  const dayCount = `${todayIndex}일차`;
 
   const [isTimeEditOn, setIsTimeEditOn] = useState(false); // 시간표 추가시 생성될 좌측하단컴포넌트 상태관리
 
@@ -71,23 +71,12 @@ const DailyWorkationCom = ({ todayId, todayDate, todayIndex }) => {
           const time_workation_id = getTimeId
           const timeBlockTodoData = await getTimeTodo(time_workation_id);
           setDailyAllTodo(timeBlockTodoData)
-          console.log("콘솔확인콘솔확인")
+          //console.log("콘솔확인콘솔확인")
         }
       fetchData();
     }
       
   }, [getTimeId])
-
-  // 사용 안하는 중
-  const handleTimeUpdate = (type, startTime, endTime) => {
-    if (type === 'work') {
-      setStartWorkTime(startTime);
-      setEndWorkTime(endTime);
-    } else {
-      setStartRestTime(startTime);
-      setEndRestTime(endTime);
-    }
-  };
 
   //가이드창 띄우기
   const [isOpen, setIsOpen] = useState(false);
@@ -129,7 +118,6 @@ const DailyWorkationCom = ({ todayId, todayDate, todayIndex }) => {
           setStartRestTime={setStartRestTime}
           endRestTime={endRestTime}
           setEndRestTime={setEndRestTime}
-          handleTimeUpdate={handleTimeUpdate}
           dailyAllTable={dailyAllTable}
           todayId={todayId}
           setToGetWorkId={setToGetWorkId} toGetWorkId={toGetWorkId}
@@ -198,18 +186,14 @@ const Date = styled.div`
   font-family: 'AppleSDGothicNeoB', sans-serif; //오늘일정 글씨체
   /* font-weight: 700; */
   font-size: 28px;
-  line-height: 26px;
   letter-spacing: -0.07em;
   color: #222222;
-  /* width: 90%; */
-  /* height: 19px; */
   box-sizing: border-box;
   cursor: default;
 `;
 const Icon = styled.img`
   width: 25px;
 `
-
 const DayCount = styled.div`
   display: inline-block;
   /* width: 20%; */
@@ -222,7 +206,6 @@ const DayCount = styled.div`
   gap: 10px;
   font-weight: 600;
   font-size: 20px;
-  line-height: 24px;
   letter-spacing: -0.02em;
   color: #ff6b00;
   cursor: default;

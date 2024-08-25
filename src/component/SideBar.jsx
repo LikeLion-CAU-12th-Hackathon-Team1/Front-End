@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import recoLoca from '../assets/img/recommendLoca.svg';
 
-const SideBar = () => {
+const SideBar = ({Reco}) => {
     const navigate = useNavigate();
     const locations = useLocation();
     const [selectedSide, setSelectedSide] = useState(null); // 선택된 메뉴 상태 추가
@@ -53,7 +53,7 @@ const SideBar = () => {
             <TodayBtn onClick={goTodayTimeTable} selected={selectedSide === 'today'}>일일 일정</TodayBtn>
             <HistoryBtn onClick = {goLastTimeTable} selected={selectedSide === 'pastWorkation'}>모든 워케이션</HistoryBtn>
         </BtnContainer>
-        {selectedSide === 'today'? <RecoLoca src={recoLoca} onClick={goto}/>:(<></>)}
+        {selectedSide === 'today' && Reco ? <RecoLoca src={recoLoca} onClick={goto}/>:(<></>)}
         
       </NavDom>
   )

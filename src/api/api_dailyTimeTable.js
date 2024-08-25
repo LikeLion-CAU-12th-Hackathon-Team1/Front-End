@@ -9,12 +9,16 @@ export const patchdailyRetro = async(daily_workation_id, body)=>{
 
     const token =localStorage.getItem('access'); // localStorage에서 사용자 ID를 숫자로 가져오기
 
-    const response= await axios.patch(`${baseURL}/workation/daily/${daily_workation_id}/memo/`,body,{
-        headers: {Authorization: `Bearer ${token}`
+    try{
+        const response= await axios.patch(`${baseURL}/workation/daily/${daily_workation_id}/memo/`,body,{
+            headers: {Authorization: `Bearer ${token}`
+        }
+        });
+        return response.data;
+    }catch(error){
+        alert("회고를 작성해주세요!!")
     }
-    });
-    //console.log(response.data)
-    return response.data;
+    
 }
 
 // 데일리 워케이션에 회고 불러오기 - OneDayTimeTable.jsx - useEffect에 연결
@@ -26,7 +30,6 @@ export const getdailyRetro = async(daily_workation_id)=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    //console.log(response.data)
     return response.data;
 }
 
@@ -39,7 +42,7 @@ export const getDailyAllTable = async(daily_workation_id)=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    console.log(response.data)
+    //console.log(response.data)
     return response.data;
 }
 
@@ -72,7 +75,7 @@ export const getDailyTodayId = async()=>{
         const response= await axios.get(`${baseURL}/workation/today/`,{
             headers: {Authorization: `Bearer ${token}`}
         });
-        console.log(response.data)
+        //console.log(response.data)
         return response.data;
     }  catch (error) {
         if (!token) {

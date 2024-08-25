@@ -11,11 +11,10 @@ try{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    console.log(response.data)
     return response.data;
 }catch(error){
     alert("다시 로그인 해주세요")
-    console.log(error)
+    window.location.href = "/";
 }
     
 }

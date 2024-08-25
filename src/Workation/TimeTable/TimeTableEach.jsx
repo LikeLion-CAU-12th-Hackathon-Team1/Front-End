@@ -1,223 +1,132 @@
-// 각 시간별 시간표 컴포넌ㅌ
-
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { delDailyTimeBlock } from '../../api/api_dailyTimeTable';
-import { useNavigate } from 'react-router-dom';
 
-const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
+const TimeTableEach = ({
+  timeLabel, workId, restId, setIsTimeEditOn,
   startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
-  handleTimeUpdate, isTimeEditOn, dailyAllTable,setToGetWorkId, toGetWorkId,
-  toGetRestId, setToGetRestId,
-  setTimeBlockId,
-  setTimeId}) => {
-
-  const navigate = useNavigate();
-
+  isTimeEditOn, dailyAllTable, setToGetWorkId, setToGetRestId, setTimeId
+}) => {
   // work rest 일정이 있는지 상태관리
   const [isWork, setIsWork] = useState(false);
   const [isRest, setIsRest] = useState(false);
-    
+
   // 시간계산
   const workTime = workId / 2;
   const restTime = parseInt(restId / 2);
 
-  // work rest 각각에 대한 추가 버튼 함수
-  const handleAddWork = () => {
-    if (startRestTime){
-      alert("Rest Table에서 지정해주세요!!")
-    } else{
-      if (isRest || isWork) {
-        alert("중복시간 입력할 수 없습니다");
-      } else {
-        if (!isWork) {
-          setIsWork(true);
-          setIsTimeEditOn(true);
-          setEndWorkTime(`${workTime+1}:00`)
-          if (!startWorkTime) {
-            setStartWorkTime(`${workTime}:00`);
-            setEndWorkTime(`${workTime+1}:00`)
-            console.log(workTime)
-          } else if(startWorkTime && parseInt(startWorkTime.split(":")[0]) > workTime){
-            setStartWorkTime(`${workTime}:00`);
-            setEndWorkTime(`${parseInt(startWorkTime.split(":")[0])+1}:00`);
-            console.log(workTime)
-          }
-        }
-      }
+  // 시간 추가 함수
+  const handleAddTime = (type) => {
+    if (type === 'work' && startRestTime) {
+      alert("Rest Table에서 지정해주세요!!");
+      return;
     }
-  };
+    if (type === 'rest' && startWorkTime) {
+      alert("Work Table에서 지정해주세요!!");
+      return;
+    }
 
-  const handleAddRest = () => {
-    if (startWorkTime){
-      alert("Work Table에서 지정해주세요!!")
+    const isOverlap = type === 'work' ? isRest || isWork : isWork || isRest;
+    const setStartTime = type === 'work' ? setStartWorkTime : setStartRestTime;
+    const setEndTime = type === 'work' ? setEndWorkTime : setEndRestTime;
+    const setIsTime = type === 'work' ? setIsWork : setIsRest;
+    const time = type === 'work' ? workTime : restTime;
+
+    if (isOverlap) {
+      alert("중복시간 입력할 수 없습니다");
     } else {
-      if (isWork || isRest) {
-        alert("중복시간 입력할 수 없습니다");
-      } else {
-        if (!isRest) {
-          setIsRest(true);
-          setIsTimeEditOn(true);
-          setEndRestTime(`${restTime+1}:00`)
-          if (!startRestTime) {
-            setStartRestTime(`${restTime}:00`);
-            setEndRestTime(`${restTime+1}:00`)
-          } else if(startRestTime && parseInt(startRestTime.split(":")[0]) > restTime){
-            setStartRestTime(`${restTime}:00`);
-            setEndRestTime(`${parseInt(startRestTime.split(":")[0])+1}:00`);
-          }
-        }
+      setIsTime(true);
+      setIsTimeEditOn(true);
+      setEndTime(`${time + 1}:00`);
+      if (!startWorkTime && type === 'work' || !startRestTime && type === 'rest') {
+        setStartTime(`${time}:00`);
+      } else if (startWorkTime && parseInt(startWorkTime.split(":")[0]) > time && type === 'work' ||
+        startRestTime && parseInt(startRestTime.split(":")[0]) > time && type === 'rest') {
+        setStartTime(`${time}:00`);
+        setEndTime(`${parseInt(type === 'work' ? startWorkTime.split(":")[0] : startRestTime.split(":")[0]) + 1}:00`);
       }
-
     }
-    
   };
-
-  
 
   // 삭제 함수
-  const handleDelWork = async () => {
-      if (isWork) {
-        if(window.confirm("정말 삭제하시겠습니까?")){
-          //console.log(workId);
-          // dailyAllTable의 sort가 1인 것 찾아야 함
-          for(let i = 0; i < dailyAllTable.length; i++){
-            const clickedWorkTime = (workId / 2);
-            const formatStartTime = parseInt(dailyAllTable[i].start_time)/10000
-            const formatEndtime = parseInt(dailyAllTable[i].end_time)/10000
-            if(dailyAllTable[i].sort === 1 && clickedWorkTime>=formatStartTime &&clickedWorkTime<=formatEndtime){
-              // 이제 타임워케이션 아이디 넣기
-            const workIdToDel = dailyAllTable[i].time_workation_id;
-            setToGetWorkId(workIdToDel)
-            console.log(workIdToDel)
-            await delDailyTimeBlock(workIdToDel);
+  const handleDelTime = async (type) => {
+    const isTime = type === 'work' ? isWork : isRest;
+    const setIsTime = type === 'work' ? setIsWork : setIsRest;
+    const setStartTime = type === 'work' ? setStartWorkTime : setStartRestTime;
+    const setEndTime = type === 'work' ? setEndWorkTime : setEndRestTime;
+    const idToDelete = type === 'work' ? setToGetWorkId : setToGetRestId;
+    const clickedTime = type === 'work' ? workTime : restTime;
+
+    if (isTime) {
+      if (window.confirm("정말 삭제하시겠습니까?")) {
+        for (let i = 0; i < dailyAllTable.length; i++) {
+          const formatStartTime = parseInt(dailyAllTable[i].start_time) / 10000;
+          const formatEndtime = parseInt(dailyAllTable[i].end_time) / 10000;
+          if (dailyAllTable[i].sort === (type === 'work' ? 1 : 2) &&
+            clickedTime >= formatStartTime && clickedTime <= formatEndtime) {
+            const timeIdToDel = dailyAllTable[i].time_workation_id;
+            idToDelete(timeIdToDel);
+            await delDailyTimeBlock(timeIdToDel);
             window.location.reload();
             break;
           }
         }
-          setIsWork(false);
-          //setIsTimeEditOn(false);
-          setStartWorkTime("");
-          setEndWorkTime("");
-        }
+        setIsTime(false);
+        setStartTime("");
+        setEndTime("");
       }
-  };
-
-  const handleDelRest = async () => {
-    if (isRest) {
-      if(window.confirm("정말 삭제하시겠습니까?")){
-        //console.log(restId);
-        for(let i = 0; i < dailyAllTable.length; i++){
-          const clickedRestTime = parseInt(restId / 2);
-          const formatStartTime = parseInt(dailyAllTable[i].start_time)/10000
-          const formatEndtime = parseInt(dailyAllTable[i].end_time)/10000
-          if(dailyAllTable[i].sort === 2 && clickedRestTime>=formatStartTime &&clickedRestTime<=formatEndtime){
-            // 이제 타임워케이션 아이디 넣기
-            const restIdToDel = dailyAllTable[i].time_workation_id;
-            setToGetRestId(restIdToDel)
-            console.log(restIdToDel)
-            await delDailyTimeBlock(restIdToDel);
-            window.location.reload();
-            break;
-          }
-        }
-        setIsRest(false);
-        //setIsTimeEditOn(false);
-        setStartRestTime("");
-        setEndRestTime("");
     }
-  }
   };
 
+  // 블록 클릭 시 실행되어 해당 타임 아이디 가져올 함수
+  const handleBlockClick = (type) => {
+    const isTime = type === 'work' ? isWork : isRest;
+    const clickedTime = type === 'work' ? workTime : restTime;
 
-  // 블록 클릭시 실행되어 해당 타임 아이디 가져올 함수
-  const handleWorkBlock = async () => {
-    if (isWork) {
-      for(let i = 0; i < dailyAllTable.length; i++){
-        const clickedWorkTime = parseInt(workId / 2);
-        const formatStartTime = parseInt(dailyAllTable[i].start_time)/10000
-        const formatEndtime = parseInt(dailyAllTable[i].end_time)/10000
-        if(dailyAllTable[i].sort === 1 && clickedWorkTime>=formatStartTime &&clickedWorkTime<=formatEndtime){
-          // 이제 타임워케이션 아이디 넣기
-          const workId = dailyAllTable[i].time_workation_id;
-          setTimeId(workId)
-          console.log(workId)
+    if (isTime) {
+      for (let i = 0; i < dailyAllTable.length; i++) {
+        const formatStartTime = parseInt(dailyAllTable[i].start_time) / 10000;
+        const formatEndtime = parseInt(dailyAllTable[i].end_time) / 10000;
+        if (dailyAllTable[i].sort === (type === 'work' ? 1 : 2) &&
+          clickedTime >= formatStartTime && clickedTime <= formatEndtime) {
+          const timeId = dailyAllTable[i].time_workation_id;
+          setTimeId(timeId);
           break;
         }
       }
-  }
-  }
-
-  const handleRestBlock = async () => {
-    if (isRest) {
-        for(let i = 0; i < dailyAllTable.length; i++){
-          const clickedRestTime = parseInt(restId / 2);
-          const formatStartTime = parseInt(dailyAllTable[i].start_time)/10000
-          const formatEndtime = parseInt(dailyAllTable[i].end_time)/10000
-          if(dailyAllTable[i].sort === 2 && clickedRestTime>=formatStartTime &&clickedRestTime<=formatEndtime){
-            // 이제 타임워케이션 아이디 넣기
-            const restId = dailyAllTable[i].time_workation_id;
-            setTimeId(restId)
-            console.log(restId)
-            break;
-          }
-        }
     }
-  }
+  };
 
   // 불러온 데이터에 따라 상태 업데이트(work, rest 블록)
-  //work 블록
   useEffect(() => {
     dailyAllTable.forEach((item) => {
       const start = parseInt(item.start_time.substring(0, 2));
       let end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
-    
-      if(item.end_time === '235959'){
-        end = Math.ceil(parseInt(item.end_time.substring(0, 2)))+1;
+
+      if (item.end_time === '235959') {
+        end = Math.ceil(parseInt(item.end_time.substring(0, 2))) + 1;
       }
-      
+
       if (item.sort === 1) { // work
-        if (workTime >= start && workTime < end) {
-          setIsWork(true);
-        } else if(workTime >= start && workTime <= end && workTime == 24){
+        if ((workTime >= start && workTime < end) || (workTime === 24 && workTime >= start && workTime <= end)) {
           setIsWork(true);
         }
-      }
-    });
-  }, [dailyAllTable, workTime]);
-
-//rest 블록
-  useEffect(() => {
-    dailyAllTable.forEach((item) => {
-      const start = parseInt(item.start_time.substring(0, 2));
-      let end = Math.ceil(parseInt(item.end_time.substring(0, 2)));
-      
-      if(item.end_time === '235959'){
-        end = Math.ceil(parseInt(item.end_time.substring(0, 2)))+1;
-      }
-
-      if (item.sort === 2) { // rest
-        if (restTime >= start && restTime < end) {
-          setIsRest(true);
-        } else if(restTime >= start && restTime <= end && restTime == 24){
+      } else if (item.sort === 2) { // rest
+        if ((restTime >= start && restTime < end) || (restTime === 24 && restTime >= start && restTime <= end)) {
           setIsRest(true);
         }
       }
     });
-  }, [dailyAllTable, restTime]);
-
+  }, [dailyAllTable, workTime, restTime]);
 
   // workTime, restTime 각각 변화 추적하며 블록 생성
   useEffect(() => {
     if (startWorkTime && endWorkTime) {
       const start = parseInt(startWorkTime.split(":")[0]);
       const end = parseInt(endWorkTime.split(":")[0]);
-      if (workTime >= start && workTime < end) {
+      if ((workTime >= start && workTime < end) || (workTime === 24 && workTime >= start && workTime <= end)) {
         setIsWork(true);
-      } else if(workTime >= start && workTime <= end && workTime == 24){
-        setIsWork(true);
-        //setIsWork(false);
       }
     }
   }, [startWorkTime, endWorkTime, workTime]);
@@ -226,10 +135,7 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
     if (startRestTime && endRestTime) {
       const start = parseInt(startRestTime.split(":")[0]);
       const end = parseInt(endRestTime.split(":")[0]);
-      if (restTime >= start && restTime < end) {
-        setIsRest(true);
-      } else if(restTime >= start && restTime <= end && restTime == 24){
-        //setIsRest(false);
+      if ((restTime >= start && restTime < end) || (restTime === 24 && restTime >= start && restTime <= end)) {
         setIsRest(true);
       }
     }
@@ -238,20 +144,28 @@ const TimeTableEach = ({ timeLabel, workId, restId, setIsTimeEditOn,
   return (
     <Container>
       <TextBox>{timeLabel}</TextBox>
-      <OneTimeTableWork $isActive={isWork} id={workId} onClick={handleWorkBlock}>
-        {/* Work ID: {workId} */}
+      <OneTimeTableWork $isActive={isWork} id={workId} onClick={() => handleBlockClick('work')}>
         <BtnContainer>
-          {isTimeEditOn ? (<AddBtn onClick={handleAddWork}></AddBtn>):(<><AddBtn onClick={handleAddWork}></AddBtn>
-            <DeleteBtn onClick={handleDelWork}></DeleteBtn></>)}
-          
+          {isTimeEditOn ? (
+            <AddBtn onClick={() => handleAddTime('work')}></AddBtn>
+          ) : (
+            <>
+              <AddBtn onClick={() => handleAddTime('work')}></AddBtn>
+              {isWork ? (<DeleteBtn onClick={() => handleDelTime('work')}></DeleteBtn>):(<></>)}
+            </>
+          )}
         </BtnContainer>
       </OneTimeTableWork>
-      <OneTimeTableRest $isActive={isRest} id={restId} onClick={handleRestBlock}>
-        {/* Rest ID: {restId} */}
+      <OneTimeTableRest $isActive={isRest} id={restId} onClick={() => handleBlockClick('rest')}>
         <BtnContainer>
-          {isTimeEditOn ? (<AddBtn onClick={handleAddRest}></AddBtn>):(<><AddBtn onClick={handleAddRest}></AddBtn>
-            <DeleteBtn onClick={handleDelRest}></DeleteBtn></>)}
-          
+          {isTimeEditOn ? (
+            <AddBtn onClick={() => handleAddTime('rest')}></AddBtn>
+          ) : (
+            <>
+              <AddBtn onClick={() => handleAddTime('rest')}></AddBtn>
+              {isRest ? (<DeleteBtn onClick={() => handleDelTime('rest')}></DeleteBtn>):(<></>)}
+            </>
+          )}
         </BtnContainer>
       </OneTimeTableRest>
     </Container>
@@ -276,6 +190,7 @@ const OneTimeTableWork = styled.div`
   background-color: ${({ $isActive }) => ($isActive ? '#FFA837' : '#FFFFFF')};
   border-radius: 100px;
   margin-right: 15px;
+  cursor: ${({ $isActive }) => ($isActive ? 'pointer' : '')};
 `
 const OneTimeTableRest = styled.div`
   display: flex;
@@ -286,6 +201,7 @@ const OneTimeTableRest = styled.div`
   background-color: ${({ $isActive }) => ($isActive ? '#E3DCD0' : '#FFFFFF')};
   border-radius: 100px;
   margin-right: 15px;
+  cursor: ${({ $isActive }) => ($isActive ? 'pointer' : '')};
 `
 const TextBox = styled.div`
   width: 55px;

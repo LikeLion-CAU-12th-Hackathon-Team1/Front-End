@@ -16,7 +16,7 @@ const DailyRetrospect = ({ memo, setMemo, todayId}) => {
   }
 
   const handleSaveBtn = () => {
-    const daily_workation_id = todayId; // 몇일째인지 나중에 백 데이터 연결하기
+    const daily_workation_id = todayId;
     const body = { memo };
     handleRetroEdit();
     patchdailyRetro(daily_workation_id, body);
@@ -31,8 +31,8 @@ const DailyRetrospect = ({ memo, setMemo, todayId}) => {
     <SectionRetro>
         <SectionTitleContainer>
             <SectionTitleRto>Retrospect</SectionTitleRto>
-            {isRetroEdit ? (<SaveBtn onClick = {handleSaveBtn}><span>save</span></SaveBtn>):
-            (<EditBtn onClick = {handleRetroEdit}><span>edit</span></EditBtn>)}
+            {isRetroEdit ? (<SaveBtn onClick = {handleSaveBtn}>save</SaveBtn>):
+            (<EditBtn onClick = {handleRetroEdit}>edit</EditBtn>)}
         </SectionTitleContainer>
           
         <TextArea 
@@ -56,7 +56,6 @@ const SectionTitleRto = styled.div`
   letter-spacing: -0.02em;
   color: #222222;
   box-sizing: border-box;
-  //margin-bottom: 4px;
   cursor: default;
 `;
 
@@ -74,15 +73,9 @@ const EditBtn = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
-  span {
-    color: #FF831C;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1;
-    //padding-bottom: 6px;
-  }
+  color: #FF831C;
+  font-size: 20px;
+  font-weight: 500;
 `;
 
 const SaveBtn = styled.div`
@@ -95,15 +88,9 @@ const SaveBtn = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
-  span {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1;
-    //padding-bottom: 6px;
-  }
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
 `;
 
 
@@ -128,10 +115,9 @@ const TextArea = styled.textarea`
   margin-left: 1px;
   font-weight: 400;
   font-size: 20px;
-  line-height: 28.8px;
   letter-spacing: -0.02em;
   background-color: #FFFAF0;
   font-family: 'AppleSDGothicNeoM', sans-serif;
-  padding-top: 10px;
+  padding-top: 11px;
   padding-left: 10px;
 `;

@@ -1,5 +1,3 @@
-// 투두리스트 컴포넌트
-
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { delTodo, getTimeTodo, patchTodoCheck, patchTodoText, postTimeTodo } from '../../api/api_dailyTimeTable';
@@ -16,7 +14,7 @@ const DailyTodoList = ({ dailyAllTodo, getTimeId}) => {
       setTodoList(dailyAllTodo.map(item => item.description));
       setIsChecked(dailyAllTodo.map(item => item.complete));
       setTodoId(dailyAllTodo.map(item => item.task_id))
-      console.log(todoId)
+      //console.log(todoId)
   }, [dailyAllTodo]);
 
     const handleTodoEdit = () => {
@@ -93,8 +91,8 @@ const DailyTodoList = ({ dailyAllTodo, getTimeId}) => {
             <SectionTitleContainer>
             <SectionTitleTodo>To-do list</SectionTitleTodo>
             <AddBtn onClick={handleAddBtn}>+</AddBtn>
-            {isTodoEdit ? (<SaveBtn><span>save</span></SaveBtn>):
-            (<EditBtn onClick = {handleTodoEdit}><span>edit</span></EditBtn>)}
+            {isTodoEdit ? (<SaveBtn>save</SaveBtn>):
+            (<EditBtn onClick = {handleTodoEdit}>edit</EditBtn>)}
             </SectionTitleContainer>
           
           <TodoListContainer>
@@ -106,8 +104,8 @@ const DailyTodoList = ({ dailyAllTodo, getTimeId}) => {
             {isTodoEdit ? (<TodoInput maxLength="28" value = {text}
             onChange={(e) => handleTodoChange(index, e.target.value)}
                 onKeyDown={(e) => handleEnter(e, index)}/>)
-            : (<TodoText checked={isChecked[index]} >{text}</TodoText>)}
-              <DeleteBtn onClick={()=>handleDelBtn(index)}></DeleteBtn>
+            : (<><TodoText checked={isChecked[index]} >{text}</TodoText><DeleteBtn onClick={()=>handleDelBtn(index)}></DeleteBtn></>)}
+              
             </TodoItem>
           ))}
           </TodoListContainer>
@@ -127,7 +125,6 @@ const SectionTitleTodo = styled.div`
   letter-spacing: -0.02em;
   color: #222222;
   box-sizing: border-box;
-  //margin-bottom: 4px;
   cursor: default;
 `;
 
@@ -136,21 +133,16 @@ const AddBtn = styled.div`
   border-radius: 5px;
   width: 32px;
   height: 32px;
-  box-sizing: border-box;
   display: flex;
   flex-direction:column;
   align-items: center;
   justify-content: center;
   text-align: center;
   cursor: pointer;
-  /* padding: 0; */
-  margin: 0;
   margin-right: 15px;
-    color: #FF831C;
-    font-size: 38px;
-    font-weight: 400;
-    /* padding-top: -3%; */
-    padding-bottom: 2%;
+  color: #FF831C;
+  font-size: 38px;
+  font-weight: 400;
 `;
 
 const EditBtn = styled.div`
@@ -158,21 +150,14 @@ const EditBtn = styled.div`
   border-radius: 5px;
   width: 55px;
   height: 32px;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-weight: 400;
-  padding: 0;
-  margin: 0;
-  span {
-    color: #FF831C;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1;
-    //padding-bottom: 6px;
-  }
+  color: #FF831C;
+  font-size: 20px;
+  font-weight: 500;
 `;
 
 const SaveBtn = styled.div`
@@ -180,20 +165,13 @@ const SaveBtn = styled.div`
   border-radius: 5px;
   width: 55px;
   height: 32px;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  span {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1;
-    //padding-bottom: 6px;
-  }
+  cursor: default;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
 `;
 
 const SectionTodo = styled.div`
@@ -205,7 +183,6 @@ const SectionTodo = styled.div`
   justify-content: center;
   display: flex;
   flex-direction: column;
-
 `;
 
 const TodoListContainer = styled.div`
@@ -285,7 +262,6 @@ const DeleteBtn = styled.div`
     color: #c2c2c2;
     font-size: 18px;
     font-weight:800;
-    line-height: 1;
     position: absolute;
   }
 `
@@ -295,8 +271,6 @@ const CheckboxContainer = styled.div`
     height: 40px;
     align-items: center;
     justify-content: center;
-    padding:0;
-    margin:0;
 `
 const TodoText = styled.span`
   width: 408px;

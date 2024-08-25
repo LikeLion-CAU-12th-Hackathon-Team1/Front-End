@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ThisAllGraph from './OneWorkationGraph'
 import ThisAllRetro from './OneWorkationRetrospect'
 import ThisAllTodo from './OneWorkationTodo'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const OneWorkationDetail = ({daily_workation_id}) => {
     //어느 여행인지 워케이션아이디와 함께 버튼이 눌린 데일리워케이션아이디 하기
     const navigate = useNavigate();
 
-
+    const locations = useLocation();
+    const [isNotPast, setIsNotPast] = useState(true);
+    useEffect(()=>{
+        if(locations.pathname.includes('pastWorkation')){
+            setIsNotPast(false)
+        }
+    })
     const handleEdit = ()=>{
         console.log(daily_workation_id)
         navigate(`/timetable/today/${daily_workation_id}`)
@@ -20,7 +26,7 @@ const OneWorkationDetail = ({daily_workation_id}) => {
         <InnerBox>
             <TextBox>
                 <Text> 세부 일정</Text>
-                <EditBtn  onClick = {handleEdit}>edit</EditBtn>
+                {isNotPast ? (<EditBtn  onClick = {handleEdit}>edit</EditBtn>):(<></>)}
             </TextBox>
             <ContentBox>
                 <LeftBox>

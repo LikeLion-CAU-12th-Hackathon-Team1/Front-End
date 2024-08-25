@@ -25,7 +25,6 @@ const DailyWorkation = () => {
         setTodayDate(getTodayId.date); // 오늘의 날짜를 상태에 저장
         setTodayIndex(getTodayId.day); // 오늘의 인덱스를 상태에 저장
         setSigg(getTodayId.sigg); // 지역 정보를 상태에 저장
-        console.log(getTodayId.day); // 오늘의 인덱스를 콘솔에 출력
       }
     };
     fetchData();
@@ -35,7 +34,7 @@ const DailyWorkation = () => {
     return (
       <Container>
         <TopContainer>
-          <SideBar/>
+          <SideBar Reco = {false} />
           <NoWorkation>현재 진행 중인 워케이션이 없습니다.<NoImg src={No} /></NoWorkation>
         </TopContainer>
       </Container>
@@ -45,7 +44,7 @@ const DailyWorkation = () => {
   return (
     <Container>
       <TopContainer>
-        <SideBar/>
+        <SideBar Reco = {true}/>
         {todayId && <DailyWorkationCom todayId={todayId} todayDate={todayDate} todayIndex={todayIndex} />}
       </TopContainer>
       <BottomContainer>
@@ -93,8 +92,7 @@ const Footer = styled.div`
     background-repeat: no-repeat; /* 배경 이미지 반복 방지  */
 `
 const NoWorkation = styled.div`
-  width:1000px;
-  margin-left: 20px;
+  width:1228px;
   height: 900px;
   display: flex;
   align-items: center;
@@ -106,7 +104,6 @@ const NoWorkation = styled.div`
   background-color: #FFFAF0;
   flex-direction: column;
   cursor: default;
-  /* margin-top: 5%; */
 `;
 
 const NoImg = styled.img`

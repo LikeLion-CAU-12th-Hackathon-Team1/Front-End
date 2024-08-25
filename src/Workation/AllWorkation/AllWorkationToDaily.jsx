@@ -31,7 +31,7 @@ const AllWorkationToDaily = () => {
   return (
     <Container>
       <TopContainer>
-        <SideBar/>
+        <SideBar Reco = {true}/>
         {todayId && <DailyWorkationCom todayId={todayId} todayDate={todayDate} todayIndex={todayIndex} />}
       </TopContainer>
       <BottomContainer>
