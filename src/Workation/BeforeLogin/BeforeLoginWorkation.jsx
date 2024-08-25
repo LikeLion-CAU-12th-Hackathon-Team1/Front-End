@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import login2 from "../../assets/img/bfTime.png";
 import kakaoLoginBtn from "../../assets/img/KakaoBtn.svg"
-import { Navigate } from 'react-router-dom';
 import { loginHandler } from '../../api/api_login';
 
 const BeforeLoginWorkation = () => {
@@ -12,12 +11,8 @@ const BeforeLoginWorkation = () => {
   }
   return (
     <Wrapper>
-    
       <Text>로그인 후 실행할 수 있어요!</Text>
-      
       <LoginBtn src={kakaoLoginBtn} onClick={onClick}/>
-    
-    
     </Wrapper>
   )
 }

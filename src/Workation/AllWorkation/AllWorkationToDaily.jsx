@@ -1,29 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import DailyWorkationCom from '../DailyWorkation/DailyWorkationCom';
 import Location from '../DailyWorkation/Location';
-import recoLoca from '../../assets/img/recommendLoca.svg';
-import { getdailyRetro, getDailyTodayId } from '../../api/api_dailyTimeTable';
+import { getdailyRetro } from '../../api/api_dailyTimeTable';
 import NewFooter from "../../assets/img/NewFooter.svg";
+import SideBar from '../../component/SideBar';
 
 const AllWorkationToDaily = () => {
-
-  const navigate = useNavigate();
   const {id} = useParams();
-
-  const goTodayTimeTable = () => {
-    navigate('/timetable/today')
-  }
-
-  const goAllTimeTable = () => {
-    navigate('/timetable/allWorkation')
-  }
-
-  const goLastTimeTable = () => {
-    navigate('/timetable/pastWorkation')
-  }
-
 
   const [todayId, setTodayId] = useState(id);
   const [todayDate, setTodayDate] = useState();
@@ -33,11 +18,11 @@ const AllWorkationToDaily = () => {
   useEffect(() => {
     const fetchData = async () => {
       const getTodayId = await getdailyRetro(id);
-      setTodayId(getTodayId.daily_workation_id);
-      setTodayDate(getTodayId.date);
-      setTodayIndex(getTodayId.day);
-      setSigg(getTodayId.sigg);
-      console.log(getTodayId);
+        setTodayId(getTodayId.daily_workation_id);
+        setTodayDate(getTodayId.date);
+        setTodayIndex(getTodayId.day);
+        setSigg(getTodayId.sigg);
+        console.log(getTodayId);
       };
       fetchData();
   }, [todayId]);
@@ -45,25 +30,15 @@ const AllWorkationToDaily = () => {
 
   return (
     <Container>
-    <TopContainer>
-    <NavDom>
-      <BtnContainer>
-      <AllBtn onClick={goAllTimeTable}>전체 일정</AllBtn>
-      <TodayBtn onClick={goTodayTimeTable}>일일 일정</TodayBtn>
-      <HistoryBtn onClick = {goLastTimeTable}>모든 워케이션</HistoryBtn>
-      </BtnContainer>
-      
-      <RecoLoca src={recoLoca}/>
-    </NavDom>
-    {todayId && <DailyWorkationCom todayId={todayId} todayDate={todayDate} todayIndex={todayIndex} />}
-    </TopContainer>
-    <BottomContainer>
-    <Location sigg={sigg}></Location>
-    </BottomContainer>
-    <Footer/>
+      <TopContainer>
+        <SideBar/>
+        {todayId && <DailyWorkationCom todayId={todayId} todayDate={todayDate} todayIndex={todayIndex} />}
+      </TopContainer>
+      <BottomContainer>
+        <Location sigg={sigg}></Location>
+      </BottomContainer>
+      <Footer/>
     </Container>
-    
-   
   )
 }
 
@@ -93,59 +68,6 @@ const BottomContainer = styled.div`
   height: 820px;
   margin-bottom: 10%;
 `
-
-const NavDom = styled.div`
-display: flex;
-flex-direction: column;
-  width: 188px;
-  height: 730px; //오늘일정일때 사진 보이게하기
-  font-size: 20px;
-  font-weight: 700;
-align-items: center;
-justify-content:space-between;
-`
-
-const BtnContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  height: 19%;
-  justify-content: space-between;
-
-`
-
-const RecoLoca = styled.img`
-width: 188px;
-cursor: pointer;
-`
-const AllBtn = styled.div`
-  width: 188px;
-  height: 40px;
-  display: flex;
-  align-items:center;
-  justify-content:center;
-  color: #7A7A7A;
-  cursor: pointer;
-`
-const TodayBtn = styled.div`
-  width: 188px;
-  height: 40px;
-  display: flex;
-  align-items:center;
-  justify-content:center;
-  color: #222222;
-  cursor: pointer;
-`
-const HistoryBtn = styled.div`
-  width: 188px;
-  height: 40px;
-  display: flex;
-  align-items:center;
-  justify-content:center;
-  color: #7A7A7A;
-  cursor: pointer;
-`
-
 const Footer = styled.div`
     width : 1440px;
     height: 314px;
