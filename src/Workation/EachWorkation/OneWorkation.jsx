@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import OneWorkationTextBox from './OneWorkationTextBox';
 import OneWorkationTimeTableList from './OneWorkationTimeTableList';
-import OneWorkationDetailPast from './OneWorkationDetailPast';
 import axios from 'axios';
-import { DateMap1, formatDateWithDay, getSiggMap, getWorkPurposeMap, getWorkStyleMap } from '../../api/mappingData';
-import { getThisAll, getThisAllReal } from '../../api/api_ThisAllTimeTable';
+import { formatDateWithDay, getSiggMap, getWorkPurposeMap, getWorkStyleMap } from '../../api/mappingData';
+import { getThisAllReal } from '../../api/api_ThisAllTimeTable';
 import OneWorkationDetail from './OneWorkationDetail';
 import No from "../../assets/img/No.svg"
 
@@ -75,7 +74,7 @@ const OneWorkation = () => {
         <>
           <OneWorkationTextBox workStyleText={workStyleText} workPurposeText={workPurposeText}
           SiggText={SiggText} formattedStartDate={formattedStartDate}
-          formattedEndDate={formattedEndDate} nightB={nightB} dayB={dayB} /> {/* 수정수정 */}
+          formattedEndDate={formattedEndDate} nightB={nightB} dayB={dayB} />
         <OneWorkationTimeTableList setbuttonClick={setbuttonClick} nightB={nightB} dayB={dayB} dailyWorkationList={dailyWorkationList} setSelectedDailyWorkationId={setSelectedDailyWorkationId}/>
         {click ? (<OneWorkationDetail selectedDailyWorkationId={selectedDailyWorkationId} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
         </>) : (

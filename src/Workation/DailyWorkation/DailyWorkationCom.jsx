@@ -4,7 +4,7 @@ import DailyTodoList from './DailyTodoList';
 import TimeTable from '../TimeTable/TimeTable';
 import DailyGraph from './DailyGraph';
 import DailyRetrospect from './DailyRetrospect';
-import { getDailyAllTable, getdailyRetro, getDailyTodayId, getDailyTodo, getGraph, getTimeTodo } from '../../api/api_dailyTimeTable'; // 수정수정
+import { getDailyAllTable, getdailyRetro, getDailyTodo, getGraph, getTimeTodo } from '../../api/api_dailyTimeTable';
 import { formatDate} from '../../api/mappingData';
 import day from "../../assets/img/day2.svg";
 import ii from "../../assets/img/iI.svg";
@@ -89,13 +89,11 @@ const DailyWorkationCom = ({ todayId, todayDate, todayIndex }) => {
     }
   };
 
-
   //가이드창 띄우기
   const [isOpen, setIsOpen] = useState(false);
   const GuideModal1 = ()=> {
     setIsOpen(!isOpen);
   }
-
 
   return (
     <Container>
@@ -310,18 +308,7 @@ const TodoListEditMode = styled.div`
   display: flex;
   flex-direction: column;
 `;
-// const ModalOverlay = styled.div`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   background: rgba(105, 105, 105, 0.5);
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   z-index: 10;
-// `;
+
 const ModalOverlay = styled.div`
   position: absolute; // fixed에서 absolute로 변경
   top: 20%; // 상단에서의 위치를 적절히 조정
@@ -335,7 +322,6 @@ const ModalOverlay = styled.div`
   justify-content: center;
   z-index: 1000;
 `;
-
 
 const GuideImg = styled.img`
   max-width: 100%;

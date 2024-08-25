@@ -1,20 +1,36 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import recoLoca from '../assets/img/recommendLoca.svg';
 
 const SideBar = () => {
     const navigate = useNavigate();
+    const locations = useLocation();
+    const [selectedSide, setSelectedSide] = useState(null); // 선택된 메뉴 상태 추가
+    useEffect(()=> {
+        if (locations.pathname.includes('/allWorkation')) {
+            setSelectedSide('allWorkation');
+        } else if (locations.pathname.includes('/today')) {
+            setSelectedSide('today');
+        } else if (locations.pathname.includes('/pastWorkation')) {
+            setSelectedSide('pastWorkation');
+        } else {
+            setSelectedSide(null);
+        }
+    }, [locations]);
 
     const goTodayTimeTable = () => {
+        setSelectedSide('today')
       navigate('/timetable/today')
     }
   
     const goAllTimeTable = () => {
+        setSelectedSide('allWorkation')
       navigate('/timetable/allWorkation')
     }
   
     const goLastTimeTable = () => {
+        setSelectedSide('pastWorkation')
       navigate('/timetable/pastWorkation')
     }
 
@@ -33,12 +49,12 @@ const SideBar = () => {
   return (
     <NavDom>
         <BtnContainer>
-            <AllBtn onClick={goAllTimeTable}>전체 일정</AllBtn>
-            <TodayBtn onClick={goTodayTimeTable}>일일 일정</TodayBtn>
-            <HistoryBtn onClick = {goLastTimeTable}>모든 워케이션</HistoryBtn>
+            <AllBtn onClick={goAllTimeTable} selected={selectedSide === 'allWorkation'}>전체 일정</AllBtn>
+            <TodayBtn onClick={goTodayTimeTable} selected={selectedSide === 'today'}>일일 일정</TodayBtn>
+            <HistoryBtn onClick = {goLastTimeTable} selected={selectedSide === 'pastWorkation'}>모든 워케이션</HistoryBtn>
         </BtnContainer>
-
-        <RecoLoca src={recoLoca} onClick={goto}/>
+        {selectedSide === 'today'? <RecoLoca src={recoLoca} onClick={goto}/>:(<></>)}
+        
       </NavDom>
   )
 }
@@ -71,7 +87,7 @@ const NavDom = styled.div`
     display: flex;
     align-items:center;
     justify-content:center;
-    color: #222222;
+    color: ${props => props.selected ? ' #222222' : '#7a7a7a'};
     cursor: pointer;
   `
   const TodayBtn = styled.div`
@@ -80,7 +96,7 @@ const NavDom = styled.div`
     display: flex;
     align-items:center;
     justify-content:center;
-    color: #7A7A7A;
+    color: ${props => props.selected ? ' #222222' : '#7a7a7a'};
     cursor: pointer;
   `
   const HistoryBtn = styled.div`
@@ -89,9 +105,10 @@ const NavDom = styled.div`
     display: flex;
     align-items:center;
     justify-content:center;
-    color: #7A7A7A;
+    color: ${props => props.selected ? ' #222222' : '#7a7a7a'};
   `
   const RecoLoca = styled.img`
   width: 188px;
+  margin-right: 20px;
   cursor: pointer;
   `

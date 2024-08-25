@@ -1,5 +1,3 @@
-// 회고 작성 컴포넌트
-
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { patchdailyRetro } from '../../api/api_dailyTimeTable';

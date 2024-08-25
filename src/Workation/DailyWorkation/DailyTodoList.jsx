@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { delTodo, getTimeTodo, patchTodoCheck, patchTodoText, postTimeTodo } from '../../api/api_dailyTimeTable';
 
-const DailyTodoList = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => {
+const DailyTodoList = ({ dailyAllTodo, getTimeId}) => {
 
     const [isTodoEdit, setIsTodoEdit] = useState(false); // save edit 여부 버튼 관리
     const [todoList, setTodoList] = useState(dailyAllTodo.map(item => item.description));
@@ -39,23 +39,15 @@ const DailyTodoList = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => 
             setTodoList(prevList => [...prevList, body.description]);
             setIsChecked(prevChecked => [...prevChecked, false]);
             const response = await getTimeTodo(getTimeId);
-            console.log(response[response.length - 1]);
             setTodoId(prevTodoId => [...prevTodoId, response[response.length - 1].task_id])
           }
     }
 
-  
     const handleTodoChange = (index, value) => {
         const newList = [...todoList];
         newList[index] = value;
         setTodoList(newList);
       }
-
-    const handleSaveBtn = async (index) => {
-        // const body = { description : todoList[index]};
-        // await patchTodoText(todoId[index], body);
-        // handleTodoEdit()
-    }
 
     const handleEnter = async (e, index) => {
       if (e.key === 'Enter') {
@@ -63,19 +55,14 @@ const DailyTodoList = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => 
         newTodoList[index] = e.target.value;
         setTodoList(newTodoList);
 
-          const body = { description: todoList[index] };
-          handleTodoEdit();
-          if(todoId[index]){
-            await patchTodoText(todoId[index], body);
-          }
+        const body = { description: todoList[index] };
+        handleTodoEdit();
+        if(todoId[index]){
+          await patchTodoText(todoId[index], body);
+        }
           
       }
   }
-
-  // useEffect(()=>{
-  //   handleEnter();
-  // },[todoList])
-
     const handleCheckboxChange = async (index) => {
         const newCheckedItems = [...isChecked];
         newCheckedItems[index] = !newCheckedItems[index];
@@ -106,7 +93,7 @@ const DailyTodoList = ({ dailyAllTodo, toGetWorkId, toGetRestId, getTimeId}) => 
             <SectionTitleContainer>
             <SectionTitleTodo>To-do list</SectionTitleTodo>
             <AddBtn onClick={handleAddBtn}>+</AddBtn>
-            {isTodoEdit ? (<SaveBtn onClick = {handleSaveBtn}><span>save</span></SaveBtn>):
+            {isTodoEdit ? (<SaveBtn><span>save</span></SaveBtn>):
             (<EditBtn onClick = {handleTodoEdit}><span>edit</span></EditBtn>)}
             </SectionTitleContainer>
           

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import ThisAllGraph from './OneWorkationGraph'
 import ThisAllRetro from './OneWorkationRetrospect'
 import ThisAllTodo from './OneWorkationTodo'
 import { useNavigate } from 'react-router-dom'
 
-const OneWorkationDetail = ({daily_workation_id, selectedDailyWorkationId}) => {
+const OneWorkationDetail = ({daily_workation_id}) => {
     //어느 여행인지 워케이션아이디와 함께 버튼이 눌린 데일리워케이션아이디 하기
     const navigate = useNavigate();
 
@@ -108,26 +108,3 @@ const EditBtn = styled.button`
     padding-bottom: 6px;}
     cursor: pointer;
 `
-
-const DayCount = styled.div`
-  display: inline-block;
-  width: 24%;
-  height: 32px;
-  text-align: center;
-  background-color: ${({ $clicked }) => ($clicked ? '#FF6B00' : '#FED39D')};;
-  border-radius: 4px;
-  border: 0.5px solid #FF831C;
-  padding: 5px 10px 4px 10px;
-  box-sizing: border-box;
-  gap: 10px;
-  /* font-weight: 550; */
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: -0.02em;
-  color: ${({ $clicked }) => ($clicked ? '#FFFFFF' : '#FF6B00')};
-  margin-bottom: 3%;
-  font-family: 'AppleSDGothicNeoSB', sans-serif;
-  justify-content: center;
-  align-items: center;
-
-`;

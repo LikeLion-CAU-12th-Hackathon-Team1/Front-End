@@ -4,10 +4,8 @@ import ThisAllGraph from './OneWorkationGraph'
 import ThisAllRetro from './OneWorkationRetrospect'
 import ThisAllTodo from './OneWorkationTodo'
 
-const OneWorkationDetailPast = ({workation_id, daily_workation_id}) => {
+const OneWorkationDetailPast = ({daily_workation_id}) => {
     //어느 여행인지 워케이션아이디와 함께 버튼이 눌린 데일리워케이션아이디 하기
-
-
   return (
     <Container>
         <InnerBox>
@@ -52,7 +50,7 @@ const Text = styled.div`
     display:flex;
     flex-direction:row;
     align-items:center;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 28.8px;
     letter-spacing: -0.02em;

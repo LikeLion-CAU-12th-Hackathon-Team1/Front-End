@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import Card from './Card';
-//import { locationArray } from '../test/dummydata';
 import { handleRest } from '../../api/api_location';
 
 const RestLoca = ({RestCategory, sigg}) => {
@@ -21,10 +20,8 @@ const RestLoca = ({RestCategory, sigg}) => {
   return (
     <ContentBox>
         {data.map((item) => (
-    <Card key={item.place_code} mapKey={item.place_code} image={item.image} placename={item.placename} report={item.report} />
-    ))};
-
-
+        <Card key={item.place_code} mapKey={item.place_code} image={item.image} placename={item.placename} report={item.report} />
+        ))};
     </ContentBox>
   )
 }

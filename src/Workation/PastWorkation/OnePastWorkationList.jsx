@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Pin from "../../assets/img/pin.svg"
 import day2 from "../../assets/img/day2.svg"
@@ -6,29 +6,15 @@ import { delPastWorkation } from '../../api/api_PastTimeTable'
 
 const OnePastWorkationList = ({ workation_id, SiggText, formattedStartDate, formattedEndDate, handleOne, handleThisAll }) => {
 
-    // useEffect(()=>{
-    //     const handleDeleteBtn = () => {
-    //     try{
-    //         delPastWorkation(workation_id)
-    //     }
-    //     catch (error) {
-    //         console.error(error.data)
-    //     }
-    //     handleDeleteBtn();
-    // }
-    // },[workation_id])
     
     const handleDeleteBtn = async () => {
         try {
             await delPastWorkation(workation_id);
             handleThisAll();
         } catch (error) {
-            console.error('Error:', error.response ? error.response.data : error.message); // 수정수정: 에러 메시지 출력 수정
+            console.error('Error:', error.response ? error.response.data : error.message);
         }
     }
-   
-
-
   return (
     <One onClick={handleOne }>
         <ImgC src={day2}/>
@@ -51,7 +37,6 @@ const One = styled.div`
     padding: 3px 32px;
     margin-bottom: 2%;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     cursor: pointer;
 `
