@@ -1,6 +1,5 @@
 # WorkValley
 
-워케이션을 떠난 프리랜서 맞춤형 워라밸 파트너
 <img width="1027" alt="스크린샷 2024-08-29 오후 2 36 52" src="https://github.com/user-attachments/assets/8c514f1b-6221-4853-8f7f-34799a9d9292">
 
 ## 👨‍🏫 프로젝트 소개
