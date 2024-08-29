@@ -17,7 +17,6 @@ const OneWorkationRetrospect = ({daily_workation_id}) => {
         });
         setMemo(response.data.memo);
       } catch (error) {
-        console.error('Error fetching momo data:', error);
       }
     };
 
@@ -28,10 +27,10 @@ const OneWorkationRetrospect = ({daily_workation_id}) => {
 
   return (
     <SectionRetro>
-    <SectionTitleContainer>
+      <SectionTitleContainer>
         <SectionTitleRto>Retrospect</SectionTitleRto>
-    </SectionTitleContainer>
-    <TextArea readOnly value={memo}></TextArea>
+      </SectionTitleContainer>
+      <TextArea readOnly value={memo}/>
     </SectionRetro>
     )
 }
@@ -56,15 +55,11 @@ flex-direction: row;
 
 const SectionTitleRto = styled.div`
 width: 396px;
-/* height: 25px; */
 font-weight: 700;
 font-size: 24px;
-line-height: 28.8px;
 letter-spacing: -0.02em;
 color: #222222;
 box-sizing: border-box;
-//margin-bottom: 4px;
-/* font-family: 'AppleSDGothicNeoB', sans-serif; */
 margin-left: -7%;
 cursor: default;
 `;
@@ -79,7 +74,6 @@ margin-top:5px;
 margin-left: 1px;
 font-weight: 400;
 font-size: 20px;
-line-height: 28.8px;
 letter-spacing: -0.02em;
 background-color: #FFFAF0;
 font-family: 'AppleSDGothicNeoM', sans-serif;

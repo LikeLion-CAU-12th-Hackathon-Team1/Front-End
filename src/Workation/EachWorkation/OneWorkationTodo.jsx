@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import {getDailyTodo} from '../../api/api_dailyTimeTable'
 
 const OneWorkationTodo = ({daily_workation_id}) => {
 
@@ -9,18 +9,11 @@ const OneWorkationTodo = ({daily_workation_id}) => {
   useEffect(() => {
     const fetchTodoData = async () => {
       try {
-        const token = localStorage.getItem('access');
-        const response = await axios.get(`https://saengchaein.r-e.kr/workation/daily/${daily_workation_id}/todolist/`,{
-          headers: {
-            Authorization: `Bearer ${token}` // Authorization 헤더 설정
-          }
-        });
-        setTodoList(response.data);
+        const response = await getDailyTodo(daily_workation_id);
+        setTodoList(response.data || []);
       } catch (error) {
-        console.error('Error fetching Todo data:', error);
       }
     };
-
     if (daily_workation_id) {
       fetchTodoData();
     }
@@ -29,21 +22,21 @@ const OneWorkationTodo = ({daily_workation_id}) => {
   return (
     <>
     <SectionTodo>
-            <SectionTitleContainer>
-            <SectionTitleTodo>To-do list</SectionTitleTodo>
-            </SectionTitleContainer>
+      <SectionTitleContainer>
+        <SectionTitleTodo>To-do list</SectionTitleTodo>
+      </SectionTitleContainer>
           
-          <TodoListContainer>
-          {todoList.map((todo) => (
-            <TodoItem key={todo.task_id}>
-            <CheckboxContainer>
-                <Checkbox type="checkbox" checked={todo.complete}/>
-            </CheckboxContainer>
-              <TodoDes checked={todo.complete}>{todo.description}</TodoDes>
-            </TodoItem>
-          ))}
-          </TodoListContainer>
-        </SectionTodo>
+      <TodoListContainer>
+        {todoList.map((todo) => (
+        <TodoItem key={todo.task_id}>
+          <CheckboxContainer>
+            <Checkbox type="checkbox" checked={todo.complete}/>
+          </CheckboxContainer>
+          <TodoDes checked={todo.complete}>{todo.description}</TodoDes>
+        </TodoItem>
+        ))}
+      </TodoListContainer>
+    </SectionTodo>
     </>
   )
 }
@@ -55,79 +48,11 @@ const SectionTitleTodo = styled.div`
   height: 25px;
   font-weight: 700;
   font-size: 24px;
-  line-height: 28.8px;
   letter-spacing: -0.02em;
   color: #222222;
   box-sizing: border-box;
-  //margin-bottom: 4px;
   margin-left: -12%;
   cursor: default;
-`;
-
-const AddBtn = styled.div`
-  background-color: #FFE0AA;
-  border-radius: 5px;
-  width: 32px;
-  height: 32px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  margin-right: 15px;
-  
-
-  span {
-    color: #FF831C;
-    font-size: 38px;
-    font-weight: 300;
-    line-height: 1;
-    padding-bottom: 6px;
-  }
-`;
-
-const EditBtn = styled.div`
-  background-color: #FFE0AA;
-  border-radius: 5px;
-  width: 55px;
-  height: 32px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  span {
-    color: #FF831C;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1;
-    //padding-bottom: 6px;
-  }
-`;
-
-const SaveBtn = styled.div`
-  background-color: #FF831C;
-  border-radius: 5px;
-  width: 55px;
-  height: 32px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  span {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1;
-    //padding-bottom: 6px;
-  }
 `;
 
 const SectionTodo = styled.div`
@@ -139,23 +64,20 @@ const SectionTodo = styled.div`
   justify-content: center;
   display: flex;
   flex-direction: column;
-
 `;
 
 const TodoListContainer = styled.div`
-    height: 260px;
-    width: 454px;
-    margin-top: 13px;
-    overflow-y: auto;
+  height: 260px;
+  width: 454px;
+  margin-top: 13px;
+  overflow-y: auto;
 `
-
 const TodoItem = styled.div`
   display: flex;
   align-items: center;
   height: 32px;
   margin-bottom: 10px;
   font-family: 'AppleSDGothicNeoB', sans-serif;
-  /* font-size: 20px; */
 `;
 
 const Checkbox = 

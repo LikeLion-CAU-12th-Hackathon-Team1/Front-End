@@ -4,13 +4,11 @@ import Pin from "../../assets/img/pin.svg"
 import day2 from "../../assets/img/day2.svg"
 import { delPastWorkation } from '../../api/api_PastTimeTable'
 
-const OnePastWorkationList = ({ workation_id, SiggText, formattedStartDate, formattedEndDate, handleOne, handleThisAll }) => {
-
-    
+const OnePastWorkationList = ({ workation_id, SiggText, formattedStartDate, formattedEndDate, handleOne, fetchAllWorkation }) => {
     const handleDeleteBtn = async () => {
         try {
             await delPastWorkation(workation_id);
-            handleThisAll();
+            fetchAllWorkation();
         } catch (error) {
             console.error('Error:', error.response ? error.response.data : error.message);
         }
@@ -21,7 +19,7 @@ const OnePastWorkationList = ({ workation_id, SiggText, formattedStartDate, form
         <TextBox>{formattedStartDate} ~ {formattedEndDate}</TextBox>
         <ImgL src={Pin}/>
         <TextBox >{SiggText} 워케이션</TextBox>
-        <DeleteBtn onClick={(e) => { e.stopPropagation(); handleDeleteBtn(); }}></DeleteBtn>
+        <DeleteBtn onClick={(e) => { e.stopPropagation(); handleDeleteBtn(); }}>x</DeleteBtn>
     </One>
   )
 }
@@ -51,7 +49,6 @@ const ImgL = styled.img`
 `
 const TextBox = styled.div`
     font-size: 20px;
-    /* font-weight: 600; */
     width: 41%;
     letter-spacing: -0.02em; 
     margin-left: 1%;
@@ -66,25 +63,12 @@ const DeleteBtn = styled.div`
     border:2px solid #DBDBDB;
     background-color: #F0F0F0;
     border-radius: 100%;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    opacity: 0;
     margin-left: 10%;
-    transition: opacity 0.3s ease;
-
-    &:hover {
-        opacity: 1;
-    }
-
-    &::before {
-    content: '✕';
     color: #c2c2c2;
-    font-size: 18px;
-    font-weight:800;
-    line-height: 1;
-    position: absolute;
-  }
+    font-size: 28px;
+    font-weight:400;
 `

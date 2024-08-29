@@ -17,7 +17,6 @@ const OneWorkationDetail = ({daily_workation_id}) => {
         }
     })
     const handleEdit = ()=>{
-        console.log(daily_workation_id)
         navigate(`/timetable/today/${daily_workation_id}`)
     }
 
@@ -44,7 +43,6 @@ export default OneWorkationDetail
 
 const Container = styled.div`
 width: 100%;
-/* height: 420px; */
 border-radius: 8px;
 border-color: #FEE0AA;
 margin-top: 2%;
@@ -52,10 +50,9 @@ margin-top: 2%;
 const InnerBox = styled.div`
 display:flex;
 flex-direction: column;
-    width: 100%;
-    height: 372px;
-    background-color: #FFFDF9;
-    /* border-color: #FEE0AA; */
+width: 100%;
+height: 372px;
+background-color: #FFFDF9;
 `
 const TextBox = styled.div`
 display:flex;
@@ -64,14 +61,13 @@ justify-content:space-between;
 margin: 1%;
 `
 const Text = styled.div`
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 28.8px;
-    letter-spacing: -0.02em;
-    cursor: default;
+display:flex;
+flex-direction:row;
+align-items:center;
+font-size: 24px;
+font-weight: 600;
+letter-spacing: -0.02em;
+cursor: default;
 `
 const ContentBox = styled.div`
     display:flex;

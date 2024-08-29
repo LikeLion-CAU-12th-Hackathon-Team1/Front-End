@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import tagorange from "../../assets/img/tagorange.svg";
 import loca from "../../assets/img/loca.svg";
@@ -8,9 +8,6 @@ import day from "../../assets/img/day2.svg";
 const OneWorkationTextBox = ( {workStyleText, workPurposeText,
   SiggText, formattedStartDate,
   formattedEndDate, nightB, dayB} ) => {
-  //백에서 받은 데이터 넣기(날짜, 지역, 스타일)
-
-
   return (
     <Container>
       <TopBox>
@@ -35,14 +32,12 @@ export default OneWorkationTextBox
 
 const Container = styled.div`
   width: 95%;
-  /* height: 173px; */
   border-radius: 8px;
   border: 1px solid #FEE0AA;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #FFFFFF;
-  /* flex-direction: column; */
   padding : 24px 10px 24px 10px;
 `
 const TopBox = styled.div`
@@ -76,11 +71,9 @@ const Img = styled.img`
   }
 `
 const Text = styled.div`
-  /* border: 1px solid black; */
   width: 100%;
-  margin: 7px 10px; //글자사이간격이걸로조절하기
+  margin: 7px 10px;
   font-size: 24px;
-  /* font-weight: 600; */
   font-family: 'AppleSDGothicNeoSB', sans-serif;
   cursor: default;
 
@@ -88,8 +81,7 @@ const Text = styled.div`
 const TextBox = styled.div`
   border: 1px solid #FED39D;
   background-color: #FFFAE9;
-  /* width: 45%; */
-  margin: 7px 10px; //글자사이간격이걸로조절하기
+  margin: 7px 10px;
   font-size: 20px;
   font-weight: 600;
   border-radius: 4px;

@@ -8,7 +8,6 @@ import TimeEditOn from './TimeEditOn';
 const TimeTable = ({isTimeEditOn, setIsTimeEditOn,
   startWorkTime, setStartWorkTime, endWorkTime, setEndWorkTime,
   startRestTime, setStartRestTime, endRestTime, setEndRestTime,
-  handleTimeUpdate,
   dailyAllTable,
   todayId,
   setToGetWorkId,
