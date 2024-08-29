@@ -13,40 +13,40 @@
   2. 일과 쉼 균형 그래프 제공
   3. 일과 쉼 위한 적절한 공간 추천
     
+- 개발 기간: 2024.07.05. ~ 2024.08.07.
+  
+- 기술 스택: React, JavaScript, HTML5, CSS
+    
 - 서비스 URL: https://workvalley.netlify.app
 
-## ✨ 목표
+## 💁🏻‍♂️ 서비스 소개
+| 랜딩페이지 | 워케이션 만들기|
+|----|----|
+|<img width="976" alt="스크린샷 2024-08-29 오후 3 19 09" src="https://github.com/user-attachments/assets/c5a1d6a0-1346-40bb-84cd-ceaf147b0ef9">|<img width="976" alt="스크린샷 2024-08-29 오후 3 19 00" src="https://github.com/user-attachments/assets/5c989a72-122e-4fe7-9c65-64595be2e03e">|
+|| 로그인 후 몇가지 질문을 통해 ChatGPT가 사용자 맞춤형 시간표를 제공해줍니다.|
 
-- 우리 팀의 끝장나는 아이디어를 완벽하게 구현해서 멋진 하나의 서비스를 만들어낼게요
+| 진행중인 워케이션 | 데일리 워케이션|
+|----|----|
+|<img width="976" alt="스크린샷 2024-08-29 오후 3 19 21" src="https://github.com/user-attachments/assets/347866bd-d694-4bb2-b9db-8772775f477f">|<img width="976" alt="스크린샷 2024-08-29 오후 3 22 56 1" src="https://github.com/user-attachments/assets/fd4017b0-98ae-4f2d-af9f-3915874db873">|
+|현재 진행중인 워케이션의 전체 일정을 보여줍니다.|오늘의 워케이션을 시간표로 제공하여 work-rest의 비교, todoList, 회고등을 확인할 수 있습니다.|
 
-- 12기 해커톤 대회 우승을 목표로 열심히 달려보아요
-
-## 🕰 개발 기간
-
-- 2024.07.05(금) ~ 2024.08.07(수)
-
-- 주제 공개
-
-- 문제 정의 및 솔루션 도출
-
-- 기능 도출 및 BM 구상
-
-- UX/UI 디자인
-
-- 기능 구현
-
-- 발표 평가
+| work-rest 장소 추천 | 모든 워케이션 |
+|----|----|
+|<img width="976" alt="스크린샷 2024-08-29 오후 3 23 04" src="https://github.com/user-attachments/assets/7629eb62-f87f-4c16-8c21-a0d8374f7c1f">|<img width="976" alt="스크린샷 2024-08-29 오후 3 23 16" src="https://github.com/user-attachments/assets/45ce81c8-4e0f-4380-afc1-a58b241fc22f">|
+| 지역 맞춤, 테마별 work-rest 장소를 추천해줍니다. 카카오맵으로 연결됩니다. | 과거의 모든 워케이션 기록을 확인할 수 있습니다. |
 
 ## 👫 팀원
 
-- 김지현: 기획, PM
-
-- 오유진: UX/UI 디자인
-
-- 김태진: 프론트 개발자
-
-- 이주영: 프론트 개발자
-
-- 김명규: 백엔드 개발자
-
-- 정현수: 백엔드 개발자
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href=""><img src="width="100px;" alt=""/><br /><sub><b>PM, 기획 : 김지현 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>UI/UX 디자인 : 오유진 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE : 김태진 </b></sub></a><br /></td>
+     <tr/>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE : 이주영 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE : 김명규 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE : 정현수 </b></sub></a><br /></td>
+    </tr>
+  </tbody>
+</table>
