@@ -13,8 +13,11 @@ try{
     });
     return response.data;
 }catch(error){
-    alert("다시 로그인 해주세요")
-    window.location.href = "/";
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("nickname");
+    localStorage.removeItem("email");
+    localStorage.removeItem("profile");
 }
     
 }
