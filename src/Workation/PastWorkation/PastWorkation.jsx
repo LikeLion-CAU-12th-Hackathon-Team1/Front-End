@@ -1,5 +1,4 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import PastWorkationList from './PastWorkationList';
 import SideBar from '../../component/SideBar';

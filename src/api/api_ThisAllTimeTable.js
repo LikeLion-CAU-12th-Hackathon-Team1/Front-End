@@ -14,10 +14,8 @@ export const getThisAll = async (workation_id) => {
         headers: {Authorization: `Bearer ${token}`
     }
       });
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      console.error("Error fetching data:", error);
     }
   };
 
@@ -30,9 +28,7 @@ export const getThisAll = async (workation_id) => {
         headers: {Authorization: `Bearer ${token}`
     }
       });
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      console.error("Error fetching data:", error);
     }
   };

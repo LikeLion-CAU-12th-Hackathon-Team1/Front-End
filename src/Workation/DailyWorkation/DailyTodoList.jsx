@@ -91,7 +91,7 @@ const DailyTodoList = ({ dailyAllTodo, getTimeId}) => {
             <SectionTitleContainer>
             <SectionTitleTodo>To-do list</SectionTitleTodo>
             <AddBtn onClick={handleAddBtn}>+</AddBtn>
-            {isTodoEdit ? (<SaveBtn>save</SaveBtn>):
+            {isTodoEdit ? (<SaveBtn>edit</SaveBtn>):
             (<EditBtn onClick = {handleTodoEdit}>edit</EditBtn>)}
             </SectionTitleContainer>
           

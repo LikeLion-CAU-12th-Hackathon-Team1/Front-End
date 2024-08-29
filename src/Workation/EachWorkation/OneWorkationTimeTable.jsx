@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
@@ -31,8 +30,6 @@ useEffect(() => {
     }
 });
 })
-
-
   return (
     <Container>
         <WorkTable $isActive={isWork}></WorkTable>
@@ -52,21 +49,21 @@ align-items:center;
 justify-content:center;
 `
 const WorkTable = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 130px;
-  height: 16px;
-  background-color: ${({ $isActive }) => ($isActive ? '#FFA837' : '#FFFFFF')};
-  border-radius: 100px;
-  margin-right: 15px;
+display: flex;
+flex-direction: row;
+align-items: center;
+width: 130px;
+height: 16px;
+background-color: ${({ $isActive }) => ($isActive ? '#FFA837' : '#FFFFFF')};
+border-radius: 100px;
+margin-right: 15px;
 `
 const RestTable = styled.div`
-    display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 130px;
-  height: 16px;
-  background-color: ${({ $isActive }) => ($isActive ? '#E3DCD0' : '#FFFFFF')};
-  border-radius: 100px;
+display: flex;
+flex-direction: row;
+align-items: center;
+width: 130px;
+height: 16px;
+background-color: ${({ $isActive }) => ($isActive ? '#E3DCD0' : '#FFFFFF')};
+border-radius: 100px;
   `

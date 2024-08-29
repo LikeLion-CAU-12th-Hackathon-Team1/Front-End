@@ -1,37 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import OnePastWorkationList from './OnePastWorkationList'
-import axios from 'axios';
 import { formatDateWithDay, getSiggMap } from '../../api/mappingData';
 import { useNavigate } from 'react-router-dom';
 import No from "../../assets/img/No.svg"
+import { fetchAllWorkation } from '../../api/api_Workation';
 
 const PastWorkationList = () => {
-    const baseURL = `https://saengchaein.r-e.kr`;
     const [data, setData] = useState(null);
-    const token = localStorage.getItem('access');
     const [isNoting, setIsNoting] = useState(false);
 
     const navigate = useNavigate();
 
-const handleThisAll = async () => {
-  try {
-      const response = await axios.get(`${baseURL}/workation/`, {
-          headers: {
-              'Authorization': `Bearer ${token}`
-          }
-      });
+useEffect(() => {
+  const fetchData = async ()=>{
+    try{
+      const response = await fetchAllWorkation();
       setData(response.data);
       if(response.data.length === 0){
         setIsNoting(true);
       }
-  } catch (error) {
-      console.error("Error fetching data:", error);
-  }
-};
+    } catch(error){
 
-useEffect(() => {
-  handleThisAll();
+    }
+  }
+  fetchData();
 }, []);
 
 if (data === null) {
@@ -50,28 +43,26 @@ const handleOne = (workation_id)=> {
               <Time>시간순</Time>
             </TitleBox>
             <ContentBox>
-                {data.map((workation)=>{
-                     const { start_date, end_date, sigg, workation_id } = workation;
-                     const SiggText = getSiggMap(sigg);
-                     const formattedStartDate = formatDateWithDay(start_date);
-                     const formattedEndDate = formatDateWithDay(end_date);
-    
-                    return(
-                    < OnePastWorkationList
+              {data.map((workation)=>{
+              const { start_date, end_date, sigg, workation_id } = workation;
+              const SiggText = getSiggMap(sigg);
+              const formattedStartDate = formatDateWithDay(start_date);
+              const formattedEndDate = formatDateWithDay(end_date);
+                return(
+                  < OnePastWorkationList
                     key={workation_id}
                     workation_id={workation_id} 
                     SiggText={SiggText}
                     formattedStartDate={formattedStartDate}
                     formattedEndDate={formattedEndDate}
                     handleOne={() => handleOne(workation_id)}
-                    handleThisAll={handleThisAll}
-                    />
-                    )
-                })}
+                    fetchAllWorkation={fetchAllWorkation}
+                  />
+                )
+              })}
             </ContentBox>
-            </>
-        )}
-        
+          </>
+        )}   
     </Container>
   )
 }
@@ -92,7 +83,6 @@ const Container = styled.div`
 const TitleBox = styled.div`
     width: 94%;
     height: 7%;
-    /* border:2px solid black; */
     margin-top: 2%;
 `
 
@@ -101,11 +91,9 @@ const Time = styled.div`
     height: 100%;
     font-weight: 500;
     font-size: 18px;
-    line-height: 21.6px;
     letter-spacing: -0.02em;
     color: #7A7A7A;
     cursor: default;
-    
 `
 const ContentBox = styled.div`
     width: 94.5%;
@@ -115,7 +103,6 @@ const ContentBox = styled.div`
     margin-bottom: 4%;
     margin-top: -2%;
 `
-
 const NoWorkation = styled.div`
 width: 100%;
 display: flex;

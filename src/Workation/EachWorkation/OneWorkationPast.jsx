@@ -6,6 +6,7 @@ import OneWorkationDetail from './OneWorkationDetail';
 import axios from 'axios';
 import { DateMap1, formatDateWithDay, getSiggMap, getWorkPurposeMap, getWorkStyleMap } from '../../api/mappingData';
 import { getThisAll } from '../../api/api_ThisAllTimeTable';
+import dayjs from 'dayjs';
 
 const OneWorkationPast = ({workation_id}) => {
 
@@ -18,15 +19,11 @@ const OneWorkationPast = ({workation_id}) => {
     const fetchData = async () => {
       try {
         const result = await getThisAll(workation_id);
-        console.log('Fetched data:', result); // 응답 데이터 디버깅
         if (result && result.daily_workation_list) {
           setData(result);
           setDailyWorkationList(result.daily_workation_list);
-        } else {
-          console.error('Invalid response format:', result);
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
       }
     };
     fetchData();
@@ -42,14 +39,15 @@ const OneWorkationPast = ({workation_id}) => {
   const formattedStartDate = formatDateWithDay(start_date);
   const formattedEndDate = formatDateWithDay(end_date);
 
-  const nightB = parseInt(end_date-start_date);
+  const start = dayjs(start_date)
+  const end = dayjs(end_date)
+
+  const nightB = end.diff(start, 'day');
   const dayB = nightB+1;
 
   return (
     <Container>
-      <OneWorkationTextBox workStyleText={workStyleText} workPurposeText={workPurposeText}
-        SiggText={SiggText} formattedStartDate={formattedStartDate}
-        formattedEndDate={formattedEndDate} nightB={nightB} dayB={dayB} /> {/* 수정수정 */}
+      <OneWorkationTextBox workStyleText={workStyleText} workPurposeText={workPurposeText} SiggText={SiggText} formattedStartDate={formattedStartDate} formattedEndDate={formattedEndDate} nightB={nightB} dayB={dayB} /> {/* 수정수정 */}
       <OneWorkationTimeTableList setbuttonClick={setbuttonClick} nightB={nightB} dayB={dayB} dailyWorkationList={dailyWorkationList} setSelectedDailyWorkationId={setSelectedDailyWorkationId}/>
       {click ? (<OneWorkationDetail workation_id={workation_id} daily_workation_id={selectedDailyWorkationId}/>) : (<></>)}
     </Container>
