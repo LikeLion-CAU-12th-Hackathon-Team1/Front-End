@@ -79,6 +79,7 @@ const TableBox = styled.div`
 `
 const IImg = styled.img`
   width: 22px;
+  cursor: pointer;
 `
 const ModalOverlay = styled.div`
   position: absolute;

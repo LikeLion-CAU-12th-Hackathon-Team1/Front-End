@@ -193,6 +193,7 @@ const Date = styled.div`
 `;
 const Icon = styled.img`
   width: 25px;
+  cursor: pointer;
 `
 const DayCount = styled.div`
   display: inline-block;
