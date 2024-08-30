@@ -15,7 +15,7 @@
     
 - 개발 기간: 2024.07.05. ~ 2024.08.07.
   
-- 기술 스택: React, JavaScript, HTML5, CSS
+- 기술 스택: React, JavaScript, HTML, CSS
     
 - 서비스 URL: https://workvalley.netlify.app
 
@@ -40,13 +40,13 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="width="100px;" alt=""/><br /><sub><b>PM, 기획 : 김지현 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>UI/UX 디자인 : 오유진 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE : 김태진 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/user-attachments/assets/c9ef26f4-7332-4c3b-9be8-5c7444858aff" width="100px;" alt=""/><br /><sub><b>PM, 기획 : 김지현 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/user-attachments/assets/e8c039bb-c611-40ac-8fa2-12fb1ecec3f4" width="100px;" alt=""/><br /><sub><b>UI/UX 디자인 : 오유진 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/user-attachments/assets/a7508614-8be7-4326-92a8-b7db80d11e6b" width="100px;" alt=""/><br /><sub><b>FE : 김태진 </b></sub></a><br /></td>
      <tr/>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE : 이주영 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE : 김명규 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE : 정현수 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/user-attachments/assets/c394f41b-6741-48f9-a0c7-a59db286028b" width="100px;" alt=""/><br /><sub><b>FE : 이주영 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/user-attachments/assets/e1873687-31da-4fbd-8783-bc121626a1d7" width="100px;" alt=""/><br /><sub><b>BE : 김명규 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/user-attachments/assets/640f5453-cc6b-466b-a7e9-fe089e6e684f" width="100px;" alt=""/><br /><sub><b>BE : 정현수 </b></sub></a><br /></td>
     </tr>
   </tbody>
 </table>
