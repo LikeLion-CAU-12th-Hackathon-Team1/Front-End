@@ -3,8 +3,8 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components'
 import { isLoginAtom, isMyPageModalAtom } from '../recoil/isLoginAtom';
 import { useNavigate } from 'react-router-dom';
-import superLogo from '../assets/img/super.png';
 import axios from 'axios';
+import { logout } from '../api/api_logout';
 
 
 const MyPageModal = () => {
@@ -18,42 +18,9 @@ const MyPageModal = () => {
     const email = localStorage.getItem("email");
     const profile = localStorage.getItem("profile");
 
-    const baseURL = `https://saengchaein.r-e.kr`;
-    //백 버전으로 로그아웃
-    const logout = async()=> {
-      const token =localStorage.getItem('access');
-      if (!token) {
-        console.error('No access token found');
-        return;
-      }
-
-      try {
-        // const response1 = await axios.post(`https://kapi.kakao.com/v1/user/logout`,null, {
-        //   headers: {
-        //     Authorization: `Bearer ${token}`
-        //   }
-        // });
-
-        const response = await axios.post(`${baseURL}/account/logout/`,null, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-
-
-        console.log('Logout Response:', response);
-        return response.data;
-        // 전송 성공 시 처리 로직 추가 (예: 페이지 이동 등) 
-      } catch (error) {
-        console.error('Error Logout:', error);
-        throw error;
-        // 에러 처리 로직 추가 (예: 사용자에게 알림)
-      }
-    }
-
   // 로그아웃 버튼 눌리면 실행될 함수 - 액세스, 리프레시 토큰 삭제 + 로그인 상태 리코일 false + 마이페이지 모달창 닫기 + 처음 홈 화면으로 이동
   const toLogOut = () => {
-    logout(); //로그아웃 백에서 되면 ..~!
+    logout();
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("nickname");
@@ -62,7 +29,6 @@ const MyPageModal = () => {
     setIsLogin(false);
     setMyPageModal(false);
     navigate("/");
-
   }
 
    // 모달 외부 클릭 시 모달 닫기
@@ -72,17 +38,16 @@ const MyPageModal = () => {
     } 
   } 
 
-
   return (
     <Overlay id="modal-overlay" onClick={handleOutsideClick}>
-    <Container>
-      <ProfileImg src={profile}/>
-      <Compo>
-    <NameCom> 이름  <Name>{nickname}</Name></NameCom>
-    <EmailCom>이메일  <Em>{email}</Em> </EmailCom>
-    <LogOut onClick={toLogOut}>로그아웃</LogOut>
-    </Compo>
-    </Container>
+      <Container>
+        <ProfileImg src={profile}/>
+        <Compo>
+          <NameCom> 이름  <Name>{nickname}</Name></NameCom>
+          <EmailCom>이메일  <Em>{email}</Em> </EmailCom>
+          <LogOut onClick={toLogOut}>로그아웃</LogOut>
+        </Compo>
+      </Container>
     </Overlay>
   )
 }
@@ -91,8 +56,6 @@ export default MyPageModal
 
 const Overlay = styled.div` 
   position: fixed;
-  top: 0; 
-  left: 0;
   width: 100vw; 
   height: 100vh; 
   display: flex; 
@@ -130,7 +93,6 @@ const Compo = styled.div`
   align-items: center;
   width: 100%;
 `
-
 
 const NameCom = styled.div`
   font-size: 16px;
