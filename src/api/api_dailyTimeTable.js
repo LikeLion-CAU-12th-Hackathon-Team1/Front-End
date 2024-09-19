@@ -136,7 +136,7 @@ export const getDailyTodo = async(daily_workation_id)=>{
         headers: {Authorization: `Bearer ${token}`
     }
     });
-    //console.log(response.data)
+    console.log(response.data)
     return response.data;
 }
 
