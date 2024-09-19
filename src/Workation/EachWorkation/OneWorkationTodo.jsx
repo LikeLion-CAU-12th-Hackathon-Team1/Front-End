@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import {getDailyTodo} from '../../api/api_dailyTimeTable'
+import axios from 'axios';
 
 const OneWorkationTodo = ({daily_workation_id}) => {
 
@@ -9,9 +9,15 @@ const OneWorkationTodo = ({daily_workation_id}) => {
   useEffect(() => {
     const fetchTodoData = async () => {
       try {
-        const response = await getDailyTodo(daily_workation_id);
-        setTodoList(response.data || []);
+        const token = localStorage.getItem('access');
+        const response = await axios.get(`https://saengchaein.r-e.kr/workation/daily/${daily_workation_id}/todolist/`,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setTodoList(response.data);
       } catch (error) {
+        console.error('Error fetching Todo data:', error);
       }
     };
     if (daily_workation_id) {
@@ -30,7 +36,7 @@ const OneWorkationTodo = ({daily_workation_id}) => {
         {todoList.map((todo) => (
         <TodoItem key={todo.task_id}>
           <CheckboxContainer>
-            <Checkbox type="checkbox" checked={todo.complete}/>
+            <Checkbox type="checkbox" checked={todo.complete} readOnly/>
           </CheckboxContainer>
           <TodoDes checked={todo.complete}>{todo.description}</TodoDes>
         </TodoItem>
